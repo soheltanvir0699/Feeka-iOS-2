@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D04762323FAC557009C0E7B /* NetworkingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D04762223FAC557009C0E7B /* NetworkingClient.swift */; };
+		8D04762523FAE2C3009C0E7B /* Extension+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D04762423FAE2C3009C0E7B /* Extension+UIImageView.swift */; };
 		8D3D7B9823F2C7F1005A3479 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D7B9723F2C7F1005A3479 /* AppDelegate.swift */; };
 		8D3D7B9A23F2C7F1005A3479 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D7B9923F2C7F1005A3479 /* SceneDelegate.swift */; };
 		8D3D7B9C23F2C7F1005A3479 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D7B9B23F2C7F1005A3479 /* LogInViewController.swift */; };
@@ -16,7 +18,7 @@
 		8D3D7BAC23F2F254005A3479 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D7BAB23F2F254005A3479 /* ForgotPasswordViewController.swift */; };
 		8D3D7BAE23F30B72005A3479 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D7BAD23F30B72005A3479 /* SignUpViewController.swift */; };
 		8D67083323F51DCF001DC494 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D67083223F51DCF001DC494 /* MoreViewController.swift */; };
-		8DE40A6623F4081F00807FC5 /* FacebookAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE40A6523F4081F00807FC5 /* FacebookAuth.swift */; };
+		8DAC471623FAF48F0095D064 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAC471523FAF48F0095D064 /* UIImage+Gif.swift */; };
 		8DE40A6823F40D3800807FC5 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE40A6723F40D3800807FC5 /* DataModel.swift */; };
 		8DE40A6A23F4601500807FC5 /* HomeMenGroomingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE40A6923F4601500807FC5 /* HomeMenGroomingViewController.swift */; };
 		C458548023F9A5FD00C23B49 /* DiscoverSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C458547F23F9A5FD00C23B49 /* DiscoverSearchViewController.swift */; };
@@ -43,6 +45,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8D04762223FAC557009C0E7B /* NetworkingClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingClient.swift; sourceTree = "<group>"; };
+		8D04762423FAE2C3009C0E7B /* Extension+UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIImageView.swift"; sourceTree = "<group>"; };
 		8D3D7B9423F2C7F1005A3479 /* FEEKA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FEEKA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D3D7B9723F2C7F1005A3479 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D3D7B9923F2C7F1005A3479 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,7 +58,7 @@
 		8D3D7BAB23F2F254005A3479 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		8D3D7BAD23F30B72005A3479 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		8D67083223F51DCF001DC494 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
-		8DE40A6523F4081F00807FC5 /* FacebookAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookAuth.swift; sourceTree = "<group>"; };
+		8DAC471523FAF48F0095D064 /* UIImage+Gif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
 		8DE40A6723F40D3800807FC5 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		8DE40A6923F4601500807FC5 /* HomeMenGroomingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenGroomingViewController.swift; sourceTree = "<group>"; };
 		C458547F23F9A5FD00C23B49 /* DiscoverSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverSearchViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +108,53 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		8D0475FD23FAAA11009C0E7B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8DE40A6923F4601500807FC5 /* HomeMenGroomingViewController.swift */,
+				C4BD14AB23F5996400B5DBA5 /* VideoScreenViewController.swift */,
+				8D3D7B9B23F2C7F1005A3479 /* LogInViewController.swift */,
+				C4BC808A23F9814F00FA5873 /* AddAddressViewController.swift */,
+				C461214923F98335003611A1 /* AddAddressDetailsViewController.swift */,
+				C458548123F9B89F00C23B49 /* HomeViewController.swift */,
+				C4E5B8B223FA4FFF0040F4E8 /* HomeProductDetailsViewController.swift */,
+				C461214B23F98A1D003611A1 /* WishListViewController.swift */,
+				C4ADA25F23F693FE00F4B5E9 /* DiscoverDetailsViewController.swift */,
+				8D3D7BAD23F30B72005A3479 /* SignUpViewController.swift */,
+				C4BC808823F97E0600FA5873 /* NewslettersViewController.swift */,
+				C458547F23F9A5FD00C23B49 /* DiscoverSearchViewController.swift */,
+				C464B0CE23F6653600C292EE /* DiscoverViewController.swift */,
+				8D67083223F51DCF001DC494 /* MoreViewController.swift */,
+				C4EF3D8823F7C32600BA556F /* ProductDetailsViewController.swift */,
+				C4BD14A523F5753C00B5DBA5 /* HotViewController.swift */,
+				8D3D7BAB23F2F254005A3479 /* ForgotPasswordViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8D0475FE23FAAA62009C0E7B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C4D4BEEE23F7B42D00277DF3 /* TabBarView.swift */,
+				8D3D7B9D23F2C7F1005A3479 /* Main.storyboard */,
+				C4ED048423F6CFBA0072CEE7 /* DiscoverTableViewCell.swift */,
+				C4ED048823F6DD130072CEE7 /* CollectionViewCell.swift */,
+				C4EF3D8623F7C27600BA556F /* ProductDetailsCollectionViewCell.swift */,
+				C4BD14A723F57E2000B5DBA5 /* HotCollectionViewCell.swift */,
+				8D3D7BA223F2C7F3005A3479 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8D0475FF23FAAB23009C0E7B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C4BD14A923F5954B00B5DBA5 /* vid_file2.mp4 */,
+				8D3D7BA023F2C7F3005A3479 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		8D3D7B8B23F2C7F1005A3479 = {
 			isa = PBXGroup;
 			children = (
@@ -126,37 +177,16 @@
 			isa = PBXGroup;
 			children = (
 				8D3D7B9723F2C7F1005A3479 /* AppDelegate.swift */,
-				8DE40A6923F4601500807FC5 /* HomeMenGroomingViewController.swift */,
-				C4BD14AB23F5996400B5DBA5 /* VideoScreenViewController.swift */,
 				8D3D7B9923F2C7F1005A3479 /* SceneDelegate.swift */,
-				8D3D7B9B23F2C7F1005A3479 /* LogInViewController.swift */,
 				C4ADA25D23F68F0900F4B5E9 /* Extension+ViewController.swift */,
-				C458548123F9B89F00C23B49 /* HomeViewController.swift */,
+				8D04762223FAC557009C0E7B /* NetworkingClient.swift */,
+				8D04762423FAE2C3009C0E7B /* Extension+UIImageView.swift */,
+				8DAC471523FAF48F0095D064 /* UIImage+Gif.swift */,
 				8DE40A6723F40D3800807FC5 /* DataModel.swift */,
-				8D67083223F51DCF001DC494 /* MoreViewController.swift */,
-				C4BC808A23F9814F00FA5873 /* AddAddressViewController.swift */,
-				C461214923F98335003611A1 /* AddAddressDetailsViewController.swift */,
-				C461214B23F98A1D003611A1 /* WishListViewController.swift */,
-				8DE40A6523F4081F00807FC5 /* FacebookAuth.swift */,
-				C4E5B8B223FA4FFF0040F4E8 /* HomeProductDetailsViewController.swift */,
-				C4ADA25F23F693FE00F4B5E9 /* DiscoverDetailsViewController.swift */,
-				C4BC808823F97E0600FA5873 /* NewslettersViewController.swift */,
-				C458547F23F9A5FD00C23B49 /* DiscoverSearchViewController.swift */,
-				C4BD14A923F5954B00B5DBA5 /* vid_file2.mp4 */,
-				C4BD14A723F57E2000B5DBA5 /* HotCollectionViewCell.swift */,
-				8D3D7BAD23F30B72005A3479 /* SignUpViewController.swift */,
-				C4ED048423F6CFBA0072CEE7 /* DiscoverTableViewCell.swift */,
-				C464B0CE23F6653600C292EE /* DiscoverViewController.swift */,
-				C4ED048823F6DD130072CEE7 /* CollectionViewCell.swift */,
-				C4BD14A523F5753C00B5DBA5 /* HotViewController.swift */,
-				C4EF3D8823F7C32600BA556F /* ProductDetailsViewController.swift */,
-				C4EF3D8623F7C27600BA556F /* ProductDetailsCollectionViewCell.swift */,
-				8D3D7BAB23F2F254005A3479 /* ForgotPasswordViewController.swift */,
-				8D3D7B9D23F2C7F1005A3479 /* Main.storyboard */,
-				8D3D7BA023F2C7F3005A3479 /* Assets.xcassets */,
-				8D3D7BA223F2C7F3005A3479 /* LaunchScreen.storyboard */,
+				8D0475FF23FAAB23009C0E7B /* Resources */,
+				8D0475FD23FAAA11009C0E7B /* Controller */,
+				8D0475FE23FAAA62009C0E7B /* View */,
 				8D3D7BA523F2C7F3005A3479 /* Info.plist */,
-				C4D4BEEE23F7B42D00277DF3 /* TabBarView.swift */,
 			);
 			path = FEEKA;
 			sourceTree = "<group>";
@@ -296,8 +326,8 @@
 				8D3D7BAC23F2F254005A3479 /* ForgotPasswordViewController.swift in Sources */,
 				C4ADA26023F693FE00F4B5E9 /* DiscoverDetailsViewController.swift in Sources */,
 				C461214A23F98335003611A1 /* AddAddressDetailsViewController.swift in Sources */,
-				8DE40A6623F4081F00807FC5 /* FacebookAuth.swift in Sources */,
 				C464B0CF23F6653600C292EE /* DiscoverViewController.swift in Sources */,
+				8D04762323FAC557009C0E7B /* NetworkingClient.swift in Sources */,
 				C458548223F9B89F00C23B49 /* HomeViewController.swift in Sources */,
 				C4ED048523F6CFBA0072CEE7 /* DiscoverTableViewCell.swift in Sources */,
 				C4BC808B23F9814F00FA5873 /* AddAddressViewController.swift in Sources */,
@@ -308,11 +338,13 @@
 				8DE40A6A23F4601500807FC5 /* HomeMenGroomingViewController.swift in Sources */,
 				C4EF3D8723F7C27600BA556F /* ProductDetailsCollectionViewCell.swift in Sources */,
 				8D3D7B9C23F2C7F1005A3479 /* LogInViewController.swift in Sources */,
+				8D04762523FAE2C3009C0E7B /* Extension+UIImageView.swift in Sources */,
 				8D3D7B9823F2C7F1005A3479 /* AppDelegate.swift in Sources */,
 				C4BD14AC23F5996400B5DBA5 /* VideoScreenViewController.swift in Sources */,
 				8D3D7B9A23F2C7F1005A3479 /* SceneDelegate.swift in Sources */,
 				C4BD14A823F57E2000B5DBA5 /* HotCollectionViewCell.swift in Sources */,
 				8D3D7BAE23F30B72005A3479 /* SignUpViewController.swift in Sources */,
+				8DAC471623FAF48F0095D064 /* UIImage+Gif.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

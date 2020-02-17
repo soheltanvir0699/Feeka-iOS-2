@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import SVProgressHUD
+import Alamofire
+import SwiftyJSON
 
 class HomeMenGroomingViewController: UIViewController {
 
@@ -19,6 +22,7 @@ class HomeMenGroomingViewController: UIViewController {
     @IBOutlet weak var saleImg: UIImageView!
     @IBOutlet weak var editorsPicksImg: UIImageView!
     
+    private let networkingClint = NetworkingClient()
     var womenText = "Women"
     var menText = "Men"
     var menClick = false
@@ -35,6 +39,27 @@ class HomeMenGroomingViewController: UIViewController {
         let image = UIImage(named: "feekalarge")
         imageView.image = image
         navigationItem.titleView = imageView
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+//
+//        NetworkingClient.networkingClient.execute(urlToExcute, parameter: parameter) { (json, error) in
+//            if let error = error {
+//                print(error)
+//            } else if let json = json {
+//               let jsonresponse = JSON(json)
+////                let dataList = jsonresponse["data"].arrayValue
+////                print(dataList)
+////                for i in dataList {
+////                    print(i)
+////                    let image = i["image"].stringValue
+////                    print(image)
+////                }
+//            }
+//        }
+        
+        
     }
     
    func setUpView() {

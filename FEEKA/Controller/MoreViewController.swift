@@ -34,6 +34,8 @@ class MoreViewController: UIViewController {
     @IBAction func settingAction(_ sender: Any) {
         
         let navVc = storyboard?.instantiateViewController(withIdentifier: "loginnav")
+        navVc!.modalPresentationStyle = .overCurrentContext
+        navVc!.transitioningDelegate = self
         present(navVc!, animated: true, completion: nil)
         
     }
@@ -67,6 +69,8 @@ class MoreViewController: UIViewController {
     }
     @objc func signOutAction() {
         let navVc = storyboard?.instantiateViewController(withIdentifier: "loginnav")
+        navVc!.modalPresentationStyle = .overCurrentContext
+        navVc!.transitioningDelegate = self
         present(navVc!, animated: true, completion: nil)
     }
     @objc func termsAction() {
@@ -112,4 +116,9 @@ class MoreViewController: UIViewController {
                   }
               }
           }
+}
+
+
+extension MoreViewController: UIViewControllerTransitioningDelegate {
+    
 }

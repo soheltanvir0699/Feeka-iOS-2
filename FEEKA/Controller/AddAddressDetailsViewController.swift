@@ -17,7 +17,6 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
     var isDefault = true
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
     

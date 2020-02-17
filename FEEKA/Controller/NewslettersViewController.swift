@@ -59,6 +59,8 @@ class NewslettersViewController: UIViewController {
             isWomen = true
             womenBtn.setImage(nil, for: .normal)
         }
+        
+        //dfdf
     }
     
     @IBAction func menCheckBoxAction(_ sender: Any) {

@@ -10,8 +10,10 @@ import UIKit
 
 class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate {
 
+    @IBOutlet weak var addToFav: UIButton!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var scrollView: UIScrollView!
+    var isLike = false
     
     var image: [String] = ["Fashion","Fashion"]
     var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
@@ -37,6 +39,15 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate {
         pageControl.currentPage = Int(pageNumber)
     }
 
+    @IBAction func addToFavorite(_ sender: Any) {
+        if isLike {
+            addToFav.setImage(UIImage(named: "like-normal"), for: .normal)
+            isLike = false
+        } else { addToFav.setImage(UIImage(named: "like"), for: .normal)
+            isLike = true
+        }
+        
+    }
     @IBAction func backBtn(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }

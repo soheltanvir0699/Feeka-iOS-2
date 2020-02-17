@@ -24,6 +24,23 @@ class HotViewController: UIViewController {
         brandCareImg.layer.cornerRadius = 5
         allBodyImg.layer.cornerRadius = 5
         ConditionerImg.layer.cornerRadius = 5
+        allFaceImg.isUserInteractionEnabled = true
+        brandCareImg.isUserInteractionEnabled = true
+        allBodyImg.isUserInteractionEnabled = true
+        ConditionerImg.isUserInteractionEnabled = true
+        allFaceImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(allFace(tapGestureRecognizer:))))
+        brandCareImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(allFace(tapGestureRecognizer:))))
+        allBodyImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(allFace(tapGestureRecognizer:))))
+        ConditionerImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(allFace(tapGestureRecognizer:))))
+    }
+    
+    @objc func allFace(tapGestureRecognizer: UITapGestureRecognizer) {
+        PushDiscoverViewController()
+    }
+    
+    func PushDiscoverViewController() {
+        let menGroomingVC = storyboard?.instantiateViewController(withIdentifier: "DiscoverViewController") as! DiscoverViewController
+        self.navigationController?.pushViewController(menGroomingVC, animated: true)
     }
     
 }
@@ -40,6 +57,9 @@ extension HotViewController: UICollectionViewDelegate, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let DiscoverDetailsVC = storyboard?.instantiateViewController(withIdentifier: "DiscoverDetailsViewController") as! DiscoverDetailsViewController
+        self.navigationController?.pushViewController(DiscoverDetailsVC, animated: true)
         print("sdsdsd")
     }
+    
 }
