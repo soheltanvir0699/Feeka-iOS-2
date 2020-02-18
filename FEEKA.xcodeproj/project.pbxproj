@@ -18,6 +18,7 @@
 		8D3D7BAC23F2F254005A3479 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D7BAB23F2F254005A3479 /* ForgotPasswordViewController.swift */; };
 		8D3D7BAE23F30B72005A3479 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D7BAD23F30B72005A3479 /* SignUpViewController.swift */; };
 		8D67083323F51DCF001DC494 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D67083223F51DCF001DC494 /* MoreViewController.swift */; };
+		8D8226F523FBB2F4005B3F39 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8226F423FBB2F4005B3F39 /* AlertView.swift */; };
 		8DAC471623FAF48F0095D064 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAC471523FAF48F0095D064 /* UIImage+Gif.swift */; };
 		8DE40A6823F40D3800807FC5 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE40A6723F40D3800807FC5 /* DataModel.swift */; };
 		8DE40A6A23F4601500807FC5 /* HomeMenGroomingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE40A6923F4601500807FC5 /* HomeMenGroomingViewController.swift */; };
@@ -58,6 +59,7 @@
 		8D3D7BAB23F2F254005A3479 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		8D3D7BAD23F30B72005A3479 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		8D67083223F51DCF001DC494 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
+		8D8226F423FBB2F4005B3F39 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		8DAC471523FAF48F0095D064 /* UIImage+Gif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
 		8DE40A6723F40D3800807FC5 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		8DE40A6923F4601500807FC5 /* HomeMenGroomingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenGroomingViewController.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				8D3D7B9923F2C7F1005A3479 /* SceneDelegate.swift */,
 				C4ADA25D23F68F0900F4B5E9 /* Extension+ViewController.swift */,
 				8D04762223FAC557009C0E7B /* NetworkingClient.swift */,
+				8D8226F423FBB2F4005B3F39 /* AlertView.swift */,
 				8D04762423FAE2C3009C0E7B /* Extension+UIImageView.swift */,
 				8DAC471523FAF48F0095D064 /* UIImage+Gif.swift */,
 				8DE40A6723F40D3800807FC5 /* DataModel.swift */,
@@ -321,6 +324,7 @@
 				C4ED048923F6DD130072CEE7 /* CollectionViewCell.swift in Sources */,
 				C4EF3D8923F7C32600BA556F /* ProductDetailsViewController.swift in Sources */,
 				C4E5B8B323FA4FFF0040F4E8 /* HomeProductDetailsViewController.swift in Sources */,
+				8D8226F523FBB2F4005B3F39 /* AlertView.swift in Sources */,
 				8D67083323F51DCF001DC494 /* MoreViewController.swift in Sources */,
 				8DE40A6823F40D3800807FC5 /* DataModel.swift in Sources */,
 				8D3D7BAC23F2F254005A3479 /* ForgotPasswordViewController.swift in Sources */,

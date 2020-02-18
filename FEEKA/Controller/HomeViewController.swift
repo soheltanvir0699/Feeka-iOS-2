@@ -10,10 +10,12 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import ImageIO
-import SVProgressHUD
+import NVActivityIndicatorView
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var hireCareLbl: UILabel!
+    @IBOutlet weak var productFinder: UIImageView!
     @IBOutlet weak var brands: UIImageView!
     @IBOutlet weak var bannerImg: UIImageView!
     @IBOutlet weak var coomingSoon: UIImageView!
@@ -23,6 +25,14 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var skincareImg: UIImageView!
     @IBOutlet weak var editorsPicks: UIImageView!
     @IBOutlet weak var saleImg: UIImageView!
+    @IBOutlet weak var skinCareLbl: UILabel!
+    
+    @IBOutlet weak var saleLbl: UILabel!
+    @IBOutlet weak var editorPickLbl: UILabel!
+    @IBOutlet weak var menGroomingLbl: UILabel!
+    @IBOutlet weak var makeUpLbl: UILabel!
+    @IBOutlet weak var brandLbl: UILabel!
+    var activityIndicator:NVActivityIndicatorView!
     
     fileprivate func setUpView() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(grooming(tapGestureRecognizer:)))
@@ -48,9 +58,11 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setUpView()
+        activityIndicator = self.indicator()
+        activityIndicator.startAnimating()
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/dashboard.php") else {
@@ -58,27 +70,41 @@ class HomeViewController: UIViewController {
         }
         let parameter: [String:String] = ["Gender":"2"]
         Alamofire.request(urlToExcute, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
-            //SVProgressHUD.show()
+            
+            if let error = response.error {
+                self.activityIndicator.stopAnimating()
+                let alertView = ShowAlertView().alertView(title: "Something went wrong", action: "OK", message: "Please try again.")
+                self.present(alertView, animated: true, completion: nil)
+                print(error)
+                
+            }
+            
             if let respose = response.result.value {
                 let jsonResponse = JSON(respose)
                 let dataList = jsonResponse["data"].arrayValue
                  for i in dataList {
                                     let image = i["image"].stringValue
                                     print(image)
-                    if i["title"] == "EQUIPMENT" {
+                    if i["id"] == "31" {
                         self.coomingSoon.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
                     }
                     if i["title"] == "Brands" {
                         let image = UIImage.gif(url: i["image"].stringValue)
                         self.brands.image = image
+                        self.brandLbl.text = i["title"].stringValue
                     }
-                    if i["title"] == "Brands" {
+                    if i["id"] == "32" {
+                        self.productFinder.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
+                    }
+                    if i["title"] == "sale" {
                         let image = UIImage.gif(url: i["image"].stringValue)
-                        self.brands.image = image
+                        self.saleImg.image = image
+                        self.saleLbl.text = i["title"].stringValue
                     }
                     if i["title"] == "Men's Grooming" {
-                        let image = UIImage.gif(url: i["image"].stringValue)
-                        self.menGroomingImg.image = image
+                        //let image = UIImage.gif(url: i["image"].stringValue)
+                        self.menGroomingImg.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
+                        self.menGroomingLbl.text = i["title"].stringValue
                     }
                     if i["title"] == "Chocolate sqeeze title" {
                         self.bannerImg.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
@@ -86,22 +112,26 @@ class HomeViewController: UIViewController {
                     
                     if i["title"] == "Hair Care" {
                         self.hairCareImg.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
+                        self.hireCareLbl.text = i["title"].stringValue
                     }
                     if i["title"] == "Skincare" {
                         let image = UIImage.gif(url: i["image"].stringValue)
                         self.skincareImg.image = image
+                        self.skinCareLbl.text = i["title"].stringValue
                     }
                     if i["title"] == "Makeup" {
                         let image = UIImage.gif(url: i["image"].stringValue)
                         self.makeUpImg.image = image
+                        self.makeUpLbl.text = i["title"].stringValue
                     }
                     
                     if i["title"] == "Editors Picks" {
                         self.editorsPicks.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
+                        self.editorPickLbl.text = i["title"].stringValue
                                            
                                        }
                 }
-                //SVProgressHUD.dismiss()
+                self.activityIndicator.stopAnimating()
             }
         }
     }

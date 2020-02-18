@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import NVActivityIndicatorView
 //
 //  FacebookAuth.swift
 //  FEEKA
@@ -51,10 +51,10 @@ extension UIViewController {
                     (response, result, error) in
                     
                     if ((error != nil)) {
-                         print("Error took place: \(error)")
+                        print("Error took place: \(String(describing: error))")
                     } else {
                         let dict = result as? [String : AnyObject]
-                        print(dict)
+                        print(dict!)
                         if dict!["gmail"] == nil {
                             print("nill")
                         }
@@ -96,6 +96,20 @@ extension UIViewController {
                toastLabel.removeFromSuperview()
            })
 
+    }
+    
+     func indicator() -> NVActivityIndicatorView {
+        let activityIndicator: NVActivityIndicatorView!
+        let xAxis = self.view.center.x
+        let yAxis = self.view.center.y
+        
+        let frame = CGRect(x: (xAxis - 50), y: (yAxis - 50), width: 45, height: 45)
+        activityIndicator = NVActivityIndicatorView(frame: frame)
+        activityIndicator.type = .audioEqualizer
+        activityIndicator.color = UIColor.black
+        
+        self.view.addSubview(activityIndicator) // or use  webView.addSubview(activityIndicator)
+        return activityIndicator
     }
 }
 

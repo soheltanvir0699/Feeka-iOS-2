@@ -26,10 +26,7 @@ class AddAddressViewController: UIViewController {
     }
   
     fileprivate func alertView() {
-             // Do any additional setup after loading the view.
-             
-             let alertVc = UIAlertController(title: "Please add new address", message: nil, preferredStyle: .alert)
-             alertVc.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        let alertVc = ShowAlertView().alertView(title: "Please add new address", action: "OK", message: "")
            self.present(alertVc, animated: true, completion: nil)
          }
          

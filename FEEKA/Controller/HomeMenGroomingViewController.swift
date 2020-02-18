@@ -10,10 +10,14 @@ import UIKit
 import SVProgressHUD
 import Alamofire
 import SwiftyJSON
+import NVActivityIndicatorView
 
 class HomeMenGroomingViewController: UIViewController {
 
-    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var skinCare: UILabel!
+    @IBOutlet weak var brandLbl: UILabel!
+    @IBOutlet weak var hireCareLbl: UILabel!
+    @IBOutlet weak var topView: UIImageView!
     @IBOutlet weak var equipmentImg: UIImageView!
     @IBOutlet weak var hireCareImg: UIImageView!
     @IBOutlet weak var skinCareImg: UIImageView!
@@ -21,17 +25,23 @@ class HomeMenGroomingViewController: UIViewController {
     @IBOutlet weak var justInImg: UIImageView!
     @IBOutlet weak var saleImg: UIImageView!
     @IBOutlet weak var editorsPicksImg: UIImageView!
+    @IBOutlet weak var skinCarelbl: UILabel!
+    
+    @IBOutlet weak var saleLbl: UILabel!
+    @IBOutlet weak var editorsPicks: UILabel!
+    @IBOutlet weak var justInLbl: UILabel!
+    @IBOutlet weak var equipmentLbl: UILabel!
     
     private let networkingClint = NetworkingClient()
     var womenText = "Women"
     var menText = "Men"
     var menClick = false
     var womanClick = false
+    var activityIndicator:NVActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
           setUpView()
-        // Do any additional setup after loading the view.
         let nav = self.navigationController?.navigationBar
         nav?.tintColor = UIColor.black
         let imageView = UIImageView(frame: CGRect(x: 70, y: 0, width: 80, height: 30))
@@ -40,24 +50,66 @@ class HomeMenGroomingViewController: UIViewController {
         imageView.image = image
         navigationItem.titleView = imageView
         
+        activityIndicator = self.indicator()
+        activityIndicator.startAnimating()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//
-//        NetworkingClient.networkingClient.execute(urlToExcute, parameter: parameter) { (json, error) in
-//            if let error = error {
-//                print(error)
-//            } else if let json = json {
-//               let jsonresponse = JSON(json)
-////                let dataList = jsonresponse["data"].arrayValue
-////                print(dataList)
-////                for i in dataList {
-////                    print(i)
-////                    let image = i["image"].stringValue
-////                    print(image)
-////                }
-//            }
-//        }
+guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/dashboard.php") else {
+    return
+}
+let parameter: [String:String] = ["Gender":"1"]
+Alamofire.request(urlToExcute, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+    if let error = response.error {
+        self.activityIndicator.stopAnimating()
+        let alertView = ShowAlertView().alertView(title: "Something went wrong", action: "OK", message: "Please try again.")
+        self.present(alertView, animated: true, completion: nil)
+        print(error)
+    }
+    if let respose = response.result.value {
+        let jsonResponse = JSON(respose)
+        let dataList = jsonResponse["data"].arrayValue
+         for i in dataList {
+            let image = i["image"].stringValue
+            print(image)
+            if i["id"] == "3" {
+                self.skinCareImg.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
+                self.skinCarelbl.text = i["title"].stringValue
+            }
+            if i["id"] == "4" {
+                let image = UIImage.gif(url: i["image"].stringValue)
+                self.brands.image = image
+                self.brandLbl.text = i["title"].stringValue
+            }
+            if i["id"] == "13" {
+                self.justInImg.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
+                self.justInLbl.text = i["title"].stringValue
+            }
+            if i["id"] == "12" {
+                let image = UIImage.gif(url: i["image"].stringValue)
+                self.saleImg.image = image
+                self.saleLbl.text = i["title"].stringValue
+            }
+            if i["id"] == "14" {
+                self.editorsPicksImg.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
+                self.editorsPicks.text = i["title"].stringValue
+            }
+            if i["id"] == "22" {
+                self.topView.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
+            }
+            
+            if i["id"] == "1" {
+                self.hireCareImg.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
+                self.hireCareLbl.text = i["title"].stringValue
+            }
+            if i["id"] == "2" {
+                self.equipmentImg.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
+                self.equipmentLbl.text = i["title"].stringValue
+            }
+        }
+        self.activityIndicator.stopAnimating()
+    }
+}
         
         
     }
@@ -87,8 +139,8 @@ class HomeMenGroomingViewController: UIViewController {
     editorsPicksImg.addGestureRecognizer(tapGestureEditor)
     brands.addGestureRecognizer(tapGestureBrand)
     justInImg.addGestureRecognizer(tapGestureJustIn)
-
     }
+    
 
     @IBAction func menuAction(_ sender: Any) {
         var menAction = UIAlertAction()
