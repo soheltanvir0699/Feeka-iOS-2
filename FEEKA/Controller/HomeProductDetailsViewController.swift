@@ -29,6 +29,7 @@ class HomeProductDetailsViewController: UIViewController {
     var currentPage = 1
     var gender: Int = 1
     var isTotal = true
+    var productCategory = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
         let userDefault = UserDefaults.standard
@@ -52,6 +53,9 @@ class HomeProductDetailsViewController: UIViewController {
               guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/GetProductListing.php?page=\(currentPage)") else {
                   return
               }
+        guard let filterApi = URL(string:  "https://feeka.co.za/json-api/route/filter_listing.php") else {
+            return
+        }
               
               let parameter = ["brand":"\(brand)",
                                "brand_id":"\(brandId)",
@@ -67,7 +71,35 @@ class HomeProductDetailsViewController: UIViewController {
                                "size":"\(size)",
                                "sort_parameter":"\(sortParameter)",
                                "tag_id":"\(tagId)"]
+              Alamofire.request(filterApi, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
               
+              if let error = response.error {
+                  self.indicator.stopAnimating()
+                  let alertView = ShowAlertView().alertView(title: "Something went wrong", action: "OK", message: "Please try again.")
+                  self.present(alertView, animated: true, completion: nil)
+                  print(error)
+                  
+              }
+              
+                  if let response = response.result.value {
+                      let jsonResponse = JSON(response)
+                   
+                      for i in jsonResponse["product_data"].arrayValue {
+                          
+                        var productCategory = i["product_categorie"].arrayValue
+                        for j in productCategory {
+                            let name = j["name"].stringValue
+                            productCategory.append(name)
+                        }
+
+                      }
+                      //self.indicator.stopAnimating()
+                      self.productListCollView.reloadData()
+                    self.productListTblView.reloadData()
+                  
+                  }
+                  
+              }
               Alamofire.request(urlToExcute, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
               
               if let error = response.error {
@@ -117,13 +149,28 @@ class HomeProductDetailsViewController: UIViewController {
 }
 
 
-extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollectionViewDataSource , UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == productListCollView {
             return dataList.count
         }
-        return 5
+        return 4
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView != productListCollView {
+            if indexPath.row < 3 {
+            return CGSize(width: 30, height: 30)
+            } else {
+                let label = UILabel(frame: .zero)
+                label.text = textArray[indexPath.row]
+                label.sizeToFit()
+                return CGSize(width: label.frame.width + 10, height: 30)
+            }
+        }
+        return CGSize(width: collectionView.frame.width / 2 - 5, height: 335)
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == productListCollView {

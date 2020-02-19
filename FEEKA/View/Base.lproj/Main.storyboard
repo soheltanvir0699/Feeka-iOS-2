@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -1636,7 +1637,6 @@
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="acV-bi-Oj9">
                                     <size key="itemSize" width="49" height="28"/>
-                                    <size key="estimatedItemSize" width="61" height="30"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -1645,25 +1645,22 @@
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="menuCell" id="FR8-R6-CTz">
                                         <rect key="frame" x="0.0" y="3.6666666666666665" width="49" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="bXg-bS-rMF">
                                             <rect key="frame" x="0.0" y="0.0" width="49" height="28"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TGz-1r-cNm">
-                                                    <rect key="frame" x="17" y="7.0000000000003038" width="15" height="14"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="14" id="GMi-QH-461"/>
-                                                        <constraint firstAttribute="width" constant="15" id="ymQ-KR-ZrW"/>
-                                                    </constraints>
+                                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TGz-1r-cNm">
+                                                    <rect key="frame" x="5" y="5" width="39" height="18"/>
                                                     <state key="normal" image="sort"/>
                                                 </button>
                                             </subviews>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstItem="TGz-1r-cNm" firstAttribute="centerY" secondItem="FR8-R6-CTz" secondAttribute="centerY" id="1TC-hc-qoh"/>
-                                            <constraint firstItem="TGz-1r-cNm" firstAttribute="centerX" secondItem="FR8-R6-CTz" secondAttribute="centerX" id="jT0-La-pQM"/>
-                                        </constraints>
-                                        <size key="customSize" width="49" height="28"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="TGz-1r-cNm" secondAttribute="bottom" constant="5" id="0Y2-f6-ImC"/>
+                                                <constraint firstItem="TGz-1r-cNm" firstAttribute="leading" secondItem="bXg-bS-rMF" secondAttribute="leading" constant="5" id="2uq-54-CfD"/>
+                                                <constraint firstAttribute="trailing" secondItem="TGz-1r-cNm" secondAttribute="trailing" constant="5" id="gtE-OI-4RT"/>
+                                                <constraint firstItem="TGz-1r-cNm" firstAttribute="top" secondItem="bXg-bS-rMF" secondAttribute="top" constant="5" id="ngS-Zm-nUX"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
