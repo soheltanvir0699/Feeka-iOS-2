@@ -34,6 +34,7 @@ class HomeProductDetailsViewController: UIViewController , UIViewControllerTrans
     override func viewDidLoad() {
         super.viewDidLoad()
         let userDefault = UserDefaults.standard
+        userDefault.setValue(1, forKey: "Gender")
         gender = userDefault.value(forKey: "Gender") as! Int
         print(gender)
         apiCalling(brand: "", brandId: "", categorie: categorie, color: "", filter: "", gender: "\(gender)", maxPrice: "", minPrice: "", productCategorie: "", productType: "", searchTag: "", size: "", sortParameter: "", tagId: "", currentPage: currentPage)
