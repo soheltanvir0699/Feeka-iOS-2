@@ -12,4 +12,11 @@ class HotCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var productImg: UIImageView!
     
+    @IBOutlet weak var productTitle: UILabel!
+    
+    @IBOutlet weak var productBrand: UILabel!
+    
+    @IBOutlet weak var regularPrice: UILabel!
+    
+    @IBOutlet weak var salePrice: UILabel!
 }

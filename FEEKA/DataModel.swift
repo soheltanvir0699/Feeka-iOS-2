@@ -27,3 +27,7 @@ struct hireCareParameter {
     let regularPrice:String
     let salePrice:String
 }
+
+struct brandBox {
+    let image: String
+}

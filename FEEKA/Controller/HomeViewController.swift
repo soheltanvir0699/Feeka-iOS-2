@@ -150,7 +150,7 @@ class HomeViewController: UIViewController {
     
     @objc func brand(tapGestureRecognizer: UITapGestureRecognizer) {
         let homeProductDetails = storyboard?.instantiateViewController(withIdentifier: "HomeProductDetailsViewController") as! HomeProductDetailsViewController
-        homeProductDetails.categorie = "337"
+        homeProductDetails.categorie = "134"
         homeProductDetails.productNam = "Brands"
         self.navigationController?.pushViewController(homeProductDetails, animated: true)
     }
@@ -160,24 +160,34 @@ class HomeViewController: UIViewController {
     }
     
     @objc func makeUP(tapGestureRecognizer: UITapGestureRecognizer) {
-        let menGroomingVC = storyboard?.instantiateViewController(withIdentifier: "HomeProductDetailsViewController") as! HomeProductDetailsViewController
-        self.navigationController?.pushViewController(menGroomingVC, animated: true)
+        let homeProductDetails = storyboard?.instantiateViewController(withIdentifier: "HomeProductDetailsViewController") as! HomeProductDetailsViewController
+        homeProductDetails.categorie = "125"
+        homeProductDetails.productNam = "MAKEUP"
+        self.navigationController?.pushViewController(homeProductDetails, animated: true)
     }
     @objc func editor(tapGestureRecognizer: UITapGestureRecognizer) {
-        let menGroomingVC = storyboard?.instantiateViewController(withIdentifier: "HomeProductDetailsViewController") as! HomeProductDetailsViewController
-        self.navigationController?.pushViewController(menGroomingVC, animated: true)
+        let homeProductDetails = storyboard?.instantiateViewController(withIdentifier: "HomeProductDetailsViewController") as! HomeProductDetailsViewController
+        homeProductDetails.categorie = "340"
+        homeProductDetails.productNam = "EDITORS PICKS"
+        self.navigationController?.pushViewController(homeProductDetails, animated: true)
     }
     @objc func skin(tapGestureRecognizer: UITapGestureRecognizer) {
-           let menGroomingVC = storyboard?.instantiateViewController(withIdentifier: "HomeProductDetailsViewController") as! HomeProductDetailsViewController
-           self.navigationController?.pushViewController(menGroomingVC, animated: true)
+           let homeProductDetails = storyboard?.instantiateViewController(withIdentifier: "HomeProductDetailsViewController") as! HomeProductDetailsViewController
+        homeProductDetails.categorie = "329"
+        homeProductDetails.productNam = "SKIN CARE"
+           self.navigationController?.pushViewController(homeProductDetails, animated: true)
        }
     @objc func hairCare(tapGestureRecognizer: UITapGestureRecognizer) {
-        let menGroomingVC = storyboard?.instantiateViewController(withIdentifier: "HomeProductDetailsViewController") as! HomeProductDetailsViewController
-        self.navigationController?.pushViewController(menGroomingVC, animated: true)
+        let homeProductDetails = storyboard?.instantiateViewController(withIdentifier: "HomeProductDetailsViewController") as! HomeProductDetailsViewController
+        homeProductDetails.categorie = "337"
+        homeProductDetails.productNam = "HAIR AND BEARD CARE"
+        self.navigationController?.pushViewController(homeProductDetails, animated: true)
     }
     @objc func saleCare(tapGestureRecognizer: UITapGestureRecognizer) {
-        let menGroomingVC = storyboard?.instantiateViewController(withIdentifier: "HomeProductDetailsViewController") as! HomeProductDetailsViewController
-        self.navigationController?.pushViewController(menGroomingVC, animated: true)
+        let homeProductDetails = storyboard?.instantiateViewController(withIdentifier: "HomeProductDetailsViewController") as! HomeProductDetailsViewController
+        homeProductDetails.categorie = "339"
+        homeProductDetails.productNam = "SALE"
+        self.navigationController?.pushViewController(homeProductDetails, animated: true)
     }
 
 }

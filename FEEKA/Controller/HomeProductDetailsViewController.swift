@@ -28,6 +28,7 @@ class HomeProductDetailsViewController: UIViewController {
     var totalPage: Int?
     var currentPage = 1
     var gender: Int = 1
+    var isTotal = true
     override func viewDidLoad() {
         super.viewDidLoad()
         let userDefault = UserDefaults.standard
@@ -79,7 +80,10 @@ class HomeProductDetailsViewController: UIViewController {
               
                   if let response = response.result.value {
                       let jsonResponse = JSON(response)
+                    if self.isTotal {
                     self.totalPage = jsonResponse["total_page"].intValue
+                        self.isTotal = false
+                    }
                      // print(totalPage)
                       for i in jsonResponse["products"].arrayValue {
                           

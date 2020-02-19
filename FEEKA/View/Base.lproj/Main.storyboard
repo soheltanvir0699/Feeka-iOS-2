@@ -883,9 +883,9 @@
                                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="brands2" translatesAutoresizingMaskIntoConstraints="NO" id="iKG-G4-IsY">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iKG-G4-IsY">
                                                                     <rect key="frame" x="12" y="0.0" width="106" height="141"/>
-                                                                    <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="iKG-G4-IsY" secondAttribute="height" multiplier="100:133" id="aHL-DS-Bec"/>
                                                                     </constraints>
@@ -893,13 +893,13 @@
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="R 25" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQJ-q6-3CT">
                                                                     <rect key="frame" x="11.999999999999998" y="213.66666666666666" width="29.333333333333329" height="16.333333333333343"/>
                                                                     <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="14"/>
-                                                                    <color key="textColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="R 25" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bvv-db-Wdi">
                                                                     <rect key="frame" x="46.333333333333336" y="213.66666666666666" width="29.333333333333336" height="16.333333333333343"/>
                                                                     <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="14"/>
-                                                                    <color key="textColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Howai" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KSU-pN-9SV">
@@ -927,7 +927,11 @@
                                                             <constraint firstItem="PQJ-q6-3CT" firstAttribute="top" secondItem="KSU-pN-9SV" secondAttribute="bottom" id="vaY-EC-AX6"/>
                                                         </constraints>
                                                         <connections>
+                                                            <outlet property="productBrand" destination="KSU-pN-9SV" id="9fo-R3-3KF"/>
                                                             <outlet property="productImg" destination="iKG-G4-IsY" id="bd5-E5-9sq"/>
+                                                            <outlet property="productTitle" destination="CaC-it-vH9" id="ovv-iE-Hed"/>
+                                                            <outlet property="regularPrice" destination="PQJ-q6-3CT" id="Uma-Cq-7ma"/>
+                                                            <outlet property="salePrice" destination="Bvv-db-Wdi" id="96b-M1-ie2"/>
                                                         </connections>
                                                     </collectionViewCell>
                                                 </cells>
@@ -949,11 +953,13 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="UUo-e4-qKd">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="183"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mae-mu-_C5zsV_p-YI-unsplash" translatesAutoresizingMaskIntoConstraints="NO" id="hHV-6U-tR5">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hHV-6U-tR5">
                                                                 <rect key="frame" x="0.0" y="0.0" width="179.66666666666666" height="183"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </imageView>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Fashion" translatesAutoresizingMaskIntoConstraints="NO" id="5c7-Ct-Z8L">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5c7-Ct-Z8L">
                                                                 <rect key="frame" x="194.66666666666663" y="0.0" width="179.33333333333337" height="183"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </imageView>
                                                         </subviews>
                                                         <constraints>
@@ -963,11 +969,13 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="jqB-ce-UFh">
                                                         <rect key="frame" x="0.0" y="197.99999999999994" width="374" height="172"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="luis-quintero-VIstIXBvnIE-unsplash" translatesAutoresizingMaskIntoConstraints="NO" id="tpD-lN-WEe">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tpD-lN-WEe">
                                                                 <rect key="frame" x="0.0" y="0.0" width="179.66666666666666" height="172"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </imageView>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="luca-bravo-XJXWbfSo2f0-unsplash" translatesAutoresizingMaskIntoConstraints="NO" id="5mw-yx-vx2">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5mw-yx-vx2">
                                                                 <rect key="frame" x="194.66666666666663" y="0.0" width="179.33333333333337" height="172"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </imageView>
                                                         </subviews>
                                                         <constraints>
@@ -1023,6 +1031,7 @@
                         <outlet property="allBodyImg" destination="tpD-lN-WEe" id="hZj-j2-EVN"/>
                         <outlet property="allFaceImg" destination="5c7-Ct-Z8L" id="lgw-o9-RPb"/>
                         <outlet property="brandCareImg" destination="hHV-6U-tR5" id="awJ-1s-XAs"/>
+                        <outlet property="tblView" destination="z8S-9w-fpZ" id="Dcb-Vh-T9C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yDc-dt-ql1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -4712,9 +4721,6 @@
         <image name="like2" width="32" height="32"/>
         <image name="logo-white" width="264" height="75.333335876464844"/>
         <image name="logout-1" width="32" height="32"/>
-        <image name="luca-bravo-XJXWbfSo2f0-unsplash" width="6000" height="4000"/>
-        <image name="luis-quintero-VIstIXBvnIE-unsplash" width="4000" height="6000"/>
-        <image name="mae-mu-_C5zsV_p-YI-unsplash" width="3648" height="4560"/>
         <image name="news" width="32" height="32"/>
         <image name="not-visible-interface-symbol-of-an-eye-with-a-slash-on-it" width="96" height="96"/>
         <image name="orders" width="32" height="32"/>
