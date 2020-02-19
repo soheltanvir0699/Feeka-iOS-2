@@ -17,3 +17,13 @@ class StoredProperty {
     
   
 }
+
+struct hireCareParameter {
+    var title: String
+    var image: String
+    var brand: String
+    var count: Int
+    var rating: Double
+    let regularPrice:String
+    let salePrice:String
+}

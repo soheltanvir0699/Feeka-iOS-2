@@ -32,7 +32,7 @@ class DiscoverSearchViewController: UIViewController,UITextFieldDelegate {
                return textField.resignFirstResponder()
        }
        override func viewWillAppear(_ animated: Bool) {
-           hideKeyBoard()
+           //hideKeyBoard()
        }
     
     func discoverVC() {
@@ -40,6 +40,9 @@ class DiscoverSearchViewController: UIViewController,UITextFieldDelegate {
         navigationController?.pushViewController(discoverVC, animated: true)
     }
  
+    @IBAction func backBtn(_ sender: Any) {
+        tabBarController?.selectedIndex = 0
+    }
 }
 
 extension DiscoverSearchViewController: UITableViewDelegate, UITableViewDataSource {

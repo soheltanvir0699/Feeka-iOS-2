@@ -17,6 +17,7 @@ class NewslettersViewController: UIViewController {
     var isAll = true
     var isMen = true
     var isWomen = true
+    var genderKey = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,16 +74,22 @@ class NewslettersViewController: UIViewController {
         }
     }
     @IBAction func updateBtn(_ sender: Any) {
-        
+        if !isAll {
+            
+        }  else if !isMen {
+            genderKey = 2
+            let userDefault = UserDefaults.standard
+                   userDefault.setValue(genderKey, forKey: "Gender")
+                   let read = userDefault.value(forKey: "Gender")
+                   print(read as? Int)
+        } else if !isWomen {
+            genderKey = 1
+            let userDefault = UserDefaults.standard
+                   userDefault.setValue(genderKey, forKey: "Gender")
+                   let read = userDefault.value(forKey: "Gender")
+            print(read as! Int)
+        }
+       
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

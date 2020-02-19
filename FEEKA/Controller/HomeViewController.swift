@@ -44,6 +44,7 @@ class HomeViewController: UIViewController {
         let tapGestureMakeUp = UITapGestureRecognizer(target: self, action: #selector(makeUP(tapGestureRecognizer:)))
         let tapGestureskin = UITapGestureRecognizer(target: self, action: #selector(skin(tapGestureRecognizer:)))
         let tapGestureEditor = UITapGestureRecognizer(target: self, action: #selector(editor(tapGestureRecognizer:)))
+        let tapGestureBrands = UITapGestureRecognizer(target: self, action: #selector(brand(tapGestureRecognizer:)))
         
         
         makeUpImg.addGestureRecognizer(tapGestureMakeUp)
@@ -52,19 +53,25 @@ class HomeViewController: UIViewController {
         hairCareImg.addGestureRecognizer(tapGestureHair)
         editorsPicks.addGestureRecognizer(tapGestureEditor)
         menGroomingImg.addGestureRecognizer(tapGestureRecognizer)
-        
+        brands.addGestureRecognizer(tapGestureBrands)
         saleImg.addGestureRecognizer(tapGestureSale)
+        brands.isUserInteractionEnabled = true
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let tabItems = tabBarController?.tabBar.items {
+            
+            let tabItem = tabItems[2]
+            tabItem.badgeValue = "4"
+        }
         setUpView()
         activityIndicator = self.indicator()
-        activityIndicator.startAnimating()
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
+        activityIndicator.startAnimating()
         guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/dashboard.php") else {
             return
         }
@@ -135,31 +142,17 @@ class HomeViewController: UIViewController {
             }
         }
     }
-//
-//    func downloaded(from url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit) -> UIImage{  // for swift 4.2 syntax just use ===> mode:
-//        var img:UIImage = UIImage()
-//        URLSession.shared.dataTask(with: url) { data, response, error in
-//            guard
-//                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-//                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-//                let data = data, error == nil,
-//                   let image = UIImage(data: data)
-//                else { return }
-//
-//            DispatchQueue.main.async() {
-//                img = image
-//            }
-//        }.resume()
-//       return img
-//    }
-//    func downloaded(from link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit) {  // for swift 4.2 syntax just use ===> mode: UIView.ContentMode
-//        guard let url = URL(string: link) else { return }
-//        downloaded(from: url, contentMode: mode)
-//    }
     
     @objc func grooming(tapGestureRecognizer: UITapGestureRecognizer) {
         let menGroomingVC = storyboard?.instantiateViewController(withIdentifier: "HomeMenGroomingViewController") as! HomeMenGroomingViewController
         self.navigationController?.pushViewController(menGroomingVC, animated: true)
+    }
+    
+    @objc func brand(tapGestureRecognizer: UITapGestureRecognizer) {
+        let homeProductDetails = storyboard?.instantiateViewController(withIdentifier: "HomeProductDetailsViewController") as! HomeProductDetailsViewController
+        homeProductDetails.categorie = "337"
+        homeProductDetails.productNam = "Brands"
+        self.navigationController?.pushViewController(homeProductDetails, animated: true)
     }
     
     @objc func cooming(tapGestureRecognizer: UITapGestureRecognizer) {

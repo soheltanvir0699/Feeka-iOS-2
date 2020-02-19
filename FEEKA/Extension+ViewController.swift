@@ -103,9 +103,9 @@ extension UIViewController {
         let xAxis = self.view.center.x
         let yAxis = self.view.center.y
         
-        let frame = CGRect(x: (xAxis - 50), y: (yAxis - 50), width: 45, height: 45)
+        let frame = CGRect(x: (xAxis - 27), y: (yAxis - 50), width: 55, height: 55)
         activityIndicator = NVActivityIndicatorView(frame: frame)
-        activityIndicator.type = .audioEqualizer
+        activityIndicator.type = .ballClipRotatePulse
         activityIndicator.color = UIColor.black
         
         self.view.addSubview(activityIndicator) // or use  webView.addSubview(activityIndicator)
