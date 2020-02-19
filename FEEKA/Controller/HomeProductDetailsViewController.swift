@@ -29,7 +29,7 @@ class HomeProductDetailsViewController: UIViewController {
     var currentPage = 1
     var gender: Int = 1
     var isTotal = true
-    var productCategory = [String]()
+    var productCategoryList = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
         let userDefault = UserDefaults.standard
@@ -84,18 +84,16 @@ class HomeProductDetailsViewController: UIViewController {
                   if let response = response.result.value {
                       let jsonResponse = JSON(response)
                    
-                      for i in jsonResponse["product_data"].arrayValue {
-                          
-                        var productCategory = i["product_categorie"].arrayValue
-                        for j in productCategory {
-                            let name = j["name"].stringValue
-                            productCategory.append(name)
-                        }
-
-                      }
-                      //self.indicator.stopAnimating()
-                      self.productListCollView.reloadData()
-                    self.productListTblView.reloadData()
+                      let productData = JSON(jsonResponse["product_data"])
+                    let productCategory = productData["product_categorie"].arrayValue
+                    
+                    for i in productCategory {
+                        print(i)
+                        print("x")
+                        let jsonCategory = JSON(i)
+                        self.productCategoryList.append(jsonCategory["name"].stringValue)
+                    }
+                    self.menuView.reloadData()
                   
                   }
                   
@@ -154,16 +152,17 @@ extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollecti
         if collectionView == productListCollView {
             return dataList.count
         }
-        return 4
+        return productCategoryList.count + 2
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         if collectionView != productListCollView {
-            if indexPath.row < 3 {
+            if indexPath.row < 2 {
             return CGSize(width: 30, height: 30)
             } else {
                 let label = UILabel(frame: .zero)
-                label.text = textArray[indexPath.row]
+                label.text = productCategoryList[indexPath.row - 2]
                 label.sizeToFit()
                 return CGSize(width: label.frame.width + 10, height: 30)
             }
@@ -184,7 +183,14 @@ extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollecti
             cell!.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
             return cell!
         }
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell", for: indexPath)
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell", for: indexPath) as! HomeProductDetailsMenuCell
+        if indexPath.row<2 {
+            
+        }else {
+            cell.titleBtn.setTitle(productCategoryList[indexPath.row - 2], for: .normal)
+            cell.titleBtn.setImage(nil, for: .normal)
+        }
         cell.contentView.layer.borderWidth = 1
         cell.contentView.layer.borderColor = UIColor.black.cgColor
         return cell
