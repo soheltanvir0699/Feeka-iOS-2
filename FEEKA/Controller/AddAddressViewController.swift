@@ -10,10 +10,12 @@ import UIKit
 
 class AddAddressViewController: UIViewController {
 
+    @IBOutlet weak var navView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         alertView()
+        navView.setShadow()
     }
     
     @IBAction func backBtn(_ sender: Any) {

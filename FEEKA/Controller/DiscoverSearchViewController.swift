@@ -12,9 +12,10 @@ class DiscoverSearchViewController: UIViewController,UITextFieldDelegate {
   @IBOutlet weak var searchBorder: UILabel!
   @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchField: UITextField!
+    @IBOutlet weak var navView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navView.setShadow()
         searchField.becomeFirstResponder()
     }
     

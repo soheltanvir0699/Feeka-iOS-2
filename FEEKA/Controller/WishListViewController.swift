@@ -9,11 +9,12 @@
 import UIKit
 
 class WishListViewController: UIViewController {
-
+    @IBOutlet weak var navView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        navView.setShadow()
     }
     
     @IBAction func backBtn(_ sender: Any) {

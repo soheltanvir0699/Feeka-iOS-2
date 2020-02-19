@@ -14,6 +14,7 @@ import NVActivityIndicatorView
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var navView: UIView!
     @IBOutlet weak var hireCareLbl: UILabel!
     @IBOutlet weak var productFinder: UIImageView!
     @IBOutlet weak var brands: UIImageView!
@@ -65,6 +66,7 @@ class HomeViewController: UIViewController {
             let tabItem = tabItems[2]
             tabItem.badgeValue = "4"
         }
+        navView.setShadow()
         setUpView()
         activityIndicator = self.indicator()
     }

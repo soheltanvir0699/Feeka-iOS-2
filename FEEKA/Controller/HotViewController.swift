@@ -113,7 +113,7 @@ class HotViewController: UIViewController {
                             let alertView = ShowAlertView().alertView(title: "No Product Found", action: "OK", message: "")
                             self.present(alertView, animated: true, completion: nil)
                         }
-                        self.tblView.reloadData()
+                         self.tblView.reloadData()
                          self.indicator.stopAnimating()
                      
                      }else {

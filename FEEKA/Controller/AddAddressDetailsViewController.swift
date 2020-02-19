@@ -13,11 +13,13 @@ import MapKit
 class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelegate ,MKMapViewDelegate{
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var defaultCheckBox: UIButton!
+    @IBOutlet weak var navView: UIView!
     
     var isDefault = true
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        navView.setShadow()
     }
     
     @IBAction func backBtn(_ sender: Any) {

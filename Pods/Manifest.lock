@@ -20,8 +20,9 @@ PODS:
   - NVActivityIndicatorView (4.8.0):
     - NVActivityIndicatorView/Presenter (= 4.8.0)
   - NVActivityIndicatorView/Presenter (4.8.0)
-  - SVProgressHUD (2.2.6)
+  - SVProgressHUD (2.2.5)
   - SwiftyJSON (5.0.0)
+  - TTRangeSlider (1.0.6)
 
 DEPENDENCIES:
   - Alamofire
@@ -29,8 +30,9 @@ DEPENDENCIES:
   - FacebookCore
   - FacebookLogin
   - NVActivityIndicatorView
-  - SVProgressHUD (from `https://github.com/SVProgressHUD/SVProgressHUD.git`)
+  - SVProgressHUD
   - SwiftyJSON
+  - TTRangeSlider
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -41,16 +43,9 @@ SPEC REPOS:
     - FBSDKCoreKit
     - FBSDKLoginKit
     - NVActivityIndicatorView
+    - SVProgressHUD
     - SwiftyJSON
-
-EXTERNAL SOURCES:
-  SVProgressHUD:
-    :git: https://github.com/SVProgressHUD/SVProgressHUD.git
-
-CHECKOUT OPTIONS:
-  SVProgressHUD:
-    :commit: 4fdf3fdc8703fd9915dae33fc1363c604a06b24e
-    :git: https://github.com/SVProgressHUD/SVProgressHUD.git
+    - TTRangeSlider
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
@@ -60,9 +55,10 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 1d5acf7c9d7a2f92bb1a242dc60cae5b7adb91df
   FBSDKLoginKit: f1ea8026a58b52d30c9f2e6a58ca7d813619fb83
   NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
-  SVProgressHUD: 6ed134667e9ebb2f33679e8273cd48fd3fa349e5
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+  TTRangeSlider: 78188bea83f6471a06f75adbc88da5e990baeafe
 
-PODFILE CHECKSUM: 6141c914073c2b0b60f691f536639ce4ff1594d0
+PODFILE CHECKSUM: 201091fb1fbc1e3778e53a53f15b75a9a728f843
 
 COCOAPODS: 1.7.5

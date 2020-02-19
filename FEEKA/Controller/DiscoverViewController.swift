@@ -11,6 +11,7 @@ import UIKit
 
 class DiscoverViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDataSource,UITableViewDelegate{
     
+    @IBOutlet weak var navView: UIView!
     @IBOutlet weak var showCollBtn: UIButton!
     @IBOutlet weak var showTableBtn: UIButton!
     @IBOutlet weak var listView: UIView!
@@ -61,6 +62,7 @@ func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPat
         super.viewDidLoad()
        // self.hideKeyBoard()
         setUpView()
+        navView.setShadow()
     }
 
     func setUpView() {

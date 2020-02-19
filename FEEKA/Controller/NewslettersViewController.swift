@@ -10,6 +10,7 @@ import UIKit
 
 class NewslettersViewController: UIViewController {
 
+    @IBOutlet weak var navView: UIView!
     @IBOutlet weak var allBtn: UIButton!
     @IBOutlet weak var womenBtn: UIButton!
     @IBOutlet weak var menBtn: UIButton!
@@ -22,7 +23,7 @@ class NewslettersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        navView.setShadow()
     }
     @IBAction func backBtn(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)

@@ -23,10 +23,12 @@ class MoreViewController: UIViewController {
     @IBOutlet weak var orderView: UIView!
     @IBOutlet weak var wishListView: UIView!
     @IBOutlet weak var deliveryView: UIView!
-  
+    @IBOutlet weak var navView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
          setUpView()
+        navView.setShadow()
         
     }
     
@@ -35,7 +37,7 @@ class MoreViewController: UIViewController {
     @IBAction func settingAction(_ sender: Any) {
         
         let navVc = storyboard?.instantiateViewController(withIdentifier: "loginnav")
-        navVc!.modalPresentationStyle = .overCurrentContext
+        navVc!.modalPresentationStyle = .overFullScreen
         navVc!.transitioningDelegate = self
         present(navVc!, animated: true, completion: nil)
         
@@ -70,7 +72,7 @@ class MoreViewController: UIViewController {
     }
     @objc func signOutAction() {
         let navVc = storyboard?.instantiateViewController(withIdentifier: "loginnav")
-        navVc!.modalPresentationStyle = .overCurrentContext
+        navVc!.modalPresentationStyle = .overFullScreen
         navVc!.transitioningDelegate = self
         present(navVc!, animated: true, completion: nil)
     }
@@ -121,5 +123,7 @@ class MoreViewController: UIViewController {
 
 
 extension MoreViewController: UIViewControllerTransitioningDelegate {
+    
+    
     
 }

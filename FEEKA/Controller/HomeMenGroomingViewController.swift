@@ -24,10 +24,7 @@ class HomeMenGroomingViewController: UIViewController {
     var isTotalPage = true
     override func viewDidLoad() {
         super.viewDidLoad()
-        TopView.layer.shadowColor = UIColor.black.cgColor
-        TopView.layer.shadowOpacity = 1
-        TopView.layer.shadowOffset = .zero
-        TopView.layer.shadowRadius = 2
+        TopView.setShadow()
         apiCalling(brand: "", brandId: "", categorie: "", color: "", filter: "", gender: "\(gender)", maxPrice: "", minPrice: "", productCategorie: "", productType: "", searchTag: "", size: "", sortParameter: "", tagId: "", currentPage: currentPage)
     }
     

@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
 
-class HomeProductDetailsViewController: UIViewController {
+class HomeProductDetailsViewController: UIViewController , UIViewControllerTransitioningDelegate {
 
     @IBOutlet weak var showTblBtn: UIButton!
     @IBOutlet weak var showCollBtn: UIButton!
@@ -20,6 +20,7 @@ class HomeProductDetailsViewController: UIViewController {
     @IBOutlet weak var showHideListView: UIView!
     @IBOutlet weak var menuView: UICollectionView!
     @IBOutlet weak var productName: UILabel!
+    @IBOutlet weak var navView: UIView!
     
     var dataList = [hireCareParameter]()
     var indicator: NVActivityIndicatorView!
@@ -37,6 +38,7 @@ class HomeProductDetailsViewController: UIViewController {
         print(gender)
         apiCalling(brand: "", brandId: "", categorie: categorie, color: "", filter: "", gender: "\(gender)", maxPrice: "", minPrice: "", productCategorie: "", productType: "", searchTag: "", size: "", sortParameter: "", tagId: "", currentPage: currentPage)
         showHideListView.layer.borderColor = UIColor.black.cgColor
+        navView.setShadow()
         showHideListView.layer.borderWidth = 1
         productName.text = productNam
     }
@@ -205,6 +207,22 @@ extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollecti
             currentPage += 1
         }
     }
+    
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView != productListCollView {
+            if indexPath.row == 0 {
+                
+                
+                let filterVC = storyboard?.instantiateViewController(withIdentifier: "fVC")
+               // filterVC?.modalTransitionStyle = .coverVertical
+                filterVC!.modalPresentationStyle = .overFullScreen
+                filterVC!.transitioningDelegate = self
+                present(filterVC!, animated: true, completion: nil)
+            }
+            print("selected")
+        }
     }
     
     @IBAction func showTableView(_ sender: Any) {
