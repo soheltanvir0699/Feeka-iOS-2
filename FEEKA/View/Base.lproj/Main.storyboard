@@ -4050,6 +4050,9 @@
                                 <state key="normal" title="RESET PASSWORD">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="resetPass:" destination="R8D-vS-cgQ" eventType="touchUpInside" id="l47-JT-auj"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -4070,6 +4073,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="cMB-OQ-fe9"/>
                     <connections>
+                        <outlet property="emailField" destination="LiF-qX-zo0" id="r54-Xn-Jv0"/>
                         <outlet property="resetBtn" destination="xHP-bq-q1R" id="66c-Yi-BH9"/>
                     </connections>
                 </viewController>

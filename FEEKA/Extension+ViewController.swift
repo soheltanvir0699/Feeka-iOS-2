@@ -6,15 +6,7 @@
 //  Copyright © 2020 Apple Guru. All rights reserved.
 //
 
-import UIKit
-import NVActivityIndicatorView
-//
-//  FacebookAuth.swift
-//  FEEKA
-//
-//  Created by Apple Guru on 12/2/20.
-//  Copyright © 2020 Apple Guru. All rights reserved.
-//
+
 
 import UIKit
 import FacebookCore
