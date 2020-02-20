@@ -12,6 +12,7 @@ class FilterDetailsController: UIViewController , UITableViewDelegate, UITableVi
     
     @IBOutlet weak var filterSubName: UILabel!
     var dataList = [String]()
+    var dataListTerms = [String]()
     @IBOutlet weak var navView: UIView!
     var filterCategorie = ""
     let userdefault = UserDefaults.standard
@@ -29,7 +30,7 @@ class FilterDetailsController: UIViewController , UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let image2 = self.view.viewWithTag(indexPath.row+3000) as! UIImageView
         image2.image = UIImage(named: "checkbox-tick")
-        userdefault.setValue(dataList[indexPath.row], forKey: filterCategorie)
+        userdefault.setValue(dataListTerms[indexPath.row], forKey: filterCategorie)
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

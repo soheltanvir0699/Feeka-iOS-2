@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
+import NVActivityIndicatorView
 
 class SignUpViewController: UIViewController,UITextFieldDelegate {
 
@@ -22,6 +25,10 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var signUpBtn: UIButton!
     @IBOutlet weak var DateField: UITextField!
     @IBOutlet weak var genderField: UITextField!
+    @IBOutlet weak var firstName: UITextField!
+    @IBOutlet weak var lastName: UITextField!
+    @IBOutlet weak var email: UITextField!
+    
     
     var isAll = true
     var isMen = true
@@ -30,11 +37,13 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
     var ishideCreatePassword = false
     var ishideConfirmPassword = false
     var datePicker = UIDatePicker()
+    var indicator: NVActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideKeyboard)))
         setUpView()
+        indicator = self.indicator()
     }
     
     func setUpView() {
@@ -228,8 +237,70 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
         }else {
            print("SignUp isn't successful")
         }
+        }
+        
+        
 
+    
+    
+    
+    
+    @IBAction func singUP(_ sender: Any) {
+        
+        guard let firstName = firstName.text, let lastName = lastName.text, let email = email.text, let createPass = createPassField.text, let confirmPass = confirmPassField.text, let date = DateField.text, let gender = genderField.text else {
+                self.showToast(message: "Please fill all Field")
+                return
+            }
+            guard let url = URL(string: "https://feeka.co.za/json-api/route/Login_Registration.php") else {
+                self.showToast(message: "Please try again later")
+                return
+            }
+            
+            if createPass != confirmPass || firstName == "" || lastName == "", email == "" || createPass == "" || confirmPass == "" || gender == "" || date == "" {
+                self.showToast(message: "Please fill all Field")
+                return
+            } else {
+                let paramater = [
+                    "emailId" : "\(email)",
+                    "password" : "\(confirmPass)",
+                    "facebookId" : "",
+                    "googleId" : "",
+                    "singuptype" : "1",
+                    "first_name" : "\(firstName)",
+                    "last_name" : "\(lastName)",
+                    "DOB" : "\(date)",
+                    "Gender" : "\(gender)",
+                    "group" : "",
+                    "username" : "sohel_Sufian"
+                ]
+                Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: nil).response { (response) in
+                    self.indicator.startAnimating()
+                    if let error = response.error {
+                        self.indicator.stopAnimating()
+                        let alertView = ShowAlertView().alertView(title: "Something went wrong", action: "OK", message: "Please try again.")
+                        self.present(alertView, animated: true, completion: nil)
+                        print(error)
+                        
+                    }
+                    
+                    if let result = response.data {
+                        let responseString = NSString(data: result, encoding: String.Encoding.utf8.rawValue)
+                        let jsonRespose = JSON(result)
+                        print(jsonRespose)
+                        print(jsonRespose["message"].stringValue)
+                        self.showToast(message: "\(jsonRespose["message"].stringValue)")
+                        
+                        if jsonRespose["message"].stringValue == "Email address is already registered." {
+                           self.showToast(message: "\(jsonRespose["message"].stringValue)")
+                        } else {
+                            self.navigationController?.popViewController(animated: true)
+                        }
+
+                        self.indicator.stopAnimating()
+                    }
+                }
     }
     
     
+}
 }

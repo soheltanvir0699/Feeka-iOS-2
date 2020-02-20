@@ -109,7 +109,7 @@ class HomeProductDetailsViewController: UIViewController , UIViewControllerTrans
    let color = userDefault.value(forKey: "color") as! String
    let filterMaxVaue = userDefault.value(forKey: "filterMaxValue") as! String
     let filterMinValue = userDefault.value(forKey: "filterMinValue") as! String
-        apiCalling(brand: brand, brandId: "", categorie: "\(categorie)", color: color, filter: "", gender: "\(gender)", maxPrice: "\(filterMaxVaue)", minPrice: "\(filterMinValue)", productCategorie: productCategorie, productType: productType, searchTag: "", size: "", sortParameter: "", tagId: "", currentPage: 1)
+        apiCalling(brand: brand, brandId: "", categorie: "\(categorie)", color: color, filter: "", gender: "\(gender)", maxPrice: "\(filterMaxVaue)", minPrice: "\(filterMinValue)", productCategorie: "", productType: productType, searchTag: "", size: "", sortParameter: "2", tagId: "\(productCategorie)", currentPage: 1)
     }
     @IBAction func backBtn(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)

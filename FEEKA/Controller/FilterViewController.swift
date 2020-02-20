@@ -65,38 +65,46 @@ class FilterViewController: UIViewController {
                       let productData = JSON(jsonResponse["product_data"])
                     let productCategory = productData["product_categorie"].arrayValue
                     var productList = [String]()
+                    var productListTerms = [String]()
                     for i in productCategory {
                         print(i)
                         print("x")
                         let jsonCategory = JSON(i)
                         productList.append(jsonCategory["name"].stringValue)
+                        productListTerms.append(jsonCategory["term_id"].stringValue)
                     }
                     
                     let product_type = productData["product_type"].arrayValue
                     var typeList = [String]()
+                    var typeListTerms = [String]()
                     for i in product_type {
                         print(i)
                         print("x")
                         let jsonCategory = JSON(i)
                         typeList.append(jsonCategory["name"].stringValue)
+                        typeListTerms.append(jsonCategory["term_id"].stringValue)
                     }
                     
                     let brand = productData["brand"].arrayValue
                     var brandList = [String]()
+                    var brandListTerms = [String]()
                     for i in brand {
                         print(i)
                         print("x")
                         let jsonCategory = JSON(i)
                     brandList.append(jsonCategory["name"].stringValue)
+                        brandListTerms.append(jsonCategory["term_id"].stringValue)
                     }
                     
                     let color = productData["color"].arrayValue
                     var colorList = [String]()
+                    var colorListTerms = [String]()
                     for i in color {
                         print(i)
                         print("x")
                         let jsonCategory = JSON(i)
                         colorList.append(jsonCategory["name"].stringValue)
+                        colorListTerms.append(jsonCategory["term_id"].stringValue)
                                        }
                     
                     let price = productData["price"].arrayValue
@@ -113,6 +121,7 @@ class FilterViewController: UIViewController {
                                           
                         }
                     self.filterData.append(filterListData(product_categorie: productList, product_type: typeList, brand: brandList, color: colorList, Currency: currency, min_price: minPriceList, max_price: maxPriceList))
+                    self.filterData.append(filterListData(product_categorie: productListTerms, product_type: typeListTerms, brand: brandListTerms, color: colorListTerms, Currency: currency, min_price: minPriceList, max_price: maxPriceList))
                     self.indicator.stopAnimating()
 
                   }
@@ -166,15 +175,19 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
                    navigationController?.pushViewController(fDetailsVC, animated: true)
             if indexPath.row == 0 {
                 fDetailsVC.dataList = filterData[0].product_categorie
+                fDetailsVC.dataListTerms = filterData[1].product_categorie
                 fDetailsVC.filterCategorie = "product categorie"
             } else if indexPath.row == 1 {
                 fDetailsVC.dataList = filterData[0].product_type
+                fDetailsVC.dataListTerms = filterData[1].product_type
                 fDetailsVC.filterCategorie = "product type"
             }else if indexPath.row == 2 {
                 fDetailsVC.dataList = filterData[0].brand
+                fDetailsVC.dataListTerms = filterData[1].brand
                 fDetailsVC.filterCategorie = "brand"
             } else if indexPath.row == 4 {
                 fDetailsVC.dataList = filterData[0].color
+                fDetailsVC.dataListTerms = filterData[1].color
                 fDetailsVC.filterCategorie = "color"
             }
         }
