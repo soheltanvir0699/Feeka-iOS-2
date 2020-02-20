@@ -41,7 +41,7 @@ class ForgotPasswordViewController: UIViewController {
                     return
                 } else {
                     let paramater = [
-                        "Email_address" :"omor@gmail.com"
+                        "Email_address" :"\(email)"
                     ]
                     Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: nil).response { (response) in
                         self.indicator.startAnimating()
