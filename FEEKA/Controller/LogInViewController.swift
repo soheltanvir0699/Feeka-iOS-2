@@ -9,9 +9,11 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import NVActivityIndicatorView
 
 class LogInViewController: UIViewController {
 
+    @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var hideShowBtn: UIButton!
     @IBOutlet weak var signUpBtn: UIButton!
@@ -19,10 +21,12 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var facebookBtn: UIButton!
     @IBOutlet weak var singUpStringLabel: UILabel!
     var ishidePassword = false
+    var indicator:NVActivityIndicatorView!
   
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
+        indicator = self.indicator()
             }
     
     @IBAction func hideShowAction(_ sender: Any) {
@@ -68,6 +72,64 @@ class LogInViewController: UIViewController {
     @IBAction func backBtn(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func logIn(_ sender: Any) {
+        
+        guard let password = passwordField.text, let email = emailField.text else {
+                       self.showToast(message: "Please fill all Field")
+                       return
+                   }
+                   guard let url = URL(string: "https://feeka.co.za/json-api/route/Login_Registration.php") else {
+                       self.showToast(message: "Please try again later")
+                       return
+                   }
+                   
+                   if  password == "" || email == "" {
+                       self.showToast(message: "Please fill all Field")
+                       return
+                   } else {
+                       let paramater = [
+                           "emailId" : "\(email)",
+                           "password" : "\(password)",
+                           "facebookId" : "",
+                           "googleId" : "",
+                           "singuptype" : "1",
+                           "first_name" : "",
+                           "last_name" : "",
+                           "DOB" : "",
+                           "Gender" : "",
+                           "group" : "",
+                           "username" : ""
+                       ]
+                       Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: nil).response { (response) in
+                           self.indicator.startAnimating()
+                           if let error = response.error {
+                               self.indicator.stopAnimating()
+                               let alertView = ShowAlertView().alertView(title: "Something went wrong", action: "OK", message: "Please try again.")
+                               self.present(alertView, animated: true, completion: nil)
+                               print(error)
+                               
+                           }
+                           
+                           if let result = response.data {
+                               let responseString = NSString(data: result, encoding: String.Encoding.utf8.rawValue)
+                               let jsonRespose = JSON(result)
+                               print(jsonRespose)
+                               print(jsonRespose["message"].stringValue)
+                               self.showToast(message: "\(jsonRespose["message"].stringValue)")
+                               
+                               if jsonRespose["message"].stringValue == "Login Completed." {
+                                  self.navigationController?.popViewController(animated: true)
+                               } else {
+                                   self.showToast(message: "\(jsonRespose["message"].stringValue)")
+                               }
+
+                               self.indicator.stopAnimating()
+                           }
+                       }
+           }
+    }
+    
     
 }
 

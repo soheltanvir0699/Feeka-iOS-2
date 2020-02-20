@@ -3893,6 +3893,9 @@
                                 <state key="normal" title="SIGN IN">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="logIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sv9-FJ-xKr"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Du-zs-0vq">
                                 <rect key="frame" x="137" y="648" width="140" height="40"/>
@@ -3995,6 +3998,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="emailField" destination="WwG-Xq-XSO" id="4XN-R1-jsY"/>
                         <outlet property="facebookBtn" destination="5HS-dO-YYc" id="YXZ-aH-Pw0"/>
                         <outlet property="hideShowBtn" destination="GuI-7a-Kl2" id="a3T-7J-WYz"/>
                         <outlet property="passwordField" destination="1Aj-vR-Bdh" id="TSs-34-keB"/>

@@ -271,7 +271,7 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
                     "DOB" : "\(date)",
                     "Gender" : "\(gender)",
                     "group" : "",
-                    "username" : "sohel_Sufian"
+                    "username" : "\(firstName)_\(lastName)"
                 ]
                 Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: nil).response { (response) in
                     self.indicator.startAnimating()
