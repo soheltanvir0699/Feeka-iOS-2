@@ -9,7 +9,7 @@
 import UIKit
 
 
-class DiscoverViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDataSource,UITableViewDelegate{
+class DiscoverViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDataSource,UITableViewDelegate, UICollectionViewDelegateFlowLayout{
     
     @IBOutlet weak var navView: UIView!
     @IBOutlet weak var showCollBtn: UIButton!
@@ -47,11 +47,10 @@ func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPat
     
     }
 
-    func collectionView(collectionView : UICollectionView,layout collectionViewLayout:UICollectionViewLayout,sizeForItemAtIndexPath indexPath:NSIndexPath) -> CGSize
-    {
-        var _:CGSize = CGSize(width: 100 , height: 300)
-        return CGSize(width: 100 , height: 300)
-    }
+     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+           return CGSize(width: collectionView.frame.width / 2 - 5, height: 335)
+       }
     
     func pushDiscoverController() {
         let discoverVC = storyboard?.instantiateViewController(withIdentifier: "DiscoverDetailsViewController") as? DiscoverDetailsViewController

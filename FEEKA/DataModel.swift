@@ -14,8 +14,6 @@ import SwiftyJSON
 class StoredProperty {
     static var FacebookAuthsuccess = false
     
-    
-  
 }
 
 struct hireCareParameter {
@@ -30,4 +28,14 @@ struct hireCareParameter {
 
 struct brandBox {
     let image: String
+}
+//["product_categorie", "product_type", "brand", "size", "price", "color"]
+struct filterListData {
+    var product_categorie: [String]
+    var product_type: [String]
+    var brand: [String]
+    var color: [String]
+    var Currency: String
+    var min_price: String
+    var max_price: String
 }

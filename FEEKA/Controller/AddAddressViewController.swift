@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 class AddAddressViewController: UIViewController {
 
     @IBOutlet weak var navView: UIView!

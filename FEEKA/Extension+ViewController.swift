@@ -105,7 +105,7 @@ extension UIViewController {
         
         let frame = CGRect(x: (xAxis - 27), y: (yAxis - 50), width: 55, height: 55)
         activityIndicator = NVActivityIndicatorView(frame: frame)
-        activityIndicator.type = .ballClipRotatePulse
+        activityIndicator.type = .ballClipRotate
         activityIndicator.color = UIColor.black
         
         self.view.addSubview(activityIndicator) // or use  webView.addSubview(activityIndicator)

@@ -98,7 +98,7 @@ class HomeMenGroomingViewController: UIViewController {
     }
 }
 
-extension HomeMenGroomingViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension HomeMenGroomingViewController: UICollectionViewDelegate, UICollectionViewDataSource , UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataList.count
     }
@@ -108,7 +108,7 @@ extension HomeMenGroomingViewController: UICollectionViewDelegate, UICollectionV
         cell.productTitle.text = dataList[indexPath.row].title
         cell.productBrand.text = dataList[indexPath.row].brand
         cell.reviewView.rating = dataList[indexPath.row].rating
-        cell.reviewTitle.text = "\( dataList[indexPath.row].count)"
+        cell.reviewTitle.text = "\( dataList[indexPath.row].count) review"
         cell.productImg.downloaded(from: dataList[indexPath.row].image)
         cell.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
         cell.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
@@ -125,6 +125,11 @@ extension HomeMenGroomingViewController: UICollectionViewDelegate, UICollectionV
         }
     }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+           
+           return CGSize(width: collectionView.frame.width / 2 - 5, height: 335)
+       }
        
        @objc func callingApi() {
            apiCalling(brand: "", brandId: "", categorie: "", color: "", filter: "", gender: "\(gender)", maxPrice: "", minPrice: "", productCategorie: "", productType: "", searchTag: "", size: "", sortParameter: "", tagId: "", currentPage: currentPage)

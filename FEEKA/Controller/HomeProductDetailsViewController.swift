@@ -26,29 +26,94 @@ class HomeProductDetailsViewController: UIViewController , UIViewControllerTrans
     var indicator: NVActivityIndicatorView!
     var productNam: String = ""
     var categorie: String = ""
+    var tagId:String = ""
     var totalPage: Int?
     var currentPage = 1
-    var gender: Int = 1
+    var gender: Int = 2
     var isTotal = true
     var productCategoryList = [String]()
+    var productTemrsId = [String]()
+    let userDefault = UserDefaults.standard
     override func viewDidLoad() {
         super.viewDidLoad()
-        let userDefault = UserDefaults.standard
-        userDefault.setValue(1, forKey: "Gender")
-        gender = userDefault.value(forKey: "Gender") as! Int
+        
+        //gender = userDefault.value(forKey: "Gender") as! Int
+        userDefault.setValue(categorie, forKey: "currentCategorie")
         print(gender)
-        apiCalling(brand: "", brandId: "", categorie: categorie, color: "", filter: "", gender: "\(gender)", maxPrice: "", minPrice: "", productCategorie: "", productType: "", searchTag: "", size: "", sortParameter: "", tagId: "", currentPage: currentPage)
+        apiCalling(brand: "", brandId: "", categorie: categorie, color: "", filter: "", gender: "\(gender)", maxPrice: "", minPrice: "", productCategorie: "", productType: "", searchTag: "", size: "", sortParameter: "", tagId: "\(tagId)", currentPage: currentPage)
+        topApi(brand: "", brandId: "", categorie: categorie, color: "", filter: "", gender: "\(gender)", maxPrice: "", minPrice: "", productCategorie: "", productType: "", searchTag: "", size: "", sortParameter: "", tagId: "\(tagId)", currentPage: currentPage)
         showHideListView.layer.borderColor = UIColor.black.cgColor
         navView.setShadow()
         showHideListView.layer.borderWidth = 1
         productName.text = productNam
+        NotificationCenter.default.addObserver(self, selector: #selector(filterApi), name: Notification.Name("filterData"), object: nil)
+    }
+    
+    func topApi(brand:String, brandId:String, categorie: String,color: String,filter:String, gender: String, maxPrice: String, minPrice: String, productCategorie:String, productType: String, searchTag: String, size: String, sortParameter: String, tagId: String, currentPage: Int) {
+        guard let filterApi = URL(string:  "https://feeka.co.za/json-api/route/filter_listing.php") else {
+            return
+        }
+        let parameter = ["brand":"\(brand)",
+        "brand_id":"\(brandId)",
+        "categorie_id":"\(categorie)",
+        "color":"\(color)",
+        "filter_tag":"\(filter)",
+        "Gender":"\(gender)",
+        "max_price":"\(maxPrice)",
+        "min_price":"\(minPrice)",
+        "product_categorie":"\(productCategorie)",
+        "product_type":"\(productType)",
+        "search_tag":"\(searchTag)",
+        "size":"\(size)",
+        "sort_parameter":"\(sortParameter)",
+        "tag_id":"\(tagId)"]
+        
+        Alamofire.request(filterApi, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+        
+        if let error = response.error {
+            self.indicator.stopAnimating()
+            let alertView = ShowAlertView().alertView(title: "Something went wrong", action: "OK", message: "Please try again.")
+            self.present(alertView, animated: true, completion: nil)
+            print(error)
+            
+        }
+        
+            if let response = response.result.value {
+                let jsonResponse = JSON(response)
+             
+                let productData = JSON(jsonResponse["product_data"])
+              let productCategory = productData["product_categorie"].arrayValue
+              
+              for i in productCategory {
+                  print(i)
+                  print("x")
+                  let jsonCategory = JSON(i)
+                
+                  self.productCategoryList.append(jsonCategory["name"].stringValue)
+                self.productTemrsId.append(jsonCategory["term_id"].stringValue)
+              }
+              self.menuView.reloadData()
+            
+            }
+            
+        }
+    }
+    
+   @objc func filterApi() {
+    isTotal = true
+    currentPage = 1
+    dataList = [hireCareParameter]()
+    let productCategorie = userDefault.value(forKey: "product categorie") as! String
+   let productType =  userDefault.value(forKey: "product type") as! String
+   let brand = userDefault.value(forKey: "brand") as! String
+   let color = userDefault.value(forKey: "color") as! String
+   let filterMaxVaue = userDefault.value(forKey: "filterMaxValue") as! String
+    let filterMinValue = userDefault.value(forKey: "filterMinValue") as! String
+        apiCalling(brand: brand, brandId: "", categorie: "\(categorie)", color: color, filter: "", gender: "\(gender)", maxPrice: "\(filterMaxVaue)", minPrice: "\(filterMinValue)", productCategorie: productCategorie, productType: productType, searchTag: "", size: "", sortParameter: "", tagId: "", currentPage: 1)
     }
     @IBAction func backBtn(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
-    override func viewWillAppear(_ animated: Bool) {
-            }
-    
 
     func apiCalling(brand:String, brandId:String, categorie: String,color: String,filter:String, gender: String, maxPrice: String, minPrice: String, productCategorie:String, productType: String, searchTag: String, size: String, sortParameter: String, tagId: String, currentPage: Int) {
               indicator = self.indicator()
@@ -56,9 +121,7 @@ class HomeProductDetailsViewController: UIViewController , UIViewControllerTrans
               guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/GetProductListing.php?page=\(currentPage)") else {
                   return
               }
-        guard let filterApi = URL(string:  "https://feeka.co.za/json-api/route/filter_listing.php") else {
-            return
-        }
+        
               
               let parameter = ["brand":"\(brand)",
                                "brand_id":"\(brandId)",
@@ -74,33 +137,7 @@ class HomeProductDetailsViewController: UIViewController , UIViewControllerTrans
                                "size":"\(size)",
                                "sort_parameter":"\(sortParameter)",
                                "tag_id":"\(tagId)"]
-              Alamofire.request(filterApi, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
               
-              if let error = response.error {
-                  self.indicator.stopAnimating()
-                  let alertView = ShowAlertView().alertView(title: "Something went wrong", action: "OK", message: "Please try again.")
-                  self.present(alertView, animated: true, completion: nil)
-                  print(error)
-                  
-              }
-              
-                  if let response = response.result.value {
-                      let jsonResponse = JSON(response)
-                   
-                      let productData = JSON(jsonResponse["product_data"])
-                    let productCategory = productData["product_categorie"].arrayValue
-                    
-                    for i in productCategory {
-                        print(i)
-                        print("x")
-                        let jsonCategory = JSON(i)
-                        self.productCategoryList.append(jsonCategory["name"].stringValue)
-                    }
-                    self.menuView.reloadData()
-                  
-                  }
-                  
-              }
               Alamofire.request(urlToExcute, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
               
               if let error = response.error {
@@ -135,7 +172,14 @@ class HomeProductDetailsViewController: UIViewController , UIViewControllerTrans
                       }
                       self.indicator.stopAnimating()
                       self.productListCollView.reloadData()
-                    self.productListTblView.reloadData()
+                      self.productListTblView.reloadData()
+
+                    self.userDefault.setValue("", forKey: "product categorie")
+                    self.userDefault.setValue("", forKey: "product type")
+                    self.userDefault.setValue("", forKey: "brand")
+                    self.userDefault.setValue("", forKey: "color")
+                    self.userDefault.setValue("", forKey: "filterMaxValue")
+                    self.userDefault.setValue("", forKey: "filterMinValue")
                   
                   }else {
                     let alertView = ShowAlertView().alertView(title: "No Product Found", action: "OK", message: "")
@@ -221,6 +265,12 @@ extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollecti
                 filterVC!.modalPresentationStyle = .overFullScreen
                 filterVC!.transitioningDelegate = self
                 present(filterVC!, animated: true, completion: nil)
+            }  else if indexPath.row > 1{
+                isTotal = true
+                   currentPage = 1
+                   dataList = [hireCareParameter]()
+                print(dataList)
+                       apiCalling(brand: "", brandId: "", categorie: "\(categorie)", color: "", filter: "", gender: "\(gender)", maxPrice: "", minPrice: "", productCategorie: "", productType: "", searchTag: "\(productTemrsId[indexPath.row - 2])", size: "", sortParameter: "2", tagId: "\(productTemrsId)", currentPage: 1)
             }
             print("selected")
         }

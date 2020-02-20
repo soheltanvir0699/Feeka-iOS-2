@@ -12,26 +12,34 @@ class PriceController: UIViewController {
 
     @IBOutlet weak var navView: UIView!
     @IBOutlet weak var rangeSlider: TTRangeSlider!
-    var maxValue = 0
-    var minValue = 0
+    var maxData = ""
+    var minData = ""
+    var currency = ""
+    var maxSetValue = 0
+    var minSetValue = 0
+    let userDefault = UserDefaults.standard
     override func viewDidLoad() {
         super.viewDidLoad()
-        rangeSlider.maxValue = 500
-        rangeSlider.minValue = 200
+        rangeSlider.maxValue = Float(maxData)!
+        rangeSlider.minValue = Float(minData)!
         navView.setShadow()
         
     }
     @IBAction func rangeSlider(_ sender: Any) {
-        minValue = Int(rangeSlider.selectedMinimum)
-        maxValue = Int(rangeSlider.selectedMaximum)
-        print(minValue)
-        print(maxValue)
+        minSetValue = Int(rangeSlider.selectedMinimum)
+        maxSetValue = Int(rangeSlider.selectedMaximum)
+//        print(minValue)
+//        print(maxValue)
     }
     
     @IBAction func cancle(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func setRange(_ sender: Any) {
+        
+        userDefault.setValue("\(maxSetValue)", forKey: "filterMaxValue")
+        userDefault.setValue("\(minSetValue)", forKey: "filterMinValue")
         self.navigationController?.popViewController(animated: true)
     }
     

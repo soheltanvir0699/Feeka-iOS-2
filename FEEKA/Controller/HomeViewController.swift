@@ -169,7 +169,8 @@ class HomeViewController: UIViewController {
     }
     @objc func editor(tapGestureRecognizer: UITapGestureRecognizer) {
         let homeProductDetails = storyboard?.instantiateViewController(withIdentifier: "HomeProductDetailsViewController") as! HomeProductDetailsViewController
-        homeProductDetails.categorie = "340"
+        homeProductDetails.tagId = "340"
+        //tag
         homeProductDetails.productNam = "EDITORS PICKS"
         self.navigationController?.pushViewController(homeProductDetails, animated: true)
     }
@@ -187,8 +188,9 @@ class HomeViewController: UIViewController {
     }
     @objc func saleCare(tapGestureRecognizer: UITapGestureRecognizer) {
         let homeProductDetails = storyboard?.instantiateViewController(withIdentifier: "HomeProductDetailsViewController") as! HomeProductDetailsViewController
-        homeProductDetails.categorie = "339"
+        homeProductDetails.tagId = "339"
         homeProductDetails.productNam = "SALE"
+        //tag
         self.navigationController?.pushViewController(homeProductDetails, animated: true)
     }
 
