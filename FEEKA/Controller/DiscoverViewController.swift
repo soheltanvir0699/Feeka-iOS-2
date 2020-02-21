@@ -29,6 +29,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate,UIColle
     var currentPage = 1
     var gender: Int = 2
     var isTotal = true
+    var category = ""
     var productCategoryList = [String]()
     var productTemrsId = [String]()
 
@@ -89,7 +90,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate,UIColle
     }
     
     @objc func callingApi() {
-        apiCalling(brand: "", brandId: "", categorie: "", color: "", filter: "", gender: "\(gender)", maxPrice: "", minPrice: "", productCategorie: "", productType: "", searchTag: "\(searchTag)", size: "", sortParameter: "", tagId: "", currentPage: currentPage)
+        apiCalling(brand: "", brandId: "", categorie: "\(category)", color: "", filter: "", gender: "\(gender)", maxPrice: "", minPrice: "", productCategorie: "", productType: "", searchTag: "\(searchTag)", size: "", sortParameter: "", tagId: "", currentPage: currentPage)
     }
 
 func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -115,7 +116,7 @@ func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPat
         setUpView()
         navView.setShadow()
         indicator = self.indicator()
-         apiCalling(brand: "", brandId: "", categorie: "", color: "", filter: "", gender: "\(gender)", maxPrice: "", minPrice: "", productCategorie: "", productType: "", searchTag: "\(searchTag)", size: "", sortParameter: "", tagId: "", currentPage: currentPage)
+         apiCalling(brand: "", brandId: "", categorie: "\(category)", color: "", filter: "", gender: "\(gender)", maxPrice: "", minPrice: "", productCategorie: "", productType: "", searchTag: "\(searchTag)", size: "", sortParameter: "", tagId: "", currentPage: currentPage)
         
     }
 

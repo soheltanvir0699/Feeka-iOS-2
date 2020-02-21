@@ -18,11 +18,16 @@ class HotViewController: UIViewController {
     @IBOutlet weak var allBodyImg: UIImageView!
     @IBOutlet weak var ConditionerImg: UIImageView!
     @IBOutlet weak var tblView: UICollectionView!
+    @IBOutlet weak var AllBrandLbl: UILabel!
+    @IBOutlet weak var allFaceLbl: UILabel!
+    @IBOutlet weak var allConditionerLbl: UILabel!
+    @IBOutlet weak var allBodyLbl: UILabel!
     
     var dataList = [hireCareParameter]()
     var indicator: NVActivityIndicatorView!
     var gender: Int = 1
     var userDefault = UserDefaults.standard
+    var hotListId = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
         gender = userDefault.value(forKey: "Gender") as! Int
@@ -40,18 +45,34 @@ class HotViewController: UIViewController {
         allBodyImg.isUserInteractionEnabled = true
         ConditionerImg.isUserInteractionEnabled = true
         allFaceImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(allFace(tapGestureRecognizer:))))
-        brandCareImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(allFace(tapGestureRecognizer:))))
-        allBodyImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(allFace(tapGestureRecognizer:))))
-        ConditionerImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(allFace(tapGestureRecognizer:))))
+        brandCareImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(allBrand(tapGestureRecognizer:))))
+        allBodyImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(allBody(tapGestureRecognizer:))))
+        ConditionerImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(allCondition(tapGestureRecognizer:))))
     }
     
     @objc func allFace(tapGestureRecognizer: UITapGestureRecognizer) {
-        PushDiscoverViewController()
+       let menGroomingVC = storyboard?.instantiateViewController(withIdentifier: "DiscoverViewController") as! DiscoverViewController
+        menGroomingVC.category = hotListId[0]
+        self.navigationController?.pushViewController(menGroomingVC, animated: true)
     }
     
-    func PushDiscoverViewController() {
-        let menGroomingVC = storyboard?.instantiateViewController(withIdentifier: "DiscoverViewController") as! DiscoverViewController
-        self.navigationController?.pushViewController(menGroomingVC, animated: true)
+    
+    @objc func allBrand(tapGestureRecognizer: UITapGestureRecognizer) {
+         let menGroomingVC = storyboard?.instantiateViewController(withIdentifier: "DiscoverViewController") as! DiscoverViewController
+        menGroomingVC.category = hotListId[1]
+               self.navigationController?.pushViewController(menGroomingVC, animated: true)
+    }
+    
+    @objc func allBody(tapGestureRecognizer: UITapGestureRecognizer) {
+         let menGroomingVC = storyboard?.instantiateViewController(withIdentifier: "DiscoverViewController") as! DiscoverViewController
+        menGroomingVC.category = hotListId[2]
+               self.navigationController?.pushViewController(menGroomingVC, animated: true)
+    }
+    
+    @objc func allCondition(tapGestureRecognizer: UITapGestureRecognizer) {
+         let menGroomingVC = storyboard?.instantiateViewController(withIdentifier: "DiscoverViewController") as! DiscoverViewController
+        menGroomingVC.category = hotListId[3]
+               self.navigationController?.pushViewController(menGroomingVC, animated: true)
     }
     
     func apiCalling() {
@@ -99,12 +120,21 @@ class HotViewController: UIViewController {
                           let image = i["image"].stringValue
                             if brandCount == 0 {
                                 self.allFaceImg.downloaded(from: image)
+                                self.hotListId.append(i["id"].stringValue)
+                                //name
+                                self.allFaceLbl.text = "\(i["name"].stringValue)"
                             } else if brandCount == 1 {
                                 self.brandCareImg.downloaded(from: image)
+                                self.AllBrandLbl.text = "\(i["name"].stringValue)"
+                                self.hotListId.append(i["id"].stringValue)
                             } else if brandCount == 2 {
                                 self.allBodyImg.downloaded(from: image)
+                                self.allBodyLbl.text = "\(i["name"].stringValue)"
+                                self.hotListId.append(i["id"].stringValue)
                             } else if brandCount == 3 {
                                 self.ConditionerImg.downloaded(from: image)
+                                self.allConditionerLbl.text = "\(i["name"].stringValue)"
+                                self.hotListId.append(i["id"].stringValue)
                             }
                             brandCount += 1
 

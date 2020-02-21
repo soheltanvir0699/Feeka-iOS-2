@@ -82,7 +82,7 @@ class NewslettersViewController: UIViewController {
             let userDefault = UserDefaults.standard
                    userDefault.setValue(genderKey, forKey: "Gender")
                    let read = userDefault.value(forKey: "Gender")
-                   print(read as? Int)
+            print(read as! Int)
         } else if !isWomen {
             genderKey = 1
             let userDefault = UserDefaults.standard

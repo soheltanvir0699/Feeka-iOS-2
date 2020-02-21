@@ -98,8 +98,10 @@ extension UIViewController {
         
         let frame = CGRect(x: (xAxis - 27), y: (yAxis - 50), width: 55, height: 55)
         activityIndicator = NVActivityIndicatorView(frame: frame)
-        activityIndicator.type = .ballClipRotate
+        activityIndicator.type = .ballSpinFadeLoader
         activityIndicator.color = UIColor.black
+        activityIndicator.backgroundColor = UIColor.white
+        activityIndicator.layer.cornerRadius = 5
         
         self.view.addSubview(activityIndicator) // or use  webView.addSubview(activityIndicator)
         return activityIndicator
