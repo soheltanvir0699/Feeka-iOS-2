@@ -252,9 +252,10 @@ extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollecti
 
     if indexPath.row == dataList.count - 1 {
         if totalPage! > 0 {
+            currentPage += 1
         perform(#selector(callingApi), with: nil, afterDelay: 0.3)
             totalPage! -= 1
-            currentPage += 1
+            
         }
     }
     
@@ -318,9 +319,10 @@ extension HomeProductDetailsViewController: UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == dataList.count - 1 {
             if totalPage! > 0 {
+                currentPage += 1
             perform(#selector(callingApi), with: nil, afterDelay: 0.3)
                 totalPage! -= 1
-                currentPage += 1
+                
             }
         }
     }
