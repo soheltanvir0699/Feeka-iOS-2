@@ -25,9 +25,9 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var cosmosView: CosmosView!
     @IBOutlet weak var reviewCount: UILabel!
     @IBOutlet weak var collView: UICollectionView!
+    var productId = ""
     var isLike = false
     var indicator1:NVActivityIndicatorView!
-    
     var imageList = [String]()
     var isWhish = 0
     var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
@@ -37,7 +37,9 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate {
     var rPrice:String!
     var rating:Double!
     var ratingCount:Int!
+    var customerId = ""
     var dataList = [hireCareParameter]()
+    var userdefault = UserDefaults.standard
     
     fileprivate func viewUpdate() {
         for index in 0..<self.imageList.count {
@@ -68,8 +70,12 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        apiCalling(customerId: "", productId: "")
+        apiCalling(customerId: customerId, productId: productId)
         scrollView.delegate = self
+        guard (userdefault.value(forKey: "customer_id") as? String) != nil else {
+            return
+        }
+        customerId = userdefault.value(forKey: "customer_id") as! String
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -104,8 +110,8 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate {
         
               
               let parameter = [
-                "customer_id":"808",
-                "product_id":"16511"
+                "customer_id":"\(customerId)",
+                "product_id":"\(productId)"
                 ]
               self.indicator1.startAnimating()
               Alamofire.request(urlToExcute, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in

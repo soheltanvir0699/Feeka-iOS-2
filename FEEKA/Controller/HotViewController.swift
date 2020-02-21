@@ -51,28 +51,33 @@ class HotViewController: UIViewController {
     }
     
     @objc func allFace(tapGestureRecognizer: UITapGestureRecognizer) {
-       let menGroomingVC = storyboard?.instantiateViewController(withIdentifier: "DiscoverViewController") as! DiscoverViewController
-        menGroomingVC.category = hotListId[0]
-        self.navigationController?.pushViewController(menGroomingVC, animated: true)
+       let DiscoverViewController = storyboard?.instantiateViewController(withIdentifier: "DiscoverViewController") as! DiscoverViewController
+        DiscoverViewController.category = hotListId[0]
+        DiscoverViewController.searchTag = "HAIR MOISTURISERS"
+        
+        self.navigationController?.pushViewController(DiscoverViewController, animated: true)
     }
     
     
     @objc func allBrand(tapGestureRecognizer: UITapGestureRecognizer) {
-         let menGroomingVC = storyboard?.instantiateViewController(withIdentifier: "DiscoverViewController") as! DiscoverViewController
-        menGroomingVC.category = hotListId[1]
-               self.navigationController?.pushViewController(menGroomingVC, animated: true)
+         let DiscoverViewController = storyboard?.instantiateViewController(withIdentifier: "DiscoverViewController") as! DiscoverViewController
+        DiscoverViewController.category = hotListId[1]
+        DiscoverViewController.searchTag = "ALL SHAMPOO"
+               self.navigationController?.pushViewController(DiscoverViewController, animated: true)
     }
     
     @objc func allBody(tapGestureRecognizer: UITapGestureRecognizer) {
-         let menGroomingVC = storyboard?.instantiateViewController(withIdentifier: "DiscoverViewController") as! DiscoverViewController
-        menGroomingVC.category = hotListId[2]
-               self.navigationController?.pushViewController(menGroomingVC, animated: true)
+         let DiscoverViewController = storyboard?.instantiateViewController(withIdentifier: "DiscoverViewController") as! DiscoverViewController
+        DiscoverViewController.category = hotListId[2]
+        DiscoverViewController.searchTag = "CONDITIONERS"
+               self.navigationController?.pushViewController(DiscoverViewController, animated: true)
     }
     
     @objc func allCondition(tapGestureRecognizer: UITapGestureRecognizer) {
-         let menGroomingVC = storyboard?.instantiateViewController(withIdentifier: "DiscoverViewController") as! DiscoverViewController
-        menGroomingVC.category = hotListId[3]
-               self.navigationController?.pushViewController(menGroomingVC, animated: true)
+         let DiscoverViewController = storyboard?.instantiateViewController(withIdentifier: "DiscoverViewController") as! DiscoverViewController
+        DiscoverViewController.category = hotListId[3]
+        DiscoverViewController.searchTag = "FACE MOISTURISERS"
+               self.navigationController?.pushViewController(DiscoverViewController, animated: true)
     }
     
     func apiCalling() {

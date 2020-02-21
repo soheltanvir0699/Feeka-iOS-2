@@ -24,6 +24,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate,UIColle
     @IBOutlet weak var collectionView: UICollectionView!
     var indicator:NVActivityIndicatorView!
     var dataList = [hireCareParameter]()
+    var productID = [Int]()
     var searchTag: String = ""
     var totalPage: Int?
     var currentPage = 1
@@ -49,7 +50,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate,UIColle
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-         pushDiscoverController()
+        pushDiscoverController(index: indexPath.row)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -95,7 +96,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate,UIColle
 
 func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     print("dsdsdsd")
-    pushDiscoverController()
+    pushDiscoverController(index: indexPath.row)
     hideKeyBoard()
    
     }
@@ -105,8 +106,9 @@ func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPat
            return CGSize(width: collectionView.frame.width / 2 - 5, height: 335)
        }
     
-    func pushDiscoverController() {
+    func pushDiscoverController(index: Int) {
         let discoverVC = storyboard?.instantiateViewController(withIdentifier: "DiscoverDetailsViewController") as? DiscoverDetailsViewController
+        discoverVC!.productId = "\(productID[index])"
         navigationController?.pushViewController(discoverVC!, animated: true)
     }
 
@@ -180,8 +182,10 @@ func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPat
                           let salePrice = i["sale_price"].stringValue
                           let reviewCount = reviewCount1["count"].intValue
                           let rating = reviewCount1["ratting"].doubleValue
+                            let productid = i["ID"].intValue
                             print(rating)
                           self.dataList.append(hireCareParameter(title: title, image: image, brand: brand, count: reviewCount, rating: rating, regularPrice: regularPrice, salePrice: salePrice))
+                            self.productID.append(productid)
 
                         }
                         self.indicator.stopAnimating()

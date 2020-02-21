@@ -33,6 +33,7 @@ class HomeProductDetailsViewController: UIViewController , UIViewControllerTrans
     var isTotal = true
     var productCategoryList = [String]()
     var productTemrsId = [String]()
+    var productID = [Int]()
     let userDefault = UserDefaults.standard
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -166,8 +167,10 @@ class HomeProductDetailsViewController: UIViewController , UIViewControllerTrans
                         let salePrice = i["sale_price"].stringValue
                         let reviewCount = reviewCount1["count"].intValue
                         let rating = reviewCount1["ratting"].doubleValue
+                        let productid = i["ID"].intValue
                           print(rating)
                         self.dataList.append(hireCareParameter(title: title, image: image, brand: brand, count: reviewCount, rating: rating, regularPrice: regularPrice, salePrice: salePrice))
+                        self.productID.append(productid)
 
                       }
                       self.indicator.stopAnimating()
@@ -192,6 +195,12 @@ class HomeProductDetailsViewController: UIViewController , UIViewControllerTrans
                 }
                   
               }
+    }
+    
+    func pushDiscoverController(index: Int) {
+        let discoverVC = storyboard?.instantiateViewController(withIdentifier: "DiscoverDetailsViewController") as? DiscoverDetailsViewController
+        discoverVC!.productId = "\(productID[index])"
+        navigationController?.pushViewController(discoverVC!, animated: true)
     }
 
 
@@ -278,7 +287,10 @@ extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollecti
                 print(dataList)
                        apiCalling(brand: "", brandId: "", categorie: "\(categorie)", color: "", filter: "1", gender: "\(gender)", maxPrice: "", minPrice: "", productCategorie: "\(productTemrsId[indexPath.row - 2])", productType: "", searchTag: "", size: "", sortParameter: "2", tagId: "\(tagId)", currentPage: 1)
             }
+            
             print("selected")
+        }else {
+            pushDiscoverController(index: indexPath.row)
         }
     }
     
@@ -314,6 +326,10 @@ extension HomeProductDetailsViewController: UITableViewDataSource, UITableViewDe
         cell.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        pushDiscoverController(index: indexPath.row)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
