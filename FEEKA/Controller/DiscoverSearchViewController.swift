@@ -29,15 +29,16 @@ class DiscoverSearchViewController: UIViewController,UITextFieldDelegate {
        }
        
        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        discoverVC()
+        discoverVC(textfield: textField)
                return textField.resignFirstResponder()
        }
        override func viewWillAppear(_ animated: Bool) {
            //hideKeyBoard()
        }
     
-    func discoverVC() {
+    func discoverVC(textfield: UITextField) {
         let discoverVC = storyboard?.instantiateViewController(withIdentifier: "DiscoverViewController") as! DiscoverViewController
+        discoverVC.searchTag = textfield.text!
         navigationController?.pushViewController(discoverVC, animated: true)
     }
  
@@ -59,7 +60,7 @@ extension DiscoverSearchViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.discoverVC()
+       
     }
     
     

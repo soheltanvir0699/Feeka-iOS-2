@@ -109,7 +109,7 @@ class HomeProductDetailsViewController: UIViewController , UIViewControllerTrans
    let color = userDefault.value(forKey: "color") as! String
    let filterMaxVaue = userDefault.value(forKey: "filterMaxValue") as! String
     let filterMinValue = userDefault.value(forKey: "filterMinValue") as! String
-        apiCalling(brand: brand, brandId: "", categorie: "\(categorie)", color: color, filter: "", gender: "\(gender)", maxPrice: "\(filterMaxVaue)", minPrice: "\(filterMinValue)", productCategorie: "", productType: productType, searchTag: "", size: "", sortParameter: "2", tagId: "\(productCategorie)", currentPage: 1)
+        apiCalling(brand: brand, brandId: "", categorie: "\(categorie)", color: color, filter: "1", gender: "\(gender)", maxPrice: "\(filterMaxVaue)", minPrice: "\(filterMinValue)", productCategorie: "\(productCategorie)", productType: productType, searchTag: "", size: "", sortParameter: "2", tagId: "\(tagId)", currentPage: 1)
     }
     @IBAction func backBtn(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -270,7 +270,7 @@ extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollecti
                    currentPage = 1
                    dataList = [hireCareParameter]()
                 print(dataList)
-                       apiCalling(brand: "", brandId: "", categorie: "\(categorie)", color: "", filter: "", gender: "\(gender)", maxPrice: "", minPrice: "", productCategorie: "", productType: "", searchTag: "\(productTemrsId[indexPath.row - 2])", size: "", sortParameter: "2", tagId: "\(productTemrsId)", currentPage: 1)
+                       apiCalling(brand: "", brandId: "", categorie: "\(categorie)", color: "", filter: "1", gender: "\(gender)", maxPrice: "", minPrice: "", productCategorie: "\(productTemrsId[indexPath.row - 2])", productType: "", searchTag: "", size: "", sortParameter: "2", tagId: "\(tagId)", currentPage: 1)
             }
             print("selected")
         }

@@ -27,6 +27,8 @@
 		8D6868D423FD8D57008638F7 /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6868D323FD8D57008638F7 /* Extension+UIView.swift */; };
 		8D8226F523FBB2F4005B3F39 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8226F423FBB2F4005B3F39 /* AlertView.swift */; };
 		8DAC471623FAF48F0095D064 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAC471523FAF48F0095D064 /* UIImage+Gif.swift */; };
+		8DC5D0A023FFA91E00246E33 /* DiscoverCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC5D09F23FFA91E00246E33 /* DiscoverCollectionViewCell.swift */; };
+		8DC5D0A223FFA94B00246E33 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC5D0A123FFA94B00246E33 /* SearchTableViewCell.swift */; };
 		8DE40A6823F40D3800807FC5 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE40A6723F40D3800807FC5 /* DataModel.swift */; };
 		8DE40A6A23F4601500807FC5 /* HomeMenGroomingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE40A6923F4601500807FC5 /* HomeMenGroomingViewController.swift */; };
 		8DE9D9D823FD059F000100CF /* HomeGroomingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE9D9D723FD059F000100CF /* HomeGroomingCollectionViewCell.swift */; };
@@ -76,6 +78,8 @@
 		8D6868D323FD8D57008638F7 /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
 		8D8226F423FBB2F4005B3F39 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		8DAC471523FAF48F0095D064 /* UIImage+Gif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
+		8DC5D09F23FFA91E00246E33 /* DiscoverCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCollectionViewCell.swift; sourceTree = "<group>"; };
+		8DC5D0A123FFA94B00246E33 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		8DE40A6723F40D3800807FC5 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		8DE40A6923F4601500807FC5 /* HomeMenGroomingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenGroomingViewController.swift; sourceTree = "<group>"; };
 		8DE9D9D723FD059F000100CF /* HomeGroomingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGroomingCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -160,6 +164,8 @@
 				8D3D7B9D23F2C7F1005A3479 /* Main.storyboard */,
 				C4ED048423F6CFBA0072CEE7 /* DiscoverTableViewCell.swift */,
 				C4ED048823F6DD130072CEE7 /* CollectionViewCell.swift */,
+				8DC5D09F23FFA91E00246E33 /* DiscoverCollectionViewCell.swift */,
+				8DC5D0A123FFA94B00246E33 /* SearchTableViewCell.swift */,
 				C4EF3D8623F7C27600BA556F /* ProductDetailsCollectionViewCell.swift */,
 				C4BD14A723F57E2000B5DBA5 /* HotCollectionViewCell.swift */,
 				8D6868CF23FD73F5008638F7 /* FilterDetailsCell.swift */,
@@ -364,6 +370,7 @@
 				8D04762323FAC557009C0E7B /* NetworkingClient.swift in Sources */,
 				C458548223F9B89F00C23B49 /* HomeViewController.swift in Sources */,
 				C4ED048523F6CFBA0072CEE7 /* DiscoverTableViewCell.swift in Sources */,
+				8DC5D0A023FFA91E00246E33 /* DiscoverCollectionViewCell.swift in Sources */,
 				C4BC808B23F9814F00FA5873 /* AddAddressViewController.swift in Sources */,
 				C461214C23F98A1D003611A1 /* WishListViewController.swift in Sources */,
 				8D6868CC23FD6D74008638F7 /* FilterCell.swift in Sources */,
@@ -371,6 +378,7 @@
 				C4BC808923F97E0600FA5873 /* NewslettersViewController.swift in Sources */,
 				C458548023F9A5FD00C23B49 /* DiscoverSearchViewController.swift in Sources */,
 				8DE40A6A23F4601500807FC5 /* HomeMenGroomingViewController.swift in Sources */,
+				8DC5D0A223FFA94B00246E33 /* SearchTableViewCell.swift in Sources */,
 				C4EF3D8723F7C27600BA556F /* ProductDetailsCollectionViewCell.swift in Sources */,
 				8D3D7B9C23F2C7F1005A3479 /* LogInViewController.swift in Sources */,
 				8D04762523FAE2C3009C0E7B /* Extension+UIImageView.swift in Sources */,
