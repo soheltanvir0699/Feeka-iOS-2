@@ -42,6 +42,16 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
     var dataList = [hireCareParameter]()
     var userdefault = UserDefaults.standard
     
+    fileprivate func wishAction() {
+        if isWhish == 1 {
+            addToFav.setImage(UIImage(named: "like"), for: .normal)
+           isWhish = 2
+        } else {
+            addToFav.setImage(UIImage(named: "like-normal"), for: .normal)
+            isWhish = 1
+        }
+    }
+    
     fileprivate func viewUpdate() {
         for index in 0..<self.imageList.count {
             salePrice.text = "R\(sPrice!)"
@@ -62,7 +72,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
                 addToFav.setImage(UIImage(named: "like"), for: .normal)
             } else {
                 addToFav.setImage(UIImage(named: "like-normal"), for: .normal)
-                    }
+            }
         }
         
         self.scrollView.contentSize = CGSize(width: (self.scrollView.frame.size.width) * CGFloat(imageList.count), height: self.scrollView.frame.size.height)
@@ -74,13 +84,11 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
         apiCalling(customerId: customerId, productId: productId)
         scrollView.delegate = self
         guard (userdefault.value(forKey: "customer_id") as? String) != nil else {
+            logInVC()
             return
         }
         customerId = userdefault.value(forKey: "customer_id") as! String
         
-        if customerId == "" {
-            logInVC()
-        }
     }
     
     func logInVC() {
@@ -96,12 +104,8 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
     }
 
     @IBAction func addToFavorite(_ sender: Any) {
-        if isLike {
-            addToFav.setImage(UIImage(named: "like-normal"), for: .normal)
-            isLike = false
-        } else { addToFav.setImage(UIImage(named: "like"), for: .normal)
-            isLike = true
-        }
+        
+        wishApi()
         
     }
     @IBAction func backBtn(_ sender: Any) {
@@ -112,7 +116,56 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
         let discoverDetailsVC = storyboard?.instantiateViewController(withIdentifier: "ProductDetailsViewController")
         self.navigationController?.pushViewController(discoverDetailsVC!, animated: true)
     }
-    
+    func wishApi() {
+        guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/wishlist_v3.php") else {
+                  return
+              }
+        
+              print(customerId)
+              let parameter = [
+                "color":"",
+                "customer_id":"\(customerId)",
+                "price":"\(sPrice!)",
+                "product_id":"\(productId)",
+                "size":"",
+                "variation_id":"0",
+                "whishlist_status":"\(isWhish)"
+                ]
+              self.indicator1.startAnimating()
+              Alamofire.request(urlToExcute, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+                
+              if let error = response.error {
+                  self.indicator1.stopAnimating()
+                  let alertView = ShowAlertView().alertView(title: "Something went wrong", action: "OK", message: "Please try again.")
+                  self.present(alertView, animated: true, completion: nil)
+                  print(error)
+                  
+              }
+              
+                  if let response = response.result.value {
+                      let jsonResponse = JSON(response)
+                    
+                    
+                    if jsonResponse["message"].stringValue == "Input values are missing." {
+                        print(parameter)
+                        self.showToast(message: "Input values are missing.")
+                    }
+                    if jsonResponse["status"].stringValue == "1" {
+                        print(jsonResponse["message"].stringValue)
+                        print(self.isWhish)
+                        self.wishAction()
+                    }
+                  
+                  }else {
+                    let alertView = ShowAlertView().alertView(title: "No Product Found", action: "OK", message: "")
+                    self.present(alertView, animated: true, completion: nil)
+                }
+                
+                self.indicator1.stopAnimating()
+                
+                  
+              }
+    }
     func apiCalling(customerId:String, productId:String ) {
               self.fechuredId = [Int]()
               self.dataList = [hireCareParameter]()
@@ -142,12 +195,18 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
                   if let response = response.result.value {
                       let jsonResponse = JSON(response)
                     let productDetails = JSON(jsonResponse["product_detail"])
+                    print("product_details: \(productDetails)")
                     print(productDetails)
                     let imageArray = productDetails["image_gallery"].arrayValue
                     for i in imageArray {
                         self.imageList.append(i.stringValue)
                     }
+                    if productDetails["is_whishlist"].intValue == 0 {
+                       self.isWhish = 2
+                    } else {
                     self.isWhish = productDetails["is_whishlist"].intValue
+                        
+                    }
                     self.productTitle = productDetails["title"].stringValue
                     let brand = productDetails["brand"].arrayValue
                     self.brand = brand[0].stringValue
