@@ -11,14 +11,14 @@ import AVFoundation
 
 class VideoScreenViewController: UIViewController {
 
-    var avPlayer: AVPlayer!
+     var avPlayer: AVPlayer!
      var avPlayerLayer: AVPlayerLayer!
      var paused: Bool = false
+   
 
     @IBOutlet weak var videoBackgroundView: UIView!
     override func viewDidLoad() {
          super.viewDidLoad()
-
          let url = Bundle.main.url(forResource: "vid_file2", withExtension: "mp4")
 
 

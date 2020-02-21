@@ -185,6 +185,11 @@ class HomeProductDetailsViewController: UIViewController , UIViewControllerTrans
                     let alertView = ShowAlertView().alertView(title: "No Product Found", action: "OK", message: "")
                     self.present(alertView, animated: true, completion: nil)
                 }
+                
+                if self.dataList.count == 0 {
+                    let alertView = ShowAlertView().alertView(title: "No Product Found", action: "OK", message: "")
+                    self.present(alertView, animated: true, completion: nil)
+                }
                   
               }
     }
