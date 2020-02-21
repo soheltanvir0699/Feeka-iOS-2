@@ -17,6 +17,7 @@ class HomeMenGroomingViewController: UIViewController {
     @IBOutlet weak var TopView: UIView!
     @IBOutlet weak var collView: UICollectionView!
     var dataList = [hireCareParameter]()
+    var productID = [Int]()
     var indicator: NVActivityIndicatorView!
     var totalPage: Int?
     var currentPage = 1
@@ -83,8 +84,10 @@ class HomeMenGroomingViewController: UIViewController {
                         let salePrice = i["sale_price"].stringValue
                         let reviewCount = reviewCount1["count"].intValue
                         let rating = reviewCount1["ratting"].doubleValue
+                        let productid = i["ID"].intValue
                           print(rating)
                         self.dataList.append(hireCareParameter(title: title, image: image, brand: brand, count: reviewCount, rating: rating, regularPrice: regularPrice, salePrice: salePrice))
+                        self.productID.append(productid)
 
                       }
                     self.collView.reloadData(); self.indicator.stopAnimating()
@@ -95,6 +98,12 @@ class HomeMenGroomingViewController: UIViewController {
                 }
                   
               }
+    }
+    
+    func pushDiscoverController(index: Int) {
+        let discoverVC = storyboard?.instantiateViewController(withIdentifier: "DiscoverDetailsViewController") as? DiscoverDetailsViewController
+        discoverVC!.productId = "\(productID[index])"
+        navigationController?.pushViewController(discoverVC!, animated: true)
     }
 }
 
@@ -124,6 +133,10 @@ extension HomeMenGroomingViewController: UICollectionViewDelegate, UICollectionV
             currentPage += 1
         }
     }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        pushDiscoverController(index: indexPath.row)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

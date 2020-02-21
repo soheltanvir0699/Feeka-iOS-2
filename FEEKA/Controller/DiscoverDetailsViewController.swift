@@ -12,7 +12,7 @@ import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
 
-class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate {
+class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIViewControllerTransitioningDelegate {
 
     @IBOutlet weak var salePrice: UILabel!
     @IBOutlet weak var regularPrice: UILabel!
@@ -38,6 +38,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate {
     var rating:Double!
     var ratingCount:Int!
     var customerId = ""
+    var fechuredId = [Int]()
     var dataList = [hireCareParameter]()
     var userdefault = UserDefaults.standard
     
@@ -76,6 +77,17 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate {
             return
         }
         customerId = userdefault.value(forKey: "customer_id") as! String
+        
+        if customerId == "" {
+            logInVC()
+        }
+    }
+    
+    func logInVC() {
+        let navVc = storyboard?.instantiateViewController(withIdentifier: "loginnav")
+        navVc!.modalPresentationStyle = .overFullScreen
+        navVc!.transitioningDelegate = self
+        present(navVc!, animated: true, completion: nil)
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -102,6 +114,9 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func apiCalling(customerId:String, productId:String ) {
+              self.fechuredId = [Int]()
+              self.dataList = [hireCareParameter]()
+              self.imageList = [String]()
               indicator1 = self.indicator()
               
               guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/single_product_listing_v2.php") else {
@@ -149,6 +164,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate {
                     for index in jsonResponse["fechured_product"].arrayValue {
                         let i = JSON(index)
                         let title = i["title"].stringValue
+                        let fId = i["ID"].intValue
                         let image = i["image"].stringValue
                           print(title)
                         let brand = i["brand"].arrayValue[0].stringValue
@@ -158,6 +174,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate {
                         let reviewCount = reviewCount1["count"].intValue
                         let rating = reviewCount1["ratting"].doubleValue
                         self.dataList.append(hireCareParameter(title: title, image: image, brand: brand, count: reviewCount, rating: rating, regularPrice: regularPrice, salePrice: salePrice))
+                        self.fechuredId.append(fId)
 
                       }
                     self.collView.reloadData()
@@ -195,6 +212,11 @@ extension DiscoverDetailsViewController: UICollectionViewDataSource, UICollectio
         cell.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
         cell.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        productId = "\(fechuredId[indexPath.row])"
+        apiCalling(customerId: customerId, productId: productId)
     }
     
 }
