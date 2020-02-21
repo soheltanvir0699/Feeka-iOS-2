@@ -19,7 +19,13 @@ class DiscoverSearchViewController: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         navView.setShadow()
         searchField.becomeFirstResponder()
-        arrayList = userdefault.value(forKey: "arrayList") as! [String]
+        
+        if (userdefault.value(forKey: "arrayList")) != nil {
+           arrayList = userdefault.value(forKey: "arrayList") as! [String]
+        } else {
+            print("array list is nil")
+        }
+        
     }
     
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
