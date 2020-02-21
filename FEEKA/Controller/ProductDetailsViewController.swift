@@ -50,7 +50,8 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
         cell?.colorLabel.text = "Free delivery* in SA within 1-3 days | Free & easy returns | All Prices Vat Incl."
             cell?.colorLabel.textColor = .red
             cell?.colorLabel.font = UIFont.boldSystemFont(ofSize: 16.0)
-        cell?.sizeLabel.text = "This word (Discription) may be misspelled. Below you can find the suggested words which we believe are the correct spellings for what you were searching for.his word (Discription) may be misspelled. Below you can find the suggested words which we believe are the correct spellings for what you were searching for."
+            let string1: String = "<span style=\"color: #ff0000;\"><strong>Free delivery* in SA within 1-3 days | Free &amp; easy returns | All prices Vat incl.</strong></span>\r\n\r\nThe TRESemmé Colour Revitalise system, with Advanced Colour Vibrancy technology, helps to keep colour vibrant for up to eight weeks.* This system, with green tea, rosemary and sunflower extracts, gently cleanses and conditions the hair to help replenish vital moisture and keep hair looking healthy. Your hair colour will be vibrant and long-lasting, while every strand is soft and manageable. For best results, use in conjunction with TRESemmé Colour Revitalise Conditioner.\r\n\r\n*TRESemmé Colour Revitalise Shampoo and Conditioner versus non-conditioning shampoo."
+            cell?.sizeLabel.text = string1.htmlToString
             discriptonBorder.backgroundColor = .red
             
         }else {

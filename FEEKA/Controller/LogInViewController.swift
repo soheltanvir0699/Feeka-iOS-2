@@ -22,6 +22,7 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var singUpStringLabel: UILabel!
     var ishidePassword = false
     var indicator:NVActivityIndicatorView!
+    var userdefault = UserDefaults.standard
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,13 +113,18 @@ class LogInViewController: UIViewController {
                            }
                            
                            if let result = response.data {
-                               let responseString = NSString(data: result, encoding: String.Encoding.utf8.rawValue)
                                let jsonRespose = JSON(result)
                                print(jsonRespose)
                                print(jsonRespose["message"].stringValue)
                                self.showToast(message: "\(jsonRespose["message"].stringValue)")
                                
                                if jsonRespose["message"].stringValue == "Login Completed." {
+                                
+                                for i in jsonRespose["data"].arrayValue {
+                                    let customerId = i["customer_id"].stringValue
+                                    self.userdefault.setValue(customerId, forKey: "customer_id")
+                                    print(customerId)
+                                }
                                   self.navigationController?.popViewController(animated: true)
                                } else {
                                    self.showToast(message: "\(jsonRespose["message"].stringValue)")

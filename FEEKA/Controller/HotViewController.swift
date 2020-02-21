@@ -136,6 +136,11 @@ class HotViewController: UIViewController {
                                 self.allConditionerLbl.text = "\(i["name"].stringValue)"
                                 self.hotListId.append(i["id"].stringValue)
                             }
+                            if self.dataList.count == 0 {
+                                self.tblView.isHidden = true
+                            } else {
+                                self.tblView.isHidden = false
+                            }
                             brandCount += 1
 
                         }

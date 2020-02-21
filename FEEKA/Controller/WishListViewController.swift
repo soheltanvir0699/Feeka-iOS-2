@@ -33,6 +33,4 @@ extension WishListViewController: UICollectionViewDelegate, UICollectionViewData
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         return cell
     }
-    
-
 }
