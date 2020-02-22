@@ -162,6 +162,10 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
                     }
                     if jsonResponse["status"].stringValue == "1" {
                         print(jsonResponse["message"].stringValue)
+                        
+                        if jsonResponse["message"].stringValue == "Item has been added to your bag." {
+                            self.view.makeToast("Add to Bag")
+                        }
                         print(self.isWhish)
                         self.wishAction()
                     }

@@ -248,16 +248,16 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
     @IBAction func singUP(_ sender: Any) {
         
         guard let firstName = firstName.text, let lastName = lastName.text, let email = email.text, let createPass = createPassField.text, let confirmPass = confirmPassField.text, let date = DateField.text, let gender = genderField.text else {
-                self.showToast(message: "Please fill all Field")
+            self.view.makeToast("Please fill all Field")
                 return
             }
             guard let url = URL(string: "https://feeka.co.za/json-api/route/Login_Registration.php") else {
-                self.showToast(message: "Please try again later")
+                self.view.makeToast("Please try again later")
                 return
             }
             
             if createPass != confirmPass || firstName == "" || lastName == "", email == "" || createPass == "" || confirmPass == "" || gender == "" || date == "" {
-                self.showToast(message: "Please fill all Field")
+                self.view.makeToast( "Please fill all Field")
                 return
             } else {
                 let paramater = [
@@ -288,10 +288,10 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
                         let jsonRespose = JSON(result)
                         print(jsonRespose)
                         print(jsonRespose["message"].stringValue)
-                        self.showToast(message: "\(jsonRespose["message"].stringValue)")
+                        self.view.makeToast( "\(jsonRespose["message"].stringValue)")
                         
                         if jsonRespose["message"].stringValue == "Email address is already registered." {
-                           self.showToast(message: "\(jsonRespose["message"].stringValue)")
+                            self.view.makeToast("\(jsonRespose["message"].stringValue)")
                         } else {
                             self.navigationController?.popViewController(animated: true)
                         }

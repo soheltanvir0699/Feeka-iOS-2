@@ -81,12 +81,12 @@ class LogInViewController: UIViewController {
                        return
                    }
                    guard let url = URL(string: "https://feeka.co.za/json-api/route/Login_Registration.php") else {
-                       self.showToast(message: "Please try again later")
+                    self.view.makeToast( "Please try again later")
                        return
                    }
                    
                    if  password == "" || email == "" {
-                       self.showToast(message: "Please fill all Field")
+                    self.view.makeToast( "Please fill all Field")
                        return
                    } else {
                        let paramater = [
@@ -116,7 +116,7 @@ class LogInViewController: UIViewController {
                                let jsonRespose = JSON(result)
                                print(jsonRespose)
                                print(jsonRespose["message"].stringValue)
-                               self.showToast(message: "\(jsonRespose["message"].stringValue)")
+                            self.view.makeToast( "\(jsonRespose["message"].stringValue)")
                                
                                if jsonRespose["message"].stringValue == "Login Completed." {
                                 
@@ -127,7 +127,7 @@ class LogInViewController: UIViewController {
                                 }
                                   self.navigationController?.popViewController(animated: true)
                                } else {
-                                   self.showToast(message: "\(jsonRespose["message"].stringValue)")
+                                self.view.makeToast( "\(jsonRespose["message"].stringValue)")
                                }
 
                                self.indicator.stopAnimating()

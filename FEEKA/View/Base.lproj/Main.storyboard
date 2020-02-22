@@ -320,6 +320,9 @@
                                                             <constraint firstAttribute="height" constant="31" id="v6V-FL-t2d"/>
                                                         </constraints>
                                                         <color key="onTintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <connections>
+                                                            <action selector="notificationChange:" destination="zIK-Ii-fN6" eventType="valueChanged" id="Rj6-PX-XsE"/>
+                                                        </connections>
                                                     </switch>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -797,6 +800,7 @@
                         <outlet property="privacyView" destination="ORE-T5-l6b" id="907-zA-Hvh"/>
                         <outlet property="pushView" destination="yFN-oV-10S" id="OJm-vi-O95"/>
                         <outlet property="signOutView" destination="5jv-5I-jEZ" id="aXn-D4-z4i"/>
+                        <outlet property="swithBtn" destination="anc-Je-F2F" id="zf9-Bh-Aet"/>
                         <outlet property="termsView" destination="EXr-Ld-bSQ" id="NNx-5h-Gms"/>
                         <outlet property="wishListView" destination="evF-Rg-y7P" id="QQ4-UX-wL4"/>
                     </connections>

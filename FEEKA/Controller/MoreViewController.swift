@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class MoreViewController: UIViewController {
 
@@ -24,6 +26,7 @@ class MoreViewController: UIViewController {
     @IBOutlet weak var wishListView: UIView!
     @IBOutlet weak var deliveryView: UIView!
     @IBOutlet weak var navView: UIView!
+    @IBOutlet weak var swithBtn: UISwitch!
     
     var userdefault = UserDefaults.standard
     
@@ -53,6 +56,7 @@ class MoreViewController: UIViewController {
     }
     
     func setUpView() {
+            swithBtn.isOn = false
         termsView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(termsAction)))
         policyView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(policyAction)))
         faqsView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(fapsAction)))
@@ -128,7 +132,58 @@ class MoreViewController: UIViewController {
                   }
               }
           }
+    
+    @IBAction func notificationChange(_ sender: Any) {
+        guard (userdefault.value(forKey: "customer_id") as? String) != nil else {
+            self.view.makeToast("Please LogIN")
+            return
+        }
+        if swithBtn.isOn {
+            notificationApi(customerId: (userdefault.value(forKey: "customer_id") as! String), status: "1")
+            print("switch is on")
+        } else {
+            notificationApi(customerId: userdefault.value(forKey: "customer_id") as! String, status: "2")
+            print("switch is off")
+        }
+    }
+    
+    func notificationApi(customerId: String, status: String) {
+        guard let url = URL(string: "https://feeka.co.za/json-api/route/update_notification.php") else {
+            self.view.makeToast("Please try again later")
+                        return
+                    }
+                    
+                        let paramater = [
+                            "customer_id":"\(customerId)",
+                            "status":"\(status)"
+                        ]
+                        Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: nil).response { (response) in
+                            
+                            if let error = response.error {
+                                self.view.makeToast("Something went wrong")
+                                print(error)
+                                
+                            }
+                            
+                            if let result = response.data {
+                                let jsonRespose = JSON(result)
+                                
+                                if jsonRespose.isEmpty == true {
+                                    self.view.makeToast("Something Wrong")
+                                }
+                                if jsonRespose["message"].stringValue == "Notification prefrence updated." {
+                                    self.view.makeToast("Notification prefrence updated.")
+                                }
+
+                            }
+                        
+            }
+        
+    }
+
+    
 }
+
 
 
 extension MoreViewController: UIViewControllerTransitioningDelegate {

@@ -102,11 +102,13 @@ class WishListViewController: UIViewController, UIViewControllerTransitioningDel
                     
                     if jsonResponse["message"].stringValue == "Input values are missing." {
                         print(parameter)
-                        self.showToast(message: "Input values are missing.")
+                        self.view.makeToast( "Input values are missing.")
                     }
                     if jsonResponse["status"].stringValue == "1" {
                         print(jsonResponse["message"].stringValue)
                         
+                    } else if jsonResponse["status"].stringValue == "2"{
+                 self.view.makeToast(jsonResponse["message"].stringValue)
                     }
                   
                   }else {
@@ -162,17 +164,17 @@ extension WishListViewController: UICollectionViewDelegate, UICollectionViewData
         print("wish clicked")
         let tag = sender.tag
         print(wishListData[tag-1000].sPrice)
-        removeAddBag(price: wishListData[tag-1000].sPrice, productId: wishListData[tag-1000].producId, whishStatus: "2", tag: tag, isRemove: true)
+        removeAddBag(price: wishListData[tag-1000].sPrice, productId: wishListData[tag-1000].producId, whishStatus: "2", tag: tag, minusTag: 1000)
             
         }
     @objc func addTOBag(sender: UIButton) {
     print("wish clicked")
     let tag = sender.tag
-        removeAddBag(price: wishListData[tag-2000].sPrice, productId: wishListData[tag-2000].producId, whishStatus: "3", tag: tag, isRemove: true)
+        removeAddBag(price: wishListData[tag-2000].sPrice, productId: wishListData[tag-2000].producId, whishStatus: "3", tag: tag, minusTag: 2000)
         
     }
     
-    func removeAddBag(price:String, productId:Int, whishStatus:String,tag:Int, isRemove: Bool) {
+    func removeAddBag(price:String, productId:Int, whishStatus:String,tag:Int, minusTag: Int) {
         guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/wishlist_v3.php") else {
                   return
               }
@@ -205,15 +207,14 @@ extension WishListViewController: UICollectionViewDelegate, UICollectionViewData
                     
                     if jsonResponse["message"].stringValue == "Input values are missing." {
                         print(parameter)
-                        self.showToast(message: "Input values are missing.")
+                        self.view.makeToast( "Input values are missing.")
                     }
                     if jsonResponse["status"].stringValue == "1" {
                         print(jsonResponse["message"].stringValue)
-                        self.showToast(message: jsonResponse["message"].stringValue)
-                        if isRemove {
-                        self.wishListData.remove(at: tag-1000)
+                        self.view.makeToast( jsonResponse["message"].stringValue)
+                        self.wishListData.remove(at: tag-minusTag)
                         self.collView.reloadData()
-                        }
+                        
                     }
                   
                   }else {
