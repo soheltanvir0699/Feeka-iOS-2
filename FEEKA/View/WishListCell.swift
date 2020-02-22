@@ -17,5 +17,6 @@ class WishListCell: UICollectionViewCell {
     @IBOutlet weak var isWhish: UIButton!
     @IBOutlet weak var newBtn: UILabel!
     @IBOutlet weak var saleBtn: UILabel!
+    @IBOutlet weak var addToBag: UIButton!
     
 }

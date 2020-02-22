@@ -18,6 +18,7 @@ class WishListViewController: UIViewController, UIViewControllerTransitioningDel
     var customerId:String!
     let userdefault = UserDefaults.standard
     var wishListData = [wishListDataModel]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -142,7 +143,9 @@ extension WishListViewController: UICollectionViewDelegate, UICollectionViewData
         cell.rPrice.text = " \(wishListData[indexPath.row].productCurrency) \(wishListData[indexPath.row].rPrice)"
         cell.productImg.downloaded(from: wishListData[indexPath.row].productImage)
         cell.isWhish.tag = indexPath.row + 1000
-        cell.isWhish.addTarget(self, action: #selector(removeWhish), for: .touchUpInside)
+        cell.addToBag.tag = indexPath.row + 2000
+        cell.isWhish.addTarget(self, action: #selector(removeWhish(sender:)), for: .touchUpInside)
+        cell.addToBag.addTarget(self, action: #selector(addTOBag(sender:)), for: .touchUpInside)
         if wishListData[indexPath.row].isNew == "1" {
             cell.newBtn.isHidden = false
         } else {
@@ -158,57 +161,78 @@ extension WishListViewController: UICollectionViewDelegate, UICollectionViewData
     @objc func removeWhish(sender: UIButton) {
         print("wish clicked")
         let tag = sender.tag
-        
-            guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/wishlist_v3.php") else {
-                      return
-                  }
+        print(wishListData[tag-1000].sPrice)
+        removeAddBag(price: wishListData[tag-1000].sPrice, productId: wishListData[tag-1000].producId, whishStatus: "2", tag: tag, isRemove: true)
             
-            print(customerId!)
-                  let parameter = [
-                    "color":"",
-                    "customer_id":"\(customerId!)",
-                    "price":"\(wishListData[tag-1000])",
-                    "product_id":"\(wishListData[tag-1000])",
-                    "size":"",
-                    "variation_id":"0",
-                    "whishlist_status":"2"
-                    ]
-                  self.indicator.startAnimating()
-                  Alamofire.request(urlToExcute, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
-                    
-                  if let error = response.error {
-                      self.indicator.stopAnimating()
-                      let alertView = ShowAlertView().alertView(title: "Something went wrong", action: "OK", message: "Please try again.")
-                      self.present(alertView, animated: true, completion: nil)
-                      print(error)
-                      
-                  }
-                  
-                      if let response = response.result.value {
-                          let jsonResponse = JSON(response)
-                        
-                        
-                        if jsonResponse["message"].stringValue == "Input values are missing." {
-                            print(parameter)
-                            self.showToast(message: "Input values are missing.")
-                        }
-                        if jsonResponse["status"].stringValue == "1" {
-                            print(jsonResponse["message"].stringValue)
-                            self.wishListData.remove(at: tag-1000)
-                            self.collView.reloadData()
-                        }
-                      
-                      }else {
-                        let alertView = ShowAlertView().alertView(title: "No Product Found", action: "OK", message: "")
-                        self.present(alertView, animated: true, completion: nil)
-                    }
-                    
-                    self.indicator.stopAnimating()
-                    
-                      
-                  }
         }
+    @objc func addTOBag(sender: UIButton) {
+    print("wish clicked")
+    let tag = sender.tag
+        removeAddBag(price: wishListData[tag-2000].sPrice, productId: wishListData[tag-2000].producId, whishStatus: "3", tag: tag, isRemove: true)
+        
+    }
+    
+    func removeAddBag(price:String, productId:Int, whishStatus:String,tag:Int, isRemove: Bool) {
+        guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/wishlist_v3.php") else {
+                  return
+              }
+        
+              print(customerId!)
+              let parameter = [
+                "color":"",
+                "customer_id":"\(customerId!)",
+                "price":"\(price)",
+                "product_id":"\(productId)",
+                "size":"",
+                "variation_id":"0",
+                "whishlist_status":"\(whishStatus)"
+                ]
+              print(parameter)
+              self.indicator.startAnimating()
+              Alamofire.request(urlToExcute, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+                
+              if let error = response.error {
+                  self.indicator.stopAnimating()
+                  let alertView = ShowAlertView().alertView(title: "Something went wrong", action: "OK", message: "Please try again.")
+                  self.present(alertView, animated: true, completion: nil)
+                  print(error)
+                  
+              }
+              
+                  if let response = response.result.value {
+                      let jsonResponse = JSON(response)
+                    
+                    
+                    if jsonResponse["message"].stringValue == "Input values are missing." {
+                        print(parameter)
+                        self.showToast(message: "Input values are missing.")
+                    }
+                    if jsonResponse["status"].stringValue == "1" {
+                        print(jsonResponse["message"].stringValue)
+                        self.showToast(message: jsonResponse["message"].stringValue)
+                        if isRemove {
+                        self.wishListData.remove(at: tag-1000)
+                        self.collView.reloadData()
+                        }
+                    }
+                  
+                  }else {
+                    let alertView = ShowAlertView().alertView(title: "No Product Found", action: "OK", message: "")
+                    self.present(alertView, animated: true, completion: nil)
+                }
+                
+                self.indicator.stopAnimating()
+                
+                  
+              }
+    }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width/2 - 5, height: 379)
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //customerId: customerId, productId: productId
+        let DiscoverDetailsVC = storyboard?.instantiateViewController(withIdentifier: "DiscoverDetailsViewController") as! DiscoverDetailsViewController
+        DiscoverDetailsVC.productId = "\(wishListData[indexPath.row].producId)"
+        self.navigationController?.pushViewController(DiscoverDetailsVC, animated: true)
     }
 }

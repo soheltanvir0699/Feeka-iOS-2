@@ -106,8 +106,11 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
 
     @IBAction func addToFavorite(_ sender: Any) {
         
-        wishApi()
+        wishApi(whishStatus: isWhish)
         
+    }
+    @IBAction func addToBag(_ sender: Any) {
+        wishApi(whishStatus: 3)
     }
     @IBAction func backBtn(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -117,7 +120,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
         let discoverDetailsVC = storyboard?.instantiateViewController(withIdentifier: "ProductDetailsViewController")
         self.navigationController?.pushViewController(discoverDetailsVC!, animated: true)
     }
-    func wishApi() {
+    func wishApi(whishStatus: Int) {
         guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/wishlist_v3.php") else {
                   return
               }
@@ -136,7 +139,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
                 "product_id":"\(productId)",
                 "size":"",
                 "variation_id":"0",
-                "whishlist_status":"\(isWhish)"
+                "whishlist_status":"\(whishStatus)"
                 ]
               self.indicator1.startAnimating()
               Alamofire.request(urlToExcute, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
