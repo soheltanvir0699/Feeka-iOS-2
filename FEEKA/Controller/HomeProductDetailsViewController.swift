@@ -322,6 +322,7 @@ extension HomeProductDetailsViewController: UITableViewDataSource, UITableViewDe
         cell.productImg.downloaded(from: dataList[indexPath.row].image)
         cell.productLbl.text = dataList[indexPath.row].title
         cell.brand.text = dataList[indexPath.row].brand
+        cell.salePrice.setBorder()
         cell.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
         cell.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
         

@@ -39,3 +39,15 @@ struct filterListData {
     var min_price: String
     var max_price: String
 }
+
+struct wishListDataModel {
+    var isNew:String
+    var isSale:String
+    var producId:Int
+    var productName:String
+    var productImage:String
+    var productCurrency:String
+    var rPrice:String
+    var sPrice:String
+    var brand:String
+}

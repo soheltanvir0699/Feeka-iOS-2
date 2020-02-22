@@ -70,8 +70,9 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
             
             if isWhish == 1 {
                 addToFav.setImage(UIImage(named: "like"), for: .normal)
-            } else {
+            } else if isWhish == 2 {
                 addToFav.setImage(UIImage(named: "like-normal"), for: .normal)
+                //isWhish = 1
             }
         }
         
@@ -120,6 +121,12 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
         guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/wishlist_v3.php") else {
                   return
               }
+        
+        guard (userdefault.value(forKey: "customer_id") as? String) != nil else {
+            logInVC()
+            return
+        }
+        customerId = userdefault.value(forKey: "customer_id") as! String
         
               print(customerId)
               let parameter = [

@@ -25,11 +25,20 @@ class MoreViewController: UIViewController {
     @IBOutlet weak var deliveryView: UIView!
     @IBOutlet weak var navView: UIView!
     
+    var userdefault = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
          setUpView()
         navView.setShadow()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        guard (userdefault.value(forKey: "customer_id") as? String) != nil else {
+            signOutAction()
+            return
+        }
     }
     
    
