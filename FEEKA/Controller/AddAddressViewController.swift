@@ -37,6 +37,7 @@ class AddAddressViewController: UIViewController {
     var company = ""
     let userdefault = UserDefaults.standard
     var customerId = ""
+    var isAddress = true
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -67,6 +68,9 @@ class AddAddressViewController: UIViewController {
         addressDetails?.city = city1
         addressDetails?.postalCode = postalCode1
         addressDetails?.company = company
+        addressDetails?.addressId = userdefault.value(forKey: "address_id") as! String
+        addressDetails?.urlLink = "https://feeka.co.za/json-api/route/edit_address.php"
+        addressDetails?.isAddress = true
         self.navigationController?.pushViewController(addressDetails!, animated: true)
     }
     
@@ -101,6 +105,7 @@ class AddAddressViewController: UIViewController {
                                       if jsonRespose["status"].stringValue == "1" {
                                         self.addressView.isHidden = true
                                         self.defaultAddress.isHidden = true
+                                        self.isAddress = true
                                       } else {
                                         
                                         self.addressView.isHidden = false
@@ -117,6 +122,7 @@ class AddAddressViewController: UIViewController {
  
     @IBAction func addAddressBtn(_ sender: Any) {
         let addressDetails = storyboard?.instantiateViewController(withIdentifier: "AddAddressDetailsViewController") as? AddAddressDetailsViewController
+        addressDetails?.isAddress = self.isAddress
         self.navigationController?.pushViewController(addressDetails!, animated: true)
     }
   
@@ -162,6 +168,7 @@ class AddAddressViewController: UIViewController {
                                       let jsonRespose = JSON(result)
                                      
                                       if jsonRespose["status"].stringValue == "1" {
+                                        self.isAddress = false
                                        let data = jsonRespose["data"].arrayValue[0]
                                         self.name1 = data["Name"].stringValue
                                         self.sureName1 = data["Surname"].stringValue

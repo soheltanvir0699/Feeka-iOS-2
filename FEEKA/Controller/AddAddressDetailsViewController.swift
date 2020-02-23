@@ -36,13 +36,17 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
     var postalCode = ""
     var isDefault = true
     var company = ""
+    var addressId = ""
+    var isAddress = true
     var indicator:NVActivityIndicatorView!
     let userdefault = UserDefaults.standard
+    var urlLink = "https://feeka.co.za/json-api/route/add_address.php"
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         navView.setShadow()
         setUPView()
+        hideKeyBoard()
     }
     
     func setUPView() {
@@ -76,7 +80,7 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
     @IBAction func saveBtn(_ sender: Any) {
         var customerId = ""
         indicator = self.indicator()
-        guard let url = URL(string: "https://feeka.co.za/json-api/route/add_address.php") else {
+        guard let url = URL(string: urlLink) else {
                            self.view.makeToast( "Please try again later")
                               return
                           }
@@ -85,15 +89,16 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
         }
         
         if nameLbl.text == "" || suburbLbl.text == "" || sureNameLbl.text == "" || contactNumberLbl.text == "" || streetAddressLbl.text == "" || cityLbl.text == "" || postcodeLbl.text == "" || companyLbl.text == "" {
-            self.view.makeToast("Please Enter Correct Value")
+            self.view.makeToast("Empty Field")
             return
         } else if (contactNumberLbl.text)?.count != 10 {
             self.view.makeToast("Phone Number Is Invalid")
             return
         } else {
+            if isAddress {
                           
                               let paramater = [
-                                 "address_id": "",
+                                 "address_id": "\(addressId)",
                                  "customer_id": "\(customerId)",
                                 "Name": "\(nameLbl.text!)",
                                 "Surname": "\(sureNameLbl.text!)",
@@ -134,6 +139,9 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
                                   }
                               
                   }
+            } else {
+                self.view.makeToast("Please Delete Previous Address")
+            }
         }
     }
     
