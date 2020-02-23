@@ -24,6 +24,7 @@ class FilterDetailsController: UIViewController , UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! FilterDetailsCell
         cell.img.tag = indexPath.row+3000
         cell.txtLbl.text = dataList[indexPath.row]
+        cell.selectedBackgroundView = UIView()
         return cell
     }
     

@@ -160,7 +160,7 @@ class MoreViewController: UIViewController {
                         Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: nil).response { (response) in
                             
                             if let error = response.error {
-                                self.view.makeToast("Something went wrong")
+                                self.view.makeToast("Something wrong")
                                 print(error)
                                 
                             }
@@ -172,7 +172,13 @@ class MoreViewController: UIViewController {
                                     self.view.makeToast("Something Wrong")
                                 }
                                 if jsonRespose["message"].stringValue == "Notification prefrence updated." {
-                                    self.view.makeToast("Notification prefrence updated.")
+                                    if status == "1" {
+                                        self.view.makeToast("Notification Turned On")
+                                    } else if status == "2" {
+                                        self.view.makeToast("Notification Turned Off")
+
+                                    }
+                                    
                                 }
 
                             }

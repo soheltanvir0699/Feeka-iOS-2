@@ -50,7 +50,6 @@ extension UIViewController {
                         if dict!["gmail"] == nil {
                             print("nill")
                         }
-                        //self.checkUser(loginEmail: "soheltanvir0699@gmail.com")
                     }
                 })
                 connection.start()

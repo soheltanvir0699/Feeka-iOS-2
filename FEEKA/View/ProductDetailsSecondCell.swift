@@ -8,6 +8,7 @@
 
 import UIKit
 
-class ProductDetailsSecondCell: UICollectionViewCell {
+class ProductDetailsSecondCell: UITableViewCell {
+    @IBOutlet weak var reviewView: UIView!
     
 }

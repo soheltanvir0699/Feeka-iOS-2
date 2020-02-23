@@ -26,6 +26,7 @@
 		8D6868D223FD8A72008638F7 /* PriceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6868D123FD8A72008638F7 /* PriceController.swift */; };
 		8D6868D423FD8D57008638F7 /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6868D323FD8D57008638F7 /* Extension+UIView.swift */; };
 		8D8226F523FBB2F4005B3F39 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8226F423FBB2F4005B3F39 /* AlertView.swift */; };
+		8D88FD332402715E00E5DC97 /* DeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D88FD322402715E00E5DC97 /* DeliveryViewController.swift */; };
 		8D9E1EBF2400062D00B463C1 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9E1EBE2400062D00B463C1 /* Extension+String.swift */; };
 		8D9E1EC124000EF900B463C1 /* FeaturedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9E1EC024000EF900B463C1 /* FeaturedCell.swift */; };
 		8DAC471623FAF48F0095D064 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAC471523FAF48F0095D064 /* UIImage+Gif.swift */; };
@@ -33,6 +34,7 @@
 		8DB750802400DE1A00E69A5B /* BagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB7507F2400DE1A00E69A5B /* BagViewController.swift */; };
 		8DC5D0A023FFA91E00246E33 /* DiscoverCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC5D09F23FFA91E00246E33 /* DiscoverCollectionViewCell.swift */; };
 		8DC5D0A223FFA94B00246E33 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC5D0A123FFA94B00246E33 /* SearchTableViewCell.swift */; };
+		8DC71A5124015C7C002D2726 /* ProductDetailsSecondCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC71A5024015C7C002D2726 /* ProductDetailsSecondCell.swift */; };
 		8DD12377240141BD0086A8D0 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD12376240141BD0086A8D0 /* Toast.swift */; };
 		8DE40A6823F40D3800807FC5 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE40A6723F40D3800807FC5 /* DataModel.swift */; };
 		8DE40A6A23F4601500807FC5 /* HomeMenGroomingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE40A6923F4601500807FC5 /* HomeMenGroomingViewController.swift */; };
@@ -83,6 +85,7 @@
 		8D6868D123FD8A72008638F7 /* PriceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceController.swift; sourceTree = "<group>"; };
 		8D6868D323FD8D57008638F7 /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
 		8D8226F423FBB2F4005B3F39 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		8D88FD322402715E00E5DC97 /* DeliveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryViewController.swift; sourceTree = "<group>"; };
 		8D9E1EBE2400062D00B463C1 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		8D9E1EC024000EF900B463C1 /* FeaturedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedCell.swift; sourceTree = "<group>"; };
 		8DAC471523FAF48F0095D064 /* UIImage+Gif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
@@ -90,6 +93,7 @@
 		8DB7507F2400DE1A00E69A5B /* BagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagViewController.swift; sourceTree = "<group>"; };
 		8DC5D09F23FFA91E00246E33 /* DiscoverCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCollectionViewCell.swift; sourceTree = "<group>"; };
 		8DC5D0A123FFA94B00246E33 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		8DC71A5024015C7C002D2726 /* ProductDetailsSecondCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsSecondCell.swift; sourceTree = "<group>"; };
 		8DD12376240141BD0086A8D0 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		8DE40A6723F40D3800807FC5 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		8DE40A6923F4601500807FC5 /* HomeMenGroomingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenGroomingViewController.swift; sourceTree = "<group>"; };
@@ -163,6 +167,7 @@
 				C458547F23F9A5FD00C23B49 /* DiscoverSearchViewController.swift */,
 				C464B0CE23F6653600C292EE /* DiscoverViewController.swift */,
 				8D67083223F51DCF001DC494 /* MoreViewController.swift */,
+				8D88FD322402715E00E5DC97 /* DeliveryViewController.swift */,
 				C4EF3D8823F7C32600BA556F /* ProductDetailsViewController.swift */,
 				C4BD14A523F5753C00B5DBA5 /* HotViewController.swift */,
 				8D3D7BAB23F2F254005A3479 /* ForgotPasswordViewController.swift */,
@@ -176,6 +181,7 @@
 				C4D4BEEE23F7B42D00277DF3 /* TabBarView.swift */,
 				8D3D7B9D23F2C7F1005A3479 /* Main.storyboard */,
 				C4ED048423F6CFBA0072CEE7 /* DiscoverTableViewCell.swift */,
+				8DC71A5024015C7C002D2726 /* ProductDetailsSecondCell.swift */,
 				C4ED048823F6DD130072CEE7 /* CollectionViewCell.swift */,
 				8DC5D09F23FFA91E00246E33 /* DiscoverCollectionViewCell.swift */,
 				8DC5D0A123FFA94B00246E33 /* SearchTableViewCell.swift */,
@@ -393,6 +399,7 @@
 				C4ED048523F6CFBA0072CEE7 /* DiscoverTableViewCell.swift in Sources */,
 				8DC5D0A023FFA91E00246E33 /* DiscoverCollectionViewCell.swift in Sources */,
 				8D9E1EBF2400062D00B463C1 /* Extension+String.swift in Sources */,
+				8D88FD332402715E00E5DC97 /* DeliveryViewController.swift in Sources */,
 				C4BC808B23F9814F00FA5873 /* AddAddressViewController.swift in Sources */,
 				C461214C23F98A1D003611A1 /* WishListViewController.swift in Sources */,
 				8D6868CC23FD6D74008638F7 /* FilterCell.swift in Sources */,
@@ -413,6 +420,7 @@
 				8D9E1EC124000EF900B463C1 /* FeaturedCell.swift in Sources */,
 				8D3D7BAE23F30B72005A3479 /* SignUpViewController.swift in Sources */,
 				8DAC471623FAF48F0095D064 /* UIImage+Gif.swift in Sources */,
+				8DC71A5124015C7C002D2726 /* ProductDetailsSecondCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

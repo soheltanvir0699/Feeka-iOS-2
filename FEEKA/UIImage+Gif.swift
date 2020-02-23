@@ -1,10 +1,4 @@
-//
-//  UIImage+Gif.swift
-//  FEEKA
-//
-//  Created by Apple Guru on 17/2/20.
-//  Copyright © 2020 Apple Guru. All rights reserved.
-//
+
 
 import Foundation
 import UIKit
