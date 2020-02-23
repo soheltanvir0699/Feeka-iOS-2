@@ -176,7 +176,11 @@ func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPat
                           let title = i["title"].stringValue
                           let image = i["image"].stringValue
                             print(title)
-                          let brand = i["brand"].arrayValue[0].stringValue
+                            var brand = ""
+                            if i["brand"].arrayValue.isEmpty != true {
+                                brand = i["brand"].arrayValue[0].stringValue
+
+                            }
                           let reviewCount1 = JSON(i["review"])
                           let regularPrice = i["regular_price"].stringValue
                           let salePrice = i["sale_price"].stringValue

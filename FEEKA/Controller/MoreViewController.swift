@@ -42,6 +42,11 @@ class MoreViewController: UIViewController {
             signOutAction()
             return
         }
+        NotificationCenter.default.addObserver(self, selector: #selector(goHome), name: Notification.Name("goHome"), object: nil)
+    }
+    
+    @objc func goHome() {
+        tabBarController?.selectedIndex = 0
     }
     
    
@@ -88,6 +93,7 @@ class MoreViewController: UIViewController {
         navVc!.modalPresentationStyle = .overFullScreen
         navVc!.transitioningDelegate = self
         present(navVc!, animated: true, completion: nil)
+        //navigationController?.pushViewController(navVc!, animated: true)
     }
     @objc func termsAction() {
         if let url = URL(string: "https://feeka.co.za/t-and-c/") {

@@ -10,7 +10,7 @@ import UIKit
 import Cosmos
 
 class ProductDetailsCollectionViewCell: UICollectionViewCell {
-    
+    var dataList = StoredProperty.reviewAllData
     
     @IBOutlet weak var tblView: UITableView! {
        didSet {
@@ -18,20 +18,19 @@ class ProductDetailsCollectionViewCell: UICollectionViewCell {
             tblView.dataSource = self
         }
     }
+    @IBOutlet weak var commentField: UITextField!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var postBtn: UIButton!
     
     @IBOutlet weak var thirdView: UIView!
     @IBOutlet weak var colorLabel: UILabel!
     @IBOutlet weak var sizeLabel: UILabel!
     @IBOutlet weak var cosomView: CosmosView!
     @IBOutlet weak var postView: UIView!
-    @IBOutlet weak var postBtn: UIButton!
     
     var count = 2
     
     func collectionReloadData(){
-        count = 5
-            print(self.count)
              self.tableView.reloadData()
             print("reload data")
          
@@ -42,14 +41,17 @@ extension ProductDetailsCollectionViewCell: UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print(StoredProperty.data)
-        return StoredProperty.data
+        return dataList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reviewCell")
-        //cell?.textLabel?.text = data[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reviewCell") as! ProductDetailsSecondCell
+        cell.authorName.text = dataList[indexPath.row].author
+        cell.comment.text = dataList[indexPath.row].comment
+        cell.cosomView.rating = Double(dataList[indexPath.row].rating)!
+        cell.date.text = dataList[indexPath.row].date
         print("is reloaded")
-        return cell!
+        return cell
     }
 }
 

@@ -117,8 +117,15 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
     }
     
     @IBAction func productDetailsAction(_ sender: Any) {
-        let discoverDetailsVC = storyboard?.instantiateViewController(withIdentifier: "ProductDetailsViewController")
-        self.navigationController?.pushViewController(discoverDetailsVC!, animated: true)
+        let discoverDetailsVC = storyboard?.instantiateViewController(withIdentifier: "ProductDetailsViewController") as! ProductDetailsViewController
+        discoverDetailsVC.imageList = self.imageList
+        discoverDetailsVC.productTitle = self.productTitle
+        discoverDetailsVC.brand = self.brand
+        discoverDetailsVC.sPrice = self.sPrice
+        discoverDetailsVC.rating = self.rating
+        discoverDetailsVC.ratingCount = self.ratingCount
+        discoverDetailsVC.productId = self.productId
+        self.navigationController?.pushViewController(discoverDetailsVC, animated: true)
     }
     func wishApi(whishStatus: Int) {
         guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/wishlist_v3.php") else {
@@ -219,7 +226,6 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
                        self.isWhish = 2
                     } else {
                     self.isWhish = productDetails["is_whishlist"].intValue
-                        
                     }
                     self.productTitle = productDetails["title"].stringValue
                     let brand = productDetails["brand"].arrayValue
@@ -248,10 +254,23 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
                         let rating = reviewCount1["ratting"].doubleValue
                         self.dataList.append(hireCareParameter(title: title, image: image, brand: brand, count: reviewCount, rating: rating, regularPrice: regularPrice, salePrice: salePrice))
                         self.fechuredId.append(fId)
+                        
+                        let reviewData = reviewCount1["data"].arrayValue
+                        for data in reviewData {
+                            let singleData = JSON(data)
+                            let rating = singleData["rating"].stringValue
+                            let author = singleData["comment_author"].stringValue
+                            let comment = singleData["comment_content"].stringValue
+                            let date = singleData["comment_date"].stringValue
+                            let dateformatter = DateFormatter()
+                            dateformatter.dateFormat = "mmm d, yyyy"
+                            let formatedDate = dateformatter.date(from: "2016-04-14 10:01:11")
+                            print(formatedDate)
+                            StoredProperty.reviewAllData.append(reviewDataModel(rating: rating, author: author, comment: comment, date: date))
+                        }
 
                       }
                     self.collView.reloadData()
-                      
                   
                   }else {
                     let alertView = ShowAlertView().alertView(title: "No Product Found", action: "OK", message: "")

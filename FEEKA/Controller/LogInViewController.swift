@@ -72,6 +72,8 @@ class LogInViewController: UIViewController {
     
     @IBAction func backBtn(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+        tabBarController?.selectedIndex = 0
+        NotificationCenter.default.post(name: Notification.Name("goHome"), object: nil)
     }
     
     @IBAction func logIn(_ sender: Any) {
@@ -122,6 +124,8 @@ class LogInViewController: UIViewController {
                                 
                                 for i in jsonRespose["data"].arrayValue {
                                     let customerId = i["customer_id"].stringValue
+                                    let authorName = i["Name"].stringValue
+                                    self.userdefault.setValue(authorName, forKey: "author_name")
                                     self.userdefault.setValue(customerId, forKey: "customer_id")
                                     print(customerId)
                                 }

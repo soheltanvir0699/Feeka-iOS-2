@@ -14,6 +14,7 @@ import SwiftyJSON
 class StoredProperty {
     static var FacebookAuthsuccess = false
     static var data = 2
+    static var reviewAllData = [reviewDataModel]()
     
 }
 
@@ -51,4 +52,11 @@ struct wishListDataModel {
     var rPrice:String
     var sPrice:String
     var brand:String
+}
+
+struct reviewDataModel {
+    var rating:String
+    var author:String
+    var comment:String
+    var date:String
 }

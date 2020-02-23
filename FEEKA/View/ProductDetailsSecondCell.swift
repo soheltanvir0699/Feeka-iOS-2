@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import Cosmos
 
 class ProductDetailsSecondCell: UITableViewCell {
     @IBOutlet weak var reviewView: UIView!
-    
+    @IBOutlet weak var authorName: UILabel!
+    @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var cosomView: CosmosView!
+    @IBOutlet weak var comment: UILabel!
 }

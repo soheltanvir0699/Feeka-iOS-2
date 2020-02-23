@@ -163,6 +163,7 @@ extension WishListViewController: UICollectionViewDelegate, UICollectionViewData
     @objc func removeWhish(sender: UIButton) {
         print("wish clicked")
         let tag = sender.tag
+        
         print(wishListData[tag-1000].sPrice)
         removeAddBag(price: wishListData[tag-1000].sPrice, productId: wishListData[tag-1000].producId, whishStatus: "2", tag: tag, minusTag: 1000)
             
