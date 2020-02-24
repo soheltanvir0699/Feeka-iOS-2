@@ -18,6 +18,7 @@
 		8D3D7BA423F2C7F3005A3479 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D3D7BA223F2C7F3005A3479 /* LaunchScreen.storyboard */; };
 		8D3D7BAC23F2F254005A3479 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D7BAB23F2F254005A3479 /* ForgotPasswordViewController.swift */; };
 		8D3D7BAE23F30B72005A3479 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D7BAD23F30B72005A3479 /* SignUpViewController.swift */; };
+		8D43414E240461C300CF9C03 /* EditChangeAddressController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D43414D240461C300CF9C03 /* EditChangeAddressController.swift */; };
 		8D67083323F51DCF001DC494 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D67083223F51DCF001DC494 /* MoreViewController.swift */; };
 		8D6868CA23FD6627008638F7 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6868C923FD6627008638F7 /* FilterViewController.swift */; };
 		8D6868CC23FD6D74008638F7 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6868CB23FD6D74008638F7 /* FilterCell.swift */; };
@@ -80,6 +81,7 @@
 		8D3D7BA523F2C7F3005A3479 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D3D7BAB23F2F254005A3479 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		8D3D7BAD23F30B72005A3479 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
+		8D43414D240461C300CF9C03 /* EditChangeAddressController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditChangeAddressController.swift; sourceTree = "<group>"; };
 		8D67083223F51DCF001DC494 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		8D6868C923FD6627008638F7 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		8D6868CB23FD6D74008638F7 /* FilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				8D6868C923FD6627008638F7 /* FilterViewController.swift */,
 				C458548123F9B89F00C23B49 /* HomeViewController.swift */,
 				C4E5B8B223FA4FFF0040F4E8 /* HomeProductDetailsViewController.swift */,
+				8D43414D240461C300CF9C03 /* EditChangeAddressController.swift */,
 				C461214B23F98A1D003611A1 /* WishListViewController.swift */,
 				8DB7507F2400DE1A00E69A5B /* BagViewController.swift */,
 				C4ADA25F23F693FE00F4B5E9 /* DiscoverDetailsViewController.swift */,
@@ -412,6 +415,7 @@
 				8D9E1EBF2400062D00B463C1 /* Extension+String.swift in Sources */,
 				8D88FD332402715E00E5DC97 /* DeliveryViewController.swift in Sources */,
 				C4BC808B23F9814F00FA5873 /* AddAddressViewController.swift in Sources */,
+				8D43414E240461C300CF9C03 /* EditChangeAddressController.swift in Sources */,
 				C461214C23F98A1D003611A1 /* WishListViewController.swift in Sources */,
 				8D6868CC23FD6D74008638F7 /* FilterCell.swift in Sources */,
 				C4D4BEEF23F7B42D00277DF3 /* TabBarView.swift in Sources */,

@@ -29,6 +29,7 @@ class DeliveryViewController: UIViewController {
     var customerId = ""
     let userdefault = UserDefaults.standard
     var dataList = [getCustomerDataModel]()
+    var isAddress = true
     
     var indicator:NVActivityIndicatorView!
     override func viewDidLoad() {
@@ -54,10 +55,18 @@ class DeliveryViewController: UIViewController {
     }
     
     @IBAction func addNewAddressAction(_ sender: Any) {
+        let addressVc = storyboard?.instantiateViewController(withIdentifier: "AddAddressDetailsViewController") as! AddAddressDetailsViewController
+        addressVc.isAddress = self.isAddress
+        addressVc.modalPresentationStyle = .fullScreen
+        present(addressVc, animated: true, completion: nil)
         
     }
     
     @IBAction func editAndChangeAction(_ sender: Any) {
+        
+        let addressVc = storyboard?.instantiateViewController(withIdentifier: "EditChangeAddressController") as! EditChangeAddressController
+        addressVc.modalPresentationStyle = .fullScreen
+        present(addressVc, animated: true, completion: nil)
         
     }
     
@@ -114,14 +123,19 @@ class DeliveryViewController: UIViewController {
                         self.suburb.text = suburb
                         self.city.text = city
                         self.country.text = country
+                        self.isAddress = false
+                        self.indicator.stopAnimating()
                     }
                 } else {
                     self.view.makeToast("Address Not Found")
+                    self.isAddress = true
+                    self.indicator.stopAnimating()
                 }
               
             
             }else {
               let alertView = ShowAlertView().alertView(title: "No Product Found", action: "OK", message: "")
+                self.indicator.stopAnimating()
               self.present(alertView, animated: true, completion: nil)
           }
             

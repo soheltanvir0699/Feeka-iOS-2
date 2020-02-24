@@ -62,6 +62,7 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
     
     @IBAction func backBtn(_ sender: Any) {
         navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func womenCheckBoxAction(_ sender: Any) {
@@ -129,6 +130,7 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
                                      
                                       if jsonRespose["status"].stringValue == "1" {
                                         self.navigationController?.popViewController(animated: true)
+                                        self.dismiss(animated: true, completion: nil)
                                       } else {
                                         
                                         self.view.makeToast("Something Wrong")
