@@ -86,3 +86,18 @@ struct bagDataModel {
     var outOfStock:String
     var cardId: String
 }
+
+struct getCustomerDataModel {
+    var addressId:String
+    var customerId:String
+    var name:String
+    var surname:String
+    var apartment: String
+    var company:String
+    var street:String
+    var suburb:String
+    var city:String
+    var country:String
+    var postalCode:String
+    var contactNumber:String
+}
