@@ -192,6 +192,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
               self.dataList = [hireCareParameter]()
               self.imageList = [String]()
               indicator1 = self.indicator()
+               StoredProperty.singleProductDetailsList = [singleProductDetailsModel]()
               
               guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/single_product_listing_v2.php") else {
                   return
@@ -228,14 +229,30 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
                     self.isWhish = productDetails["is_whishlist"].intValue
                     }
                     self.productTitle = productDetails["title"].stringValue
+                    let content = productDetails["content"].stringValue
                     let brand = productDetails["brand"].arrayValue
-                    self.brand = brand[0].stringValue
+                    if brand.isEmpty != true {
+                        self.brand = brand[0].stringValue
+                    }
+                    
+                    let color = productDetails["color"].arrayValue
+                    var colorData = ""
+                    if color.isEmpty != true {
+                        colorData = color[0].stringValue
+                    }
+                    let size = productDetails["size"].arrayValue
+                    var sizeData = ""
+                    if size.isEmpty != true {
+                    sizeData = size[0].stringValue
+                    }
+                    
                     self.rPrice = productDetails["regular_price"].stringValue
                     self.sPrice = productDetails["sale_price"].stringValue
                     let review = JSON(productDetails["review"])
                     self.ratingCount = review["count"].intValue
                     self.rating = review["ratting"].doubleValue
                     self.leftItem.text = productDetails["stock_status"].stringValue
+                    StoredProperty.singleProductDetailsList.append(singleProductDetailsModel(content: content, color: colorData, size: sizeData))
                     //print(image)
                     self.scrollView.reloadInputViews()
                     self.viewUpdate()
@@ -246,7 +263,10 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
                         let fId = i["ID"].intValue
                         let image = i["image"].stringValue
                           print(title)
-                        let brand = i["brand"].arrayValue[0].stringValue
+                        var brand = ""
+                        if i["brand"].arrayValue[0].isEmpty != true {
+                             brand = i["brand"].arrayValue[0].stringValue
+                        }
                         let reviewCount1 = JSON(i["review"])
                         let regularPrice = i["regular_price"].stringValue
                         let salePrice = i["sale_price"].stringValue
@@ -267,6 +287,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
                             let formatedDate = dateformatter.date(from: "2016-04-14 10:01:11")
                             print(formatedDate)
                             StoredProperty.reviewAllData.append(reviewDataModel(rating: rating, author: author, comment: comment, date: date))
+                            
                         }
 
                       }

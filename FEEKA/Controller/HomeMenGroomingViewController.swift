@@ -13,6 +13,7 @@ import SwiftyJSON
 import NVActivityIndicatorView
 
 class HomeMenGroomingViewController: UIViewController {
+    
 
     @IBOutlet weak var TopView: UIView!
     @IBOutlet weak var collView: UICollectionView!
@@ -23,6 +24,8 @@ class HomeMenGroomingViewController: UIViewController {
     var currentPage = 1
     var gender: Int = 1
     var isTotalPage = true
+    var tagList = [Int]()
+    var saleList = [Int]()
     override func viewDidLoad() {
         super.viewDidLoad()
         TopView.setShadow()
@@ -69,13 +72,18 @@ class HomeMenGroomingViewController: UIViewController {
                   if let response = response.result.value {
                       let jsonResponse = JSON(response)
                     if self.isTotalPage {
-                    self.totalPage = jsonResponse["total_page"].intValue
+                    self.totalPage = jsonResponse["total_page"].intValue + 1
                         self.isTotalPage = false
                     }
                      // print(totalPage)
                       for i in jsonResponse["products"].arrayValue {
                           
                         let title = i["title"].stringValue
+                        let tag = i["tag"].intValue
+                        let sale = i["sale"].intValue
+                        self.tagList.append(tag)
+                        self.saleList.append(sale)
+                        
                         let image = i["image"].stringValue
                           print(title)
                         let brand = ""
@@ -120,6 +128,17 @@ extension HomeMenGroomingViewController: UICollectionViewDelegate, UICollectionV
         cell.reviewTitle.text = "\( dataList[indexPath.row].count) review"
         cell.productImg.downloaded(from: dataList[indexPath.row].image)
         cell.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
+        if saleList[indexPath.row] != 0 {
+            cell.SALE.isHidden = false
+        } else {
+            cell.SALE.isHidden = true
+        }
+        if tagList[indexPath.row] != 0 {
+            cell.NEW.isHidden = false
+        } else {
+            cell.NEW.isHidden = true
+        }
+        
         cell.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
         return cell
     }

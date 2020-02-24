@@ -18,5 +18,7 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var regularPrice: UILabel!
     @IBOutlet weak var salePrice: UILabel!
     
+    @IBOutlet weak var sale: UILabel!
+    @IBOutlet weak var new: UILabel!
     @IBOutlet weak var reviewText: UILabel!
 }

@@ -15,6 +15,8 @@ class StoredProperty {
     static var FacebookAuthsuccess = false
     static var data = 2
     static var reviewAllData = [reviewDataModel]()
+    static var singleProductDetailsList = [singleProductDetailsModel]()
+    static var facebookData = [facebookResponseModel]()
     
 }
 
@@ -26,6 +28,12 @@ struct hireCareParameter {
     var rating: Double
     let regularPrice:String
     let salePrice:String
+}
+
+struct singleProductDetailsModel {
+    var content:String
+    var color:String
+    var size:String
 }
 
 struct brandBox {
@@ -59,4 +67,22 @@ struct reviewDataModel {
     var author:String
     var comment:String
     var date:String
+}
+
+struct facebookResponseModel {
+    var id:String
+    var email:String
+}
+
+struct bagDataModel {
+    var title:String
+    var shipping:String
+    var totalPrice:String
+    var quantity: String
+    var id: String
+    var brand:String
+    var price:String
+    var image:String
+    var outOfStock:String
+    var cardId: String
 }

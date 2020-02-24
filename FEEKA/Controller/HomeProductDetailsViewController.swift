@@ -14,6 +14,7 @@ import NVActivityIndicatorView
 class HomeProductDetailsViewController: UIViewController , UIViewControllerTransitioningDelegate {
 
     @IBOutlet weak var showTblBtn: UIButton!
+    @IBOutlet weak var showHideView: UIView!
     @IBOutlet weak var showCollBtn: UIButton!
     @IBOutlet weak var productListCollView: UICollectionView!
     @IBOutlet weak var productListTblView: UITableView!
@@ -35,6 +36,9 @@ class HomeProductDetailsViewController: UIViewController , UIViewControllerTrans
     var productTemrsId = [String]()
     var productID = [Int]()
     let userDefault = UserDefaults.standard
+    var tag = [Int]()
+    var sale = [Int]()
+    var isaddingSale = true
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,9 +51,26 @@ class HomeProductDetailsViewController: UIViewController , UIViewControllerTrans
         navView.setShadow()
         showHideListView.layer.borderWidth = 1
         productName.text = productNam
+        showCollBtn.tintColor = .black
+        showTblBtn.tintColor = .darkGray
+        showHideView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideShowTable)))
         NotificationCenter.default.addObserver(self, selector: #selector(filterApi), name: Notification.Name("filterData"), object: nil)
     }
-    
+    @objc func hideShowTable() {
+        
+        if showCollBtn.tintColor == UIColor.black {
+            productListTblView.isHidden = false
+            productListCollView.isHidden = true
+            self.showCollBtn.tintColor = .darkGray
+            self.showTblBtn.tintColor = .black
+        } else {
+            productListTblView.isHidden = true
+            productListCollView.isHidden = false
+            self.showCollBtn.tintColor = .black
+            self.showTblBtn.tintColor = .darkGray
+        }
+        
+    }
     func topApi(brand:String, brandId:String, categorie: String,color: String,filter:String, gender: String, maxPrice: String, minPrice: String, productCategorie:String, productType: String, searchTag: String, size: String, sortParameter: String, tagId: String, currentPage: Int) {
         guard let filterApi = URL(string:  "https://feeka.co.za/json-api/route/filter_listing.php") else {
             return
@@ -108,6 +129,7 @@ class HomeProductDetailsViewController: UIViewController , UIViewControllerTrans
    let productType =  userDefault.value(forKey: "product type") as! String
    let brand = userDefault.value(forKey: "brand") as! String
    let color = userDefault.value(forKey: "color") as! String
+    isaddingSale = true
    let filterMaxVaue = userDefault.value(forKey: "filterMaxValue") as! String
     let filterMinValue = userDefault.value(forKey: "filterMinValue") as! String
         apiCalling(brand: brand, brandId: "", categorie: "\(categorie)", color: color, filter: "1", gender: "\(gender)", maxPrice: "\(filterMaxVaue)", minPrice: "\(filterMinValue)", productCategorie: "\(productCategorie)", productType: productType, searchTag: "", size: "", sortParameter: "2", tagId: "\(tagId)", currentPage: 1)
@@ -119,6 +141,10 @@ class HomeProductDetailsViewController: UIViewController , UIViewControllerTrans
     func apiCalling(brand:String, brandId:String, categorie: String,color: String,filter:String, gender: String, maxPrice: String, minPrice: String, productCategorie:String, productType: String, searchTag: String, size: String, sortParameter: String, tagId: String, currentPage: Int) {
               indicator = self.indicator()
               indicator.startAnimating()
+            if isaddingSale {
+            self.tag = [Int]()
+            self.sale = [Int]()
+           }
               guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/GetProductListing.php?page=\(currentPage)") else {
                   return
               }
@@ -138,6 +164,9 @@ class HomeProductDetailsViewController: UIViewController , UIViewControllerTrans
                                "size":"\(size)",
                                "sort_parameter":"\(sortParameter)",
                                "tag_id":"\(tagId)"]
+        
+        print("home page parameter : \(parameter)")
+        print(urlToExcute)
               
               Alamofire.request(urlToExcute, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
               
@@ -151,14 +180,20 @@ class HomeProductDetailsViewController: UIViewController , UIViewControllerTrans
               
                   if let response = response.result.value {
                       let jsonResponse = JSON(response)
+                    print(response)
+                    
                     if self.isTotal {
-                    self.totalPage = jsonResponse["total_page"].intValue
+                    self.totalPage = jsonResponse["total_page"].intValue + 1
                         self.isTotal = false
                     }
                      // print(totalPage)
                       for i in jsonResponse["products"].arrayValue {
                           
                         let title = i["title"].stringValue
+                        let tag = i["tag"].intValue
+                        let sale = i["sale"].intValue
+                        self.tag.append(tag)
+                        self.sale.append(sale)
                         let image = i["image"].stringValue
                           print(title)
                         let brand = i["brand"].arrayValue[0].stringValue
@@ -240,6 +275,16 @@ extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollecti
             cell?.review.rating = dataList[indexPath.row].rating
             cell?.reviewText.text = "\(dataList[indexPath.row].count) review"
             cell?.imageView.downloaded(from: dataList[indexPath.row].image)
+            if self.sale[indexPath.row] != 0 {
+                cell?.sale.isHidden = false
+            } else {
+                cell?.sale.isHidden = true
+            }
+            if self.tag[indexPath.row] != 0 {
+                cell?.new.isHidden = false
+            } else {
+                cell?.new.isHidden = true
+            }
             cell!.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
             cell!.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
             return cell!
@@ -247,7 +292,9 @@ extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollecti
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell", for: indexPath) as! HomeProductDetailsMenuCell
         if indexPath.row<2 {
-            
+            if indexPath.row == 0 {
+                cell.titleBtn.setImage(UIImage(named: "1filter"), for: .normal)
+            }
         }else {
             cell.titleBtn.setTitle(productCategoryList[indexPath.row - 2], for: .normal)
             cell.titleBtn.setImage(nil, for: .normal)
@@ -262,6 +309,7 @@ extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollecti
     if indexPath.row == dataList.count - 1 {
         if totalPage! > 0 {
             currentPage += 1
+            isaddingSale = false
         perform(#selector(callingApi), with: nil, afterDelay: 0.3)
             totalPage! -= 1
             
@@ -290,6 +338,7 @@ extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollecti
             
             print("selected")
         }else {
+            isaddingSale = true
             pushDiscoverController(index: indexPath.row)
         }
     }
@@ -323,6 +372,16 @@ extension HomeProductDetailsViewController: UITableViewDataSource, UITableViewDe
         cell.productLbl.text = dataList[indexPath.row].title
         cell.brand.text = dataList[indexPath.row].brand
         cell.salePrice.setBorder()
+        if self.sale[indexPath.row] != 0 {
+            cell.sale.isHidden = false
+        } else {
+            cell.sale.isHidden = true
+        }
+        if self.tag[indexPath.row] != 0 {
+            cell.new.isHidden = false
+        } else {
+            cell.new.isHidden = true
+        }
         cell.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
         cell.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
         
@@ -337,6 +396,7 @@ extension HomeProductDetailsViewController: UITableViewDataSource, UITableViewDe
         if indexPath.row == dataList.count - 1 {
             if totalPage! > 0 {
                 currentPage += 1
+                isaddingSale = false
             perform(#selector(callingApi), with: nil, afterDelay: 0.3)
                 totalPage! -= 1
                 

@@ -28,6 +28,7 @@ class HotViewController: UIViewController {
     var gender: Int = 1
     var userDefault = UserDefaults.standard
     var hotListId = [String]()
+    var productId = [Int]()
     override func viewDidLoad() {
         super.viewDidLoad()
         gender = userDefault.value(forKey: "Gender") as! Int
@@ -111,12 +112,15 @@ class HotViewController: UIViewController {
                              print(title)
                            let brand = i["brand"].arrayValue[0].stringValue
                            let reviewCount1 = JSON(i["review"])
+                            let productid = i["ID"].intValue
                            let regularPrice = i["regular_price"].stringValue
                            let salePrice = i["sale_price"].stringValue
                            let reviewCount = reviewCount1["count"].intValue
                            let rating = reviewCount1["ratting"].doubleValue
                              print(rating)
+                            
                            self.dataList.append(hireCareParameter(title: title, image: image, brand: brand, count: reviewCount, rating: rating, regularPrice: regularPrice, salePrice: salePrice))
+                            self.productId.append(productid)
 
                          }
                         var brandCount = 0
@@ -185,6 +189,7 @@ extension HotViewController: UICollectionViewDelegate, UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let DiscoverDetailsVC = storyboard?.instantiateViewController(withIdentifier: "DiscoverDetailsViewController") as! DiscoverDetailsViewController
+        DiscoverDetailsVC.productId = "\(productId[indexPath.row])"
         self.navigationController?.pushViewController(DiscoverDetailsVC, animated: true)
         print("sdsdsd")
     }

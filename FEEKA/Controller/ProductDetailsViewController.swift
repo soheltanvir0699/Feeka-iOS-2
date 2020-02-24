@@ -91,10 +91,10 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ProductDetailsCollectionViewCell
         
         if indexPath.row == 0 {
-        cell?.colorLabel.text = "Free delivery* in SA within 1-3 days | Free & easy returns | All Prices Vat Incl."
+        cell?.colorLabel.text = ""
             cell?.colorLabel.textColor = .red
             cell?.colorLabel.font = UIFont.boldSystemFont(ofSize: 16.0)
-            let string1: String = "<span style=\"color: #ff0000;\"><strong>Free delivery* in SA within 1-3 days | Free &amp; easy returns | All prices Vat incl.</strong></span>\r\n\r\nThe TRESemmé Colour Revitalise system, with Advanced Colour Vibrancy technology, helps to keep colour vibrant for up to eight weeks.* This system, with green tea, rosemary and sunflower extracts, gently cleanses and conditions the hair to help replenish vital moisture and keep hair looking healthy. Your hair colour will be vibrant and long-lasting, while every strand is soft and manageable. For best results, use in conjunction with TRESemmé Colour Revitalise Conditioner.\r\n\r\n*TRESemmé Colour Revitalise Shampoo and Conditioner versus non-conditioning shampoo."
+            let string1: String = StoredProperty.singleProductDetailsList[0].content
             cell?.sizeLabel.text = string1.htmlToString
             cell?.thirdView.isHidden = true
             discriptonBorder.backgroundColor = .black
@@ -102,6 +102,8 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
             
         }else if indexPath.row == 1{
             cell?.thirdView.isHidden = true
+            cell?.sizeLabel.text = "Size: \(StoredProperty.singleProductDetailsList[0].size)"
+            cell?.colorLabel.text = "Color: \(StoredProperty.singleProductDetailsList[0].color)"
             return cell!
         }else {
             cell?.thirdView.isHidden = false

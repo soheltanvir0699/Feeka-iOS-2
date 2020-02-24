@@ -21,6 +21,8 @@ extension UIViewController {
     func facebookAuth() {
         
         let loginManager = LoginManager()
+        var email = "nill"
+        var id = ""
         loginManager.logOut()
         loginManager.logIn(permissions: [ .publicProfile,.email ], viewController: self) { loginResult in
             
@@ -38,17 +40,22 @@ extension UIViewController {
                 print(accessToken)
                 let connection = GraphRequestConnection()
                 let request = GraphRequest.init(graphPath: "me")
-                request.parameters = ["fields": "email, first_name, last_name, picture.width(1000).height(1000), birthday, gender"]
+                request.parameters = ["fields": "email, id"]
                 connection.add(request, completionHandler: {
                     (response, result, error) in
-                    
+                    print(response)
                     if ((error != nil)) {
                         print("Error took place: \(String(describing: error))")
                     } else {
                         let dict = result as? [String : AnyObject]
                         print(dict!)
                         if dict!["gmail"] == nil {
-                            print("nill")
+                            
+                        } else {
+                            print(dict!["gmail"]!)
+                            email = "\(dict!["gmail"]!)"
+                            id = "\(dict!["id"]!)"
+                            StoredProperty.facebookData.append(facebookResponseModel(id: id, email: email))
                         }
                     }
                 })
@@ -105,6 +112,7 @@ extension UIViewController {
         self.view.addSubview(activityIndicator) // or use  webView.addSubview(activityIndicator)
         return activityIndicator
     }
+    
 }
 
 

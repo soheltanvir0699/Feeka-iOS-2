@@ -48,7 +48,9 @@ extension ProductDetailsCollectionViewCell: UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCell(withIdentifier: "reviewCell") as! ProductDetailsSecondCell
         cell.authorName.text = dataList[indexPath.row].author
         cell.comment.text = dataList[indexPath.row].comment
-        cell.cosomView.rating = Double(dataList[indexPath.row].rating)!
+        if dataList[indexPath.row].rating != "" {
+         cell.cosomView.rating = Double(dataList[indexPath.row].rating)!
+        }
         cell.date.text = dataList[indexPath.row].date
         print("is reloaded")
         return cell

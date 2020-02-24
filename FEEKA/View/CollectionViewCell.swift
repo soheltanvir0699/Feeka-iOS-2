@@ -11,6 +11,8 @@ import Cosmos
 
 class CollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var sale: UILabel!
+    @IBOutlet weak var new: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var brand: UILabel!

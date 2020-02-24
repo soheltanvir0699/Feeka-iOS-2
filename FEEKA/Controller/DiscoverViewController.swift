@@ -33,6 +33,8 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate,UIColle
     var category = ""
     var productCategoryList = [String]()
     var productTemrsId = [String]()
+    var tagList = [Int]()
+    var saleList = [Int]()
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,6 +47,16 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate,UIColle
         cell.productLbl.text = dataList[indexPath.row].title
         cell.brand.text = dataList[indexPath.row].brand
         cell.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
+        if saleList[indexPath.row] != 0 {
+            cell.sale.isHidden = false
+        } else {
+            cell.sale.isHidden = true
+        }
+        if tagList[indexPath.row] != 0 {
+            cell.new.isHidden = false
+        } else {
+            cell.new.isHidden = true
+        }
         cell.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
         
         return cell
@@ -65,6 +77,16 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate,UIColle
         cell?.reviewText.text = "\(dataList[indexPath.row].count) review"
         cell?.imageView.downloaded(from: dataList[indexPath.row].image)
         cell!.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
+        if saleList[indexPath.row] != 0 {
+            cell!.sale.isHidden = false
+        } else {
+            cell?.sale.isHidden = true
+        }
+        if tagList[indexPath.row] != 0 {
+            cell?.new.isHidden = false
+        } else {
+            cell?.new.isHidden = true
+        }
         cell!.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
         return cell!
     }
@@ -119,9 +141,26 @@ func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPat
         navView.setShadow()
         indicator = self.indicator()
          apiCalling(brand: "", brandId: "", categorie: "\(category)", color: "", filter: "", gender: "\(gender)", maxPrice: "", minPrice: "", productCategorie: "", productType: "", searchTag: "\(searchTag)", size: "", sortParameter: "", tagId: "", currentPage: currentPage)
+        listView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideShowTable)))
         
     }
 
+    @objc func hideShowTable() {
+        
+        if showCollBtn.tintColor == UIColor.black {
+            tableView.isHidden = false
+            collectionView.isHidden = true
+            self.showCollBtn.tintColor = .darkGray
+            self.showTableBtn.tintColor = .black
+        } else {
+            tableView.isHidden = true
+            collectionView.isHidden = false
+            self.showCollBtn.tintColor = .black
+            self.showTableBtn.tintColor = .darkGray
+        }
+        
+    }
+    
     func setUpView() {
         listView.layer.borderWidth = 1
         listView.layer.borderColor = UIColor.black.cgColor
@@ -174,6 +213,10 @@ func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPat
                         for i in jsonResponse["products"].arrayValue {
                             
                           let title = i["title"].stringValue
+                            let tag = i["tag"].intValue
+                            let sale = i["sale"].intValue
+                            self.tagList.append(tag)
+                            self.saleList.append(sale)
                           let image = i["image"].stringValue
                             print(title)
                             var brand = ""

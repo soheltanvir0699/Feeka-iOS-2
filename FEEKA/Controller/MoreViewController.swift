@@ -34,15 +34,21 @@ class MoreViewController: UIViewController {
         super.viewDidLoad()
          setUpView()
         navView.setShadow()
-        
+//        guard (userdefault.value(forKey: "customer_id") as? String) != nil else {
+//            signOutAction()
+//            return
+//        }
+       
+        NotificationCenter.default.addObserver(self, selector: #selector(goHome), name: Notification.Name("goHome"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        guard (userdefault.value(forKey: "customer_id") as? String) != nil else {
+        if userdefault.value(forKey: "customer_id") as? String == "" {
+                   signOutAction()
+               }
+        if userdefault.value(forKey: "customer_id") as? String == nil {
             signOutAction()
-            return
         }
-        NotificationCenter.default.addObserver(self, selector: #selector(goHome), name: Notification.Name("goHome"), object: nil)
     }
     
     @objc func goHome() {
@@ -92,6 +98,7 @@ class MoreViewController: UIViewController {
         let navVc = storyboard?.instantiateViewController(withIdentifier: "loginnav")
         navVc!.modalPresentationStyle = .overFullScreen
         navVc!.transitioningDelegate = self
+        userdefault.setValue("", forKey: "customer_id")
         present(navVc!, animated: true, completion: nil)
         //navigationController?.pushViewController(navVc!, animated: true)
     }
@@ -172,6 +179,7 @@ class MoreViewController: UIViewController {
                             }
                             
                             if let result = response.data {
+                                print(result)
                                 let jsonRespose = JSON(result)
                                 
                                 if jsonRespose.isEmpty == true {

@@ -30,13 +30,13 @@ class FilterDetailsController: UIViewController , UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let image2 = self.view.viewWithTag(indexPath.row+3000) as! UIImageView
-        image2.image = UIImage(named: "checkbox-tick")
+        image2.alpha = 1
         userdefault.setValue(dataListTerms[indexPath.row], forKey: filterCategorie)
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let image2 = self.view.viewWithTag(indexPath.row+3000) as! UIImageView
-        image2.image = UIImage(named: "close")
+        image2.alpha = 0.2
         
     }
     

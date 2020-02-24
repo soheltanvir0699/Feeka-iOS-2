@@ -27,6 +27,8 @@
 		8D6868D423FD8D57008638F7 /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6868D323FD8D57008638F7 /* Extension+UIView.swift */; };
 		8D8226F523FBB2F4005B3F39 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8226F423FBB2F4005B3F39 /* AlertView.swift */; };
 		8D88FD332402715E00E5DC97 /* DeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D88FD322402715E00E5DC97 /* DeliveryViewController.swift */; };
+		8D90187F24040B0C00155910 /* BagFirstCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D90187E24040B0C00155910 /* BagFirstCell.swift */; };
+		8D90188124040B2800155910 /* BagSecondCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D90188024040B2800155910 /* BagSecondCell.swift */; };
 		8D9E1EBF2400062D00B463C1 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9E1EBE2400062D00B463C1 /* Extension+String.swift */; };
 		8D9E1EC124000EF900B463C1 /* FeaturedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9E1EC024000EF900B463C1 /* FeaturedCell.swift */; };
 		8DAC471623FAF48F0095D064 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAC471523FAF48F0095D064 /* UIImage+Gif.swift */; };
@@ -87,6 +89,8 @@
 		8D6868D323FD8D57008638F7 /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
 		8D8226F423FBB2F4005B3F39 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		8D88FD322402715E00E5DC97 /* DeliveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryViewController.swift; sourceTree = "<group>"; };
+		8D90187E24040B0C00155910 /* BagFirstCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagFirstCell.swift; sourceTree = "<group>"; };
+		8D90188024040B2800155910 /* BagSecondCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagSecondCell.swift; sourceTree = "<group>"; };
 		8D9E1EBE2400062D00B463C1 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		8D9E1EC024000EF900B463C1 /* FeaturedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedCell.swift; sourceTree = "<group>"; };
 		8DAC471523FAF48F0095D064 /* UIImage+Gif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
@@ -183,6 +187,8 @@
 				C4D4BEEE23F7B42D00277DF3 /* TabBarView.swift */,
 				8D3D7B9D23F2C7F1005A3479 /* Main.storyboard */,
 				C4ED048423F6CFBA0072CEE7 /* DiscoverTableViewCell.swift */,
+				8D90187E24040B0C00155910 /* BagFirstCell.swift */,
+				8D90188024040B2800155910 /* BagSecondCell.swift */,
 				8DC71A5024015C7C002D2726 /* ProductDetailsSecondCell.swift */,
 				C4ED048823F6DD130072CEE7 /* CollectionViewCell.swift */,
 				8DC5D09F23FFA91E00246E33 /* DiscoverCollectionViewCell.swift */,
@@ -393,6 +399,7 @@
 				8D6868D423FD8D57008638F7 /* Extension+UIView.swift in Sources */,
 				C461214A23F98335003611A1 /* AddAddressDetailsViewController.swift in Sources */,
 				8D6868D023FD73F5008638F7 /* FilterDetailsCell.swift in Sources */,
+				8D90188124040B2800155910 /* BagSecondCell.swift in Sources */,
 				8DB7507E2400D60000E69A5B /* Extension+UILabel.swift in Sources */,
 				C464B0CF23F6653600C292EE /* DiscoverViewController.swift in Sources */,
 				8DF3554E2400F0640006FDB1 /* WishListCell.swift in Sources */,
@@ -413,6 +420,7 @@
 				8DE40A6A23F4601500807FC5 /* HomeMenGroomingViewController.swift in Sources */,
 				8DC5D0A223FFA94B00246E33 /* SearchTableViewCell.swift in Sources */,
 				C4EF3D8723F7C27600BA556F /* ProductDetailsCollectionViewCell.swift in Sources */,
+				8D90187F24040B0C00155910 /* BagFirstCell.swift in Sources */,
 				8D3D7B9C23F2C7F1005A3479 /* LogInViewController.swift in Sources */,
 				8D04762523FAE2C3009C0E7B /* Extension+UIImageView.swift in Sources */,
 				8DB750802400DE1A00E69A5B /* BagViewController.swift in Sources */,
@@ -578,7 +586,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lota.FEEKA;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chocolatesqueeze;
 				PRODUCT_NAME = FEEKA;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -600,7 +608,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lota.FEEKA;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chocolatesqueeze;
 				PRODUCT_NAME = FEEKA;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

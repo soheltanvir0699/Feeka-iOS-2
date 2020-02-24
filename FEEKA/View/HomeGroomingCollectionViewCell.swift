@@ -18,4 +18,6 @@ class HomeGroomingCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var regularPrice: UILabel!
     @IBOutlet weak var salePrice: UILabel!
     
+    @IBOutlet weak var NEW: UILabel!
+    @IBOutlet weak var SALE: UILabel!
 }

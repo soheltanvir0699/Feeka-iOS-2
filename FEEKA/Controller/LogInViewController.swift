@@ -10,6 +10,8 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
+import FacebookCore
+import FacebookLogin
 
 class LogInViewController: UIViewController {
 
@@ -67,7 +69,54 @@ class LogInViewController: UIViewController {
     }
     
     @IBAction func loginWithFacebook(_ sender: Any) {
-        self.facebookAuth()
+        let loginManager = LoginManager()
+        var email = "nill"
+        var id = ""
+        loginManager.logOut()
+        loginManager.logIn(permissions: [ .publicProfile,.email ], viewController: self) { loginResult in
+            
+            switch loginResult {
+                
+            case .failed(let error):
+                print(error)
+                
+            case .cancelled:
+                print("User cancelled login.")
+                
+            case .success(let grantedPermissions, let declinedPermissions, let accessToken):
+                print("Logged in!")
+                StoredProperty.FacebookAuthsuccess = true
+                print(accessToken)
+                let connection = GraphRequestConnection()
+                let request = GraphRequest.init(graphPath: "me")
+                request.parameters = ["fields": "email, id"]
+                connection.add(request, completionHandler: {
+                    (response, result, error) in
+                    print(response)
+                    if ((error != nil)) {
+                        print("Error took place: \(String(describing: error))")
+                    } else {
+                        let dict = result as? [String : AnyObject]
+                        print(dict!)
+                        if dict!["email"] == nil {
+                            let alert =  ShowAlertView().alertView(title: "", action: "OK", message: "Email Not Found")
+                            self.present(alert, animated: true, completion: nil)
+                        } else {
+                            //print(dict!["gmail"]!)
+                            email = "\(dict!["email"]!)"
+                            id = "\(dict!["id"]!)"
+                            
+                            self.logInApi(email: email, password: "", id: id, signType: 2)
+                            
+                        }
+                    }
+                })
+                connection.start()
+            }
+
+            }
+        
+        
     }
     
     @IBAction func backBtn(_ sender: Any) {
@@ -76,14 +125,66 @@ class LogInViewController: UIViewController {
         NotificationCenter.default.post(name: Notification.Name("goHome"), object: nil)
     }
     
+    func logInApi(email: String, password: String, id: String, signType: Int) {
+        
+        guard let url = URL(string: "https://feeka.co.za/json-api/route/Login_Registration.php") else {
+         self.view.makeToast( "Please try again later")
+            return
+        }
+        let paramater = [
+                                  "emailId" : "\(email)",
+                                  "password" : "\(password)",
+                                  "facebookId" : "",
+                                  "googleId" : "",
+                                  "singuptype" : "\(signType)",
+                                  "first_name" : "",
+                                  "last_name" : "",
+                                  "DOB" : "",
+                                  "Gender" : "",
+                                  "group" : "",
+                                  "username" : ""
+                              ]
+        Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: nil).response { (response) in
+            self.indicator.startAnimating()
+            if let error = response.error {
+                self.indicator.stopAnimating()
+                let alertView = ShowAlertView().alertView(title: "Something went wrong", action: "OK", message: "Please try again.")
+                self.present(alertView, animated: true, completion: nil)
+                print(error)
+                
+            }
+            
+            if let result = response.data {
+                let jsonRespose = JSON(result)
+                print(jsonRespose)
+                print(jsonRespose["message"].stringValue)
+             self.view.makeToast( "\(jsonRespose["message"].stringValue)")
+                
+                if jsonRespose["message"].stringValue == "Login Completed." {
+                 
+                 for i in jsonRespose["data"].arrayValue {
+                     let customerId = i["customer_id"].stringValue
+                     let authorName = i["Name"].stringValue
+                     self.userdefault.setValue(authorName, forKey: "author_name")
+                     self.userdefault.setValue(customerId, forKey: "customer_id")
+                     print(customerId)
+                 }
+                   self.navigationController?.popViewController(animated: true)
+                   self.dismiss(animated: true, completion: nil)
+                } else {
+                 self.view.makeToast( "\(jsonRespose["message"].stringValue)")
+                }
+
+                self.indicator.stopAnimating()
+            }
+        }
+        
+    }
+    
     @IBAction func logIn(_ sender: Any) {
         
         guard let password = passwordField.text, let email = emailField.text else {
                        self.showToast(message: "Please fill all Field")
-                       return
-                   }
-                   guard let url = URL(string: "https://feeka.co.za/json-api/route/Login_Registration.php") else {
-                    self.view.makeToast( "Please try again later")
                        return
                    }
                    
@@ -91,52 +192,8 @@ class LogInViewController: UIViewController {
                     self.view.makeToast( "Please fill all Field")
                        return
                    } else {
-                       let paramater = [
-                           "emailId" : "\(email)",
-                           "password" : "\(password)",
-                           "facebookId" : "",
-                           "googleId" : "",
-                           "singuptype" : "1",
-                           "first_name" : "",
-                           "last_name" : "",
-                           "DOB" : "",
-                           "Gender" : "",
-                           "group" : "",
-                           "username" : ""
-                       ]
-                       Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: nil).response { (response) in
-                           self.indicator.startAnimating()
-                           if let error = response.error {
-                               self.indicator.stopAnimating()
-                               let alertView = ShowAlertView().alertView(title: "Something went wrong", action: "OK", message: "Please try again.")
-                               self.present(alertView, animated: true, completion: nil)
-                               print(error)
-                               
-                           }
-                           
-                           if let result = response.data {
-                               let jsonRespose = JSON(result)
-                               print(jsonRespose)
-                               print(jsonRespose["message"].stringValue)
-                            self.view.makeToast( "\(jsonRespose["message"].stringValue)")
-                               
-                               if jsonRespose["message"].stringValue == "Login Completed." {
-                                
-                                for i in jsonRespose["data"].arrayValue {
-                                    let customerId = i["customer_id"].stringValue
-                                    let authorName = i["Name"].stringValue
-                                    self.userdefault.setValue(authorName, forKey: "author_name")
-                                    self.userdefault.setValue(customerId, forKey: "customer_id")
-                                    print(customerId)
-                                }
-                                  self.navigationController?.popViewController(animated: true)
-                               } else {
-                                self.view.makeToast( "\(jsonRespose["message"].stringValue)")
-                               }
-
-                               self.indicator.stopAnimating()
-                           }
-                       }
+                      
+                    logInApi(email: email, password: password, id: "", signType: 1)
            }
     }
     

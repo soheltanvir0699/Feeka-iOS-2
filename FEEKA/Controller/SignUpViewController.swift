@@ -256,8 +256,14 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
                 return
             }
             
-            if createPass != confirmPass || firstName == "" || lastName == "", email == "" || createPass == "" || confirmPass == "" || gender == "" || date == "" {
+            if firstName == "" || lastName == "", email == "" || createPass == "" || confirmPass == "" || gender == "" || date == "" {
                 self.view.makeToast( "Please fill all Field")
+                return
+            } else if createPass != confirmPass {
+                self.view.makeToast( "Password isn't equal")
+                return
+            }else if !email.validEmail{
+                self.view.makeToast( "Email is Invalid")
                 return
             } else {
                 let paramater = [
@@ -292,7 +298,7 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
                         
                         if jsonRespose["message"].stringValue == "Email address is already registered." {
                             self.view.makeToast("\(jsonRespose["message"].stringValue)")
-                        } else {
+                        } else if jsonRespose["status"].stringValue  == "1" {
                             self.navigationController?.popViewController(animated: true)
                         }
 
