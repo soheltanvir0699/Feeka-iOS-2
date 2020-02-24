@@ -95,7 +95,14 @@ class EditChangeAddressController: UIViewController {
     
     @objc func deleteProfile() {
         indicator = self.indicator()
-        let address_id = userdefault.value(forKey: "address_id") as! String
+        var address_id = ""
+        if  userdefault.value(forKey: "address_id") as! String != "" {
+            address_id = userdefault.value(forKey: "address_id") as! String
+        }
+        
+        if userdefault.value(forKey: "address_id") as? String == nil {
+            address_id = userdefault.value(forKey: "address_id") as! String
+        }
         guard let url = URL(string: "https://feeka.co.za/json-api/route/remove_address.php") else {
                            self.view.makeToast( "Please try again later")
                               return

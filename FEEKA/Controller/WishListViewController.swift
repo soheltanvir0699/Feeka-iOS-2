@@ -174,7 +174,40 @@ extension WishListViewController: UICollectionViewDelegate, UICollectionViewData
         removeAddBag(price: wishListData[tag-2000].sPrice, productId: wishListData[tag-2000].producId, whishStatus: "3", tag: tag, minusTag: 2000)
         
     }
-    
+    func bagApiCalling() {
+        guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/view_to_cart_v4.php") else {
+            return
+        }
+        let userdefault = UserDefaults.standard
+        let customerId = userdefault.value(forKey: "customer_id") as! String
+        
+        let parameter = ["customer_id":"\(customerId)"]
+        
+        Alamofire.request(urlToExcute, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+        
+        if let error = response.error {
+            print(error)
+            
+        }
+        
+            if let response = response.result.value {
+                let jsonResponse = JSON(response)
+                                  
+                    let data = jsonResponse["data"].arrayValue
+                
+                
+                if let tabItems = self.tabBarController?.tabBar.items {
+                               
+                               let tabItem = tabItems[2]
+                               tabItem.badgeValue = "\(data.count)"
+                           }
+            
+            }
+            
+        }
+    }
+     
+     
     func removeAddBag(price:String, productId:Int, whishStatus:String,tag:Int, minusTag: Int) {
         guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/wishlist_v3.php") else {
                   return
@@ -215,6 +248,7 @@ extension WishListViewController: UICollectionViewDelegate, UICollectionViewData
                         self.view.makeToast( jsonResponse["message"].stringValue)
                         self.wishListData.remove(at: tag-minusTag)
                         self.collView.reloadData()
+                        self.bagApiCalling()
                         
                     }
                   

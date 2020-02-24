@@ -19,6 +19,7 @@
 		8D3D7BAC23F2F254005A3479 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D7BAB23F2F254005A3479 /* ForgotPasswordViewController.swift */; };
 		8D3D7BAE23F30B72005A3479 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D7BAD23F30B72005A3479 /* SignUpViewController.swift */; };
 		8D43414E240461C300CF9C03 /* EditChangeAddressController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D43414D240461C300CF9C03 /* EditChangeAddressController.swift */; };
+		8D4938AB24047586008FDD7F /* DeliverySecondController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4938AA24047586008FDD7F /* DeliverySecondController.swift */; };
 		8D67083323F51DCF001DC494 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D67083223F51DCF001DC494 /* MoreViewController.swift */; };
 		8D6868CA23FD6627008638F7 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6868C923FD6627008638F7 /* FilterViewController.swift */; };
 		8D6868CC23FD6D74008638F7 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6868CB23FD6D74008638F7 /* FilterCell.swift */; };
@@ -82,6 +83,7 @@
 		8D3D7BAB23F2F254005A3479 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		8D3D7BAD23F30B72005A3479 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		8D43414D240461C300CF9C03 /* EditChangeAddressController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditChangeAddressController.swift; sourceTree = "<group>"; };
+		8D4938AA24047586008FDD7F /* DeliverySecondController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliverySecondController.swift; sourceTree = "<group>"; };
 		8D67083223F51DCF001DC494 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		8D6868C923FD6627008638F7 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		8D6868CB23FD6D74008638F7 /* FilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				C4BC808A23F9814F00FA5873 /* AddAddressViewController.swift */,
 				C461214923F98335003611A1 /* AddAddressDetailsViewController.swift */,
 				8D6868C923FD6627008638F7 /* FilterViewController.swift */,
+				8D4938AA24047586008FDD7F /* DeliverySecondController.swift */,
 				C458548123F9B89F00C23B49 /* HomeViewController.swift */,
 				C4E5B8B223FA4FFF0040F4E8 /* HomeProductDetailsViewController.swift */,
 				8D43414D240461C300CF9C03 /* EditChangeAddressController.swift */,
@@ -394,6 +397,7 @@
 				8D8226F523FBB2F4005B3F39 /* AlertView.swift in Sources */,
 				8D6868D223FD8A72008638F7 /* PriceController.swift in Sources */,
 				8D67083323F51DCF001DC494 /* MoreViewController.swift in Sources */,
+				8D4938AB24047586008FDD7F /* DeliverySecondController.swift in Sources */,
 				8DE9D9D823FD059F000100CF /* HomeGroomingCollectionViewCell.swift in Sources */,
 				8DE40A6823F40D3800807FC5 /* DataModel.swift in Sources */,
 				8D3D7BAC23F2F254005A3479 /* ForgotPasswordViewController.swift in Sources */,

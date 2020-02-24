@@ -108,6 +108,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
         
         wishApi(whishStatus: isWhish)
         
+        
     }
     @IBAction func addToBag(_ sender: Any) {
         wishApi(whishStatus: 3)
@@ -115,6 +116,39 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
     @IBAction func backBtn(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    func bagApiCalling() {
+          guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/view_to_cart_v4.php") else {
+              return
+          }
+          let userdefault = UserDefaults.standard
+          let customerId = userdefault.value(forKey: "customer_id") as! String
+          
+          let parameter = ["customer_id":"\(customerId)"]
+          
+          Alamofire.request(urlToExcute, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+          
+          if let error = response.error {
+              print(error)
+              
+          }
+          
+              if let response = response.result.value {
+                  let jsonResponse = JSON(response)
+                                    
+                      let data = jsonResponse["data"].arrayValue
+                  
+                  
+                  if let tabItems = self.tabBarController?.tabBar.items {
+                                 
+                                 let tabItem = tabItems[2]
+                                 tabItem.badgeValue = "\(data.count)"
+                             }
+              
+              }
+              
+          }
+      }
     
     @IBAction func productDetailsAction(_ sender: Any) {
         let discoverDetailsVC = storyboard?.instantiateViewController(withIdentifier: "ProductDetailsViewController") as! ProductDetailsViewController
@@ -173,6 +207,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
                         if jsonResponse["message"].stringValue == "Item has been added to your bag." {
                             self.view.makeToast("Add to Bag")
                         }
+                        self.bagApiCalling()
                         print(self.isWhish)
                         self.wishAction()
                     }

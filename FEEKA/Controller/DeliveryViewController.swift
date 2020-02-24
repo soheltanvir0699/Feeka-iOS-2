@@ -71,6 +71,11 @@ class DeliveryViewController: UIViewController {
     }
     
     
+    @IBAction func continueToDeliSchedule(_ sender: Any) {
+        let deli2VC = storyboard?.instantiateViewController(withIdentifier: "DeliverySecondController") as? DeliverySecondController
+        deli2VC?.modalPresentationStyle = .fullScreen
+        present(deli2VC!, animated: true, completion: nil)
+    }
     
     func getAddressApi() {
         indicator = self.indicator()
@@ -113,6 +118,7 @@ class DeliveryViewController: UIViewController {
                         let contact = data["Contact_Number"].stringValue
                         let unit = data["Unit_Number"].stringValue
                         
+                        self.userdefault.setValue(address, forKey: "address_id")
                         self.dataList.append(getCustomerDataModel(addressId: address, customerId: customerid, name: name, surname: surname, apartment: apartment, company: company, street: streetAddress, suburb: suburb, city: city, country: country, postalCode: postalCode, contactNumber: contact))
                         self.postalCode.text = postalCode
                         self.name.text = "\(name) \(surname)"
