@@ -40,10 +40,6 @@ class EditChangeAddressController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        if  userdefault.value(forKey: "customer_id") as! String != "" {
-            customerId = userdefault.value(forKey: "customer_id") as! String
-        }
-        
         if userdefault.value(forKey: "customer_id") as? String == nil {
             customerId = userdefault.value(forKey: "customer_id") as! String
         }
@@ -96,11 +92,7 @@ class EditChangeAddressController: UIViewController {
     @objc func deleteProfile() {
         indicator = self.indicator()
         var address_id = ""
-        if  userdefault.value(forKey: "address_id") as! String != "" {
-            address_id = userdefault.value(forKey: "address_id") as! String
-        }
-        
-        if userdefault.value(forKey: "address_id") as? String == nil {
+        if userdefault.value(forKey: "address_id") as? String != nil {
             address_id = userdefault.value(forKey: "address_id") as! String
         }
         guard let url = URL(string: "https://feeka.co.za/json-api/route/remove_address.php") else {

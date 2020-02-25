@@ -57,7 +57,9 @@ class HomeViewController: UIViewController {
         brands.addGestureRecognizer(tapGestureBrands)
         saleImg.addGestureRecognizer(tapGestureSale)
         brands.isUserInteractionEnabled = true
+        productFinder.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(quizzez)))
     }
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -200,6 +202,12 @@ class HomeViewController: UIViewController {
     @objc func cooming(tapGestureRecognizer: UITapGestureRecognizer) {
         showToast(message: "Cooming Soon")
     }
+    
+       @objc func quizzez() {
+           let QuizzesController = storyboard?.instantiateViewController(withIdentifier: "QuizzesController") as! QuizzesController
+        QuizzesController.modalPresentationStyle = .fullScreen
+        present(QuizzesController, animated: true, completion: nil)
+       }
     
     @objc func makeUP(tapGestureRecognizer: UITapGestureRecognizer) {
         let homeProductDetails = storyboard?.instantiateViewController(withIdentifier: "HomeProductDetailsViewController") as! HomeProductDetailsViewController

@@ -68,6 +68,46 @@ class LogInViewController: UIViewController {
         self.navigationController?.pushViewController(signUpVC, animated: true)
     }
     
+    func bagApiCalling() {
+           guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/view_to_cart_v4.php") else {
+               return
+           }
+           let userdefault = UserDefaults.standard
+           var customerId = ""
+        
+        if userdefault.value(forKey: "customer_id") as? String != nil {
+            customerId = userdefault.value(forKey: "customer_id") as! String
+        } else {
+            
+        }
+           
+           let parameter = ["customer_id":"\(customerId)"]
+           
+           Alamofire.request(urlToExcute, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+           
+           if let error = response.error {
+               print(error)
+               
+           }
+           
+               if let response = response.result.value {
+                   let jsonResponse = JSON(response)
+                                     
+                       let data = jsonResponse["data"].arrayValue
+                   
+                   
+                   if let tabItems = self.tabBarController?.tabBar.items {
+                                  
+                                  let tabItem = tabItems[2]
+                                  tabItem.badgeValue = "\(data.count)"
+                              }
+               
+               }
+               
+           }
+       }
+        
+    
     @IBAction func loginWithFacebook(_ sender: Any) {
         let loginManager = LoginManager()
         var email = "nill"
@@ -169,6 +209,7 @@ class LogInViewController: UIViewController {
                      self.userdefault.setValue(customerId, forKey: "customer_id")
                      print(customerId)
                  }
+                    self.bagApiCalling()
                    self.navigationController?.popViewController(animated: true)
                    self.dismiss(animated: true, completion: nil)
                 } else {

@@ -30,11 +30,8 @@ class DeliverySecondController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-                 if  userdefault.value(forKey: "address_id") as! String != "" {
-                         addressId = userdefault.value(forKey: "address_id") as! String
-                     }
                      
-                     if userdefault.value(forKey: "address_id") as? String == nil {
+                     if userdefault.value(forKey: "address_id") as? String != nil {
                          addressId = userdefault.value(forKey: "address_id") as! String
                      }
               

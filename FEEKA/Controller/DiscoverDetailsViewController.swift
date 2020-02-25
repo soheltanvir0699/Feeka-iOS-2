@@ -179,11 +179,8 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
             logInVC()
             return
         }
-        if  userdefault.value(forKey: "customer_id") as! String != "" {
-            customerId = userdefault.value(forKey: "customer_id") as! String
-        }
         
-        if userdefault.value(forKey: "customer_id") as? String == nil {
+        if userdefault.value(forKey: "customer_id") as? String != nil {
             customerId = userdefault.value(forKey: "customer_id") as! String
         }
     

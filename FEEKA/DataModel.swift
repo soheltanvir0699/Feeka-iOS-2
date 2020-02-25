@@ -101,3 +101,10 @@ struct getCustomerDataModel {
     var postalCode:String
     var contactNumber:String
 }
+
+struct quizzezModel {
+    var id:String
+    var name:String
+    var image:String
+    var catId:String
+}
