@@ -43,7 +43,8 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate,UIColle
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SearchTableViewCell
-        cell.productImg.downloaded(from: dataList[indexPath.row].image)
+        let url = URL(string: dataList[indexPath.row].image)
+        cell.productImg.downloadedFrom(url: url!, contentMode: .scaleAspectFill)
         cell.productLbl.text = dataList[indexPath.row].title
         cell.brand.text = dataList[indexPath.row].brand
         cell.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
@@ -75,7 +76,8 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate,UIColle
         cell?.brand.text = dataList[indexPath.row].brand
         cell?.review.rating = dataList[indexPath.row].rating
         cell?.reviewText.text = "\(dataList[indexPath.row].count) review"
-        cell?.imageView.downloaded(from: dataList[indexPath.row].image)
+        let url = URL(string: dataList[indexPath.row].image)
+        cell?.imageView.downloadedFrom(url: url!, contentMode: .scaleAspectFill)
         cell!.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
         if saleList[indexPath.row] != 0 {
             cell!.sale.isHidden = false

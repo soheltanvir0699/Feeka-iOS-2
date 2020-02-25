@@ -208,11 +208,14 @@ extension ConfirmOrderViewController: UITableViewDelegate, UITableViewDataSource
             cell2?.bgView2.isHidden = false
             cell2?.subTotalPrice.text = methodArray[0].subTotal
             cell2?.total.text = methodArray[0].total
+            cell2?.stander.text = StoredProperty.quote
             cell2?.delivery.text = methodArray[0].shipping
             return cell2!
             
         } else {
             //cell1?.imageView?.downloaded(from: itemArray[indexPath.row].image)
+            let url = URL(string: itemArray[indexPath.row].image)
+            cell1?.imageView?.downloadedFrom(url: url!, contentMode: .scaleAspectFill)
             cell1?.name.text = itemArray[indexPath.row].title
             cell1?.brand.text = itemArray[indexPath.row].brand
             cell1?.qty.text = "QTY:    \(itemArray[indexPath.row].qty)"

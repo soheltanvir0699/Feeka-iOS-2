@@ -375,7 +375,8 @@ extension DiscoverDetailsViewController: UICollectionViewDataSource, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "list", for: indexPath) as! FeaturedCell
-        cell.productImg.downloaded(from: dataList[indexPath.row].image)
+        let url = URL(string: dataList[indexPath.row].image)
+        cell.productImg.downloadedFrom(url: url!, contentMode: .scaleAspectFill)
         cell.productName.text = dataList[indexPath.row].title
         cell.cosomView.rating = dataList[indexPath.row].rating
         cell.brandName.text = dataList[indexPath.row].brand

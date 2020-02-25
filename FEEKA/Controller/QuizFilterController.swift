@@ -119,7 +119,8 @@ extension QuizFilterController: UICollectionViewDelegate, UICollectionViewDataSo
         cell.productBrand.text = dataList[indexPath.row].brand
         cell.reviewView.rating = dataList[indexPath.row].rating
         cell.reviewTitle.text = "\( dataList[indexPath.row].count) review"
-        cell.productImg.downloaded(from: dataList[indexPath.row].image)
+        let url = URL(string: dataList[indexPath.row].image)
+        cell.productImg.downloadedFrom(url: url!, contentMode: .scaleAspectFill)
         cell.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
         if saleList[indexPath.row] != 0 {
             cell.SALE.isHidden = false

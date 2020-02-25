@@ -143,7 +143,8 @@ extension WishListViewController: UICollectionViewDelegate, UICollectionViewData
         cell.productBrand.text = wishListData[indexPath.row].brand
         cell.sPrice.text = "\(wishListData[indexPath.row].productCurrency) \(wishListData[indexPath.row].sPrice)"
         cell.rPrice.text = " \(wishListData[indexPath.row].productCurrency) \(wishListData[indexPath.row].rPrice)"
-        cell.productImg.downloaded(from: wishListData[indexPath.row].productImage)
+        let url = URL(string: wishListData[indexPath.row].productImage)
+        cell.productImg.downloadedFrom(url: url!, contentMode: .scaleAspectFill)
         cell.isWhish.tag = indexPath.row + 1000
         cell.addToBag.tag = indexPath.row + 2000
         cell.isWhish.addTarget(self, action: #selector(removeWhish(sender:)), for: .touchUpInside)

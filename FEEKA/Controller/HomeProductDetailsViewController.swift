@@ -41,7 +41,6 @@ class HomeProductDetailsViewController: UIViewController , UIViewControllerTrans
     var isaddingSale = true
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //gender = userDefault.value(forKey: "Gender") as! Int
         userDefault.setValue(categorie, forKey: "currentCategorie")
         print(gender)
@@ -269,12 +268,18 @@ extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == productListCollView {
+            
            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as? CollectionViewCell
+            //cell?.imageView.image = nil
             cell?.title.text = dataList[indexPath.row].title
             cell?.brand.text = dataList[indexPath.row].brand
             cell?.review.rating = dataList[indexPath.row].rating
             cell?.reviewText.text = "\(dataList[indexPath.row].count) review"
-            cell?.imageView.downloaded(from: dataList[indexPath.row].image)
+               cell?.imageView.image = UIImage()
+            let url = URL(string: self.dataList[indexPath.row].image)
+            cell?.imageView.downloadedFrom(url: url! , contentMode: .scaleAspectFill)
+            
+            
             if self.sale[indexPath.row] != 0 {
                 cell?.sale.isHidden = false
             } else {
@@ -368,7 +373,12 @@ extension HomeProductDetailsViewController: UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DiscoverTableViewCell
-        cell.productImg.downloaded(from: dataList[indexPath.row].image)
+        DispatchQueue.main.async {
+            let url = URL(string: self.dataList[indexPath.row].image)
+            cell.productImg.downloadedFrom(url: url!, contentMode: .scaleAspectFill)
+           
+        }
+        
         cell.productLbl.text = dataList[indexPath.row].title
         cell.brand.text = dataList[indexPath.row].brand
         cell.salePrice.setBorder()
