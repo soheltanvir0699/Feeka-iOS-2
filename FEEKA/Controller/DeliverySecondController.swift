@@ -51,6 +51,11 @@ class DeliverySecondController: UIViewController {
     
     @IBAction func continueToPayAction(_ sender: Any) {
         
+        let paymentVC = storyboard?.instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController
+        
+        paymentVC?.modalPresentationStyle = .fullScreen
+        present(paymentVC!, animated: true, completion: nil)
+        
     }
     
     @IBAction func backBtn(_ sender: Any) {

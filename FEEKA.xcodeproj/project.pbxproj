@@ -10,6 +10,8 @@
 		8D04762323FAC557009C0E7B /* NetworkingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D04762223FAC557009C0E7B /* NetworkingClient.swift */; };
 		8D04762523FAE2C3009C0E7B /* Extension+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D04762423FAE2C3009C0E7B /* Extension+UIImageView.swift */; };
 		8D05C27A23FD5520002E3D7B /* HomeProductDetailsMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D05C27923FD5520002E3D7B /* HomeProductDetailsMenuCell.swift */; };
+		8D2837EF24048D7F006DE71D /* ipayLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D2837EE24048D7E006DE71D /* ipayLogo.png */; };
+		8D2837F1240492B9006DE71D /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2837F0240492B9006DE71D /* PaymentViewController.swift */; };
 		8D3D7B9823F2C7F1005A3479 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D7B9723F2C7F1005A3479 /* AppDelegate.swift */; };
 		8D3D7B9A23F2C7F1005A3479 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D7B9923F2C7F1005A3479 /* SceneDelegate.swift */; };
 		8D3D7B9C23F2C7F1005A3479 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D7B9B23F2C7F1005A3479 /* LogInViewController.swift */; };
@@ -72,6 +74,8 @@
 		8D04762223FAC557009C0E7B /* NetworkingClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingClient.swift; sourceTree = "<group>"; };
 		8D04762423FAE2C3009C0E7B /* Extension+UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIImageView.swift"; sourceTree = "<group>"; };
 		8D05C27923FD5520002E3D7B /* HomeProductDetailsMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProductDetailsMenuCell.swift; sourceTree = "<group>"; };
+		8D2837EE24048D7E006DE71D /* ipayLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipayLogo.png; sourceTree = "<group>"; };
+		8D2837F0240492B9006DE71D /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		8D3D7B9423F2C7F1005A3479 /* FEEKA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FEEKA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D3D7B9723F2C7F1005A3479 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D3D7B9923F2C7F1005A3479 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -176,6 +180,7 @@
 				8D3D7BAD23F30B72005A3479 /* SignUpViewController.swift */,
 				8D6868D123FD8A72008638F7 /* PriceController.swift */,
 				C4BC808823F97E0600FA5873 /* NewslettersViewController.swift */,
+				8D2837F0240492B9006DE71D /* PaymentViewController.swift */,
 				C458547F23F9A5FD00C23B49 /* DiscoverSearchViewController.swift */,
 				C464B0CE23F6653600C292EE /* DiscoverViewController.swift */,
 				8D67083223F51DCF001DC494 /* MoreViewController.swift */,
@@ -216,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				C4BD14A923F5954B00B5DBA5 /* vid_file2.mp4 */,
+				8D2837EE24048D7E006DE71D /* ipayLogo.png */,
 				8D3D7BA023F2C7F3005A3479 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -336,6 +342,7 @@
 				8D3D7BA423F2C7F3005A3479 /* LaunchScreen.storyboard in Resources */,
 				8D3D7BA123F2C7F3005A3479 /* Assets.xcassets in Resources */,
 				8D3D7B9F23F2C7F1005A3479 /* Main.storyboard in Resources */,
+				8D2837EF24048D7F006DE71D /* ipayLogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,6 +438,7 @@
 				8D90187F24040B0C00155910 /* BagFirstCell.swift in Sources */,
 				8D3D7B9C23F2C7F1005A3479 /* LogInViewController.swift in Sources */,
 				8D04762523FAE2C3009C0E7B /* Extension+UIImageView.swift in Sources */,
+				8D2837F1240492B9006DE71D /* PaymentViewController.swift in Sources */,
 				8DB750802400DE1A00E69A5B /* BagViewController.swift in Sources */,
 				8D3D7B9823F2C7F1005A3479 /* AppDelegate.swift in Sources */,
 				8D6868CA23FD6627008638F7 /* FilterViewController.swift in Sources */,
