@@ -19,6 +19,7 @@ class QuizListController: UIViewController {
     var dataList = [quizzezModel]()
     var qustion = [qustionModel]()
     var index:Int!
+    var tag = [String]()
     var indicator:NVActivityIndicatorView!
     @IBOutlet weak var navText: UILabel!
     override func viewDidLoad() {
@@ -30,22 +31,24 @@ class QuizListController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.quizListApi()
+        let catid = dataList[index].catId
+            self.quizListApi(catId: catid, nextQid: "")
     }
    
     @IBAction func backBtn(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
-    func quizListApi() {
+    func quizListApi(catId: String, nextQid: String) {
         indicator = self.indicator()
-            indicator.startAnimating()
+        indicator.startAnimating()
+        qustion = [qustionModel]()
            
             guard let url = URL(string: "https://feeka.co.za/json-api/route/quizzes-question-answer.php") else {
                                self.view.makeToast( "Please try again later")
                                   return
                               }
-        let paramater = ["cat_id":"\(dataList[index].catId)"]
+        let paramater = ["cat_id":"\(catId)","next_question_id":"\(nextQid)"]
         Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: nil).response { (response) in
                                       self.indicator.startAnimating()
                                       if let error = response.error {
@@ -103,8 +106,25 @@ extension QuizListController: UITableViewDelegate,UITableViewDataSource {
         cell?.label.layer.borderWidth = 1
         cell?.label.layer.borderColor = UIColor.gray.cgColor
         cell?.label.layer.cornerRadius = 10
+        cell?.selectedBackgroundView = UIView()
         cell?.label.text = qustion[indexPath.row].answer
         return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if !(qustion[indexPath.row].nextQuestionId.isEmpty) {
+            self.tag.append(qustion[indexPath.row].tagId)
+        quizListApi(catId: "", nextQid: qustion[indexPath.row].nextQuestionId)
+            
+        } else {
+            let quizFilterVC = storyboard?.instantiateViewController(withIdentifier: "QuizFilterController") as? QuizFilterController
+            quizFilterVC?.modalPresentationStyle = .fullScreen
+            quizFilterVC?.category = self.dataList[index].catId
+            quizFilterVC?.tagid = self.tag
+            quizFilterVC?.navtitle = dataList[index].name
+            present(quizFilterVC!, animated: true, completion: nil)
+        }
+        
     }
     
     

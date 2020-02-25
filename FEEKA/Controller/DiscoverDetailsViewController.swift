@@ -115,6 +115,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
     }
     @IBAction func backBtn(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     
     func bagApiCalling() {
