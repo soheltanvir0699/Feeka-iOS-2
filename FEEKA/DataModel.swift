@@ -13,6 +13,8 @@ import SwiftyJSON
 
 class StoredProperty {
     static var FacebookAuthsuccess = false
+    static var quote: String = ""
+    static var quoteId:Int = 0
     static var data = 2
     static var reviewAllData = [reviewDataModel]()
     static var singleProductDetailsList = [singleProductDetailsModel]()
@@ -113,4 +115,35 @@ struct qustionModel {
     var answer:String
     var tagId:String
     var nextQuestionId:String
+}
+
+struct confirmMethodModel {
+    var total:String
+    var subTotal:String
+    var shipping:String
+}
+
+struct confirmAddress {
+    var addressId: String
+    var customerId: String
+    var name:String
+    var sureName:String
+    var contact:String
+    var unitNumber:String
+    var apartment:String
+    var company:String
+    var street:String
+    var suburb:String
+    var city:String
+    var postalCode:String
+    var country:String
+}
+
+struct confirmProductModel {
+    var image:String
+    var title:String
+    var qty:String
+    var totalPrice:String
+    var brand:String
+    
 }

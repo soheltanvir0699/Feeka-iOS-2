@@ -93,6 +93,10 @@ class DeliverySecondController: UIViewController {
                                                 let jsonData = JSON(data[0])
                                                 let deliveryCost = jsonData["delivery_cost"].stringValue
                                                 let quote = jsonData["delivery_quote"].stringValue
+                                                let quoteid = jsonData["quoteId"].intValue
+                                                StoredProperty.quoteId = quoteid
+                                                
+                                                StoredProperty.quote = quote
                                                 self.standarLbl.text = quote
                                                 self.priceLbl.text = "R \(deliveryCost)"
                                                

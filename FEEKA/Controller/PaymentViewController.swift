@@ -20,9 +20,11 @@ class PaymentViewController: UIViewController {
     @IBOutlet weak var promoField: UITextField!
     @IBOutlet weak var promoView: UIView!
     @IBOutlet weak var navView: UIView!
+    
     var indicator:NVActivityIndicatorView!
     var userdefault = UserDefaults.standard
     var customerId = ""
+    var payment = 2
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -54,11 +56,13 @@ class PaymentViewController: UIViewController {
     @objc func payAction() {
          payFastImg.image = UIImage(named: "radio-active")
         ozowImg.image = UIImage(named: "radio-inactive")
+        self.payment = 2
     }
     
     @objc func ozowAction() {
         ozowImg.image = UIImage(named: "radio-active")
         payFastImg.image = UIImage(named: "radio-inactive")
+        self.payment = 3
     }
 
     @IBAction func applayAction(_ sender: Any) {
@@ -66,6 +70,12 @@ class PaymentViewController: UIViewController {
         couponApi()
     }
     @IBAction func continueAction(_ sender: Any) {
+        
+        let ConfirmOrderVC = storyboard?.instantiateViewController(identifier: "ConfirmOrderViewController") as? ConfirmOrderViewController
+        ConfirmOrderVC?.method = payment
+        ConfirmOrderVC?.modalPresentationStyle = .fullScreen
+        
+        present(ConfirmOrderVC!, animated: true, completion: nil)
     }
     
     func couponApi() {
