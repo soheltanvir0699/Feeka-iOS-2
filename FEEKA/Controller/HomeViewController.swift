@@ -146,7 +146,17 @@ class HomeViewController: UIViewController {
            return
        }
        let userdefault = UserDefaults.standard
-       let customerId = userdefault.value(forKey: "customer_id") as! String
+       var customerId = ""
+    
+//    if  userdefault.value(forKey: "customer_id") as! String != "" {
+//        customerId = userdefault.value(forKey: "customer_id") as! String
+//    }
+    
+    if userdefault.value(forKey: "customer_id") as? String != nil {
+        customerId = userdefault.value(forKey: "customer_id") as! String
+    } else {
+        
+    }
        
        let parameter = ["customer_id":"\(customerId)"]
        

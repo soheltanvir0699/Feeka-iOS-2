@@ -122,7 +122,16 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
               return
           }
           let userdefault = UserDefaults.standard
-          let customerId = userdefault.value(forKey: "customer_id") as! String
+          var customerId = ""
+        if  userdefault.value(forKey: "customer_id") as! String != "" {
+            customerId = userdefault.value(forKey: "customer_id") as! String
+        }
+        
+        if userdefault.value(forKey: "customer_id") as? String != nil {
+            customerId = userdefault.value(forKey: "customer_id") as! String
+        }
+        
+        
           
           let parameter = ["customer_id":"\(customerId)"]
           
@@ -170,7 +179,14 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
             logInVC()
             return
         }
-        customerId = userdefault.value(forKey: "customer_id") as! String
+        if  userdefault.value(forKey: "customer_id") as! String != "" {
+            customerId = userdefault.value(forKey: "customer_id") as! String
+        }
+        
+        if userdefault.value(forKey: "customer_id") as? String == nil {
+            customerId = userdefault.value(forKey: "customer_id") as! String
+        }
+    
         
               print(customerId)
               let parameter = [
