@@ -37,6 +37,7 @@
 		8D901C702405366A00043E5E /* FinderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D901C6F2405366A00043E5E /* FinderController.swift */; };
 		8D901C722405380D00043E5E /* QuizListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D901C712405380D00043E5E /* QuizListController.swift */; };
 		8D901C74240538E900043E5E /* QuizListCellCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D901C73240538E900043E5E /* QuizListCellCell.swift */; };
+		8D901C7624054B6700043E5E /* QuizzesMenDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D901C7524054B6700043E5E /* QuizzesMenDetailsController.swift */; };
 		8D9E1EBF2400062D00B463C1 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9E1EBE2400062D00B463C1 /* Extension+String.swift */; };
 		8D9E1EC124000EF900B463C1 /* FeaturedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9E1EC024000EF900B463C1 /* FeaturedCell.swift */; };
 		8DAC471623FAF48F0095D064 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAC471523FAF48F0095D064 /* UIImage+Gif.swift */; };
@@ -114,6 +115,7 @@
 		8D901C6F2405366A00043E5E /* FinderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderController.swift; sourceTree = "<group>"; };
 		8D901C712405380D00043E5E /* QuizListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizListController.swift; sourceTree = "<group>"; };
 		8D901C73240538E900043E5E /* QuizListCellCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizListCellCell.swift; sourceTree = "<group>"; };
+		8D901C7524054B6700043E5E /* QuizzesMenDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizzesMenDetailsController.swift; sourceTree = "<group>"; };
 		8D9E1EBE2400062D00B463C1 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		8D9E1EC024000EF900B463C1 /* FeaturedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedCell.swift; sourceTree = "<group>"; };
 		8DAC471523FAF48F0095D064 /* UIImage+Gif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				8DBDDA3A2405118B00D81D2C /* OrdersAndReturnController.swift */,
 				8D901C6D240535C300043E5E /* QuizzesController.swift */,
 				8D901C6F2405366A00043E5E /* FinderController.swift */,
+				8D901C7524054B6700043E5E /* QuizzesMenDetailsController.swift */,
 				8D901C712405380D00043E5E /* QuizListController.swift */,
 				8DBDDA3E240522D000D81D2C /* ExangeRefundController.swift */,
 				8D2837F0240492B9006DE71D /* PaymentViewController.swift */,
@@ -459,6 +462,7 @@
 				8D901C722405380D00043E5E /* QuizListController.swift in Sources */,
 				8D04762323FAC557009C0E7B /* NetworkingClient.swift in Sources */,
 				8DD12377240141BD0086A8D0 /* Toast.swift in Sources */,
+				8D901C7624054B6700043E5E /* QuizzesMenDetailsController.swift in Sources */,
 				C458548223F9B89F00C23B49 /* HomeViewController.swift in Sources */,
 				C4ED048523F6CFBA0072CEE7 /* DiscoverTableViewCell.swift in Sources */,
 				8DF554E72402CFE20087FCEB /* DateFormatter.swift in Sources */,

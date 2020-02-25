@@ -108,3 +108,9 @@ struct quizzezModel {
     var image:String
     var catId:String
 }
+
+struct qustionModel {
+    var answer:String
+    var tagId:String
+    var nextQuestionId:String
+}

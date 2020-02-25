@@ -1,43 +1,43 @@
 //
-//  QuizzesController.swift
+//  QuizzesMenDetailsController.swift
 //  FEEKA
 //
 //  Created by Apple Guru on 25/2/20.
 //  Copyright © 2020 Apple Guru. All rights reserved.
 //
-//quizzes.php
+
 import UIKit
 import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
 
-class QuizzesController: UIViewController {
+class QuizzesMenDetailsController: UIViewController {
 
-    @IBOutlet weak var firstBtn: UIButton!
-    @IBOutlet weak var navView: UIView!
-    
-    @IBOutlet weak var thirdBtn: UIButton!
-    @IBOutlet weak var secondBtn: UIButton!
     @IBOutlet weak var firstImg: UIImageView!
-    var indicator:NVActivityIndicatorView!
-    
-    @IBOutlet weak var thirdImg: UIImageView!
     @IBOutlet weak var secondImg: UIImageView!
-    var dataList = [quizzezModel]()
+    @IBOutlet weak var navTitle: UILabel!
+    @IBOutlet weak var navView: UIView!
+    @IBOutlet weak var secondBtn: UIButton!
+    @IBOutlet weak var firstBtn: UIButton!
+    @IBOutlet weak var thirdBtn: UIButton!
+    @IBOutlet weak var thirdImg: UIImageView!
     
+    var dataList = [quizzezModel]()
+    var qustion = [qustionModel]()
+    var index:Int!
+    var indicator:NVActivityIndicatorView!
     override func viewDidLoad() {
         super.viewDidLoad()
         firstImg.layer.cornerRadius = firstImg.frame.width / 2
         secondImg.layer.cornerRadius = firstImg.frame.width / 2
         thirdImg.layer.cornerRadius = firstImg.frame.width / 2
         navView.setShadow()
-        self.quizzesApi()
+        quizzesMenApi()
+        // Do any additional setup after loading the view.
     }
     
-    
-    
-    @IBAction func backBtn(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+    @IBAction func back(_ sender: Any) {
+        dismiss(animated: true , completion: nil)
     }
     
     @IBAction func skinCare(_ sender: Any) {
@@ -59,21 +59,23 @@ class QuizzesController: UIViewController {
     }
     
     @IBAction func menGrroming(_ sender: Any) {
-        let QuizzesMenDetailsController = storyboard?.instantiateViewController(withIdentifier: "QuizzesMenDetailsController") as? QuizzesMenDetailsController
-        QuizzesMenDetailsController?.modalPresentationStyle = .fullScreen
-        present(QuizzesMenDetailsController!, animated: true, completion: nil)
-        
+        let finderVc = storyboard?.instantiateViewController(withIdentifier: "FinderController") as? FinderController
+        finderVc?.dataList = self.dataList
+        finderVc?.index = 2
+        finderVc?.modalPresentationStyle = .fullScreen
+        present(finderVc!, animated: true, completion: nil)
     }
     
-    func quizzesApi() {
-                     indicator = self.indicator()
-                      indicator.startAnimating()
+    func quizzesMenApi() {
+        indicator = self.indicator()
+       indicator.startAnimating()
                      
-                      guard let url = URL(string: "https://feeka.co.za/json-api/route/quizzes.php") else {
+        guard let url = URL(string: "https://feeka.co.za/json-api/route/quizzes_men_growming.php") else {
                                          self.view.makeToast( "Please try again later")
                                             return
                                         }
-                                            Alamofire.request(url, method: .post, parameters: nil, encoding: JSONEncoding.default, headers: nil).response { (response) in
+        let paramater = ["cat_id":"1"]
+        Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: nil).response { (response) in
                                                 self.indicator.startAnimating()
                                                 if let error = response.error {
                                                     self.indicator.stopAnimating()
@@ -122,7 +124,7 @@ class QuizzesController: UIViewController {
                                                       
                                                     }
 
-                                                    self.indicator.stopAnimating()
+                                                     self.indicator.stopAnimating()
                                                 }
                                             
                                 
