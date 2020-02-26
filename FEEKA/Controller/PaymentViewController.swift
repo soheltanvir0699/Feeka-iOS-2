@@ -25,6 +25,7 @@ class PaymentViewController: UIViewController {
     var userdefault = UserDefaults.standard
     var customerId = ""
     var payment = 2
+    var promcode = "0"
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -74,6 +75,7 @@ class PaymentViewController: UIViewController {
         
         let ConfirmOrderVC = storyboard?.instantiateViewController(identifier: "ConfirmOrderViewController") as? ConfirmOrderViewController
         ConfirmOrderVC?.method = payment
+        ConfirmOrderVC?.promoCode = self.promcode
         ConfirmOrderVC?.modalPresentationStyle = .fullScreen
         
         present(ConfirmOrderVC!, animated: true, completion: nil)
@@ -107,6 +109,9 @@ class PaymentViewController: UIViewController {
                    let jsonResponse = JSON(response)
                                      
                 let alert = ShowAlertView().alertView(title: "", action: "Ok", message: (jsonResponse["message"].stringValue))
+                if jsonResponse["status"].stringValue == "1" {
+                    self.promcode = self.promoField.text!
+                }
                 self.present(alert, animated: true, completion: nil)
                        self.indicator.stopAnimating()
                    

@@ -69,7 +69,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
                 url: URL(string: self.imageList[index])!
                 )
             Nuke.loadImage(with: request, into: imgView)
-            imgView.contentMode = .scaleAspectFit
+            imgView.contentMode = .redraw
             self.scrollView.addSubview(imgView)
             self.pageControl.numberOfPages = self.imageList.count
             
@@ -182,7 +182,12 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
               }
         
         guard (userdefault.value(forKey: "customer_id") as? String) != nil else {
-            logInVC()
+            let alert = UIAlertController(title: "", message: "Please Log In...", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
+                self.logInVC()
+            }))
+            self.present(alert, animated: true, completion: nil)
+            
             return
         }
         

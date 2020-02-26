@@ -24,6 +24,7 @@ class ConfirmOrderViewController: UIViewController {
     var userdefault = UserDefaults.standard
     var address_id = ""
     var method = 1
+    var promoCode = "0"
     override func viewDidLoad() {
         super.viewDidLoad()
         navView.setShadow()
@@ -211,10 +212,11 @@ extension ConfirmOrderViewController: UITableViewDelegate, UITableViewDataSource
             return cell2!
         } else if indexPath.row == itemArray.count + 1  {
             cell2?.bgView2.isHidden = false
-            cell2?.subTotalPrice.text = methodArray[0].subTotal
-            cell2?.total.text = methodArray[0].total
+            cell2?.subTotalPrice.text = "R \(methodArray[0].subTotal)"
+            cell2?.total.text = "R \(methodArray[0].total)"
             cell2?.stander.text = StoredProperty.quote
             cell2?.delivery.text = methodArray[0].shipping
+            cell2?.promoCode.text = "R \(promoCode)"
             return cell2!
             
         } else {

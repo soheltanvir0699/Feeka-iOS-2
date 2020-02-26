@@ -47,6 +47,7 @@ class VideoScreenViewController: UIViewController {
             if isCheck == "1" {
                 joinClubBtn.isHidden = true
                 fikkaLogo.isHidden = true
+                videoBackgroundView.isHidden = true
                 perform(#selector(pushAction), with: nil, afterDelay: 0.0)
             }
             
@@ -54,6 +55,7 @@ class VideoScreenViewController: UIViewController {
           userdefault.setValue("1", forKey: "isOpen")
             joinClubBtn.isHidden = false
             fikkaLogo.isHidden = false
+            videoBackgroundView.isHidden = false
         }
         
     }
