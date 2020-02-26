@@ -4017,7 +4017,7 @@
                                     <constraint firstItem="STl-6g-uTY" firstAttribute="leading" secondItem="LCU-Jo-k15" secondAttribute="leadingMargin" id="yzf-VO-zlB"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_hair_beard_care" translatesAutoresizingMaskIntoConstraints="NO" id="bzr-3N-rdY">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_hair_beard_care" translatesAutoresizingMaskIntoConstraints="NO" id="bzr-3N-rdY">
                                 <rect key="frame" x="0.0" y="100" width="414" height="762"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's your skin type" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lzE-dk-J81">
