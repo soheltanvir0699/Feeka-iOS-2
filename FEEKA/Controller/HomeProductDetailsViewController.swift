@@ -139,6 +139,7 @@ class HomeProductDetailsViewController: UIViewController , UIViewControllerTrans
     isTotal = true
     currentPage = 1
     dataList = [hireCareParameter]()
+    productID = [Int]()
     productCategorie = userDefault.value(forKey: "product categorie") as! String
     productType =  userDefault.value(forKey: "product type") as! String
     brand = userDefault.value(forKey: "brand") as! String
@@ -351,14 +352,17 @@ extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollecti
                 let alertVC = UIAlertController(title: "SORT", message: "", preferredStyle: .actionSheet)
                 alertVC.addAction(UIAlertAction(title: "Newest", style: .default, handler: { (_) in
                     self.dataList = [hireCareParameter]()
+                    self.productID = [Int]()
                     self.apiCalling(brand: self.brand, brandId: "", categorie: "\(self.categorie)", color: self.color, filter: "1", gender: "\(self.gender)", maxPrice: "\(self.filterMaxVaue)", minPrice: "\(self.filterMinValue)", productCategorie: "\(self.productCategorie)", productType: self.productType, searchTag: "", size: "", sortParameter: "2", tagId: "\(self.tagId)", currentPage: 1)
                 }))
                 alertVC.addAction(UIAlertAction(title: "Price (low to high)", style: .default, handler: { (_) in
                     self.dataList = [hireCareParameter]()
+                    self.productID = [Int]()
                     self.apiCalling(brand: self.brand, brandId: "", categorie: "\(self.categorie)", color: self.color, filter: "", gender: "\(self.gender)", maxPrice: "\(self.filterMaxVaue)", minPrice: "\(self.filterMinValue)", productCategorie: "\(self.productCategorie)", productType: self.productType, searchTag: "", size: "", sortParameter: "3", tagId: "\(self.tagId)", currentPage: 1)
                 }))
                 alertVC.addAction(UIAlertAction(title: "Price (high to low)", style: .default, handler: { (_) in
                     self.dataList = [hireCareParameter]()
+                    self.productID = [Int]()
                     self.apiCalling(brand: self.brand, brandId: "", categorie: "\(self.categorie)", color: self.color, filter: "", gender: "\(self.gender)", maxPrice: "\(self.filterMaxVaue)", minPrice: "\(self.filterMinValue)", productCategorie: "\(self.productCategorie)", productType: self.productType, searchTag: "", size: "", sortParameter: "4", tagId: "\(self.tagId)", currentPage: 1)
                 }))
                 self.present(alertVC, animated: true, completion: nil)
@@ -367,6 +371,7 @@ extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollecti
                 isTotal = true
                    currentPage = 1
                    dataList = [hireCareParameter]()
+                   self.productID = [Int]()
                 print(dataList)
                        apiCalling(brand: "", brandId: "", categorie: "\(categorie)", color: "", filter: "", gender: "\(gender)", maxPrice: "", minPrice: "", productCategorie: "\(productTemrsId[indexPath.row - 2])", productType: "", searchTag: "", size: "", sortParameter: "2", tagId: "\(tagId)", currentPage: 1)
             }
