@@ -62,7 +62,7 @@ extension BrandDetailsController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let DiscoverViewController = storyboard?.instantiateViewController(withIdentifier: "DiscoverViewController") as! DiscoverViewController
         DiscoverViewController.brandId = self.dataList[indexPath.row].id
-        DiscoverViewController.navText = "FACE MOISTURISERS"
+        DiscoverViewController.navText = "BRANDS"
         //homeProductDetails.searchTag = "Brands"
         self.navigationController?.pushViewController(DiscoverViewController, animated: true)
     }
