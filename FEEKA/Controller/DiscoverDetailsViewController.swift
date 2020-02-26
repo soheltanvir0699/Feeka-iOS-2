@@ -90,7 +90,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
         apiCalling(customerId: customerId, productId: productId)
         scrollView.delegate = self
         guard (userdefault.value(forKey: "customer_id") as? String) != nil else {
-            logInVC()
+            //logInVC()
             return
         }
         customerId = userdefault.value(forKey: "customer_id") as! String
