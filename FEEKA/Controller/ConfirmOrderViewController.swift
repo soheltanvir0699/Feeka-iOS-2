@@ -33,8 +33,11 @@ class ConfirmOrderViewController: UIViewController {
             address_id =  userdefault.value(forKey: "address_id") as! String
         }
         confirmOderApi()
+        NotificationCenter.default.addObserver(self, selector: #selector(back), name: Notification.Name("backcon"), object: nil)
     }
-    
+    @objc func back() {
+        dismiss(animated: true, completion: nil)
+    }
     @IBAction func backBtn(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -103,7 +106,8 @@ class ConfirmOrderViewController: UIViewController {
             
         }
     }
-    
+
+
     
     @IBAction func paymentAction(_ sender: Any) {
         
@@ -215,7 +219,7 @@ extension ConfirmOrderViewController: UITableViewDelegate, UITableViewDataSource
         } else {
             //cell1?.imageView?.downloaded(from: itemArray[indexPath.row].image)
             let url = URL(string: itemArray[indexPath.row].image)
-            cell1?.imageView?.downloadedFrom(url: url!, contentMode: .scaleAspectFill)
+            cell1?.imageImg?.downloadedFrom(url: url!, contentMode: .scaleAspectFill)
             cell1?.name.text = itemArray[indexPath.row].title
             cell1?.brand.text = itemArray[indexPath.row].brand
             cell1?.qty.text = "QTY:    \(itemArray[indexPath.row].qty)"

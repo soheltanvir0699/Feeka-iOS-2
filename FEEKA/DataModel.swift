@@ -147,3 +147,9 @@ struct confirmProductModel {
     var brand:String
     
 }
+
+struct orderModel {
+    var date:String
+    var orderId:String
+    var totalPrice:String
+}

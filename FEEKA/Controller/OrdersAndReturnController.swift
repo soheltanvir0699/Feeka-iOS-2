@@ -7,10 +7,20 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
+import NVActivityIndicatorView
 
 class OrdersAndReturnController: UIViewController , UITableViewDataSource, UITableViewDelegate {
+    
+    var indicator:NVActivityIndicatorView!
+    var customerId = ""
+    let userdefault = UserDefaults.standard
+    var dataList = [orderModel]()
+    @IBOutlet weak var tblView: UITableView!
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return dataList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -21,6 +31,9 @@ class OrdersAndReturnController: UIViewController , UITableViewDataSource, UITab
         cell?.bgView.layer.shadowOffset = .zero
         cell?.bgView.layer.shadowRadius = 0.5
         cell?.selectedBackgroundView = UIView()
+        cell?.date.text = dataList[indexPath.row].date
+        cell?.orderId.text = dataList[indexPath.row].orderId
+        cell?.totalPrice.text = dataList[indexPath.row].totalPrice
         return cell!
     }
     
@@ -29,21 +42,82 @@ class OrdersAndReturnController: UIViewController , UITableViewDataSource, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if userdefault.value(forKey: "customer_id") as? String != nil {
+            customerId = userdefault.value(forKey: "customer_id") as! String
+        }
         navView.setShadow()
+        ordersApi()
     }
     
     @IBAction func backAction(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+        NotificationCenter.default.post(name: Notification.Name("backWeb"), object: nil, userInfo: nil)
+    }
+    @IBAction func trackAction(_ sender: Any) {
+        
+    }
+    @IBAction func viewOrder(_ sender: Any) {
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func ordersApi() {
+        
+    indicator = self.indicator()
+           indicator.startAnimating()
+           guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/order_listing_v2.php") else {
+               return
+           }
+        let parameter   = ["customer_id":"\(self.customerId)"]
+        
+           
+           Alamofire.request(urlToExcute, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+           
+           if let error = response.error {
+               self.indicator.stopAnimating()
+               let alertView = ShowAlertView().alertView(title: "Something went wrong", action: "OK", message: "Please try again.")
+               self.present(alertView, animated: true, completion: nil)
+               print(error)
+               
+           }
+           
+               if let response = response.result.value {
+                   let jsonResponse = JSON(response)
+                                     
+                let data =  jsonResponse["data"].arrayValue
+                print(data)
+                print(parameter)
+                if data.isEmpty == true {
+                    let alert = UIAlertController(title: "", message: "No Orders Found", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                        self.dismiss(animated: true, completion: nil)
+                        NotificationCenter.default.post(name: Notification.Name("backWeb"), object: nil, userInfo: nil)
+                    }))
+                    
+                    self.present(alert, animated: true, completion: nil)
+                }
+                
+                if jsonResponse["status"].stringValue == "1" {
+                    for dataItem in data {
+                     let dataIndex = JSON(dataItem)
+                        let date = dataIndex["date"].stringValue
+                        let orderId = dataIndex["id"].stringValue
+                        let totalPrice = dataIndex["total_price"].stringValue
+                        self.dataList.append(orderModel(date: date, orderId: orderId, totalPrice: totalPrice))
+                        self.tblView.reloadData()
+                    }
+                } else {
+                    let alertView = ShowAlertView().alertView(title: "Something went wrong", action: "OK", message: "")
+                    self.present(alertView, animated: true, completion: nil)
+                }
+                       self.indicator.stopAnimating()
+                   
+               
+           }
+       }
+    
+    
     }
-    */
+    
+  
 
 }

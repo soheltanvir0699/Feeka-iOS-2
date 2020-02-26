@@ -136,6 +136,11 @@ func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPat
         navigationController?.pushViewController(discoverVC!, animated: true)
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        dismiss(animated: true, completion: nil)
+        self.view.makeToast("Payment Unsuccessfull")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         gender = UserDefaults.standard.value(forKey: "Gender") as! Int

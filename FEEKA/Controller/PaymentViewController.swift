@@ -38,19 +38,20 @@ class PaymentViewController: UIViewController {
         navView.setShadow()
         payFastImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(payAction)))
         ozowImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ozowAction)))
+        
             hideKeyBoard()
         if  userdefault.value(forKey: "customer_id") as! String != "" {
             customerId = userdefault.value(forKey: "customer_id") as! String
         }
         
-        if userdefault.value(forKey: "customer_id") as? String == nil {
+        if userdefault.value(forKey: "customer_id") as? String != nil {
             customerId = userdefault.value(forKey: "customer_id") as! String
         }
     }
     @IBAction func backAction(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    
+     
     
     
     @objc func payAction() {
