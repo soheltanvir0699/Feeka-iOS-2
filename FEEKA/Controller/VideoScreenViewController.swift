@@ -11,12 +11,14 @@ import AVFoundation
 
 class VideoScreenViewController: UIViewController {
 
-     var avPlayer: AVPlayer!
+    @IBOutlet weak var fikkaLogo: UIImageView!
+    var avPlayer: AVPlayer!
      var avPlayerLayer: AVPlayerLayer!
      var paused: Bool = false
     var userdefault = UserDefaults.standard
    
-
+    @IBOutlet weak var joinClubBtn: UIButton!
+    
     @IBOutlet weak var videoBackgroundView: UIView!
     override func viewDidLoad() {
          super.viewDidLoad()
@@ -43,11 +45,15 @@ class VideoScreenViewController: UIViewController {
         if userdefault.value(forKey: "isOpen") != nil {
             isCheck = userdefault.value(forKey: "isOpen") as! String
             if isCheck == "1" {
-            perform(#selector(pushAction), with: nil, afterDelay: 0.2)
+                joinClubBtn.isHidden = true
+                fikkaLogo.isHidden = true
+                perform(#selector(pushAction), with: nil, afterDelay: 0.0)
             }
             
         }else {
           userdefault.setValue("1", forKey: "isOpen")
+            joinClubBtn.isHidden = false
+            fikkaLogo.isHidden = false
         }
         
     }
