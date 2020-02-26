@@ -17,6 +17,7 @@ PODS:
     - FBSDKLoginKit/Login (= 5.15.1)
   - FBSDKLoginKit/Login (5.15.1):
     - FBSDKCoreKit (~> 5.0)
+  - Nuke (8.4.0)
   - NVActivityIndicatorView (4.8.0):
     - NVActivityIndicatorView/Presenter (= 4.8.0)
   - NVActivityIndicatorView/Presenter (4.8.0)
@@ -29,6 +30,7 @@ DEPENDENCIES:
   - Cosmos (~> 21.0)
   - FacebookCore
   - FacebookLogin
+  - Nuke
   - NVActivityIndicatorView
   - SVProgressHUD
   - SwiftyJSON
@@ -42,6 +44,7 @@ SPEC REPOS:
     - FacebookLogin
     - FBSDKCoreKit
     - FBSDKLoginKit
+    - Nuke
     - NVActivityIndicatorView
     - SVProgressHUD
     - SwiftyJSON
@@ -54,11 +57,12 @@ SPEC CHECKSUMS:
   FacebookLogin: 6cee9fd6e1fe976fe8f7eec199e27b28b14f5d63
   FBSDKCoreKit: 1d5acf7c9d7a2f92bb1a242dc60cae5b7adb91df
   FBSDKLoginKit: f1ea8026a58b52d30c9f2e6a58ca7d813619fb83
+  Nuke: fa6f784c4f7e1c0f9313668510186c68b7af2509
   NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   TTRangeSlider: 78188bea83f6471a06f75adbc88da5e990baeafe
 
-PODFILE CHECKSUM: 201091fb1fbc1e3778e53a53f15b75a9a728f843
+PODFILE CHECKSUM: 9f066d8e783bff836a1b7ab3af43583c15b5afdf
 
 COCOAPODS: 1.7.5

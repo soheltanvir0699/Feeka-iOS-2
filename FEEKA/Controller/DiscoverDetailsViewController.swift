@@ -11,6 +11,7 @@ import Cosmos
 import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
+import Nuke
 
 class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIViewControllerTransitioningDelegate {
 
@@ -63,7 +64,11 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
             self.frame.origin.x = self.scrollView.frame.size.width * CGFloat(index)
             self.frame.size = self.scrollView.frame.size
             let imgView = UIImageView(frame: self.frame)
-            imgView.downloaded(from: self.imageList[index])
+            //imgView.downloaded(from: self.imageList[index])
+            let request = ImageRequest(
+                url: URL(string: self.imageList[index])!
+                )
+            Nuke.loadImage(with: request, into: imgView)
             imgView.contentMode = .scaleAspectFit
             self.scrollView.addSubview(imgView)
             self.pageControl.numberOfPages = self.imageList.count
@@ -375,8 +380,12 @@ extension DiscoverDetailsViewController: UICollectionViewDataSource, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "list", for: indexPath) as! FeaturedCell
-        let url = URL(string: dataList[indexPath.row].image)
-        cell.productImg.downloadedFrom(url: url!, contentMode: .scaleAspectFill)
+        //let url = URL(string: dataList[indexPath.row].image)
+        //cell.productImg.downloadedFrom(url: url!, contentMode: .scaleAspectFill)
+        let request = ImageRequest(
+            url: URL(string: dataList[indexPath.row].image)!
+            )
+        Nuke.loadImage(with: request, into:  cell.productImg)
         cell.productName.text = dataList[indexPath.row].title
         cell.cosomView.rating = dataList[indexPath.row].rating
         cell.brandName.text = dataList[indexPath.row].brand

@@ -11,6 +11,7 @@ import Alamofire
 import SwiftyJSON
 import ImageIO
 import NVActivityIndicatorView
+import Nuke
 
 class HomeViewController: UIViewController {
 
@@ -93,7 +94,11 @@ class HomeViewController: UIViewController {
                                     let image = i["image"].stringValue
                                     print(image)
                     if i["id"] == "31" {
-                        self.coomingSoon.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
+                        //self.coomingSoon.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
+                        let request = ImageRequest(
+                            url: URL(string: i["image"].stringValue)!
+                        )
+                        Nuke.loadImage(with: request, into: self.coomingSoon)
                     }
                     if i["title"] == "Brands" {
                         let image = UIImage.gif(url: i["image"].stringValue)
@@ -101,7 +106,11 @@ class HomeViewController: UIViewController {
                         self.brandLbl.text = i["title"].stringValue
                     }
                     if i["id"] == "32" {
-                        self.productFinder.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
+                       // self.productFinder.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
+                        let request = ImageRequest(
+                            url: URL(string: i["image"].stringValue)!
+                        )
+                        Nuke.loadImage(with: request, into: self.productFinder)
                     }
                     if i["title"] == "sale" {
                         let image = UIImage.gif(url: i["image"].stringValue)
@@ -110,15 +119,27 @@ class HomeViewController: UIViewController {
                     }
                     if i["title"] == "Men's Grooming" {
                         //let image = UIImage.gif(url: i["image"].stringValue)
-                        self.menGroomingImg.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
+                        //self.menGroomingImg.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
+                        let request = ImageRequest(
+                            url: URL(string: i["image"].stringValue)!
+                        )
+                        Nuke.loadImage(with: request, into: self.menGroomingImg)
                         self.menGroomingLbl.text = i["title"].stringValue
                     }
                     if i["title"] == "Chocolate sqeeze title" {
-                        self.bannerImg.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
+                       // self.bannerImg.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
+                        let request = ImageRequest(
+                            url: URL(string: i["image"].stringValue)!
+                        )
+                        Nuke.loadImage(with: request, into: self.bannerImg)
                     }
                     
                     if i["title"] == "Hair Care" {
-                        self.hairCareImg.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
+                       // self.hairCareImg.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
+                        let request = ImageRequest(
+                            url: URL(string: i["image"].stringValue)!
+                        )
+                        Nuke.loadImage(with: request, into: self.hairCareImg)
                         self.hireCareLbl.text = i["title"].stringValue.uppercased()
                     }
                     if i["title"] == "Skincare" {
@@ -133,7 +154,11 @@ class HomeViewController: UIViewController {
                     }
                     
                     if i["title"] == "Editors Picks" {
-                        self.editorsPicks.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
+                        //self.editorsPicks.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
+                        let request = ImageRequest(
+                            url: URL(string: i["image"].stringValue)!
+                        )
+                        Nuke.loadImage(with: request, into: self.editorsPicks)
                         self.editorPickLbl.text = i["title"].stringValue
                                            
                                        }

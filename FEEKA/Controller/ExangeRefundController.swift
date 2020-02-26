@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
+import Nuke
 
 class ExangeRefundController: UIViewController {
 
@@ -274,8 +275,12 @@ extension ExangeRefundController: UITableViewDataSource, UITableViewDelegate {
         cell?.bgView.layer.shadowOffset = .zero
         cell?.bgView.layer.shadowRadius = 0.5
         if URL(string: sImage[indexPath.row]) != nil {
-        let url  = URL(string: sImage[indexPath.row])
-        cell?.Producimage.downloadedFrom(url: url! , contentMode: .scaleAspectFill)
+        //let url  = URL(string: sImage[indexPath.row])
+       // cell?.Producimage.downloadedFrom(url: url! , contentMode: .scaleAspectFill)
+            let request2 = ImageRequest(
+                url: URL(string: sImage[indexPath.row])!
+                )
+            Nuke.loadImage(with: request2, into: cell!.Producimage)
         }
         cell?.productName.text = sName[indexPath.row]
         cell?.price.text = "\(price[indexPath.row])"

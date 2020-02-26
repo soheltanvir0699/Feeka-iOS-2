@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
+import Nuke
 
 class BrandDetailsController: UIViewController {
     @IBOutlet weak var tblView: UITableView!
@@ -53,8 +54,12 @@ extension BrandDetailsController : UITableViewDelegate, UITableViewDataSource {
         cell?.bgView.layer.borderColor = UIColor.black.cgColor
         cell?.bgView.layer.borderWidth = 1
         cell?.selectedBackgroundView = UIView()
-        let url = URL(string: dataList[indexPath.row].image)
-        cell?.profileImge?.downloadedFrom(url: url!, contentMode: .scaleAspectFill)
+       // let url = URL(string: dataList[indexPath.row].image)
+        //cell?.profileImge?.downloadedFrom(url: url!, contentMode: .scaleAspectFill)
+        let request2 = ImageRequest(
+            url: URL(string: dataList[indexPath.row].image)!
+            )
+        Nuke.loadImage(with: request2, into: cell!.profileImge)
         cell?.title.text = dataList[indexPath.row].name
         return cell!
     }

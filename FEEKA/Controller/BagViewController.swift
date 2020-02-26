@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
+import Nuke
 
 class BagViewController: UIViewController, UIViewControllerTransitioningDelegate {
     @IBOutlet weak var tblView: UITableView!
@@ -218,7 +219,11 @@ extension BagViewController: UITableViewDataSource, UITableViewDelegate {
             return cell2!
         } else {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? BagFirstCell
-            cell?.productImg.downloaded(from: dataList[indexPath.row].image)
+            //cell?.productImg.downloaded(from: dataList[indexPath.row].image)
+            let request = ImageRequest(
+                url: URL(string: self.dataList[indexPath.row].image)!
+                )
+            Nuke.loadImage(with: request, into: cell!.productImg)
             cell?.productPrice.text = "R \(dataList[indexPath.row].price)"
             cell?.qtyBtn.addTarget(self, action: #selector(showQTY(sender:)), for: .touchUpInside)
             cell?.qtyBtn.tag = indexPath.row + 3000

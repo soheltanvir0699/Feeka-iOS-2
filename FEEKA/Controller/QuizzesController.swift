@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
+import Nuke
 
 class QuizzesController: UIViewController {
 
@@ -104,8 +105,21 @@ class QuizzesController: UIViewController {
                                                     self.secondBtn.setTitle("\(self.dataList[1].name)", for: .normal)
                                                     self.thirdBtn.setTitle("\(self.dataList[2].name)", for: .normal)
                                                     self.firstImg.downloaded(from: self.dataList[0].image)
-                                                    self.secondImg.downloaded(from: self.dataList[1].image)
-                                                    self.thirdImg.downloaded(from: self.dataList[2].image)
+                                                                let request = ImageRequest(
+                                                                    url: URL(string: self.dataList[0].image)!
+                                                                    )
+                                                                Nuke.loadImage(with: request, into: self.firstImg)
+                                                   // self.secondImg.downloaded(from: self.dataList[1].image)
+                                                                let request1 = ImageRequest(
+                                                                    url: URL(string: self.dataList[1].image)!
+                                                                    )
+                                                                Nuke.loadImage(with: request1, into: self.secondImg)
+                                                    //self.thirdImg.downloaded(from: self.dataList[2].image)
+                                                                
+                                                                let request2 = ImageRequest(
+                                                                    url: URL(string: self.dataList[2].image)!
+                                                                    )
+                                                                Nuke.loadImage(with: request2, into: self.thirdImg)
                                                                                                                    }
                                                         }
                                                        

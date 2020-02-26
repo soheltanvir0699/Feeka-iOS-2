@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
-
+import Nuke
 class HomeProductDetailsViewController: UIViewController , UIViewControllerTransitioningDelegate {
 
     @IBOutlet weak var showTblBtn: UIButton!
@@ -277,8 +277,12 @@ extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollecti
             cell?.review.rating = dataList[indexPath.row].rating
             cell?.reviewText.text = "\(dataList[indexPath.row].count) review"
                cell?.imageView.image = UIImage()
-            let url = URL(string: self.dataList[indexPath.row].image)
-            cell?.imageView.downloadedFrom(url: url! , contentMode: .scaleAspectFill)
+           // let url = URL(string: self.dataList[indexPath.row].image)
+            //cell?.imageView.downloadedFrom(url: url! , contentMode: .scaleAspectFill)
+            let request = ImageRequest(
+                url: URL(string: self.dataList[indexPath.row].image)!
+            )
+            Nuke.loadImage(with: request, into: cell!.imageView)
             
             
             if self.sale[indexPath.row] != 0 {
@@ -374,11 +378,16 @@ extension HomeProductDetailsViewController: UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DiscoverTableViewCell
-        DispatchQueue.main.async {
-            let url = URL(string: self.dataList[indexPath.row].image)
-            cell.productImg.downloadedFrom(url: url!, contentMode: .scaleAspectFill)
+            //let url = URL(string: self.dataList[indexPath.row].image)
+            //cell.productImg.downloadedFrom(url: url!, contentMode: .scaleAspectFill)
+            
+            let request = ImageRequest(
+                           url: URL(string: self.dataList[indexPath.row].image)!
+                       )
+                       Nuke.loadImage(with: request, into: cell.productImg)
+            
            
-        }
+        
         
         cell.productLbl.text = dataList[indexPath.row].title
         cell.brand.text = dataList[indexPath.row].brand

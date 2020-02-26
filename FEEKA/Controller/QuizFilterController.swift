@@ -11,6 +11,7 @@ import SVProgressHUD
 import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
+import Nuke
 
 class QuizFilterController: UIViewController {
     @IBOutlet weak var TopView: UIView!
@@ -119,8 +120,12 @@ extension QuizFilterController: UICollectionViewDelegate, UICollectionViewDataSo
         cell.productBrand.text = dataList[indexPath.row].brand
         cell.reviewView.rating = dataList[indexPath.row].rating
         cell.reviewTitle.text = "\( dataList[indexPath.row].count) review"
-        let url = URL(string: dataList[indexPath.row].image)
-        cell.productImg.downloadedFrom(url: url!, contentMode: .scaleAspectFill)
+       // let url = URL(string: dataList[indexPath.row].image)
+       // cell.productImg.downloadedFrom(url: url!, contentMode: .scaleAspectFill)
+        let request2 = ImageRequest(
+            url: URL(string: dataList[indexPath.row].image)!
+            )
+        Nuke.loadImage(with: request2, into: cell.productImg)
         cell.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
         if saleList[indexPath.row] != 0 {
             cell.SALE.isHidden = false

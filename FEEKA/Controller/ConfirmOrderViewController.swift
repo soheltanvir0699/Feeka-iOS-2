@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
+import Nuke
 
 class ConfirmOrderViewController: UIViewController {
 
@@ -218,8 +219,13 @@ extension ConfirmOrderViewController: UITableViewDelegate, UITableViewDataSource
             
         } else {
             //cell1?.imageView?.downloaded(from: itemArray[indexPath.row].image)
-            let url = URL(string: itemArray[indexPath.row].image)
-            cell1?.imageImg?.downloadedFrom(url: url!, contentMode: .scaleAspectFill)
+           // let url = URL(string: itemArray[indexPath.row].image)
+            //cell1?.imageImg?.downloadedFrom(url: url!, contentMode: .scaleAspectFill)
+            let request = ImageRequest(
+                url: URL(string: self.itemArray[indexPath.row].image)!
+                )
+            Nuke.loadImage(with: request, into: cell1!.imageImg)
+            
             cell1?.name.text = itemArray[indexPath.row].title
             cell1?.brand.text = itemArray[indexPath.row].brand
             cell1?.qty.text = "QTY:    \(itemArray[indexPath.row].qty)"

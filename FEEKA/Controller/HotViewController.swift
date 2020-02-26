@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
+import Nuke
 
 class HotViewController: UIViewController {
 
@@ -133,20 +134,36 @@ class HotViewController: UIViewController {
                         
                           let image = i["image"].stringValue
                             if brandCount == 0 {
-                                self.allFaceImg.downloaded(from: image)
+                               // self.allFaceImg.downloaded(from: image)
+                                let request = ImageRequest(
+                                    url: URL(string: image)!
+                                )
+                                Nuke.loadImage(with: request, into: self.allFaceImg)
                                 self.hotListId.append(i["id"].stringValue)
                                 //name
                                 self.allFaceLbl.text = "\(i["name"].stringValue)"
                             } else if brandCount == 1 {
-                                self.brandCareImg.downloaded(from: image)
+                               // self.brandCareImg.downloaded(from: image)
+                                let request = ImageRequest(
+                                    url: URL(string: image)!
+                                )
+                                Nuke.loadImage(with: request, into: self.brandCareImg)
                                 self.AllBrandLbl.text = "\(i["name"].stringValue)"
                                 self.hotListId.append(i["id"].stringValue)
                             } else if brandCount == 2 {
-                                self.allBodyImg.downloaded(from: image)
+                               // self.allBodyImg.downloaded(from: image)
+                                let request = ImageRequest(
+                                    url: URL(string: image)!
+                                )
+                                Nuke.loadImage(with: request, into: self.allBodyImg)
                                 self.allBodyLbl.text = "\(i["name"].stringValue)"
                                 self.hotListId.append(i["id"].stringValue)
                             } else if brandCount == 3 {
-                                self.ConditionerImg.downloaded(from: image)
+                                //self.ConditionerImg.downloaded(from: image)
+                                let request = ImageRequest(
+                                    url: URL(string: image)!
+                                )
+                                Nuke.loadImage(with: request, into: self.ConditionerImg)
                                 self.allConditionerLbl.text = "\(i["name"].stringValue)"
                                 self.hotListId.append(i["id"].stringValue)
                             }
@@ -183,7 +200,11 @@ extension HotViewController: UICollectionViewDelegate, UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "list", for: indexPath) as? HotCollectionViewCell
-        cell?.productImg.downloaded(from: dataList[indexPath.row].image)
+        //cell?.productImg.downloaded(from: dataList[indexPath.row].image)
+        let request = ImageRequest(
+            url: URL(string: dataList[indexPath.row].image)!
+        )
+        Nuke.loadImage(with: request, into: cell!.productImg)
         cell?.productBrand.text = dataList[indexPath.row].brand
         cell?.productTitle.text = dataList[indexPath.row].title
         cell?.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
