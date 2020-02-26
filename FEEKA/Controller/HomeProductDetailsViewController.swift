@@ -40,6 +40,13 @@ class HomeProductDetailsViewController: UIViewController , UIViewControllerTrans
     var sale = [Int]()
     var brandId = ""
     var isaddingSale = true
+    var productCategorie = ""
+    var productType =  ""
+    var brand = ""
+    var color = ""
+    var filterMaxVaue = ""
+    var filterMinValue = ""
+    var isSort = true
     override func viewDidLoad() {
         super.viewDidLoad()
         //gender = userDefault.value(forKey: "Gender") as! Int
@@ -47,6 +54,13 @@ class HomeProductDetailsViewController: UIViewController , UIViewControllerTrans
         print(gender)
         apiCalling(brand: "", brandId: "\(brandId)", categorie: categorie, color: "", filter: "", gender: "\(gender)", maxPrice: "", minPrice: "", productCategorie: "", productType: "", searchTag: "", size: "", sortParameter: "", tagId: "\(tagId)", currentPage: currentPage)
         topApi(brand: "", brandId: "", categorie: categorie, color: "", filter: "", gender: "\(gender)", maxPrice: "", minPrice: "", productCategorie: "", productType: "", searchTag: "", size: "", sortParameter: "", tagId: "\(tagId)", currentPage: currentPage)
+        self.userDefault.setValue("", forKey: "product categorie")
+        self.userDefault.setValue("", forKey: "product type")
+        self.userDefault.setValue("", forKey: "brand")
+        self.userDefault.setValue("", forKey: "color")
+        self.userDefault.setValue("", forKey: "filterMaxValue")
+        self.userDefault.setValue("", forKey: "filterMinValue")
+
         showHideListView.layer.borderColor = UIColor.black.cgColor
         navView.setShadow()
         showHideListView.layer.borderWidth = 1
@@ -125,13 +139,13 @@ class HomeProductDetailsViewController: UIViewController , UIViewControllerTrans
     isTotal = true
     currentPage = 1
     dataList = [hireCareParameter]()
-    let productCategorie = userDefault.value(forKey: "product categorie") as! String
-   let productType =  userDefault.value(forKey: "product type") as! String
-   let brand = userDefault.value(forKey: "brand") as! String
-   let color = userDefault.value(forKey: "color") as! String
+    productCategorie = userDefault.value(forKey: "product categorie") as! String
+    productType =  userDefault.value(forKey: "product type") as! String
+    brand = userDefault.value(forKey: "brand") as! String
+    color = userDefault.value(forKey: "color") as! String
     isaddingSale = true
-   let filterMaxVaue = userDefault.value(forKey: "filterMaxValue") as! String
-    let filterMinValue = userDefault.value(forKey: "filterMinValue") as! String
+    filterMaxVaue = userDefault.value(forKey: "filterMaxValue") as! String
+    filterMinValue = userDefault.value(forKey: "filterMinValue") as! String
         apiCalling(brand: brand, brandId: "", categorie: "\(categorie)", color: color, filter: "1", gender: "\(gender)", maxPrice: "\(filterMaxVaue)", minPrice: "\(filterMinValue)", productCategorie: "\(productCategorie)", productType: productType, searchTag: "", size: "", sortParameter: "2", tagId: "\(tagId)", currentPage: 1)
     }
     @IBAction func backBtn(_ sender: Any) {
@@ -188,7 +202,7 @@ class HomeProductDetailsViewController: UIViewController , UIViewControllerTrans
                     }
                      // print(totalPage)
                       for i in jsonResponse["products"].arrayValue {
-                          
+                        
                         let title = i["title"].stringValue
                         let tag = i["tag"].intValue
                         let sale = i["sale"].intValue
@@ -212,13 +226,7 @@ class HomeProductDetailsViewController: UIViewController , UIViewControllerTrans
                       self.productListCollView.reloadData()
                       self.productListTblView.reloadData()
 
-                    self.userDefault.setValue("", forKey: "product categorie")
-                    self.userDefault.setValue("", forKey: "product type")
-                    self.userDefault.setValue("", forKey: "brand")
-                    self.userDefault.setValue("", forKey: "color")
-                    self.userDefault.setValue("", forKey: "filterMaxValue")
-                    self.userDefault.setValue("", forKey: "filterMinValue")
-                  
+                                      
                   }else {
                     let alertView = ShowAlertView().alertView(title: "No Product Found", action: "OK", message: "")
                     self.present(alertView, animated: true, completion: nil)
@@ -338,12 +346,29 @@ extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollecti
                 filterVC!.modalPresentationStyle = .overFullScreen
                 filterVC!.transitioningDelegate = self
                 present(filterVC!, animated: true, completion: nil)
+            }else if indexPath.row == 1{
+               
+                let alertVC = UIAlertController(title: "SORT", message: "", preferredStyle: .actionSheet)
+                alertVC.addAction(UIAlertAction(title: "Newest", style: .default, handler: { (_) in
+                    self.dataList = [hireCareParameter]()
+                    self.apiCalling(brand: self.brand, brandId: "", categorie: "\(self.categorie)", color: self.color, filter: "1", gender: "\(self.gender)", maxPrice: "\(self.filterMaxVaue)", minPrice: "\(self.filterMinValue)", productCategorie: "\(self.productCategorie)", productType: self.productType, searchTag: "", size: "", sortParameter: "2", tagId: "\(self.tagId)", currentPage: 1)
+                }))
+                alertVC.addAction(UIAlertAction(title: "Price (low to high)", style: .default, handler: { (_) in
+                    self.dataList = [hireCareParameter]()
+                    self.apiCalling(brand: self.brand, brandId: "", categorie: "\(self.categorie)", color: self.color, filter: "", gender: "\(self.gender)", maxPrice: "\(self.filterMaxVaue)", minPrice: "\(self.filterMinValue)", productCategorie: "\(self.productCategorie)", productType: self.productType, searchTag: "", size: "", sortParameter: "3", tagId: "\(self.tagId)", currentPage: 1)
+                }))
+                alertVC.addAction(UIAlertAction(title: "Price (high to low)", style: .default, handler: { (_) in
+                    self.dataList = [hireCareParameter]()
+                    self.apiCalling(brand: self.brand, brandId: "", categorie: "\(self.categorie)", color: self.color, filter: "", gender: "\(self.gender)", maxPrice: "\(self.filterMaxVaue)", minPrice: "\(self.filterMinValue)", productCategorie: "\(self.productCategorie)", productType: self.productType, searchTag: "", size: "", sortParameter: "4", tagId: "\(self.tagId)", currentPage: 1)
+                }))
+                self.present(alertVC, animated: true, completion: nil)
+                
             }  else if indexPath.row > 1{
                 isTotal = true
                    currentPage = 1
                    dataList = [hireCareParameter]()
                 print(dataList)
-                       apiCalling(brand: "", brandId: "", categorie: "\(categorie)", color: "", filter: "1", gender: "\(gender)", maxPrice: "", minPrice: "", productCategorie: "\(productTemrsId[indexPath.row - 2])", productType: "", searchTag: "", size: "", sortParameter: "2", tagId: "\(tagId)", currentPage: 1)
+                       apiCalling(brand: "", brandId: "", categorie: "\(categorie)", color: "", filter: "", gender: "\(gender)", maxPrice: "", minPrice: "", productCategorie: "\(productTemrsId[indexPath.row - 2])", productType: "", searchTag: "", size: "", sortParameter: "2", tagId: "\(tagId)", currentPage: 1)
             }
             
             print("selected")

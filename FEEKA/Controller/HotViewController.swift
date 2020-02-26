@@ -15,6 +15,7 @@ import Nuke
 class HotViewController: UIViewController {
 
     @IBOutlet weak var allFaceImg: UIImageView!
+    @IBOutlet weak var navView: UIView!
     @IBOutlet weak var brandCareImg: UIImageView!
     @IBOutlet weak var allBodyImg: UIImageView!
     @IBOutlet weak var ConditionerImg: UIImageView!
@@ -33,6 +34,7 @@ class HotViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         gender = userDefault.value(forKey: "Gender") as! Int
+        navView.setShadow()
        setUpView()
         apiCalling()
     }

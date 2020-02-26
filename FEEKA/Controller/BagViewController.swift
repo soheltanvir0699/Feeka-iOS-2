@@ -37,22 +37,17 @@ class BagViewController: UIViewController, UIViewControllerTransitioningDelegate
     override func viewWillAppear(_ animated: Bool) {
         
        
-        if  userdefault.value(forKey: "customer_id") as! String != "" {
-            customerId = userdefault.value(forKey: "customer_id") as! String
-        }
-        if userdefault.value(forKey: "customer_id") as? String == "" {
-            signOutAction()
+//        if  userdefault.value(forKey: "customer_id") as! String != "" {
+            
+//        }
+      
             if userdefault.value(forKey: "customer_id") as? String == nil {
                 
                 signOutAction()
                 
-            }
-            
-        }
-        bagApiCalling()
-        if userdefault.value(forKey: "customer_id") as? String == nil {
-            customerId = userdefault.value(forKey: "customer_id") as! String
-            signOutAction()
+            }else {
+                customerId = userdefault.value(forKey: "customer_id") as! String
+                bagApiCalling()
         }
         
     }
@@ -220,11 +215,14 @@ extension BagViewController: UITableViewDataSource, UITableViewDelegate {
         } else {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? BagFirstCell
             //cell?.productImg.downloaded(from: dataList[indexPath.row].image)
+            if (self.dataList[indexPath.row].image).isEmpty != true {
             let request = ImageRequest(
                 url: URL(string: self.dataList[indexPath.row].image)!
                 )
+                
             Nuke.loadImage(with: request, into: cell!.productImg)
             cell?.productPrice.text = "R \(dataList[indexPath.row].price)"
+            }
             cell?.qtyBtn.addTarget(self, action: #selector(showQTY(sender:)), for: .touchUpInside)
             cell?.qtyBtn.tag = indexPath.row + 3000
             cell?.productName.text = dataList[indexPath.row].title

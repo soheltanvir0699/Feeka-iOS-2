@@ -86,7 +86,7 @@ class HomeMenGroomingViewController: UIViewController {
                         
                         let image = i["image"].stringValue
                           print(title)
-                        let brand = ""
+                        let brand = i["brand"].arrayValue[0].stringValue
                         let reviewCount1 = JSON(i["review"])
                         let regularPrice = i["regular_price"].stringValue
                         let salePrice = i["sale_price"].stringValue

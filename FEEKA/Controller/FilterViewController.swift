@@ -17,6 +17,7 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var listTbl: UITableView!
     var indicator: NVActivityIndicatorView!
     var filterList = ["product_categorie", "product_type", "brand", "price", "color"]
+    var filterList1 = ["product categorie", "product type", "brand", "price", "color"]
     let userDefault = UserDefaults.standard
     var filterData = [filterListData]()
     var categorie = ""
@@ -154,7 +155,7 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! FilterCell
-        cell.productLbl.text = filterList[indexPath.row].uppercased()
+        cell.productLbl.text = filterList1[indexPath.row].uppercased()
         cell.productView.layer.borderColor = UIColor.black.cgColor
         cell.productView.layer.borderWidth = 1
         cell.clipsToBounds = true

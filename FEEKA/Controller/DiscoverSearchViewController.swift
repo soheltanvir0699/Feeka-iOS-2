@@ -38,7 +38,7 @@ class DiscoverSearchViewController: UIViewController,UITextFieldDelegate {
        }
        
        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        discoverVC(textfield: textField)
+               discoverVC(textfield: textField)
                return textField.resignFirstResponder()
        }
        override func viewWillAppear(_ animated: Bool) {
@@ -49,6 +49,7 @@ class DiscoverSearchViewController: UIViewController,UITextFieldDelegate {
     func discoverVC(textfield: UITextField) {
         let discoverVC = storyboard?.instantiateViewController(withIdentifier: "DiscoverViewController") as! DiscoverViewController
         discoverVC.searchTag = textfield.text!
+        discoverVC.navText = textfield.text!
         arrayList.append(textfield.text!)
         userdefault.setValue(arrayList, forKey: "arrayList")
         navigationController?.pushViewController(discoverVC, animated: true)
@@ -79,6 +80,7 @@ extension DiscoverSearchViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let discoverVC = storyboard?.instantiateViewController(withIdentifier: "DiscoverViewController") as! DiscoverViewController
         discoverVC.searchTag = arrayList[indexPath.row]
+        discoverVC.navText = arrayList[indexPath.row]
         navigationController?.pushViewController(discoverVC, animated: true)
     }
     

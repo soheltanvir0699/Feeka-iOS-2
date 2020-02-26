@@ -12,7 +12,7 @@ import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
 
-class ProductDetailsViewController: UIViewController {
+class ProductDetailsViewController: UIViewController,UITextFieldDelegate {
 
     @IBOutlet weak var discriptonBorder: UILabel!
     @IBOutlet weak var infoBorder: UILabel!
@@ -50,7 +50,27 @@ class ProductDetailsViewController: UIViewController {
         reviewCount.text = "(\(ratingCount!))"
         imgView.downloaded(from: self.imageList[0])
         imgView.contentMode = .scaleAspectFill
-        setDate()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+          NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        hideKeyBoard()
+    }
+    
+   @objc func keyboardWillShow(notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+
+    }
+
+    @objc func keyboardWillHide(notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0 {
+                self.view.frame.origin.y += keyboardSize.height
+            }
+        }
     }
     
     @IBAction func discriptionAction(_ sender: Any) {

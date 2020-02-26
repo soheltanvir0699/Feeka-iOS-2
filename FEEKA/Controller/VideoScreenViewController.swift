@@ -42,11 +42,14 @@ class VideoScreenViewController: UIViewController {
         var isCheck = ""
         if userdefault.value(forKey: "isOpen") != nil {
             isCheck = userdefault.value(forKey: "isOpen") as! String
+            if isCheck == "1" {
+            perform(#selector(pushAction), with: nil, afterDelay: 0.2)
+            }
+            
+        }else {
+          userdefault.setValue("1", forKey: "isOpen")
         }
-        if isCheck == "1" {
-        perform(#selector(pushAction), with: nil, afterDelay: 0.2)
-        }
-        userdefault.setValue("1", forKey: "isOpen")
+        
     }
     
     @objc func pushAction () {

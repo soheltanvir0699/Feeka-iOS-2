@@ -44,7 +44,29 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideKeyboard)))
         setUpView()
         indicator = self.indicator()
-    }
+      NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+             
+               NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+             hideKeyBoard()
+         }
+         
+        @objc func keyboardWillShow(notification: Notification) {
+             if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                 if self.view.frame.origin.y == 0{
+                     self.view.frame.origin.y -= keyboardSize.height
+                 }
+             }
+
+         }
+
+         @objc func keyboardWillHide(notification: Notification) {
+             if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                 if self.view.frame.origin.y != 0 {
+                     self.view.frame.origin.y += keyboardSize.height
+                 }
+             }
+         }
+         
     
     func setUpView() {
         
