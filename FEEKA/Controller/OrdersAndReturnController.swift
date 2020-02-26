@@ -13,6 +13,7 @@ import NVActivityIndicatorView
 
 class OrdersAndReturnController: UIViewController , UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var track: UIButton!
     var indicator:NVActivityIndicatorView!
     var customerId = ""
     let userdefault = UserDefaults.standard
@@ -30,11 +31,19 @@ class OrdersAndReturnController: UIViewController , UITableViewDataSource, UITab
         cell?.bgView.layer.shadowOpacity = 0.3
         cell?.bgView.layer.shadowOffset = .zero
         cell?.bgView.layer.shadowRadius = 0.5
+        cell?.trackOrder.tag = indexPath.row + 1000
+        cell?.viewOrder.tag = indexPath.row + 2000
+        cell?.trackOrder.addTarget(self, action: #selector(trackAction(sender:)), for: .touchUpInside)
+        cell?.viewOrder.addTarget(self, action: #selector(viewOrder(sender:)), for: .touchUpInside)
         cell?.selectedBackgroundView = UIView()
         cell?.date.text = dataList[indexPath.row].date
         cell?.orderId.text = dataList[indexPath.row].orderId
         cell?.totalPrice.text = dataList[indexPath.row].totalPrice
         return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
     
     @IBOutlet weak var navView: UIView!
@@ -53,10 +62,20 @@ class OrdersAndReturnController: UIViewController , UITableViewDataSource, UITab
         dismiss(animated: true, completion: nil)
         NotificationCenter.default.post(name: Notification.Name("backWeb"), object: nil, userInfo: nil)
     }
-    @IBAction func trackAction(_ sender: Any) {
+   @objc func trackAction(sender: UIButton) {
+    let indexpath = sender.tag - 1000
+        let vc = storyboard?.instantiateViewController(withIdentifier: "TrackController") as? TrackController
+    vc?.orderIdTxt = dataList[indexpath].orderId
+        vc?.modalPresentationStyle = .fullScreen
+        present(vc!, animated: true, completion: nil)
         
     }
-    @IBAction func viewOrder(_ sender: Any) {
+@objc func viewOrder(sender: UIButton) {
+    let indexpath = sender.tag - 2000
+    let vc = storyboard?.instantiateViewController(withIdentifier: "ExangeRefundController") as? ExangeRefundController
+    vc?.orderId = dataList[indexpath].orderId
+    vc?.modalPresentationStyle = .fullScreen
+    present(vc!, animated: true, completion: nil)
     }
     
     

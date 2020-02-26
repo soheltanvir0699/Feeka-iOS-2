@@ -131,6 +131,7 @@ class DeliveryViewController: UIViewController {
                         self.country.text = country
                         self.isAddress = false
                         self.indicator.stopAnimating()
+                        StoredProperty.addressData = self.dataList
                     }
                 } else {
                     self.view.makeToast("Address Not Found")

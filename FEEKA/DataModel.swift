@@ -19,6 +19,7 @@ class StoredProperty {
     static var reviewAllData = [reviewDataModel]()
     static var singleProductDetailsList = [singleProductDetailsModel]()
     static var facebookData = [facebookResponseModel]()
+    static var addressData = [getCustomerDataModel]()
     
 }
 
