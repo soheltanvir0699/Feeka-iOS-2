@@ -140,12 +140,12 @@ class HomeViewController: UIViewController {
                             url: URL(string: i["image"].stringValue)!
                         )
                         Nuke.loadImage(with: request, into: self.hairCareImg)
-                        self.hireCareLbl.text = i["title"].stringValue.uppercased()
+                        self.hireCareLbl.text = "Hair Care"
                     }
                     if i["title"] == "Skincare" {
                         let image = UIImage.gif(url: i["image"].stringValue)
                         self.skincareImg.image = image
-                        self.skinCareLbl.text = i["title"].stringValue
+                        self.skinCareLbl.text = "Skincare"
                     }
                     if i["title"] == "Makeup" {
                         let image = UIImage.gif(url: i["image"].stringValue)
@@ -255,7 +255,7 @@ class HomeViewController: UIViewController {
     @objc func hairCare(tapGestureRecognizer: UITapGestureRecognizer) {
         let homeProductDetails = storyboard?.instantiateViewController(withIdentifier: "HomeProductDetailsViewController") as! HomeProductDetailsViewController
         homeProductDetails.categorie = "337"
-        homeProductDetails.productNam = "HAIR AND BEARD CARE"
+        homeProductDetails.productNam = "HAIR CARE"
         self.navigationController?.pushViewController(homeProductDetails, animated: true)
     }
     @objc func saleCare(tapGestureRecognizer: UITapGestureRecognizer) {
