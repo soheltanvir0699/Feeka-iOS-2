@@ -38,13 +38,14 @@ class HomeProductDetailsViewController: UIViewController , UIViewControllerTrans
     let userDefault = UserDefaults.standard
     var tag = [Int]()
     var sale = [Int]()
+    var brandId = ""
     var isaddingSale = true
     override func viewDidLoad() {
         super.viewDidLoad()
         //gender = userDefault.value(forKey: "Gender") as! Int
         userDefault.setValue(categorie, forKey: "currentCategorie")
         print(gender)
-        apiCalling(brand: "", brandId: "", categorie: categorie, color: "", filter: "", gender: "\(gender)", maxPrice: "", minPrice: "", productCategorie: "", productType: "", searchTag: "", size: "", sortParameter: "", tagId: "\(tagId)", currentPage: currentPage)
+        apiCalling(brand: "", brandId: "\(brandId)", categorie: categorie, color: "", filter: "", gender: "\(gender)", maxPrice: "", minPrice: "", productCategorie: "", productType: "", searchTag: "", size: "", sortParameter: "", tagId: "\(tagId)", currentPage: currentPage)
         topApi(brand: "", brandId: "", categorie: categorie, color: "", filter: "", gender: "\(gender)", maxPrice: "", minPrice: "", productCategorie: "", productType: "", searchTag: "", size: "", sortParameter: "", tagId: "\(tagId)", currentPage: currentPage)
         showHideListView.layer.borderColor = UIColor.black.cgColor
         navView.setShadow()

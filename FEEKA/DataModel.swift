@@ -154,3 +154,9 @@ struct orderModel {
     var orderId:String
     var totalPrice:String
 }
+
+struct brandDataModel {
+    var name:String
+    var image:String
+    var id:String
+}

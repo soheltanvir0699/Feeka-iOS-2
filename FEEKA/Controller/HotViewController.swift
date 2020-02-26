@@ -55,6 +55,7 @@ class HotViewController: UIViewController {
        let DiscoverViewController = storyboard?.instantiateViewController(withIdentifier: "DiscoverViewController") as! DiscoverViewController
         DiscoverViewController.category = hotListId[0]
         DiscoverViewController.searchTag = "HAIR MOISTURISERS"
+        DiscoverViewController.navText = "HAIR MOISTURISERS"
         
         self.navigationController?.pushViewController(DiscoverViewController, animated: true)
     }
@@ -64,6 +65,7 @@ class HotViewController: UIViewController {
          let DiscoverViewController = storyboard?.instantiateViewController(withIdentifier: "DiscoverViewController") as! DiscoverViewController
         DiscoverViewController.category = hotListId[1]
         DiscoverViewController.searchTag = "ALL SHAMPOO"
+        DiscoverViewController.navText = "ALL SHAMPOO"
                self.navigationController?.pushViewController(DiscoverViewController, animated: true)
     }
     
@@ -71,6 +73,7 @@ class HotViewController: UIViewController {
          let DiscoverViewController = storyboard?.instantiateViewController(withIdentifier: "DiscoverViewController") as! DiscoverViewController
         DiscoverViewController.category = hotListId[2]
         DiscoverViewController.searchTag = "CONDITIONERS"
+        DiscoverViewController.navText = "CONDITIONERS"
                self.navigationController?.pushViewController(DiscoverViewController, animated: true)
     }
     
@@ -78,6 +81,8 @@ class HotViewController: UIViewController {
          let DiscoverViewController = storyboard?.instantiateViewController(withIdentifier: "DiscoverViewController") as! DiscoverViewController
         DiscoverViewController.category = hotListId[3]
         DiscoverViewController.searchTag = "FACE MOISTURISERS"
+        DiscoverViewController.navText = "FACE MOISTURISERS"
+        
                self.navigationController?.pushViewController(DiscoverViewController, animated: true)
     }
     

@@ -31,10 +31,12 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate,UIColle
     var gender: Int = 2
     var isTotal = true
     var category = ""
+    var navText = ""
     var productCategoryList = [String]()
     var productTemrsId = [String]()
     var tagList = [Int]()
     var saleList = [Int]()
+    var brandId = ""
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -147,7 +149,7 @@ func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPat
         setUpView()
         navView.setShadow()
         indicator = self.indicator()
-         apiCalling(brand: "", brandId: "", categorie: "\(category)", color: "", filter: "", gender: "\(gender)", maxPrice: "", minPrice: "", productCategorie: "", productType: "", searchTag: "\(searchTag)", size: "", sortParameter: "", tagId: "", currentPage: currentPage)
+         apiCalling(brand: "", brandId: "\(brandId)", categorie: "\(category)", color: "", filter: "", gender: "\(gender)", maxPrice: "", minPrice: "", productCategorie: "", productType: "", searchTag: "\(searchTag)", size: "", sortParameter: "", tagId: "", currentPage: currentPage)
         listView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideShowTable)))
         
     }
@@ -173,7 +175,7 @@ func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPat
         listView.layer.borderColor = UIColor.black.cgColor
         shortBtn.layer.borderWidth = 1
         shortBtn.layer.borderColor = UIColor.black.cgColor
-        searchTxt.text = searchTag
+        searchTxt.text = navText
     }
     
     

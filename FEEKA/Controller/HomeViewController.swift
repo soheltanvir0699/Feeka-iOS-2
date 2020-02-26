@@ -66,10 +66,11 @@ class HomeViewController: UIViewController {
         navView.setShadow()
         setUpView()
         activityIndicator = self.indicator()
+        homeRequest()
     }
     
     
-    override func viewWillAppear(_ animated: Bool) {
+     func homeRequest() {
         activityIndicator.startAnimating()
         guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/dashboard.php") else {
             return
@@ -193,9 +194,7 @@ class HomeViewController: UIViewController {
     }
     
     @objc func brand(tapGestureRecognizer: UITapGestureRecognizer) {
-        let homeProductDetails = storyboard?.instantiateViewController(withIdentifier: "HomeProductDetailsViewController") as! HomeProductDetailsViewController
-        homeProductDetails.categorie = "134"
-        homeProductDetails.productNam = "Brands"
+        let homeProductDetails = storyboard?.instantiateViewController(withIdentifier: "BrandDetailsController") as! BrandDetailsController
         self.navigationController?.pushViewController(homeProductDetails, animated: true)
     }
     

@@ -14,6 +14,8 @@
 		8D05C27A23FD5520002E3D7B /* HomeProductDetailsMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D05C27923FD5520002E3D7B /* HomeProductDetailsMenuCell.swift */; };
 		8D2837EF24048D7F006DE71D /* ipayLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D2837EE24048D7E006DE71D /* ipayLogo.png */; };
 		8D2837F1240492B9006DE71D /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2837F0240492B9006DE71D /* PaymentViewController.swift */; };
+		8D3A3C7324067E4E00C1B952 /* BrandDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3A3C7224067E4E00C1B952 /* BrandDetailsController.swift */; };
+		8D3A3C7524067FCD00C1B952 /* BrandCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3A3C7424067FCD00C1B952 /* BrandCell.swift */; };
 		8D3D7B9823F2C7F1005A3479 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D7B9723F2C7F1005A3479 /* AppDelegate.swift */; };
 		8D3D7B9A23F2C7F1005A3479 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D7B9923F2C7F1005A3479 /* SceneDelegate.swift */; };
 		8D3D7B9C23F2C7F1005A3479 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D7B9B23F2C7F1005A3479 /* LogInViewController.swift */; };
@@ -96,6 +98,8 @@
 		8D05C27923FD5520002E3D7B /* HomeProductDetailsMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProductDetailsMenuCell.swift; sourceTree = "<group>"; };
 		8D2837EE24048D7E006DE71D /* ipayLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipayLogo.png; sourceTree = "<group>"; };
 		8D2837F0240492B9006DE71D /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
+		8D3A3C7224067E4E00C1B952 /* BrandDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandDetailsController.swift; sourceTree = "<group>"; };
+		8D3A3C7424067FCD00C1B952 /* BrandCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandCell.swift; sourceTree = "<group>"; };
 		8D3D7B9423F2C7F1005A3479 /* FEEKA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FEEKA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D3D7B9723F2C7F1005A3479 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D3D7B9923F2C7F1005A3479 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -228,6 +232,7 @@
 				8D2837F0240492B9006DE71D /* PaymentViewController.swift */,
 				C458547F23F9A5FD00C23B49 /* DiscoverSearchViewController.swift */,
 				C464B0CE23F6653600C292EE /* DiscoverViewController.swift */,
+				8D3A3C7224067E4E00C1B952 /* BrandDetailsController.swift */,
 				8D67083223F51DCF001DC494 /* MoreViewController.swift */,
 				8D00D5A924056C8C0061EE8E /* QuizFilterController.swift */,
 				8D88FD322402715E00E5DC97 /* DeliveryViewController.swift */,
@@ -260,6 +265,7 @@
 				C4BD14A723F57E2000B5DBA5 /* HotCollectionViewCell.swift */,
 				8D00D5A724056C5E0061EE8E /* QuizCell.swift */,
 				8D9E1EC024000EF900B463C1 /* FeaturedCell.swift */,
+				8D3A3C7424067FCD00C1B952 /* BrandCell.swift */,
 				8D6868CF23FD73F5008638F7 /* FilterDetailsCell.swift */,
 				8DF3554D2400F0640006FDB1 /* WishListCell.swift */,
 				8D3D7BA223F2C7F3005A3479 /* LaunchScreen.storyboard */,
@@ -468,6 +474,7 @@
 				8D6868CE23FD730C008638F7 /* FilterDetailsController.swift in Sources */,
 				C4ADA26023F693FE00F4B5E9 /* DiscoverDetailsViewController.swift in Sources */,
 				8D6868D423FD8D57008638F7 /* Extension+UIView.swift in Sources */,
+				8D3A3C7524067FCD00C1B952 /* BrandCell.swift in Sources */,
 				8DE87F1D2404FBDF00253D1A /* ConfrimSecondCell.swift in Sources */,
 				C461214A23F98335003611A1 /* AddAddressDetailsViewController.swift in Sources */,
 				8D6868D023FD73F5008638F7 /* FilterDetailsCell.swift in Sources */,
@@ -494,6 +501,7 @@
 				8DE87F1B2404FBCB00253D1A /* ConfirmFirstCell.swift in Sources */,
 				C4BC808B23F9814F00FA5873 /* AddAddressViewController.swift in Sources */,
 				8D43414E240461C300CF9C03 /* EditChangeAddressController.swift in Sources */,
+				8D3A3C7324067E4E00C1B952 /* BrandDetailsController.swift in Sources */,
 				C461214C23F98A1D003611A1 /* WishListViewController.swift in Sources */,
 				8D6868CC23FD6D74008638F7 /* FilterCell.swift in Sources */,
 				C4D4BEEF23F7B42D00277DF3 /* TabBarView.swift in Sources */,

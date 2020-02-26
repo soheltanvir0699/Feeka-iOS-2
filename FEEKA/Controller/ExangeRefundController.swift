@@ -68,19 +68,24 @@ class ExangeRefundController: UIViewController {
     @IBAction func refundAction(_ sender: Any) {
         let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
         alert.addTextField { (textfield) in
+            textfield.placeholder = "Enter Reason"
             
         }
 
-        alert.addAction(UIAlertAction(title: "Send", style: .default, handler: { (action) in
-            
+        alert.addAction(UIAlertAction(title: "SEND", style: .default, handler: { (action) in
+            let text = alert.textFields![0].text
+            self.refundRequest(reason: text!, reqType: "4")
+           // self.dismiss(animated: true, completion: nil)
         }))
         alert.view.backgroundColor = .black
-        alert.view.tintColor = .white
+        alert.view.tintColor = .black
         self.present(alert, animated: true, completion: nil)
         
     }
     
-
+    func dismiss() {
+        dismiss(animated: true, completion: nil)
+    }
     @IBAction func back(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -94,16 +99,20 @@ class ExangeRefundController: UIViewController {
     @IBAction func exchangeAction(_ sender: Any) {
         let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
               alert.addTextField { (textfield) in
-                  
+                textfield.placeholder = "Enter Reason"
+                
               }
 
-              alert.addAction(UIAlertAction(title: "Send", style: .default, handler: { (action) in
-                  
+              alert.addAction(UIAlertAction(title: "SEND", style: .default, handler: { (action) in
+                  let text = alert.textFields![0].text
+                  self.refundRequest(reason: text!, reqType: "6")
               }))
               alert.view.backgroundColor = .black
               alert.view.tintColor = .white
               self.present(alert, animated: true, completion: nil)
+        
     }
+    
     @IBAction func backBtn(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -193,9 +202,62 @@ class ExangeRefundController: UIViewController {
        
        
        }
+    
+    
+    func  refundRequest(reason: String, reqType:String) {
+        
+    indicator = self.indicator()
+           indicator.startAnimating()
+           guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/order_return_request.php") else {
+               return
+           }
+        let parameter   = ["customer_id":"\(self.customerId)", "order_id": "\(orderId)","request_type":"\(reqType)", "return_reason": "\(reason)"]
+        print(parameter)
+        
+           
+           Alamofire.request(urlToExcute, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+           
+           if let error = response.error {
+               self.indicator.stopAnimating()
+               let alertView = ShowAlertView().alertView(title: "Something went wrong", action: "OK", message: "Please try again.")
+               self.present(alertView, animated: true, completion: nil)
+               print(error)
+               
+           }
+           
+               if let response = response.result.value {
+                   let jsonResponse = JSON(response)
+                                    
+                print(jsonResponse)
+               
+                if jsonResponse["status"].stringValue == "1" {
+                   
+                    let alertView = ShowAlertView().alertView(title: "\(jsonResponse["message"].stringValue)", action: "OK", message: "")
+                    self.present(alertView, animated: true, completion: nil)
+
+                } else {
+                    
+                let alertView = ShowAlertView().alertView(title: "Something went wrong", action: "OK", message: "")
+                self.present(alertView, animated: true, completion: nil)
+                self.indicator.stopAnimating()
+                }
+                    
+                } else {
+                    let alertView = ShowAlertView().alertView(title: "Something went wrong", action: "OK", message: "")
+                    self.present(alertView, animated: true, completion: nil)
+                }
+                       self.indicator.stopAnimating()
+                   
+               
+           }
+       }
+    
+    
+    }
 
 
-}
+
+
 
 extension ExangeRefundController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
