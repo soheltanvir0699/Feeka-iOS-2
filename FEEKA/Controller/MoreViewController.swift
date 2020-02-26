@@ -77,9 +77,15 @@ class MoreViewController: UIViewController {
         signOutView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(signOutAction)))
         changePassView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(signOutAction)))
         newsletterView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(newslettersAction)))
-        orderView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(signOutAction)))
+        orderView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(orderAction)))
         deliveryView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(deliveryAction)))
         wishListView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(wishlistAction)))
+    }
+    
+    @objc func orderAction() {
+        let ordersAndReturnVC = storyboard?.instantiateViewController(withIdentifier: "OrdersAndReturnController")
+        ordersAndReturnVC?.modalPresentationStyle = .fullScreen
+        present(ordersAndReturnVC!, animated: true, completion: nil)
     }
     
     @objc func deliveryAction() {
