@@ -14,7 +14,8 @@ import NVActivityIndicatorView
 class TrackController: UIViewController {
 
     @IBOutlet weak var orderId: UILabel!
-    
+    var array = [orderandreturn]()
+    var index  = 0
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet weak var scheduled: UILabel!
     @IBOutlet weak var contact: UILabel!
@@ -44,71 +45,29 @@ class TrackController: UIViewController {
         self.postal.text = StoredProperty.addressData[0].postalCode
         self.country.text = StoredProperty.addressData[0].country
         }
+            
+            self.name.text = array[index].unit
+            self.contact.text = array[index].suburb
+            self.street.text = array[index].street
+            self.postal.text = array[index].postalCode
+            apartment.text = array[index].city
+            country.text = array[index].country
+            currenStatus.text = array[index].status
+        
         //self.contact.text = StoredProperty.addressData[0].contactNumber
        if userdefault.value(forKey: "customer_id") as? String != nil {
            customerId = userdefault.value(forKey: "customer_id") as! String
        }
         
       ordersApi()
-      getAddressApi()
+      
     }
     
     @IBAction func back(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
-    func getAddressApi() {
-        //indicator = self.indicator()
-        guard let url = URL(string: "https://feeka.co.za/json-api/route/get_address.php") else {
-                           self.view.makeToast( "Please try again later")
-                              return
-                          }
-                          
-                              let paramater = [
-                                 "customer_id":"\(customerId)"
-                              ]
-                              Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: nil).response { (response) in
-                                  self.indicator.startAnimating()
-                                  if let error = response.error {
-                                      self.indicator.stopAnimating()
-                                      let alertView = ShowAlertView().alertView(title: "Something went wrong", action: "OK", message: "Please try again.")
-                                      self.present(alertView, animated: true, completion: nil)
-                                      print(error)
-                                      
-                                  }
-                                  
-                                  if let result = response.data {
-                                      let jsonRespose = JSON(result)
-                                     
-                                      if jsonRespose["status"].stringValue == "1" {
-                                        //self.isAddress = false
-                                       let data = jsonRespose["data"].arrayValue[0]
-                                        self.name.text = "\(data["Name"].stringValue) \(data["Surname"].stringValue)"
-                                       // self.sureName1 = data["Surname"].stringValue
-                                        self.contact.text = data["Contact_Number"].stringValue
-                                        self.country.text = data["Country"].stringValue
-                                        self.street.text = data["Street_Address"].stringValue
-                                        //self.suburb1 = data["Suburb"].stringValue
-                                        self.apartment.text = data["City"].stringValue
-                                        self.postal.text = data["Postal_Code"].stringValue
-                                       // self. = data["Company"].stringValue
-                                        let addressId = data["address_id"].stringValue
-                                        self.userdefault.setValue(addressId, forKey: "address_id")
-                                        //self.updateView(self.name1, self.sureName1, self.phone1, self.country1, self.streetAdd1, self.suburb1, self.city1, self.postalCode1)
-                                       
-                                      } else {
-                                        
-                                       // self.alertView()
-                                        //self.addressView.isHidden = true
-                                       // self.defaultAddress.isHidden = true
-                                        
-                                      }
-
-                                    //  self.indicator.stopAnimating()
-                                  }
-                              
-                  }
-    }
+    
     
     func ordersApi() {
            

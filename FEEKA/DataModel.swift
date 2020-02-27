@@ -162,3 +162,18 @@ struct brandDataModel {
     var image:String
     var id:String
 }
+
+
+struct orderandreturn {
+    var name :String
+    var suburb:String
+    var unit:String
+    var apart:String
+    var company:String
+    var street:String
+    var city:String
+    var country:String
+    var postalCode:String
+    var status: String
+    
+}

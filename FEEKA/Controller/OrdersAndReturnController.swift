@@ -19,6 +19,7 @@ class OrdersAndReturnController: UIViewController , UITableViewDataSource, UITab
     let userdefault = UserDefaults.standard
     var dataList = [orderModel]()
     @IBOutlet weak var tblView: UITableView!
+    var addList = [orderandreturn]()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataList.count
@@ -65,7 +66,10 @@ class OrdersAndReturnController: UIViewController , UITableViewDataSource, UITab
    @objc func trackAction(sender: UIButton) {
     let indexpath = sender.tag - 1000
         let vc = storyboard?.instantiateViewController(withIdentifier: "TrackController") as? TrackController
-    vc?.orderIdTxt = dataList[indexpath].orderId
+        vc?.orderIdTxt = dataList[indexpath].orderId
+        vc?.array = self.addList
+    print(addList)
+        vc?.index = indexpath
         vc?.modalPresentationStyle = .fullScreen
         present(vc!, animated: true, completion: nil)
         
@@ -121,6 +125,16 @@ class OrdersAndReturnController: UIViewController , UITableViewDataSource, UITab
                         let date = dataIndex["date"].stringValue
                         let orderId = dataIndex["id"].stringValue
                         let totalPrice = dataIndex["total_price"].stringValue
+                        let subrub = dataIndex["Suburb"].stringValue
+                        let unitnumber = dataIndex["Unit_Number"].stringValue
+                        let apartment = dataIndex["Apartment"].stringValue
+                        let company = dataIndex["Company"].stringValue
+                        let street = dataIndex["Street_Address"].stringValue
+                        let city = dataIndex["City"].stringValue
+                        let country = dataIndex["Country"].stringValue
+                        let postal = dataIndex["Postal_Code"].stringValue
+                        let status = dataIndex["status"].stringValue
+                        self.addList.append(orderandreturn(name: "", suburb: subrub, unit: unitnumber, apart: apartment, company: company, street: street, city: city, country: country, postalCode: postal, status: status))
                         self.dataList.append(orderModel(date: date, orderId: orderId, totalPrice: totalPrice))
                         self.tblView.reloadData()
                     }

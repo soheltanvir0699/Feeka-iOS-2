@@ -7502,7 +7502,7 @@
                                         <subviews>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W67-SX-h6J">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="418"/>
-                                                <color key="backgroundColor" red="0.90980392156862744" green="0.89411764705882346" blue="0.89803921568627454" alpha="0.0" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.8901960784313725" green="0.87450980392156863" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="418" id="b3N-Wh-nu5"/>
                                                 </constraints>
