@@ -16,6 +16,7 @@ class HomeProductDetailsViewController: UIViewController , UIViewControllerTrans
     @IBOutlet weak var showTblBtn: UIButton!
     @IBOutlet weak var showHideView: UIView!
     @IBOutlet weak var showCollBtn: UIButton!
+    @IBOutlet weak var cutLbl: UILabel!
     @IBOutlet weak var productListCollView: UICollectionView!
     @IBOutlet weak var productListTblView: UITableView!
     @IBOutlet weak var showHideListView: UIView!
@@ -304,8 +305,18 @@ extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollecti
             } else {
                 cell?.new.isHidden = true
             }
+            if (dataList[indexPath.row].regularPrice).isEmpty != true {
             cell!.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
+                cell!.cutLbl.isHidden = false
+            } else {
+                cell!.cutLbl.isHidden = true
+            }
+            if (dataList[indexPath.row].salePrice).isEmpty != true {
             cell!.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
+                cell!.cutLbl.isHidden = false
+            }else {
+                cell!.cutLbl.isHidden = true
+            }
             return cell!
         }
         
@@ -432,8 +443,20 @@ extension HomeProductDetailsViewController: UITableViewDataSource, UITableViewDe
         } else {
             cell.new.isHidden = true
         }
-        cell.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
-        cell.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
+        if (dataList[indexPath.row].regularPrice).isEmpty != true {
+                   cell.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
+                       cell.cutLbl.isHidden = false
+                   } else {
+                       cell.cutLbl.isHidden = true
+                   }
+                   if (dataList[indexPath.row].salePrice).isEmpty != true {
+                   cell.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
+                       cell.cutLbl.isHidden = false
+                   }else {
+                       cell.cutLbl.isHidden = true
+                   }
+        
+        
         
         return cell
     }

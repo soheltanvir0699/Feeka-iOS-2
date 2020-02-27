@@ -67,10 +67,9 @@ class HomeViewController: UIViewController {
         navView.setShadow()
         
         activityIndicator = self.indicator()
-        DispatchQueue.main.async {
             
-            self.homeRequest()
-        }
+        self.homeRequest()
+        
         setUpView()
     }
     
