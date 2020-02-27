@@ -8624,6 +8624,7 @@
                         <outlet property="facebookBtn" destination="5HS-dO-YYc" id="YXZ-aH-Pw0"/>
                         <outlet property="hideShowBtn" destination="GuI-7a-Kl2" id="a3T-7J-WYz"/>
                         <outlet property="passwordField" destination="1Aj-vR-Bdh" id="TSs-34-keB"/>
+                        <outlet property="scrollView" destination="wVM-rJ-lBi" id="lr9-qV-Ras"/>
                         <outlet property="signInBtn" destination="ji5-7v-Cge" id="VzR-r4-lBJ"/>
                         <outlet property="signUpBtn" destination="3Du-zs-0vq" id="jEy-UQ-mUS"/>
                         <outlet property="singUpStringLabel" destination="TO9-w0-R37" id="UeC-YG-koK"/>
@@ -9266,6 +9267,7 @@
                         <outlet property="genderField" destination="btb-ee-0mo" id="89n-gc-yZw"/>
                         <outlet property="lastName" destination="5LY-S1-b9y" id="iSR-Jb-pjB"/>
                         <outlet property="menBtn" destination="HMZ-90-W5O" id="sgx-Wv-2HE"/>
+                        <outlet property="scrollView" destination="pmk-1k-wrl" id="a4B-qy-3Aw"/>
                         <outlet property="signUpBtn" destination="0AG-Nm-eAH" id="N7e-tI-uG4"/>
                         <outlet property="termsCheckBox" destination="NZ4-KT-Pnc" id="3aU-BN-vCD"/>
                         <outlet property="womenBtn" destination="hXP-Yu-CLs" id="uhK-G9-CzD"/>

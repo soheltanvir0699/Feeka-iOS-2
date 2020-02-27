@@ -29,6 +29,7 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var lastName: UITextField!
     @IBOutlet weak var email: UITextField!
     
+    @IBOutlet weak var scrollView: UIScrollView!
     
     var isAll = true
     var isMen = true
@@ -52,8 +53,8 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
               
              @objc func keyboardWillShow(notification: Notification) {
                   if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-                      if self.view.frame.origin.y == 0{
-                          self.view.frame.origin.y -= keyboardSize.height - 150
+                      if self.scrollView.frame.origin.y == 0{
+                          self.scrollView.frame.origin.y -= keyboardSize.height - 150
                       }
                   }
 
@@ -61,8 +62,8 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
 
               @objc func keyboardWillHide(notification: Notification) {
                   if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-                      if self.view.frame.origin.y != 0 {
-                          self.view.frame.origin.y += keyboardSize.height - 150
+                      if self.scrollView.frame.origin.y != 0 {
+                          self.scrollView.frame.origin.y += keyboardSize.height - 150
                       }
                   }
               }

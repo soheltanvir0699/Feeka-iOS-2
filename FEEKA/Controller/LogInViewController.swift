@@ -15,6 +15,7 @@ import FacebookLogin
 
 class LogInViewController: UIViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var hideShowBtn: UIButton!
@@ -38,8 +39,8 @@ class LogInViewController: UIViewController {
          
         @objc func keyboardWillShow(notification: Notification) {
              if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-                 if self.view.frame.origin.y == 0{
-                     self.view.frame.origin.y -= keyboardSize.height - 120
+                 if self.scrollView.frame.origin.y == 0{
+                     self.scrollView.frame.origin.y -= keyboardSize.height - 40
                  }
              }
 
@@ -47,8 +48,8 @@ class LogInViewController: UIViewController {
 
          @objc func keyboardWillHide(notification: Notification) {
              if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-                 if self.view.frame.origin.y != 0 {
-                     self.view.frame.origin.y += keyboardSize.height - 120
+                 if self.scrollView.frame.origin.y != 0 {
+                     self.scrollView.frame.origin.y += keyboardSize.height - 40
                  }
              }
          }
