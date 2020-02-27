@@ -21,5 +21,6 @@ class WishListCell: UICollectionViewCell {
     @IBOutlet weak var addToBag: UIButton!
     @IBOutlet weak var cosmosView: CosmosView!
     
+    @IBOutlet weak var cutLbl: UILabel!
     @IBOutlet weak var ratingCount: UILabel!
 }

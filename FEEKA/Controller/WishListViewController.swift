@@ -150,13 +150,26 @@ extension WishListViewController: UICollectionViewDelegate, UICollectionViewData
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "wishCell", for: indexPath) as! WishListCell
         cell.productName.text = wishListData[indexPath.row].productName
         cell.productBrand.text = wishListData[indexPath.row].brand
-        cell.sPrice.text = "\(wishListData[indexPath.row].productCurrency) \(wishListData[indexPath.row].sPrice)"
-        cell.rPrice.text = " \(wishListData[indexPath.row].productCurrency) \(wishListData[indexPath.row].rPrice)"
+       // cell.sPrice.text = "\(wishListData[indexPath.row].productCurrency) \(wishListData[indexPath.row].sPrice)"
+        //cell.rPrice.text = " \(wishListData[indexPath.row].productCurrency) \(wishListData[indexPath.row].rPrice)"
         cell.cosmosView.rating = wishListData[indexPath.row].rating
         cell.ratingCount.text = "(\(wishListData[indexPath.row].ratingcount))"
         let url = URL(string: wishListData[indexPath.row].productImage)
         cell.productImg.downloadedFrom(url: url!, contentMode: .scaleAspectFill)
-        
+        if (wishListData[indexPath.row].rPrice).isEmpty != true {
+            cell.rPrice.text = "R \(wishListData[indexPath.row].rPrice)"
+            cell.cutLbl.isHidden = false
+        } else {
+            cell.rPrice.text = nil
+            cell.cutLbl.isHidden = true
+        }
+        if (wishListData[indexPath.row].sPrice).isEmpty != true {
+        cell.sPrice.text = "R \(wishListData[indexPath.row].sPrice)"
+            cell.cutLbl.isHidden = false
+        }else {
+            cell.sPrice.text = nil
+            cell.cutLbl.isHidden = true
+        }
         cell.isWhish.tag = indexPath.row + 1000
         cell.addToBag.tag = indexPath.row + 2000
         cell.isWhish.addTarget(self, action: #selector(removeWhish(sender:)), for: .touchUpInside)
