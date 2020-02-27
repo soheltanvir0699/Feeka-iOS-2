@@ -65,9 +65,13 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navView.setShadow()
-        setUpView()
+        
         activityIndicator = self.indicator()
-        homeRequest()
+        DispatchQueue.main.async {
+            
+            self.homeRequest()
+        }
+        setUpView()
     }
     
     
