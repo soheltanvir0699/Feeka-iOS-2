@@ -102,15 +102,19 @@ class HomeViewController: UIViewController {
                                     print(image)
                     if i["id"] == "31" {
                         //self.coomingSoon.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
+                        
                         let request = ImageRequest(
                             url: URL(string: i["image"].stringValue)!
                         )
                         Nuke.loadImage(with: request, into: self.coomingSoon)
                     }
                     if i["title"] == "Brands" {
-                        let image = UIImage.gif(url: i["image"].stringValue)
-                        self.brands.image = image
-                        self.brandLbl.text = i["title"].stringValue
+                        DispatchQueue.main.async {
+                            let image = UIImage.gif(url: i["image"].stringValue)
+                            self.brands.image = image
+                            self.brandLbl.text = i["title"].stringValue
+                        }
+                        
                     }
                     if i["id"] == "32" {
                        // self.productFinder.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
@@ -120,9 +124,12 @@ class HomeViewController: UIViewController {
                         Nuke.loadImage(with: request, into: self.productFinder)
                     }
                     if i["title"] == "sale" {
-                        let image = UIImage.gif(url: i["image"].stringValue)
-                        self.saleImg.image = image
-                        self.saleLbl.text = i["title"].stringValue
+                        DispatchQueue.main.async {
+                            let image = UIImage.gif(url: i["image"].stringValue)
+                            self.saleImg.image = image
+                            self.saleLbl.text = i["title"].stringValue
+                        }
+                        
                     }
                     if i["title"] == "Men's Grooming" {
                         //let image = UIImage.gif(url: i["image"].stringValue)
@@ -173,7 +180,7 @@ class HomeViewController: UIViewController {
                 self.activityIndicator.stopAnimating()
             }
         }
-        //self.bagApiCalling()
+        self.bagApiCalling()
     }
     
    func bagApiCalling() {

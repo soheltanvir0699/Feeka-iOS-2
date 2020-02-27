@@ -51,6 +51,7 @@ extension ProductDetailsCollectionViewCell: UITableViewDataSource, UITableViewDe
         if dataList[indexPath.row].rating != "" {
          cell.cosomView.rating = Double(dataList[indexPath.row].rating)!
         }
+        cell.selectedBackgroundView = UIView()
         cell.date.text = dataList[indexPath.row].date
         print("is reloaded")
         return cell

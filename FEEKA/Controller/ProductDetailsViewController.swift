@@ -182,6 +182,7 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
     
         print("post data")
     indicator = self.indicator()
+    self.indicator.startAnimating()
     guard let url = URL(string: "https://feeka.co.za/json-api/route/set_review.php") else {
                        self.view.makeToast( "Please try again later")
                           return
@@ -211,7 +212,7 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
                             print(paramater)
                           Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: nil).response { (response) in
                             print(response)
-                              self.indicator.startAnimating()
+                              
                               if let error = response.error {
                                   self.indicator.stopAnimating()
                                   let alertView = ShowAlertView().alertView(title: "Something went wrong", action: "OK", message: "Please try again.")
@@ -224,7 +225,7 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
                                   let jsonRespose = JSON(result)
                                   print(jsonRespose)
                                   print(jsonRespose["message"].stringValue)
-                               self.view.makeToast( "\(jsonRespose["message"].stringValue)")
+                                self.view.makeToast( "\(jsonRespose["message"].stringValue)")
                                 if jsonRespose["message"].stringValue != "You are posting comments too quickly. Slow down." {
                                     StoredProperty.reviewAllData.insert(reviewDataModel(rating: "\(currentRating.rating)", author: self.authorName, comment: commentfield.text!, date: self.currentTime), at: 0)
                                     let indexPath = IndexPath(row: tag - 3000, section: 0)
