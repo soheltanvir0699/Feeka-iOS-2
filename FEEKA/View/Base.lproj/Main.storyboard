@@ -8278,7 +8278,7 @@
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QjT-iN-7Wh" customClass="CosmosView" customModule="Cosmos">
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QjT-iN-7Wh" customClass="CosmosView" customModule="Cosmos">
                                                                                 <rect key="frame" x="54" y="28" width="120" height="17"/>
                                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                                 <constraints>
@@ -8382,7 +8382,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="w5w-tO-R8D" firstAttribute="top" secondItem="tfN-X1-EaS" secondAttribute="bottom" constant="-2" id="4NR-Xg-kLs"/>
                             <constraint firstItem="HqL-UL-Htc" firstAttribute="trailing" secondItem="w5w-tO-R8D" secondAttribute="trailing" id="4k8-e3-K4u"/>
