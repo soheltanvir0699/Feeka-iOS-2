@@ -284,7 +284,7 @@ extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollecti
             cell?.title.text = dataList[indexPath.row].title
             cell?.brand.text = dataList[indexPath.row].brand
             cell?.review.rating = dataList[indexPath.row].rating
-            cell?.reviewText.text = "\(dataList[indexPath.row].count) review"
+            cell?.reviewText.text = "(\(dataList[indexPath.row].count))"
                cell?.imageView.image = UIImage()
            // let url = URL(string: self.dataList[indexPath.row].image)
             //cell?.imageView.downloadedFrom(url: url! , contentMode: .scaleAspectFill)

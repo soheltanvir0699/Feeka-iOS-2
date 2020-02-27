@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import Cosmos
 
 class HotCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var review: CosmosView!
     
+    @IBOutlet weak var reviewText: UILabel!
     @IBOutlet weak var productImg: UIImageView!
     
     @IBOutlet weak var productTitle: UILabel!

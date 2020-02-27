@@ -319,6 +319,13 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
                     self.ratingCount = review["count"].intValue
                     self.rating = review["ratting"].doubleValue
                     self.leftItem.text = productDetails["stock_status"].stringValue
+                    if productDetails["stock_status"].stringValue == "" {
+                        self.leftItem.isHidden = true
+                    } else {
+                        self.leftItem.isHidden = false
+                    }
+                    
+                    
                     StoredProperty.singleProductDetailsList.append(singleProductDetailsModel(content: content, color: colorData, size: sizeData))
                     //print(image)
                     self.scrollView.reloadInputViews()

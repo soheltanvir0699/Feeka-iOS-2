@@ -211,6 +211,8 @@ extension HotViewController: UICollectionViewDelegate, UICollectionViewDataSourc
         cell?.productTitle.text = dataList[indexPath.row].title
         cell?.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
         cell?.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
+        cell?.review.rating = dataList[indexPath.row].rating
+        cell?.reviewText.text = "(\(dataList[indexPath.row].count))"
         cell?.productImg.layer.cornerRadius = 5
         return cell!
     }

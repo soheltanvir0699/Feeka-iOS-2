@@ -7,15 +7,18 @@
 //
 
 import UIKit
+import Cosmos
 
 class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var productImg: UIImageView!
     @IBOutlet weak var productLbl: UILabel!
     @IBOutlet weak var brand: UILabel!
+    @IBOutlet weak var cosomView: CosmosView!
     @IBOutlet weak var regularPrice: UILabel!
     @IBOutlet weak var salePrice: UILabel!
     @IBOutlet weak var new: UILabel!
     @IBOutlet weak var sale: UILabel!
+    @IBOutlet weak var review: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

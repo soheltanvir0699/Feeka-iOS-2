@@ -125,7 +125,7 @@ extension HomeMenGroomingViewController: UICollectionViewDelegate, UICollectionV
         cell.productTitle.text = dataList[indexPath.row].title
         cell.productBrand.text = dataList[indexPath.row].brand
         cell.reviewView.rating = dataList[indexPath.row].rating
-        cell.reviewTitle.text = "\( dataList[indexPath.row].count) review"
+        cell.reviewTitle.text = "(\( dataList[indexPath.row].count))"
         let url = URL(string: self.dataList[indexPath.row].image)
         cell.productImg.downloadedFrom(url: url!, contentMode: .scaleAspectFill)
         
