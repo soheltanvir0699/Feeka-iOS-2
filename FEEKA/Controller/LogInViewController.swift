@@ -39,9 +39,10 @@ class LogInViewController: UIViewController {
          
         @objc func keyboardWillShow(notification: Notification) {
              if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-                 if self.scrollView.frame.origin.y == 0{
-                     self.scrollView.frame.origin.y -= keyboardSize.height - 40
-                 }
+                self.scrollView.frame.origin.y -= keyboardSize.height
+//                 if self.scrollView.frame.origin.y == 0{
+//                     self.scrollView.frame.origin.y -= keyboardSize.height
+//                 }
              }
 
          }
@@ -49,7 +50,7 @@ class LogInViewController: UIViewController {
          @objc func keyboardWillHide(notification: Notification) {
              if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
                  if self.scrollView.frame.origin.y != 0 {
-                     self.scrollView.frame.origin.y += keyboardSize.height - 40
+                     self.scrollView.frame.origin.y += keyboardSize.height
                  }
              }
          }
