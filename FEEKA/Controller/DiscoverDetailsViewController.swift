@@ -69,7 +69,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
                 url: URL(string: self.imageList[index])!
                 )
             Nuke.loadImage(with: request, into: imgView)
-            imgView.contentMode = .redraw
+            imgView.contentMode = .scaleAspectFit
             self.scrollView.addSubview(imgView)
             self.pageControl.numberOfPages = self.imageList.count
             

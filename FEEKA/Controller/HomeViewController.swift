@@ -67,6 +67,7 @@ class HomeViewController: UIViewController {
         navView.setShadow()
         activityIndicator = self.indicator()
         setUpView()
+        self.homeRequest()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,7 +75,7 @@ class HomeViewController: UIViewController {
 //        https://feeka.co.za/img/placeholder_1.png
 //        https://feeka.co.za/img/product_finder.png
         //self.makeUpImg.sd_setImage(with: URL(string: "https://feeka.co.za/img/for-mans.pnge"))
-       self.homeRequest()
+       
     }
     
     

@@ -2322,7 +2322,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nextStepArrow" translatesAutoresizingMaskIntoConstraints="NO" id="5Ve-8t-jGs">
-                                <rect key="frame" x="192.66666666666666" y="136" width="119.99999999999997" height="60"/>
+                                <rect key="frame" x="252.66666666666663" y="136" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="PrD-Yq-IgI"/>
                                 </constraints>
@@ -4230,8 +4230,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HbY-uS-xaa">
-                                <rect key="frame" x="15" y="345" width="399" height="0.0"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Processing - payment received and delivery scheduled" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HbY-uS-xaa">
+                                <rect key="frame" x="15" y="345" width="399" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -4246,7 +4246,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Status Updates :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kXf-un-Ae8">
-                                <rect key="frame" x="15" y="357.33333333333331" width="399" height="19.333333333333314"/>
+                                <rect key="frame" x="15" y="375.33333333333331" width="399" height="19.333333333333314"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="19.329999999999998" id="8K8-aT-g1C"/>
                                 </constraints>
@@ -4255,7 +4255,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yWl-vz-fsA">
-                                <rect key="frame" x="15" y="379" width="384" height="483"/>
+                                <rect key="frame" x="15" y="397" width="384" height="465"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="cfj-do-dlJ" customClass="TruckerCell" customModule="FEEKA" customModuleProvider="target">
@@ -7502,7 +7502,7 @@
                                         <subviews>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W67-SX-h6J">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="418"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.90980392156862744" green="0.89411764705882346" blue="0.89803921568627454" alpha="0.0" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="418" id="b3N-Wh-nu5"/>
                                                 </constraints>
@@ -7670,7 +7670,7 @@
                                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0R8-cg-mKb" customClass="CosmosView" customModule="Cosmos">
+                                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0R8-cg-mKb" customClass="CosmosView" customModule="Cosmos">
                                                                     <rect key="frame" x="10" y="220" width="118" height="20"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                     <userDefinedRuntimeAttributes>
@@ -8278,7 +8278,7 @@
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QjT-iN-7Wh" customClass="CosmosView" customModule="Cosmos">
+                                                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QjT-iN-7Wh" customClass="CosmosView" customModule="Cosmos">
                                                                                 <rect key="frame" x="54" y="28" width="120" height="17"/>
                                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                                 <constraints>
@@ -9543,7 +9543,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cka-96-98O" customClass="CosmosView" customModule="Cosmos">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cka-96-98O" customClass="CosmosView" customModule="Cosmos">
                                                     <rect key="frame" x="0.0" y="313.66666666666669" width="120" height="20"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
@@ -9564,7 +9564,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="(5)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ga9-bR-Pnr">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(5)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ga9-bR-Pnr">
                                                     <rect key="frame" x="128" y="315" width="12" height="10"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="10" id="Kaq-Cy-lRU"/>
@@ -9636,7 +9636,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="80C-yt-bDc">
-                                                    <rect key="frame" x="4" y="4" width="75" height="13"/>
+                                                    <rect key="frame" x="25" y="4" width="75" height="13"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NEW" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7RT-de-cIA">
                                                             <rect key="frame" x="0.0" y="0.0" width="35" height="13"/>
@@ -9712,7 +9712,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qdn-hd-i30" customClass="CosmosView" customModule="Cosmos">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qdn-hd-i30" customClass="CosmosView" customModule="Cosmos">
                                                     <rect key="frame" x="15" y="543" width="121" height="20"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
@@ -9763,7 +9763,7 @@
                                                 <constraint firstItem="p1R-Tc-sS6" firstAttribute="leading" secondItem="lyy-fK-bD5" secondAttribute="leading" constant="17" id="ips-YN-qOR"/>
                                                 <constraint firstItem="kFw-aL-hJL" firstAttribute="leading" secondItem="lyy-fK-bD5" secondAttribute="leading" constant="15" id="s49-Ou-Cvy"/>
                                                 <constraint firstAttribute="trailing" secondItem="kFw-aL-hJL" secondAttribute="trailing" id="tYk-9x-I7w"/>
-                                                <constraint firstItem="80C-yt-bDc" firstAttribute="leading" secondItem="lyy-fK-bD5" secondAttribute="leading" constant="4" id="y4D-sF-nnF"/>
+                                                <constraint firstItem="80C-yt-bDc" firstAttribute="leading" secondItem="lyy-fK-bD5" secondAttribute="leading" constant="25" id="y4D-sF-nnF"/>
                                                 <constraint firstAttribute="bottom" secondItem="qdn-hd-i30" secondAttribute="bottom" constant="8" id="zZx-ij-CFV"/>
                                             </constraints>
                                         </tableViewCellContentView>
