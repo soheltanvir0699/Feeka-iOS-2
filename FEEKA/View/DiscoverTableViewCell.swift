@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Cosmos
+
 
 class DiscoverTableViewCell: UITableViewCell {
 
@@ -18,6 +20,8 @@ class DiscoverTableViewCell: UITableViewCell {
     @IBOutlet weak var new: UILabel!
     @IBOutlet weak var sale: UILabel!
     @IBOutlet weak var cutLbl: UILabel!
+    @IBOutlet weak var reviewCount: UILabel!
+    @IBOutlet weak var cosomView: CosmosView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

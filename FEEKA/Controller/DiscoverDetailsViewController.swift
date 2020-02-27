@@ -337,7 +337,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
                         let fId = i["ID"].intValue
                         let image = i["image"].stringValue
                           print(title)
-                        var brand = ""
+                        var brand =  i["brand"].arrayValue[0].stringValue
                         if i["brand"].arrayValue[0].isEmpty != true {
                              brand = i["brand"].arrayValue[0].stringValue
                         }

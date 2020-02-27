@@ -432,6 +432,9 @@ extension HomeProductDetailsViewController: UITableViewDataSource, UITableViewDe
         
         cell.productLbl.text = dataList[indexPath.row].title
         cell.brand.text = dataList[indexPath.row].brand
+        cell.reviewCount.text = "(\(dataList[indexPath.row].count))"
+        
+            cell.cosomView.rating = 4
         cell.salePrice.setBorder()
         if self.sale[indexPath.row] != 0 {
             cell.sale.isHidden = false
