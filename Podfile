@@ -12,6 +12,7 @@ pod 'Nuke'
 pod 'NVActivityIndicatorView'
 pod 'Cosmos', '~> 21.0'
 pod 'SVProgressHUD'
+pod 'IQKeyboardManagerSwift'
 pod “TTRangeSlider”
   # Pods for FEEKA
 

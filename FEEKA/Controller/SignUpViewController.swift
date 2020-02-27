@@ -48,23 +48,23 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
                   
                     NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-                  hideKeyBoard()
+                  //hideKeyBoard()
               }
               
              @objc func keyboardWillShow(notification: Notification) {
                   if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-                      if self.scrollView.frame.origin.y == 0{
-                          self.scrollView.frame.origin.y -= keyboardSize.height - 150
-                      }
+//                      if self.scrollView.frame.origin.y == 0{
+//                          self.scrollView.frame.origin.y -= keyboardSize.height - 150
+//                      }
                   }
 
               }
 
               @objc func keyboardWillHide(notification: Notification) {
                   if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-                      if self.scrollView.frame.origin.y != 0 {
-                          self.scrollView.frame.origin.y += keyboardSize.height - 150
-                      }
+//                      if self.scrollView.frame.origin.y != 0 {
+//                          self.scrollView.frame.origin.y += keyboardSize.height - 150
+//                      }
                   }
               }
          
