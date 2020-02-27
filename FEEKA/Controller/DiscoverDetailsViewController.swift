@@ -259,7 +259,9 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
               self.dataList = [hireCareParameter]()
               self.imageList = [String]()
               indicator1 = self.indicator()
+        StoredProperty.reviewAllData = [reviewDataModel]()
                StoredProperty.singleProductDetailsList = [singleProductDetailsModel]()
+              
               
               guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/single_product_listing_v2.php") else {
                   return
@@ -318,6 +320,20 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
                     let review = JSON(productDetails["review"])
                     self.ratingCount = review["count"].intValue
                     self.rating = review["ratting"].doubleValue
+                    let reviewData = review["data"].arrayValue
+                                           for data in reviewData {
+                                               let singleData = JSON(data)
+                                               let rating = singleData["rating"].stringValue
+                                               let author = singleData["comment_author"].stringValue
+                                               let comment = singleData["comment_content"].stringValue
+                                               let date = singleData["comment_date"].stringValue
+                                               let dateformatter = DateFormatter()
+                                               dateformatter.dateFormat = "mmm d, yyyy"
+                                               let formatedDate = dateformatter.date(from: "2016-04-14 10:01:11")
+                                               print(formatedDate)
+                                               StoredProperty.reviewAllData.append(reviewDataModel(rating: rating, author: author, comment: comment, date: date))
+                                               
+                                           }
                     self.leftItem.text = productDetails["stock_status"].stringValue
                     if productDetails["stock_status"].stringValue == "" {
                         self.leftItem.isHidden = true
@@ -349,20 +365,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
                         self.dataList.append(hireCareParameter(title: title, image: image, brand: brand, count: reviewCount, rating: rating, regularPrice: regularPrice, salePrice: salePrice))
                         self.fechuredId.append(fId)
                         
-                        let reviewData = reviewCount1["data"].arrayValue
-                        for data in reviewData {
-                            let singleData = JSON(data)
-                            let rating = singleData["rating"].stringValue
-                            let author = singleData["comment_author"].stringValue
-                            let comment = singleData["comment_content"].stringValue
-                            let date = singleData["comment_date"].stringValue
-                            let dateformatter = DateFormatter()
-                            dateformatter.dateFormat = "mmm d, yyyy"
-                            let formatedDate = dateformatter.date(from: "2016-04-14 10:01:11")
-                            print(formatedDate)
-                            StoredProperty.reviewAllData.append(reviewDataModel(rating: rating, author: author, comment: comment, date: date))
-                            
-                        }
+                       
 
                       }
                     self.collView.reloadData()

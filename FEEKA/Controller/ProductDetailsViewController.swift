@@ -37,8 +37,8 @@ class ProductDetailsViewController: UIViewController,UITextFieldDelegate {
        var authorName = ""
        var customerId = ""
        var userdefault = UserDefaults.standard
-       var currentTime:String!
-       var gmtTime:String!
+       var currentTime = ""
+       var gmtTime:String = ""
        var productId = ""
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -172,6 +172,8 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
     }
     
     @objc func postReview(sender: UIButton) {
+        self.setDate()
+        
     let tag = sender.tag
     let currentRating = self.view.viewWithTag(tag - 2000) as! CosmosView
     let commentfield = self.view.viewWithTag(tag - 1000) as! UITextField
@@ -193,8 +195,8 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
                               "comment_approved":"1",
                               "comment_author":"\(authorName)",
                             "comment_content":"\(commentfield.text!)",
-                              "comment_date":"\(currentTime!)",
-                              "comment_date_gmt":"\(gmtTime!)",
+                            "comment_date":"\(currentTime)",
+                            "comment_date_gmt":"\(gmtTime)",
                               "comment_karma":"0",
                               "comment_meta":[
                                 "rating":"\(currentRating.rating)",
@@ -208,6 +210,7 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
                     
                             print(paramater)
                           Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: nil).response { (response) in
+                            print(response)
                               self.indicator.startAnimating()
                               if let error = response.error {
                                   self.indicator.stopAnimating()
