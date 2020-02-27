@@ -16,6 +16,7 @@ import Nuke
 class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIViewControllerTransitioningDelegate {
 
     @IBOutlet weak var salePrice: UILabel!
+    @IBOutlet weak var tickImg: UIImageView!
     @IBOutlet weak var regularPrice: UILabel!
     @IBOutlet weak var brandName: UILabel!
     @IBOutlet weak var productName: UILabel!
@@ -89,6 +90,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
 
         apiCalling(customerId: customerId, productId: productId)
         scrollView.delegate = self
+        self.tickImg.alpha = 0.0
         guard (userdefault.value(forKey: "customer_id") as? String) != nil else {
             //logInVC()
             return
@@ -237,7 +239,14 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
                         print(jsonResponse["message"].stringValue)
                         
                         if jsonResponse["message"].stringValue == "Item has been added to your bag." {
-                            self.view.makeToast("Add to Bag")
+                         //   self.view.makeToast("Add to Bag")
+                                  self.tickImg.alpha = 1
+                            
+                                      UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: {
+                                          self.tickImg.alpha = 0.0
+                                      }, completion: {(isCompleted) in
+                                          self.tickImg.removeFromSuperview()
+                                      })
                         }
                         self.bagApiCalling()
                         print(self.isWhish)

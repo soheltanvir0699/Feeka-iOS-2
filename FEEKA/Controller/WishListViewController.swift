@@ -69,6 +69,12 @@ class WishListViewController: UIViewController, UIViewControllerTransitioningDel
                       let jsonResponse = JSON(response)
                     
                     let dataArray = jsonResponse["data"].arrayValue
+                    if dataArray.isEmpty == true {
+                        self.collView.isHidden = true
+                        
+                    } else {
+                        self.collView.isHidden = false
+                    }
                     for dataValue in dataArray {
                         let productList = JSON(dataValue)
                         

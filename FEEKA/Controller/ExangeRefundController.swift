@@ -72,6 +72,9 @@ class ExangeRefundController: UIViewController {
             textfield.placeholder = "Enter Reason"
             
         }
+        
+        alert.addAction(UIAlertAction(title: "CANCLE", style: .default, handler: { (action) in
+        }))
 
         alert.addAction(UIAlertAction(title: "SEND", style: .default, handler: { (action) in
             let text = alert.textFields![0].text
@@ -103,6 +106,9 @@ class ExangeRefundController: UIViewController {
                 textfield.placeholder = "Enter Reason"
                 
               }
+        
+        alert.addAction(UIAlertAction(title: "CANCLE", style: .default, handler: { (action) in
+        }))
 
               alert.addAction(UIAlertAction(title: "SEND", style: .default, handler: { (action) in
                   let text = alert.textFields![0].text

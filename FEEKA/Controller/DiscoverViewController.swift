@@ -278,10 +278,10 @@ func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPat
         let newest = UIAlertAction(title: "Newest", style: .default) { (women) in
             
         }
-       let lowToHigh = UIAlertAction(title: "Price (low to high", style: .default) { (button) in
+       let lowToHigh = UIAlertAction(title: "Price (low to high)", style: .default) { (button) in
             
         }
-    let hightToLow = UIAlertAction(title: "Price (High to low", style: .default) { (button) in
+    let hightToLow = UIAlertAction(title: "Price (High to low)", style: .default) { (button) in
         
     }
         let canAction = UIAlertAction(title: "Cancle", style: .cancel) { (_) in
