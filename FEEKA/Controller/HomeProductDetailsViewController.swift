@@ -309,12 +309,14 @@ extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollecti
             cell!.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
                 cell!.cutLbl.isHidden = false
             } else {
+                cell!.regularPrice.text = nil
                 cell!.cutLbl.isHidden = true
             }
             if (dataList[indexPath.row].salePrice).isEmpty != true {
             cell!.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
                 cell!.cutLbl.isHidden = false
             }else {
+                cell!.salePrice.text = nil
                 cell!.cutLbl.isHidden = true
             }
             return cell!
@@ -450,12 +452,15 @@ extension HomeProductDetailsViewController: UITableViewDataSource, UITableViewDe
                    cell.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
                        cell.cutLbl.isHidden = false
                    } else {
+                cell.regularPrice.text = nil
+                cell.cutLbl.isHidden = false
                        cell.cutLbl.isHidden = true
                    }
                    if (dataList[indexPath.row].salePrice).isEmpty != true {
                    cell.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
                        cell.cutLbl.isHidden = false
                    }else {
+                    cell.salePrice.text = nil
                        cell.cutLbl.isHidden = true
                    }
         
