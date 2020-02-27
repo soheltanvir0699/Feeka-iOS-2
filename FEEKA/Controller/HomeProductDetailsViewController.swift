@@ -223,10 +223,10 @@ class HomeProductDetailsViewController: UIViewController , UIViewControllerTrans
                         self.dataList.append(hireCareParameter(title: title, image: image, brand: brand, count: reviewCount, rating: rating, regularPrice: regularPrice, salePrice: salePrice))
                         self.productID.append(productid)
 
+                        self.productListCollView.reloadData()
+                        self.productListTblView.reloadData()
                       }
                       self.indicator.stopAnimating()
-                      self.productListCollView.reloadData()
-                      self.productListTblView.reloadData()
 
                                       
                   }else {
@@ -383,10 +383,10 @@ extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollecti
             }  else if indexPath.row > 1{
                 isTotal = true
                    currentPage = 1
-                   dataList = [hireCareParameter]()
+                self.dataList = [hireCareParameter]()
                    self.productID = [Int]()
                 print(dataList)
-                       apiCalling(brand: "", brandId: "", categorie: "\(categorie)", color: "", filter: "", gender: "\(gender)", maxPrice: "", minPrice: "", productCategorie: "\(productTemrsId[indexPath.row - 2])", productType: "", searchTag: "", size: "", sortParameter: "2", tagId: "\(tagId)", currentPage: 1)
+                       apiCalling(brand: "", brandId: "", categorie: "\(categorie)", color: "", filter: "1", gender: "\(gender)", maxPrice: "", minPrice: "", productCategorie: "\(productTemrsId[indexPath.row - 2])", productType: "", searchTag: "", size: "", sortParameter: "2", tagId: "\(tagId)", currentPage: 1)
             }
             
             print("selected")

@@ -199,6 +199,12 @@ extension BagViewController: UITableViewDataSource, UITableViewDelegate {
         
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let DiscoverDetailsVC = storyboard?.instantiateViewController(withIdentifier: "DiscoverDetailsViewController") as! DiscoverDetailsViewController
+        DiscoverDetailsVC.productId = "\(dataList[indexPath.row].id)"
+        self.navigationController?.pushViewController(DiscoverDetailsVC, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == dataList.count  {
             let cell2 = tableView.dequeueReusableCell(withIdentifier: "cell2") as? BagSecondCell
