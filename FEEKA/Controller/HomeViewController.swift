@@ -74,7 +74,7 @@ class HomeViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        StoredProperty.retake = false
+       // StoredProperty.retake = false
     }
     
     
@@ -173,7 +173,7 @@ class HomeViewController: UIViewController {
                 self.activityIndicator.stopAnimating()
             }
         }
-        self.bagApiCalling()
+        //self.bagApiCalling()
     }
     
    func bagApiCalling() {
@@ -235,7 +235,7 @@ class HomeViewController: UIViewController {
     }
     
        @objc func quizzez() {
-           let QuizzesController = storyboard?.instantiateViewController(withIdentifier: "QuizzesController") 
+           let QuizzesController = storyboard?.instantiateViewController(withIdentifier: "QuizzesController")
         QuizzesController!.modalPresentationStyle = .fullScreen
         present(QuizzesController!, animated: true, completion: nil)
        }
