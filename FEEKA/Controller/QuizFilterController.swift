@@ -48,7 +48,7 @@ class QuizFilterController: UIViewController {
     }
     
     @IBAction func backBtn(_ sender: Any) {
-           self.navigationController?.popViewController(animated: true)
+           //self.navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
        }
        
@@ -117,8 +117,9 @@ class QuizFilterController: UIViewController {
        }
 
     @IBAction func retake(_ sender: Any) {
-        StoredProperty.retake = true
-        dismiss(animated: true, completion: nil)
+        //StoredProperty.retake = true
+       // dismiss(animated: true, completion: nil)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
 

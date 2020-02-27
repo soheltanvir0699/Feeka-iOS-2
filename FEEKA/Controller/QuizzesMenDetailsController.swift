@@ -37,14 +37,15 @@ class QuizzesMenDetailsController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if StoredProperty.retake == true {
-            dismiss(animated: true , completion: nil)
-        }
+//        if StoredProperty.retake == true {
+//            dismiss(animated: true , completion: nil)
+//        }
         
     }
     
     @IBAction func back(_ sender: Any) {
-        dismiss(animated: true , completion: nil)
+       // dismiss(animated: true , completion: nil)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     @IBAction func skinCare(_ sender: Any) {
@@ -52,8 +53,9 @@ class QuizzesMenDetailsController: UIViewController {
         finderVc?.dataList = self.dataList
         finderVc?.index = 0
         StoredProperty.filterTopImage = UIImage(named: "manskin_52878681")!
-        finderVc?.modalPresentationStyle = .fullScreen
-        present(finderVc!, animated: true, completion: nil)
+//        finderVc?.modalPresentationStyle = .fullScreen
+//        present(finderVc!, animated: true, completion: nil)
+        self.navigationController?.pushViewController(finderVc!, animated: true)
         
     }
     
@@ -62,8 +64,10 @@ class QuizzesMenDetailsController: UIViewController {
         finderVc?.dataList = self.dataList
         finderVc?.index = 1
         StoredProperty.filterTopImage = UIImage(named: "manhair_care_52878682")!
-        finderVc?.modalPresentationStyle = .fullScreen
-        present(finderVc!, animated: true, completion: nil)
+//        finderVc?.modalPresentationStyle = .fullScreen
+//        present(finderVc!, animated: true, completion: nil)
+        
+        self.navigationController?.pushViewController(finderVc!, animated: true)
         
     }
     
@@ -72,8 +76,9 @@ class QuizzesMenDetailsController: UIViewController {
         finderVc?.dataList = self.dataList
         finderVc?.index = 2
         StoredProperty.filterTopImage = UIImage(named: "manbeard_care_52878683")!
-        finderVc?.modalPresentationStyle = .fullScreen
-        present(finderVc!, animated: true, completion: nil)
+//        finderVc?.modalPresentationStyle = .fullScreen
+//        present(finderVc!, animated: true, completion: nil)
+        self.navigationController?.pushViewController(finderVc!, animated: true)
     }
     
     func quizzesMenApi() {

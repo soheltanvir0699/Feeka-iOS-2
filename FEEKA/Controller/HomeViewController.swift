@@ -235,9 +235,9 @@ class HomeViewController: UIViewController {
     }
     
        @objc func quizzez() {
-           let QuizzesController = storyboard?.instantiateViewController(withIdentifier: "QuizzesController") as! QuizzesController
-        QuizzesController.modalPresentationStyle = .fullScreen
-        present(QuizzesController, animated: true, completion: nil)
+           let QuizzesController = storyboard?.instantiateViewController(withIdentifier: "QuizzesController") 
+        QuizzesController!.modalPresentationStyle = .fullScreen
+        present(QuizzesController!, animated: true, completion: nil)
        }
     
     @objc func makeUP(tapGestureRecognizer: UITapGestureRecognizer) {

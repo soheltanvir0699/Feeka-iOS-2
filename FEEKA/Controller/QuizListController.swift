@@ -33,13 +33,14 @@ class QuizListController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         let catid = dataList[index].catId
             self.quizListApi(catId: catid, nextQid: "")
-        if StoredProperty.retake == true {
-            dismiss(animated: true, completion: nil)
-        }
+//        if StoredProperty.retake == true {
+//            dismiss(animated: true, completion: nil)
+//        }
     }
    
     @IBAction func backBtn(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        //dismiss(animated: true, completion: nil)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     func quizListApi(catId: String, nextQid: String) {
@@ -121,11 +122,12 @@ extension QuizListController: UITableViewDelegate,UITableViewDataSource {
             
         } else {
             let quizFilterVC = storyboard?.instantiateViewController(withIdentifier: "QuizFilterController") as? QuizFilterController
-            quizFilterVC?.modalPresentationStyle = .fullScreen
+//            quizFilterVC?.modalPresentationStyle = .fullScreen
             quizFilterVC?.category = self.dataList[index].catId
             quizFilterVC?.tagid = self.tag
             quizFilterVC?.navtitle = dataList[index].name
-            present(quizFilterVC!, animated: true, completion: nil)
+//            present(quizFilterVC!, animated: true, completion: nil)
+            navigationController?.pushViewController(quizFilterVC!, animated: true)
         }
         
     }

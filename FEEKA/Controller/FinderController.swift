@@ -28,21 +28,23 @@ class FinderController: UIViewController {
         finderText.text = "\(dataList[index].name) FINDER"
     }
     override func viewWillAppear(_ animated: Bool) {
-        if StoredProperty.retake == true {
-            dismiss(animated: true , completion: nil)
-        }
+       // if StoredProperty.retake == true {
+           // dismiss(animated: true , completion: nil)
+       // }
+        //navigationController?.popViewController(animated: true)
     }
     
     @IBAction func backBtn(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     @IBAction func quizBtn(_ sender: Any) {
         let QuizListController = storyboard?.instantiateViewController(withIdentifier: "QuizListController") as? QuizListController
         QuizListController?.index = self.index
-        QuizListController?.modalPresentationStyle = .fullScreen
-        QuizListController?.dataList = self.dataList
-        present(QuizListController!, animated: true, completion: nil)
+       // QuizListController?.modalPresentationStyle = .fullScreen
+       QuizListController?.dataList = self.dataList
+//        present(QuizListController!, animated: true, completion: nil)
+        self.navigationController?.pushViewController(QuizListController!, animated: true)
     }
    
 

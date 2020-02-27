@@ -38,10 +38,10 @@ class QuizzesController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-       if StoredProperty.retake == true {
-        indicator.startAnimating()
-           dismiss(animated: true, completion: nil)
-        }
+      // if StoredProperty.retake == true {
+       // indicator.startAnimating()
+//           dismiss(animated: true, completion: nil)
+//        }
     }
     
     
@@ -55,7 +55,8 @@ class QuizzesController: UIViewController {
         finderVc?.index = 0
         StoredProperty.filterTopImage = UIImage(named: "skin_care_52878679")!
         finderVc?.modalPresentationStyle = .fullScreen
-        present(finderVc!, animated: true, completion: nil)
+        //present(finderVc!, animated: true, completion: nil)
+        self.navigationController?.pushViewController(finderVc!, animated: true)
         
     }
     
@@ -64,16 +65,18 @@ class QuizzesController: UIViewController {
         finderVc?.dataList = self.dataList
         finderVc?.index = 1
         StoredProperty.filterTopImage = UIImage(named: "hair_care_52878684")!
-        finderVc?.modalPresentationStyle = .fullScreen
-        present(finderVc!, animated: true, completion: nil)
+//        finderVc?.modalPresentationStyle = .fullScreen
+//        present(finderVc!, animated: true, completion: nil)
+        self.navigationController?.pushViewController(finderVc!, animated: true)
         
     }
     
     @IBAction func menGrroming(_ sender: Any) {
         let QuizzesMenDetailsController = storyboard?.instantiateViewController(withIdentifier: "QuizzesMenDetailsController") as? QuizzesMenDetailsController
-        QuizzesMenDetailsController?.modalPresentationStyle = .fullScreen
-        present(QuizzesMenDetailsController!, animated: true, completion: nil)
-        
+//        QuizzesMenDetailsController?.modalPresentationStyle = .fullScreen
+//        present(QuizzesMenDetailsController!, animated: true, completion: nil)
+//
+        self.navigationController?.pushViewController(QuizzesMenDetailsController!, animated: true)
     }
     
     func quizzesApi() {
