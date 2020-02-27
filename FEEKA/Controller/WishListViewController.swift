@@ -90,6 +90,9 @@ class WishListViewController: UIViewController, UIViewControllerTransitioningDel
                         print(productImage)
                         let productCurrency = productDtails["currency"].stringValue
                         let rPrice = productDtails["regular_price"].stringValue
+                        let review = JSON(productDtails["review"])
+                        let rating = review["ratting"].doubleValue
+                        let count = review["count"].intValue
                         let sPrice = productDtails["sale_price"].stringValue
                         let attributes = productDtails["attributes"].arrayValue
                         var name = ""
@@ -100,7 +103,7 @@ class WishListViewController: UIViewController, UIViewControllerTransitioningDel
                             }
                             
                         }
-                        self.wishListData.append(wishListDataModel(isNew: isNew, isSale: isSale, producId: productId, productName: productName, productImage: productImage, productCurrency: productCurrency, rPrice: rPrice, sPrice: sPrice, brand: name))
+                        self.wishListData.append(wishListDataModel(isNew: isNew, isSale: isSale, producId: productId, productName: productName, productImage: productImage, productCurrency: productCurrency, rPrice: rPrice, sPrice: sPrice, brand: name, rating: rating, ratingcount: "\(count)"))
                         
                         
                         self.collView.reloadData()
@@ -149,6 +152,8 @@ extension WishListViewController: UICollectionViewDelegate, UICollectionViewData
         cell.productBrand.text = wishListData[indexPath.row].brand
         cell.sPrice.text = "\(wishListData[indexPath.row].productCurrency) \(wishListData[indexPath.row].sPrice)"
         cell.rPrice.text = " \(wishListData[indexPath.row].productCurrency) \(wishListData[indexPath.row].rPrice)"
+        cell.cosmosView.rating = wishListData[indexPath.row].rating
+        cell.ratingCount.text = "(\(wishListData[indexPath.row].ratingcount))"
         let url = URL(string: wishListData[indexPath.row].productImage)
         cell.productImg.downloadedFrom(url: url!, contentMode: .scaleAspectFill)
         
@@ -278,7 +283,7 @@ extension WishListViewController: UICollectionViewDelegate, UICollectionViewData
               }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width/2 - 5, height: 379)
+        return CGSize(width: collectionView.frame.width/2 - 5, height: 408)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //customerId: customerId, productId: productId

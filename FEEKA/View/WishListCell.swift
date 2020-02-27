@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Cosmos
 
 class WishListCell: UICollectionViewCell {
     @IBOutlet weak var productImg: UIImageView!
@@ -18,5 +19,7 @@ class WishListCell: UICollectionViewCell {
     @IBOutlet weak var newBtn: UILabel!
     @IBOutlet weak var saleBtn: UILabel!
     @IBOutlet weak var addToBag: UIButton!
+    @IBOutlet weak var cosmosView: CosmosView!
     
+    @IBOutlet weak var ratingCount: UILabel!
 }

@@ -65,6 +65,8 @@ struct wishListDataModel {
     var rPrice:String
     var sPrice:String
     var brand:String
+    var rating:Double
+    var ratingcount:String
 }
 
 struct reviewDataModel {
