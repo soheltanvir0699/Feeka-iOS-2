@@ -165,8 +165,9 @@ class HomeViewController: UIViewController {
                         self.hireCareLbl.text = "Hair Care"
                     }
                     if i["title"] == "Skincare" {
-                        let image = UIImage.gif(url: i["image"].stringValue)
-                        self.skincareImg.image = image
+//                        let image = UIImage.gif(url: i["image"].stringValue)
+//                        self.skincareImg.image = image
+                        self.skincareImg.sd_setImage(with: URL(string: i["image"].stringValue))
                         self.skinCareLbl.text = "Skincare"
                     }
                     if i["title"] == "Makeup" {

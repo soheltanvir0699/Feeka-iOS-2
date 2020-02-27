@@ -22,6 +22,7 @@ PODS:
   - NVActivityIndicatorView (4.8.0):
     - NVActivityIndicatorView/Presenter (= 4.8.0)
   - NVActivityIndicatorView/Presenter (4.8.0)
+  - OneSignal (2.12.6)
   - SDWebImage (5.5.2):
     - SDWebImage/Core (= 5.5.2)
   - SDWebImage/Core (5.5.2)
@@ -37,13 +38,14 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift
   - Nuke
   - NVActivityIndicatorView
+  - OneSignal
   - SDWebImage (~> 5.0)
   - SVProgressHUD
   - SwiftyJSON
   - TTRangeSlider
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - Cosmos
     - FacebookCore
@@ -57,6 +59,8 @@ SPEC REPOS:
     - SVProgressHUD
     - SwiftyJSON
     - TTRangeSlider
+  trunk:
+    - OneSignal
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
@@ -68,11 +72,12 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
   Nuke: fa6f784c4f7e1c0f9313668510186c68b7af2509
   NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
+  OneSignal: a6df91542d1cf133b9dd19d89f2b533d8f2d3163
   SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   TTRangeSlider: 78188bea83f6471a06f75adbc88da5e990baeafe
 
-PODFILE CHECKSUM: d195354a2598b5626c9a7ace09e235f0a9345160
+PODFILE CHECKSUM: 9bbf7560224d3c6a47cb2d775a48cda4fa6f4def
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.9.0.beta.3
