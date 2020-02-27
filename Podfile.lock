@@ -22,6 +22,9 @@ PODS:
   - NVActivityIndicatorView (4.8.0):
     - NVActivityIndicatorView/Presenter (= 4.8.0)
   - NVActivityIndicatorView/Presenter (4.8.0)
+  - SDWebImage (5.5.2):
+    - SDWebImage/Core (= 5.5.2)
+  - SDWebImage/Core (5.5.2)
   - SVProgressHUD (2.2.5)
   - SwiftyJSON (5.0.0)
   - TTRangeSlider (1.0.6)
@@ -34,6 +37,7 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift
   - Nuke
   - NVActivityIndicatorView
+  - SDWebImage (~> 5.0)
   - SVProgressHUD
   - SwiftyJSON
   - TTRangeSlider
@@ -49,6 +53,7 @@ SPEC REPOS:
     - IQKeyboardManagerSwift
     - Nuke
     - NVActivityIndicatorView
+    - SDWebImage
     - SVProgressHUD
     - SwiftyJSON
     - TTRangeSlider
@@ -63,10 +68,11 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
   Nuke: fa6f784c4f7e1c0f9313668510186c68b7af2509
   NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
+  SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   TTRangeSlider: 78188bea83f6471a06f75adbc88da5e990baeafe
 
-PODFILE CHECKSUM: fa54dcd54d12672bde2f5b820408b95fcc3c5471
+PODFILE CHECKSUM: d195354a2598b5626c9a7ace09e235f0a9345160
 
 COCOAPODS: 1.7.5

@@ -187,11 +187,13 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
                        self.view.makeToast( "Please try again later")
                           return
                       }
+        
     if userdefault.value(forKey: "author_name") as? String != nil {
         self.authorName = userdefault.value(forKey: "author_name") as! String
         self.customerId = userdefault.value(forKey: "customer_id") as! String
+        
     }
-                     
+                     let email =  userdefault.value(forKey: "email") as! String
                           let paramater = [
                               "comment_approved":"1",
                               "comment_author":"\(authorName)",
@@ -208,9 +210,11 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
                               "comment_post_ID":"\(productId)",
                               "user_id":"\(customerId)"
                             ] as [String : Any]
+        
+        let param2 =  ["comment_approved":"1","comment_author":"\(authorName)","comment_author_email":"\(email)","comment_author_IP":"","comment_content":"\(commentfield.text!)","comment_date":"\(currentTime)","comment_date_gmt":"\(gmtTime)","comment_karma":"0","comment_meta":["rating":"\(currentRating.rating)","verified":"0","_ywar_imported":"1"],"comment_parent":"0","comment_post_ID":"\(productId)","user_id":"\(customerId)"] as [String : Any]
                     
-                            print(paramater)
-                          Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: nil).response { (response) in
+                            print(param2)
+                          Alamofire.request(url, method: .post, parameters: param2, encoding: JSONEncoding.default, headers: nil).response { (response) in
                             print(response)
                               
                               if let error = response.error {
@@ -223,10 +227,10 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
                               
                               if let result = response.data {
                                   let jsonRespose = JSON(result)
-                                  print(jsonRespose)
+                                 // print(jsonRespose)
                                   print(jsonRespose["message"].stringValue)
                                 self.view.makeToast( "\(jsonRespose["message"].stringValue)")
-                                if jsonRespose["message"].stringValue != "You are posting comments too quickly. Slow down." {
+                                if jsonRespose["status"].stringValue == "1" {
                                     StoredProperty.reviewAllData.insert(reviewDataModel(rating: "\(currentRating.rating)", author: self.authorName, comment: commentfield.text!, date: self.currentTime), at: 0)
                                     let indexPath = IndexPath(row: tag - 3000, section: 0)
                                     let pDetailsCell = self.collView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ProductDetailsCollectionViewCell

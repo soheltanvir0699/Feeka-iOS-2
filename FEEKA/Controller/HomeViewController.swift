@@ -12,7 +12,7 @@ import SwiftyJSON
 import ImageIO
 import NVActivityIndicatorView
 import Nuke
-
+import SDWebImage
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var navView: UIView!
@@ -65,16 +65,16 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navView.setShadow()
-        
         activityIndicator = self.indicator()
-            
-        self.homeRequest()
-        
         setUpView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-       // StoredProperty.retake = false
+//        https://feeka.co.za/img/for-mans.png
+//        https://feeka.co.za/img/placeholder_1.png
+//        https://feeka.co.za/img/product_finder.png
+        //self.makeUpImg.sd_setImage(with: URL(string: "https://feeka.co.za/img/for-mans.pnge"))
+       self.homeRequest()
     }
     
     
@@ -103,30 +103,33 @@ class HomeViewController: UIViewController {
                     if i["id"] == "31" {
                         //self.coomingSoon.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
                         
-                        let request = ImageRequest(
-                            url: URL(string: i["image"].stringValue)!
-                        )
-                        Nuke.loadImage(with: request, into: self.coomingSoon)
+//                        let request = ImageRequest(
+//                            url: URL(string: i["image"].stringValue)!
+//                        )
+//                        Nuke.loadImage(with: request, into: self.coomingSoon)
+                        self.coomingSoon.sd_setImage(with: URL(string: i["image"].stringValue))
                     }
                     if i["title"] == "Brands" {
                         DispatchQueue.main.async {
-                            let image = UIImage.gif(url: i["image"].stringValue)
-                            self.brands.image = image
+                            //let image = UIImage.gif(url: i["image"].stringValue)
+                            self.brands.sd_setImage(with: URL(string: i["image"].stringValue))
+                            
                             self.brandLbl.text = i["title"].stringValue
                         }
                         
                     }
                     if i["id"] == "32" {
-                       // self.productFinder.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
-                        let request = ImageRequest(
-                            url: URL(string: i["image"].stringValue)!
-                        )
-                        Nuke.loadImage(with: request, into: self.productFinder)
+//                        let request = ImageRequest(
+//                            url: URL(string: i["image"].stringValue)!
+//                        )
+//                        Nuke.loadImage(with: request, into: self.productFinder)
+                         self.productFinder.sd_setImage(with: URL(string: i["image"].stringValue))
                     }
                     if i["title"] == "sale" {
                         DispatchQueue.main.async {
-                            let image = UIImage.gif(url: i["image"].stringValue)
-                            self.saleImg.image = image
+                           // let image = UIImage.gif(url: i["image"].stringValue)
+                            //self.saleImg.image = image
+                            self.saleImg.sd_setImage(with: URL(string: i["image"].stringValue))
                             self.saleLbl.text = i["title"].stringValue
                         }
                         
@@ -134,26 +137,30 @@ class HomeViewController: UIViewController {
                     if i["title"] == "Men's Grooming" {
                         //let image = UIImage.gif(url: i["image"].stringValue)
                         //self.menGroomingImg.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
-                        let request = ImageRequest(
-                            url: URL(string: i["image"].stringValue)!
-                        )
-                        Nuke.loadImage(with: request, into: self.menGroomingImg)
+//                        let request = ImageRequest(
+//                            url: URL(string: i["image"].stringValue)!
+//                        )
+//                        Nuke.loadImage(with: request, into: self.menGroomingImg)
+
+                        self.menGroomingImg.sd_setImage(with: URL(string: i["image"].stringValue))
                         self.menGroomingLbl.text = i["title"].stringValue
                     }
                     if i["title"] == "Chocolate sqeeze title" {
                        // self.bannerImg.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
-                        let request = ImageRequest(
-                            url: URL(string: i["image"].stringValue)!
-                        )
-                        Nuke.loadImage(with: request, into: self.bannerImg)
+//                        let request = ImageRequest(
+//                            url: URL(string: i["image"].stringValue)!
+//                        )
+//                        Nuke.loadImage(with: request, into: self.bannerImg)
+                         self.bannerImg.sd_setImage(with: URL(string: i["image"].stringValue))
                     }
                     
                     if i["title"] == "Hair Care" {
-                       // self.hairCareImg.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
-                        let request = ImageRequest(
-                            url: URL(string: i["image"].stringValue)!
-                        )
-                        Nuke.loadImage(with: request, into: self.hairCareImg)
+//                       // self.hairCareImg.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
+//                        let request = ImageRequest(
+//                            url: URL(string: i["image"].stringValue)!
+//                        )
+//                        Nuke.loadImage(with: request, into: self.hairCareImg)
+                        self.hairCareImg.sd_setImage(with: URL(string: i["image"].stringValue))
                         self.hireCareLbl.text = "Hair Care"
                     }
                     if i["title"] == "Skincare" {
@@ -162,17 +169,18 @@ class HomeViewController: UIViewController {
                         self.skinCareLbl.text = "Skincare"
                     }
                     if i["title"] == "Makeup" {
-                        let image = UIImage.gif(url: i["image"].stringValue)
-                        self.makeUpImg.image = image
+                       // let image = UIImage.gif(url: i["image"].stringValue)
+                        self.makeUpImg.sd_setImage(with: URL(string: i["image"].stringValue))
                         self.makeUpLbl.text = i["title"].stringValue
                     }
                     
                     if i["title"] == "Editors Picks" {
-                        //self.editorsPicks.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
-                        let request = ImageRequest(
-                            url: URL(string: i["image"].stringValue)!
-                        )
-                        Nuke.loadImage(with: request, into: self.editorsPicks)
+//                        //self.editorsPicks.downloaded(from: i["image"].stringValue, contentMode: .scaleAspectFill)
+//                        let request = ImageRequest(
+//                            url: URL(string: i["image"].stringValue)!
+//                        )
+//                        Nuke.loadImage(with: request, into: self.editorsPicks)
+                         self.editorsPicks.sd_setImage(with: URL(string: i["image"].stringValue))
                         self.editorPickLbl.text = i["title"].stringValue
                                            
                                        }

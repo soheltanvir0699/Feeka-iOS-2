@@ -224,6 +224,7 @@ class LogInViewController: UIViewController {
              self.view.makeToast( "\(jsonRespose["message"].stringValue)")
                 
                 if jsonRespose["message"].stringValue == "Login Completed." {
+                    self.userdefault.setValue(self.emailField.text, forKey: "email")
                  
                  for i in jsonRespose["data"].arrayValue {
                      let customerId = i["customer_id"].stringValue
