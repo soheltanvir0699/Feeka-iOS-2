@@ -36,6 +36,13 @@ class QuizzesMenDetailsController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if StoredProperty.retake == true {
+            dismiss(animated: true , completion: nil)
+        }
+        
+    }
+    
     @IBAction func back(_ sender: Any) {
         dismiss(animated: true , completion: nil)
     }
@@ -44,6 +51,7 @@ class QuizzesMenDetailsController: UIViewController {
         let finderVc = storyboard?.instantiateViewController(withIdentifier: "FinderController") as? FinderController
         finderVc?.dataList = self.dataList
         finderVc?.index = 0
+        StoredProperty.filterTopImage = UIImage(named: "manskin_52878681")!
         finderVc?.modalPresentationStyle = .fullScreen
         present(finderVc!, animated: true, completion: nil)
         
@@ -53,6 +61,7 @@ class QuizzesMenDetailsController: UIViewController {
         let finderVc = storyboard?.instantiateViewController(withIdentifier: "FinderController") as? FinderController
         finderVc?.dataList = self.dataList
         finderVc?.index = 1
+        StoredProperty.filterTopImage = UIImage(named: "manhair_care_52878682")!
         finderVc?.modalPresentationStyle = .fullScreen
         present(finderVc!, animated: true, completion: nil)
         
@@ -62,6 +71,7 @@ class QuizzesMenDetailsController: UIViewController {
         let finderVc = storyboard?.instantiateViewController(withIdentifier: "FinderController") as? FinderController
         finderVc?.dataList = self.dataList
         finderVc?.index = 2
+        StoredProperty.filterTopImage = UIImage(named: "manbeard_care_52878683")!
         finderVc?.modalPresentationStyle = .fullScreen
         present(finderVc!, animated: true, completion: nil)
     }

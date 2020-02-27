@@ -33,6 +33,9 @@ class QuizListController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         let catid = dataList[index].catId
             self.quizListApi(catId: catid, nextQid: "")
+        if StoredProperty.retake == true {
+            dismiss(animated: true, completion: nil)
+        }
     }
    
     @IBAction func backBtn(_ sender: Any) {

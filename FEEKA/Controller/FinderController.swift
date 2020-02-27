@@ -27,6 +27,11 @@ class FinderController: UIViewController {
         navTitle.text = "\(dataList[index].name) FINDER"
         finderText.text = "\(dataList[index].name) FINDER"
     }
+    override func viewWillAppear(_ animated: Bool) {
+        if StoredProperty.retake == true {
+            dismiss(animated: true , completion: nil)
+        }
+    }
     
     @IBAction func backBtn(_ sender: Any) {
         dismiss(animated: true, completion: nil)

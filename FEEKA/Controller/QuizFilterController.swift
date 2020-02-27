@@ -17,6 +17,10 @@ class QuizFilterController: UIViewController {
     @IBOutlet weak var TopView: UIView!
     @IBOutlet weak var navtext: UILabel!
     @IBOutlet weak var collView: UICollectionView!
+    @IBOutlet weak var retakeBtn: UIButton!
+    @IBOutlet weak var imageTopView: UIView!
+    @IBOutlet weak var topImageView: UIImageView!
+    
        var dataList = [hireCareParameter]()
        var productID = [Int]()
        var indicator: NVActivityIndicatorView!
@@ -34,6 +38,13 @@ class QuizFilterController: UIViewController {
         TopView.setShadow()
         navtext.text = navtitle
         apiCalling(tagid: tagid, category: category)
+        imageTopView.layer.cornerRadius = 15
+        retakeBtn.layer.cornerRadius = 8
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        topImageView.image = StoredProperty.filterTopImage
     }
     
     @IBAction func backBtn(_ sender: Any) {
@@ -105,7 +116,11 @@ class QuizFilterController: UIViewController {
         present(discoverVC!, animated: true, completion: nil)
        }
 
-   
+    @IBAction func retake(_ sender: Any) {
+        StoredProperty.retake = true
+        dismiss(animated: true, completion: nil)
+    }
+    
 
 }
 
@@ -154,6 +169,8 @@ extension QuizFilterController: UICollectionViewDelegate, UICollectionViewDataSo
            
            return CGSize(width: collectionView.frame.width / 2 - 5, height: 335)
        }
+    
+    
     
     
 }

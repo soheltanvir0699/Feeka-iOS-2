@@ -20,6 +20,8 @@ class StoredProperty {
     static var singleProductDetailsList = [singleProductDetailsModel]()
     static var facebookData = [facebookResponseModel]()
     static var addressData = [getCustomerDataModel]()
+    static var filterTopImage = UIImage()
+    static var retake = false
     
 }
 

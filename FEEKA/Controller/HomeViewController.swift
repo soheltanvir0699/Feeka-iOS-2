@@ -73,6 +73,10 @@ class HomeViewController: UIViewController {
         setUpView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        StoredProperty.retake = false
+    }
+    
     
      func homeRequest() {
         activityIndicator.startAnimating()

@@ -32,9 +32,17 @@ class QuizzesController: UIViewController {
         secondImg.layer.cornerRadius = firstImg.frame.width / 2
         thirdImg.layer.cornerRadius = firstImg.frame.width / 2
         navView.setShadow()
+        
         self.quizzesApi()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+       if StoredProperty.retake == true {
+        indicator.startAnimating()
+           dismiss(animated: true, completion: nil)
+        }
+    }
     
     
     @IBAction func backBtn(_ sender: Any) {
@@ -45,6 +53,7 @@ class QuizzesController: UIViewController {
         let finderVc = storyboard?.instantiateViewController(withIdentifier: "FinderController") as? FinderController
         finderVc?.dataList = self.dataList
         finderVc?.index = 0
+        StoredProperty.filterTopImage = UIImage(named: "skin_care_52878679")!
         finderVc?.modalPresentationStyle = .fullScreen
         present(finderVc!, animated: true, completion: nil)
         
@@ -54,6 +63,7 @@ class QuizzesController: UIViewController {
         let finderVc = storyboard?.instantiateViewController(withIdentifier: "FinderController") as? FinderController
         finderVc?.dataList = self.dataList
         finderVc?.index = 1
+        StoredProperty.filterTopImage = UIImage(named: "hair_care_52878684")!
         finderVc?.modalPresentationStyle = .fullScreen
         present(finderVc!, animated: true, completion: nil)
         
