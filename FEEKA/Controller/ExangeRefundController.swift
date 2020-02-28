@@ -33,6 +33,9 @@ class ExangeRefundController: UIViewController {
     
     @IBOutlet weak var totalLbl: UILabel!
     @IBOutlet weak var orderIdLbl: UILabel!
+    
+    @IBOutlet weak var orderItemLbl: UILabel!
+    
     var orderId = ""
     var indicator:NVActivityIndicatorView!
        var customerId = ""
@@ -195,6 +198,7 @@ class ExangeRefundController: UIViewController {
                         self.price.append(price)
                         self.sBrand.append(brand)
                         self.tblView.reloadData()
+                        self.orderIdLbl.text = "Order \(self.sBrand.count)(\(self.sBrand.count)Items)"
                           
                        }
                    } else {

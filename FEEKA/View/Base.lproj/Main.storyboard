@@ -3450,6 +3450,7 @@
                         <outlet property="name" destination="JiL-rd-1J3" id="Ryc-KN-DZY"/>
                         <outlet property="navView" destination="7od-gM-U42" id="WlP-lh-QDe"/>
                         <outlet property="orderIdLbl" destination="vej-Hs-VxA" id="A9r-NO-LJ9"/>
+                        <outlet property="orderItemLbl" destination="si9-b6-MHF" id="dqB-yX-fVi"/>
                         <outlet property="postalcode" destination="YSv-zB-nJQ" id="3kF-w1-nmW"/>
                         <outlet property="secondBg" destination="DEv-0q-JcD" id="Q0L-nj-oDl"/>
                         <outlet property="street" destination="mYX-ou-KeE" id="oRt-Bt-ei0"/>
