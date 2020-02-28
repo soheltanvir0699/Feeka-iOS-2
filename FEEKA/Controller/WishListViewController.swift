@@ -24,6 +24,9 @@ class WishListViewController: UIViewController, UIViewControllerTransitioningDel
 
         navView.setShadow()
         indicator = self.indicator()
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
         wishApi()
     }
     
@@ -32,6 +35,7 @@ class WishListViewController: UIViewController, UIViewControllerTransitioningDel
     }
     
     func wishApi() {
+        wishListData = [wishListDataModel]()
         guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/get_wishlist_v2.php") else {
                   return
               }
@@ -280,6 +284,12 @@ extension WishListViewController: UICollectionViewDelegate, UICollectionViewData
                         print(jsonResponse["message"].stringValue)
                         self.view.makeToast( jsonResponse["message"].stringValue)
                         self.wishListData.remove(at: tag-minusTag)
+                        if self.wishListData.isEmpty == true {
+                            self.collView.isHidden = true
+                            
+                        } else {
+                            self.collView.isHidden = false
+                        }
                         self.collView.reloadData()
                         self.bagApiCalling()
                         

@@ -56,7 +56,21 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate,UIColle
         cell.brand.text = dataList[indexPath.row].brand
         cell.cosomView.rating = dataList[indexPath.row].rating
         cell.review.text = "(\(dataList[indexPath.row].count))"
-        cell.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
+        if (dataList[indexPath.row].regularPrice).isEmpty != true {
+            cell.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
+            cell.cutLbl.isHidden = false
+                      } else {
+            cell.regularPrice.text = nil
+            cell.cutLbl.isHidden = true
+                      }
+               if (dataList[indexPath.row].salePrice).isEmpty != true {
+                cell.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
+                cell.cutLbl.isHidden = false
+               } else {
+                cell.salePrice.text = nil
+                cell.cutLbl.isHidden = true
+               }
+       // cell.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
         if saleList[indexPath.row] != 0 {
             cell.sale.isHidden = false
         } else {
@@ -67,7 +81,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate,UIColle
         } else {
             cell.new.isHidden = true
         }
-        cell.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
+        //cell.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
         
         return cell
     }
@@ -91,7 +105,21 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate,UIColle
                    url: URL(string: dataList[indexPath.row].image)!
                    )
                Nuke.loadImage(with: request2, into: cell!.imageView)
-        cell!.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
+       // cell!.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
+        if (dataList[indexPath.row].regularPrice).isEmpty != true {
+                   cell?.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
+                   cell?.cutLbl.isHidden = false
+               } else {
+                   cell?.regularPrice.text = nil
+                   cell?.cutLbl.isHidden = true
+               }
+        if (dataList[indexPath.row].salePrice).isEmpty != true {
+            cell?.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
+            cell?.cutLbl.isHidden = false
+        } else {
+            cell?.salePrice.text = nil
+            cell?.cutLbl.isHidden = true
+        }
         if saleList[indexPath.row] != 0 {
             cell!.sale.isHidden = false
         } else {
@@ -102,7 +130,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate,UIColle
         } else {
             cell?.new.isHidden = true
         }
-        cell!.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
+        //cell!.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
         return cell!
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

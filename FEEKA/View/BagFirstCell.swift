@@ -17,6 +17,8 @@ class BagFirstCell: UITableViewCell {
     @IBOutlet weak var brandLbl: UILabel!
     
     @IBOutlet weak var qtyBtn: UIButton!
+    
+    @IBOutlet weak var btnImg: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -378,6 +378,10 @@ extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollecti
                     self.productID = [Int]()
                     self.apiCalling(brand: self.brand, brandId: "", categorie: "\(self.categorie)", color: self.color, filter: "", gender: "\(self.gender)", maxPrice: "\(self.filterMaxVaue)", minPrice: "\(self.filterMinValue)", productCategorie: "\(self.productCategorie)", productType: self.productType, searchTag: "", size: "", sortParameter: "4", tagId: "\(self.tagId)", currentPage: 1)
                 }))
+                let canAction = UIAlertAction(title: "Cancle", style: .cancel) { (_) in
+                    
+                }
+                alertVC.addAction(canAction)
                 self.present(alertVC, animated: true, completion: nil)
                 
             }  else if indexPath.row > 1{

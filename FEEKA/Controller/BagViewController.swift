@@ -200,9 +200,7 @@ extension BagViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let DiscoverDetailsVC = storyboard?.instantiateViewController(withIdentifier: "DiscoverDetailsViewController") as! DiscoverDetailsViewController
-        DiscoverDetailsVC.productId = "\(dataList[indexPath.row].id)"
-        self.navigationController?.pushViewController(DiscoverDetailsVC, animated: true)
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -234,6 +232,8 @@ extension BagViewController: UITableViewDataSource, UITableViewDelegate {
             cell?.productName.text = dataList[indexPath.row].title
             cell?.brandLbl.text = dataList[indexPath.row].brand
             cell?.qtyBtn.setTitle(dataList[indexPath.row].quantity, for: .normal)
+            cell?.btnImg.tag = indexPath.row + 500
+            cell?.btnImg.addTarget(self, action: #selector(goDetails), for: .touchUpInside)
             cell?.deleteBtn.tag = indexPath.row + 1000
             cell?.isWishBtn.tag = indexPath.row + 2000
             cell?.deleteBtn.addTarget(self, action: #selector(deleteApi(sender:)), for: .touchUpInside)
@@ -243,6 +243,13 @@ extension BagViewController: UITableViewDataSource, UITableViewDelegate {
             return cell!
             
         }
+    }
+    
+    @objc func goDetails(sender:UIButton) {
+        let index = sender.tag - 500
+        let DiscoverDetailsVC = storyboard?.instantiateViewController(withIdentifier: "DiscoverDetailsViewController") as! DiscoverDetailsViewController
+        DiscoverDetailsVC.productId = "\(dataList[index].id)"
+        self.navigationController?.pushViewController(DiscoverDetailsVC, animated: true)
     }
     
     @objc func deleteApi(sender: UIButton) {

@@ -19,6 +19,7 @@ class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var new: UILabel!
     @IBOutlet weak var sale: UILabel!
     @IBOutlet weak var review: UILabel!
+    @IBOutlet weak var cutLbl: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

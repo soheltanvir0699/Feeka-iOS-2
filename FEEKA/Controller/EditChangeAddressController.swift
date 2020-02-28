@@ -40,7 +40,7 @@ class EditChangeAddressController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        if userdefault.value(forKey: "customer_id") as? String == nil {
+        if userdefault.value(forKey: "customer_id") as? String != nil {
             customerId = userdefault.value(forKey: "customer_id") as! String
         }
         setUpView()
@@ -151,7 +151,7 @@ class EditChangeAddressController: UIViewController {
         
         let parameter = ["customer_id":"\(self.customerId)"]
         
-        
+        print(parameter)
         Alamofire.request(urlToExcute, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
         
         if let error = response.error {
