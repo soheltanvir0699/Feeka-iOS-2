@@ -51,7 +51,7 @@ class DeliveryViewController: UIViewController {
     }
     
     @IBAction func backAction(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        navigationController?.popToRootViewController(animated: true)
     }
     
     @IBAction func addNewAddressAction(_ sender: Any) {
@@ -74,7 +74,8 @@ class DeliveryViewController: UIViewController {
     @IBAction func continueToDeliSchedule(_ sender: Any) {
         let deli2VC = storyboard?.instantiateViewController(withIdentifier: "DeliverySecondController") as? DeliverySecondController
         deli2VC?.modalPresentationStyle = .fullScreen
-        present(deli2VC!, animated: true, completion: nil)
+        //present(deli2VC!, animated: true, completion: nil)
+        navigationController?.pushViewController(deli2VC!, animated: true)
     }
     
     func getAddressApi() {

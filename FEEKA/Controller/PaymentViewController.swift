@@ -50,7 +50,8 @@ class PaymentViewController: UIViewController {
         }
     }
     @IBAction func backAction(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        //dismiss(animated: true, completion: nil)
+        navigationController?.popToRootViewController(animated: true)
     }
      
     
@@ -78,7 +79,7 @@ class PaymentViewController: UIViewController {
         ConfirmOrderVC?.promoCode = self.promcode
         ConfirmOrderVC?.modalPresentationStyle = .fullScreen
         
-        present(ConfirmOrderVC!, animated: true, completion: nil)
+        self.navigationController?.pushViewController(ConfirmOrderVC!, animated: true)
     }
     
     func couponApi() {

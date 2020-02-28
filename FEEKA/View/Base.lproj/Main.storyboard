@@ -1175,7 +1175,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QUh-i2-S29" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3367.1999999999998" y="-541.62561576354688"/>
+            <point key="canvasLocation" x="3416" y="-540"/>
         </scene>
         <!--Delivery View Controller-->
         <scene sceneID="DPr-Tr-cbA">
@@ -7688,7 +7688,7 @@
                                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0R8-cg-mKb" customClass="CosmosView" customModule="Cosmos">
+                                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0R8-cg-mKb" customClass="CosmosView" customModule="Cosmos">
                                                                     <rect key="frame" x="10" y="228" width="134" height="20"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <userDefinedRuntimeAttributes>

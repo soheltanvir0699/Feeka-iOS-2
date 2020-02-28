@@ -53,12 +53,14 @@ class DeliverySecondController: UIViewController {
         let paymentVC = storyboard?.instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController
         
         paymentVC?.modalPresentationStyle = .fullScreen
-        present(paymentVC!, animated: true, completion: nil)
+        //present(paymentVC!, animated: true, completion: nil)
+        self.navigationController?.pushViewController(paymentVC!, animated: true)
         
     }
     
     @IBAction func backBtn(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+        navigationController?.popToRootViewController(animated: true)
     }
     func deliveryQuoteApi() {
        

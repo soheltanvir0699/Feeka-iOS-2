@@ -69,7 +69,8 @@ class BagViewController: UIViewController, UIViewControllerTransitioningDelegate
         let deliveryVC = storyboard?.instantiateViewController(withIdentifier: "DeliveryViewController") as! DeliveryViewController
         deliveryVC.modalPresentationStyle = .fullScreen
         
-        self.present(deliveryVC, animated: true, completion: nil)
+        //self.present(deliveryVC, animated: true, completion: nil)
+        self.navigationController?.pushViewController(deliveryVC, animated: true)
     }
     
     func bagApiCalling() {

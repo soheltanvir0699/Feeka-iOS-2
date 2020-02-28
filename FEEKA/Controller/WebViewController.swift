@@ -27,12 +27,13 @@ class WebViewController: UIViewController, WKNavigationDelegate{
   @objc func back() {
         
     
-    NotificationCenter.default.post(name: Notification.Name("backcon"), object: nil, userInfo: nil)
-    dismiss(animated: true, completion: nil)
+//    NotificationCenter.default.post(name: Notification.Name("backcon"), object: nil, userInfo: nil)
+//    dismiss(animated: true, completion: nil)
     }
     @IBAction func backBtn(_ sender: Any) {
         
-        dismiss(animated: true, completion: nil)
+       // dismiss(animated: true, completion: nil)
+        navigationController?.popToRootViewController(animated: true)
     }
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         let cancleUrl1 = URL(string: cancleUrl)
@@ -41,9 +42,10 @@ class WebViewController: UIViewController, WKNavigationDelegate{
             print(webView.url!)
             let ordersAndReturnVC = storyboard?.instantiateViewController(withIdentifier: "OrdersAndReturnController")
             ordersAndReturnVC?.modalPresentationStyle = .fullScreen
-            present(ordersAndReturnVC!, animated: true, completion: nil)
+           // present(ordersAndReturnVC!, animated: true, completion: nil)
+            self.navigationController?.pushViewController(ordersAndReturnVC!, animated: true)
         }else if webView.url == cancleUrl1 {
-            dismiss(animated: true, completion: nil)
+              navigationController?.popToRootViewController(animated: true)
         } else {
             print("error")
         }

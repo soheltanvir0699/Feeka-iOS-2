@@ -38,10 +38,11 @@ class ConfirmOrderViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(back), name: Notification.Name("backcon"), object: nil)
     }
     @objc func back() {
-        dismiss(animated: true, completion: nil)
+      //  dismiss(animated: true, completion: nil)
     }
     @IBAction func backBtn(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+       // dismiss(animated: true, completion: nil)
+        navigationController?.popToRootViewController(animated: true)
     }
     func confirmOderApi() {
         indicator = self.indicator()
@@ -147,7 +148,8 @@ class ConfirmOrderViewController: UIViewController {
                     webViewController?.cancleUrl = cancel_url
                     webViewController?.successUrl = returnUrl
                     webViewController?.modalPresentationStyle = .fullScreen
-                    self.present(webViewController!, animated: true, completion: nil)
+                   // self.present(webViewController!, animated: true, completion: nil)
+                    self.navigationController?.pushViewController(webViewController!, animated: true)
                 } else {
                     self.indicator.stopAnimating()
     
