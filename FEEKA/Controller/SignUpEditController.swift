@@ -121,6 +121,7 @@ class SignUpEditController: UIViewController, UITextFieldDelegate {
     
        func getAddressApi() {
            indicator = self.indicator()
+        indicator.startAnimating()
            guard let url = URL(string: "https://feeka.co.za/json-api/route/customer_detail.php") else {
                               self.view.makeToast( "Please try again later")
                                  return
@@ -144,7 +145,7 @@ class SignUpEditController: UIViewController, UITextFieldDelegate {
                                         
                                          if jsonRespose["status"].stringValue == "1" {
                                           
-                                          let data = jsonRespose["data"].arrayValue[0]
+                                          let data = JSON(jsonRespose["data"])
                                             self.name.text = data["first_name"].stringValue
                                             self.sureName.text = data["last_name"].stringValue
                                             self.birthDate.text = data["DOB"].stringValue
@@ -173,6 +174,7 @@ class SignUpEditController: UIViewController, UITextFieldDelegate {
 
     func SaveAddressApi() {
               indicator = self.indicator()
+        indicator.startAnimating()
               guard let url = URL(string: "https://feeka.co.za/json-api/route/edit_profile.php") else {
                                  self.view.makeToast( "Please try again later")
                                     return
