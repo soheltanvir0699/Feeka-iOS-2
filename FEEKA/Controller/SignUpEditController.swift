@@ -113,7 +113,7 @@ class SignUpEditController: UIViewController, UITextFieldDelegate {
  
  @objc func doneClicked() {
      let dateFormatter        = DateFormatter()
-     dateFormatter.dateFormat = "dd-MM-yyyy"
+     dateFormatter.dateFormat = "yyyy-MM-dd"
      birthDate.text       = dateFormatter.string(from: datePicker.date)
      self.view.endEditing(true)
  }
