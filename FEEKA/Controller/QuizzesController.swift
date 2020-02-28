@@ -112,27 +112,34 @@ class QuizzesController: UIViewController {
                                                             self.dataList.append(quizzezModel(id: id, name: name, image: image, catId: cartId))
                                                         }
                                                         DispatchQueue.main.async {
-                                                             if self.dataList.count >= 2 {
-                                                                                                                   
+                                                             if self.dataList.count >= 1 {
+                                                                if (self.dataList[0].image).isEmpty == false {
                                                     self.firstBtn.setTitle("\(self.dataList[0].name)", for: .normal)
-                                                    self.secondBtn.setTitle("\(self.dataList[1].name)", for: .normal)
+                                                                    self.firstImg.downloaded(from: self.dataList[0].image)
+                                                                    let request = ImageRequest(
+                                                                        url: URL(string: self.dataList[0].image)!
+                                                                        )
+                                                                    Nuke.loadImage(with: request, into: self.firstImg)
+                                                                }
+                                                   if (self.dataList[1].image).isEmpty == false { self.secondBtn.setTitle("\(self.dataList[1].name)", for: .normal)
+                                                    let request1 = ImageRequest(
+                                                        url: URL(string: self.dataList[1].image)!
+                                                        )
+                                                    Nuke.loadImage(with: request1, into: self.secondImg)
+
+                                                                }
+                                                                if (self.dataList[2].image).isEmpty == false {
                                                     self.thirdBtn.setTitle("\(self.dataList[2].name)", for: .normal)
-                                                    self.firstImg.downloaded(from: self.dataList[0].image)
-                                                                let request = ImageRequest(
-                                                                    url: URL(string: self.dataList[0].image)!
-                                                                    )
-                                                                Nuke.loadImage(with: request, into: self.firstImg)
+                                                                    let request2 = ImageRequest(
+                                                                                                                                     url: URL(string: self.dataList[2].image)!
+                                                                                                                                     )
+                                                                                                                                 Nuke.loadImage(with: request2, into: self.thirdImg)
+                                                                }
+                                                    
                                                    // self.secondImg.downloaded(from: self.dataList[1].image)
-                                                                let request1 = ImageRequest(
-                                                                    url: URL(string: self.dataList[1].image)!
-                                                                    )
-                                                                Nuke.loadImage(with: request1, into: self.secondImg)
-                                                    //self.thirdImg.downloaded(from: self.dataList[2].image)
+                                                                                                                    //self.thirdImg.downloaded(from: self.dataList[2].image)
                                                                 
-                                                                let request2 = ImageRequest(
-                                                                    url: URL(string: self.dataList[2].image)!
-                                                                    )
-                                                                Nuke.loadImage(with: request2, into: self.thirdImg)
+                                                             
                                                                                                                    }
                                                         }
                                                        
