@@ -4440,13 +4440,13 @@
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="r" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQJ-q6-3CT">
-                                                                    <rect key="frame" x="12" y="190.66666666666666" width="4.6666666666666679" height="16.333333333333343"/>
+                                                                    <rect key="frame" x="12" y="193.66666666666666" width="4.6666666666666679" height="16.333333333333343"/>
                                                                     <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="14"/>
                                                                     <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LFv-zM-yLW">
-                                                                    <rect key="frame" x="12" y="200" width="27" height="1"/>
+                                                                    <rect key="frame" x="12" y="203.00000000000003" width="27" height="1"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="1" id="cYM-Ex-QpB"/>
@@ -4457,7 +4457,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="r" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bvv-db-Wdi">
-                                                                    <rect key="frame" x="27.666666666666668" y="190.66666666666666" width="4.6666666666666679" height="16.333333333333343"/>
+                                                                    <rect key="frame" x="27.666666666666742" y="193.66666666666666" width="4.6666666666666679" height="16.333333333333343"/>
                                                                     <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="14"/>
                                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
@@ -4506,7 +4506,7 @@
                                                             <constraint firstItem="iKG-G4-IsY" firstAttribute="leading" secondItem="Qkq-g6-0oK" secondAttribute="leading" constant="12" id="1DN-R6-Chc"/>
                                                             <constraint firstItem="PQJ-q6-3CT" firstAttribute="leading" secondItem="Qkq-g6-0oK" secondAttribute="leading" constant="12" id="1gX-wH-3S9"/>
                                                             <constraint firstAttribute="trailing" secondItem="KSU-pN-9SV" secondAttribute="trailing" id="1rW-tA-jG9"/>
-                                                            <constraint firstAttribute="bottom" secondItem="PQJ-q6-3CT" secondAttribute="bottom" constant="30.000000000000028" id="2os-ym-O6U"/>
+                                                            <constraint firstAttribute="bottom" secondItem="PQJ-q6-3CT" secondAttribute="bottom" constant="27" id="2os-ym-O6U"/>
                                                             <constraint firstItem="1w0-bv-0ZH" firstAttribute="leading" secondItem="Qkq-g6-0oK" secondAttribute="leading" constant="11" id="4ob-Xn-4X8"/>
                                                             <constraint firstItem="KSU-pN-9SV" firstAttribute="top" secondItem="CaC-it-vH9" secondAttribute="bottom" id="8r5-46-wFp"/>
                                                             <constraint firstItem="BlC-PG-L2s" firstAttribute="top" secondItem="KSU-pN-9SV" secondAttribute="bottom" constant="16.329999999999998" id="Goi-wU-Qye"/>
@@ -4514,14 +4514,14 @@
                                                             <constraint firstItem="BlC-PG-L2s" firstAttribute="leading" secondItem="1w0-bv-0ZH" secondAttribute="trailing" constant="7" id="KJp-3t-gb5"/>
                                                             <constraint firstItem="LFv-zM-yLW" firstAttribute="leading" secondItem="Qkq-g6-0oK" secondAttribute="leading" constant="12" id="MIK-Mk-Zuq"/>
                                                             <constraint firstItem="CaC-it-vH9" firstAttribute="leading" secondItem="Qkq-g6-0oK" secondAttribute="leading" constant="12" id="N2y-g5-VVd"/>
-                                                            <constraint firstItem="1w0-bv-0ZH" firstAttribute="top" secondItem="PQJ-q6-3CT" secondAttribute="bottom" constant="6.0000000000000284" id="Rn3-ct-Ipr"/>
-                                                            <constraint firstAttribute="bottom" secondItem="Bvv-db-Wdi" secondAttribute="bottom" constant="30.000000000000028" id="Sik-i9-Tps"/>
+                                                            <constraint firstItem="1w0-bv-0ZH" firstAttribute="top" secondItem="PQJ-q6-3CT" secondAttribute="bottom" constant="3" id="Rn3-ct-Ipr"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Bvv-db-Wdi" secondAttribute="bottom" constant="27" id="Sik-i9-Tps"/>
                                                             <constraint firstAttribute="trailing" secondItem="iKG-G4-IsY" secondAttribute="trailing" constant="12" id="brz-HY-Da8"/>
                                                             <constraint firstItem="iKG-G4-IsY" firstAttribute="top" secondItem="Qkq-g6-0oK" secondAttribute="top" id="eFQ-Br-eTj"/>
                                                             <constraint firstAttribute="trailing" secondItem="CaC-it-vH9" secondAttribute="trailing" id="g53-39-InL"/>
-                                                            <constraint firstItem="LFv-zM-yLW" firstAttribute="top" secondItem="KSU-pN-9SV" secondAttribute="bottom" constant="6.3333333333333428" id="kBY-Ek-NWw"/>
+                                                            <constraint firstItem="LFv-zM-yLW" firstAttribute="top" secondItem="KSU-pN-9SV" secondAttribute="bottom" constant="9.3333333333333428" id="kBY-Ek-NWw"/>
                                                             <constraint firstItem="Bvv-db-Wdi" firstAttribute="leading" secondItem="PQJ-q6-3CT" secondAttribute="trailing" constant="11.000000000000043" id="l9c-fi-7zT"/>
-                                                            <constraint firstItem="PQJ-q6-3CT" firstAttribute="top" secondItem="KSU-pN-9SV" secondAttribute="bottom" constant="-2.9999999999999716" id="vaY-EC-AX6"/>
+                                                            <constraint firstItem="PQJ-q6-3CT" firstAttribute="top" secondItem="KSU-pN-9SV" secondAttribute="bottom" constant="-2.8421709430404007e-14" id="vaY-EC-AX6"/>
                                                         </constraints>
                                                         <size key="customSize" width="166" height="237"/>
                                                         <connections>
