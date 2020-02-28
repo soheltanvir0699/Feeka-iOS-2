@@ -16,8 +16,8 @@ class BagViewController: UIViewController, UIViewControllerTransitioningDelegate
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var mainView: UIView!
-    
     @IBOutlet weak var conBtn: UIButton!
+    
     var indicator:NVActivityIndicatorView!
     var dataList = [bagDataModel]()
     var shipping = ""
@@ -123,11 +123,13 @@ class BagViewController: UIViewController, UIViewControllerTransitioningDelegate
                                tabItem.badgeValue = "\(self.dataList.count)"
                            }
                 if self.dataList.count == 0 {
-                    self.mainView.isHidden = true
-                    //self.conBtn.isHidden = true
+                   // self.mainView.isHidden = true
+                    self.conBtn.isHidden = true
+                    self.tblView.isHidden = true
                } else {
-                    self.mainView.isHidden = false
-                    //self.conBtn.isHidden = false
+                   // self.mainView.isHidden = false
+                    self.conBtn.isHidden = false
+                    self.tblView.isHidden = false
                }
                 self.indicator.stopAnimating()
             
@@ -288,11 +290,13 @@ extension BagViewController: UITableViewDataSource, UITableViewDelegate {
                         
                     }
                     if self.dataList.count == 0 {
-                         self.mainView.isHidden = true
-                         //self.conBtn.isHidden = true
+                         //self.mainView.isHidden = true
+                         self.conBtn.isHidden = true
+                        self.tblView.isHidden = true
                     } else {
-                         self.mainView.isHidden = false
-                         //self.conBtn.isHidden = false
+                         //self.mainView.isHidden = false
+                         self.conBtn.isHidden = false
+                        self.tblView.isHidden = false
                     }
                 }
                     self.tblView.reloadData()
