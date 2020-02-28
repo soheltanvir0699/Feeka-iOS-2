@@ -22,6 +22,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var addToFav: UIButton!
     @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var scrollOne: UIScrollView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var leftItem: UILabel!
     @IBOutlet weak var cosmosView: CosmosView!
@@ -440,7 +441,13 @@ extension DiscoverDetailsViewController: UICollectionViewDataSource, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         productId = "\(fechuredId[indexPath.row])"
+        //scrollOne.decelerationRate = UIScrollView.DecelerationRate.fast
+        //scrollOne.scrollsToTop = true
+        //scrollView.scrollsToTop = true
+        scrollOne.scrollToTop()
         apiCalling(customerId: customerId, productId: productId)
     }
     
 }
+
+

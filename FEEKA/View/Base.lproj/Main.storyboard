@@ -7977,6 +7977,7 @@
                         <outlet property="regularPrice" destination="ADI-jA-dfF" id="fwb-v2-lsc"/>
                         <outlet property="reviewCount" destination="Uom-k3-yHx" id="Fax-gs-UIZ"/>
                         <outlet property="salePrice" destination="iem-rw-xoY" id="mbf-6Z-7vH"/>
+                        <outlet property="scrollOne" destination="RgX-DS-UAN" id="RAz-i1-HcS"/>
                         <outlet property="scrollView" destination="W67-SX-h6J" id="aG1-YB-Tax"/>
                         <outlet property="tickImg" destination="bPl-Xa-Ulm" id="3OP-Ps-uTp"/>
                     </connections>
@@ -9586,7 +9587,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cka-96-98O" customClass="CosmosView" customModule="Cosmos">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cka-96-98O" customClass="CosmosView" customModule="Cosmos">
                                                     <rect key="frame" x="0.0" y="313.66666666666669" width="120" height="20"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
@@ -9607,10 +9608,10 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ga9-bR-Pnr">
-                                                    <rect key="frame" x="128" y="315" width="0.0" height="10"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ga9-bR-Pnr">
+                                                    <rect key="frame" x="128" y="320" width="0.0" height="10"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="10" id="Kaq-Cy-lRU"/>
+                                                        <constraint firstAttribute="height" constant="10" id="q4R-ee-L4X"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                                     <nil key="textColor"/>
@@ -9620,9 +9621,10 @@
                                             <constraints>
                                                 <constraint firstItem="cka-96-98O" firstAttribute="leading" secondItem="SvN-fL-BtY" secondAttribute="leading" id="2UW-uT-ADj"/>
                                                 <constraint firstItem="7kJ-JT-ROJ" firstAttribute="leading" secondItem="SvN-fL-BtY" secondAttribute="leading" constant="4" id="93b-vw-d9c"/>
-                                                <constraint firstAttribute="bottom" secondItem="ga9-bR-Pnr" secondAttribute="bottom" constant="10" id="AQ1-gz-WaO"/>
                                                 <constraint firstItem="nwC-b2-3j5" firstAttribute="top" secondItem="mu6-vp-i99" secondAttribute="bottom" constant="8" id="Bsk-tv-0BY"/>
+                                                <constraint firstItem="ga9-bR-Pnr" firstAttribute="leading" secondItem="cka-96-98O" secondAttribute="trailing" constant="8" id="Ep5-Dz-C8u"/>
                                                 <constraint firstItem="mu6-vp-i99" firstAttribute="leading" secondItem="SvN-fL-BtY" secondAttribute="leading" id="FBl-Z4-7sW"/>
+                                                <constraint firstAttribute="bottom" secondItem="ga9-bR-Pnr" secondAttribute="bottom" constant="5" id="Lha-o3-aZ4"/>
                                                 <constraint firstItem="2Pe-DJ-NtS" firstAttribute="leading" secondItem="SvN-fL-BtY" secondAttribute="leading" constant="2" id="Qal-2d-BlF"/>
                                                 <constraint firstAttribute="bottom" secondItem="MOm-xq-fWr" secondAttribute="bottom" constant="20.670000000000002" id="U2S-Qt-HJN"/>
                                                 <constraint firstItem="MOm-xq-fWr" firstAttribute="leading" secondItem="qIa-9G-ky1" secondAttribute="trailing" constant="6.6699999999999999" id="VcK-XF-gpb"/>
@@ -9630,7 +9632,6 @@
                                                 <constraint firstItem="9UC-2z-dCF" firstAttribute="leading" secondItem="SvN-fL-BtY" secondAttribute="leading" id="ZZ9-sP-rAq"/>
                                                 <constraint firstItem="MOm-xq-fWr" firstAttribute="top" secondItem="9UC-2z-dCF" secondAttribute="bottom" id="bxN-Q6-WeQ"/>
                                                 <constraint firstItem="9UC-2z-dCF" firstAttribute="top" secondItem="nwC-b2-3j5" secondAttribute="bottom" id="cdb-L2-k6I"/>
-                                                <constraint firstItem="ga9-bR-Pnr" firstAttribute="leading" secondItem="cka-96-98O" secondAttribute="trailing" constant="8" id="cyL-6x-5To"/>
                                                 <constraint firstItem="qIa-9G-ky1" firstAttribute="top" secondItem="9UC-2z-dCF" secondAttribute="bottom" id="eBN-Va-YMg"/>
                                                 <constraint firstItem="7kJ-JT-ROJ" firstAttribute="top" secondItem="SvN-fL-BtY" secondAttribute="top" constant="4" id="fT5-u0-wjf"/>
                                                 <constraint firstItem="qIa-9G-ky1" firstAttribute="leading" secondItem="SvN-fL-BtY" secondAttribute="leading" id="lfy-Kq-Lce"/>
@@ -9756,7 +9757,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qdn-hd-i30" customClass="CosmosView" customModule="Cosmos">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qdn-hd-i30" customClass="CosmosView" customModule="Cosmos">
                                                     <rect key="frame" x="15" y="543" width="121" height="20"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>

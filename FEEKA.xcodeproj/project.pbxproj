@@ -13,6 +13,7 @@
 		8D04762323FAC557009C0E7B /* NetworkingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D04762223FAC557009C0E7B /* NetworkingClient.swift */; };
 		8D04762523FAE2C3009C0E7B /* Extension+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D04762423FAE2C3009C0E7B /* Extension+UIImageView.swift */; };
 		8D05C27A23FD5520002E3D7B /* HomeProductDetailsMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D05C27923FD5520002E3D7B /* HomeProductDetailsMenuCell.swift */; };
+		8D0FAD142409594B006F1449 /* Extension+ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0FAD132409594B006F1449 /* Extension+ScrollView.swift */; };
 		8D2837EF24048D7F006DE71D /* ipayLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D2837EE24048D7E006DE71D /* ipayLogo.png */; };
 		8D2837F1240492B9006DE71D /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2837F0240492B9006DE71D /* PaymentViewController.swift */; };
 		8D3A3C7324067E4E00C1B952 /* BrandDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3A3C7224067E4E00C1B952 /* BrandDetailsController.swift */; };
@@ -128,6 +129,7 @@
 		8D04762223FAC557009C0E7B /* NetworkingClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingClient.swift; sourceTree = "<group>"; };
 		8D04762423FAE2C3009C0E7B /* Extension+UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIImageView.swift"; sourceTree = "<group>"; };
 		8D05C27923FD5520002E3D7B /* HomeProductDetailsMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProductDetailsMenuCell.swift; sourceTree = "<group>"; };
+		8D0FAD132409594B006F1449 /* Extension+ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+ScrollView.swift"; sourceTree = "<group>"; };
 		8D2837EE24048D7E006DE71D /* ipayLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipayLogo.png; sourceTree = "<group>"; };
 		8D2837F0240492B9006DE71D /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		8D3A3C7224067E4E00C1B952 /* BrandDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandDetailsController.swift; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 				8D9E1EBE2400062D00B463C1 /* Extension+String.swift */,
 				8DD12376240141BD0086A8D0 /* Toast.swift */,
 				8DB7507D2400D60000E69A5B /* Extension+UILabel.swift */,
+				8D0FAD132409594B006F1449 /* Extension+ScrollView.swift */,
 				8DF554E62402CFE20087FCEB /* DateFormatter.swift */,
 				8D6868D323FD8D57008638F7 /* Extension+UIView.swift */,
 				8DAC471523FAF48F0095D064 /* UIImage+Gif.swift */,
@@ -587,6 +590,7 @@
 				8DE9D9D823FD059F000100CF /* HomeGroomingCollectionViewCell.swift in Sources */,
 				8DE40A6823F40D3800807FC5 /* DataModel.swift in Sources */,
 				8D901C702405366A00043E5E /* FinderController.swift in Sources */,
+				8D0FAD142409594B006F1449 /* Extension+ScrollView.swift in Sources */,
 				8D00D5A824056C5E0061EE8E /* QuizCell.swift in Sources */,
 				8D3D7BAC23F2F254005A3479 /* ForgotPasswordViewController.swift in Sources */,
 				8D6868CE23FD730C008638F7 /* FilterDetailsController.swift in Sources */,
