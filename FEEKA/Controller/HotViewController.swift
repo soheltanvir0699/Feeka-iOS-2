@@ -209,8 +209,22 @@ extension HotViewController: UICollectionViewDelegate, UICollectionViewDataSourc
         Nuke.loadImage(with: request, into: cell!.productImg)
         cell?.productBrand.text = dataList[indexPath.row].brand
         cell?.productTitle.text = dataList[indexPath.row].title
-        cell?.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
+        if (dataList[indexPath.row].regularPrice).isEmpty != true {
+            cell?.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
+            cell!.cutLbl.isHidden = false
+        } else {
+            cell?.regularPrice.text = nil
+            cell!.cutLbl.isHidden = true
+        }
+        if (dataList[indexPath.row].salePrice).isEmpty != true {
         cell?.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
+            cell?.cutLbl.isHidden = false
+        }else {
+            cell?.salePrice.text = nil
+            cell!.cutLbl.isHidden = true
+        }
+        //cell?.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
+        //cell?.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
         cell?.review.rating = dataList[indexPath.row].rating
         cell?.reviewText.text = "(\(dataList[indexPath.row].count))"
         cell?.productImg.layer.cornerRadius = 5

@@ -46,10 +46,11 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
     
     fileprivate func wishAction() {
         if isWhish == 2 {
-            addToFav.setImage(UIImage(named: "like"), for: .normal)
+            addToFav.setImage(UIImage(named: "like-normal"), for: .normal)
+            
            isWhish = 1
         } else if isWhish == 1 {
-            addToFav.setImage(UIImage(named: "like-normal"), for: .normal)
+            addToFav.setImage(UIImage(named: "like"), for: .normal)
             isWhish = 2
         } else {
             addToFav.setImage(UIImage(named: "like"), for: .normal)
@@ -77,14 +78,12 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
             self.scrollView.addSubview(imgView)
             self.pageControl.numberOfPages = self.imageList.count
             
-            if isWhish == 1 {
-                addToFav.setImage(UIImage(named: "like"), for: .normal)
-            } else if isWhish == 2 {
-                addToFav.setImage(UIImage(named: "like-normal"), for: .normal)
-                //isWhish = 1
-            } else {
-                addToFav.setImage(UIImage(named: "like"), for: .normal)
-            }
+//            if isWhish == 1 {
+//                addToFav.setImage(UIImage(named: "like"), for: .normal)
+//            } else if isWhish == 2 {
+//                addToFav.setImage(UIImage(named: "like-normal"), for: .normal)
+//                //isWhish = 1
+//            }
         }
         
         self.scrollView.contentSize = CGSize(width: (self.scrollView.frame.size.width) * CGFloat(imageList.count), height: self.scrollView.frame.size.height)
@@ -173,6 +172,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
               }
               
           }
+    
       }
     
     @IBAction func productDetailsAction(_ sender: Any) {
@@ -254,7 +254,8 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
                                       }, completion: {(isCompleted) in
                                           self.tickImg.removeFromSuperview()
                                       })
-                        }
+                        } else {
+                        
                         self.bagApiCalling()
                         print(self.isWhish)
                         self.wishAction()
@@ -269,6 +270,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
                 
                   
               }
+    }
     }
     func apiCalling(customerId:String, productId:String ) {
               self.fechuredId = [Int]()
@@ -309,9 +311,18 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
                         self.imageList.append(i.stringValue)
                     }
                     if productDetails["is_whishlist"].intValue == 0 {
-                       self.isWhish = 2
-                    } else {
+                      // self.isWhish = 2
+                        
+                        self.addToFav.setImage(UIImage(named: "like-normal"), for: .normal)
+                    }else if productDetails["is_whishlist"].intValue == 1 {
+                      // self.isWhish = 2
+                        
+                        self.addToFav.setImage(UIImage(named: "like"), for: .normal)
+                    }
+                    else {
                     self.isWhish = productDetails["is_whishlist"].intValue
+                    self.addToFav.setImage(UIImage(named: "like-normal"), for: .normal)
+                        
                     }
                     self.productTitle = productDetails["title"].stringValue
                     let content = productDetails["content"].stringValue
@@ -399,6 +410,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
                 }
                   
               }
+        
     }
     
 }
