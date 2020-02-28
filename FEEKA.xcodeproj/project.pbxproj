@@ -60,6 +60,7 @@
 		8DC5D0A023FFA91E00246E33 /* DiscoverCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC5D09F23FFA91E00246E33 /* DiscoverCollectionViewCell.swift */; };
 		8DC5D0A223FFA94B00246E33 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC5D0A123FFA94B00246E33 /* SearchTableViewCell.swift */; };
 		8DC71A5124015C7C002D2726 /* ProductDetailsSecondCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC71A5024015C7C002D2726 /* ProductDetailsSecondCell.swift */; };
+		8DCBD001240960C000F3AB9A /* SignUpEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCBD000240960C000F3AB9A /* SignUpEditController.swift */; };
 		8DD12377240141BD0086A8D0 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD12376240141BD0086A8D0 /* Toast.swift */; };
 		8DE40A6823F40D3800807FC5 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE40A6723F40D3800807FC5 /* DataModel.swift */; };
 		8DE40A6A23F4601500807FC5 /* HomeMenGroomingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE40A6923F4601500807FC5 /* HomeMenGroomingViewController.swift */; };
@@ -178,6 +179,7 @@
 		8DC5D09F23FFA91E00246E33 /* DiscoverCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCollectionViewCell.swift; sourceTree = "<group>"; };
 		8DC5D0A123FFA94B00246E33 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		8DC71A5024015C7C002D2726 /* ProductDetailsSecondCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsSecondCell.swift; sourceTree = "<group>"; };
+		8DCBD000240960C000F3AB9A /* SignUpEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEditController.swift; sourceTree = "<group>"; };
 		8DD12376240141BD0086A8D0 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		8DE40A6723F40D3800807FC5 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		8DE40A6923F4601500807FC5 /* HomeMenGroomingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenGroomingViewController.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 				8D3D7B9B23F2C7F1005A3479 /* LogInViewController.swift */,
 				8D6868CD23FD730C008638F7 /* FilterDetailsController.swift */,
 				C4BC808A23F9814F00FA5873 /* AddAddressViewController.swift */,
+				8DCBD000240960C000F3AB9A /* SignUpEditController.swift */,
 				C461214923F98335003611A1 /* AddAddressDetailsViewController.swift */,
 				8DB38B132405B1A900CF2B78 /* WebViewController.swift */,
 				8D6868C923FD6627008638F7 /* FilterViewController.swift */,
@@ -576,6 +579,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D05C27A23FD5520002E3D7B /* HomeProductDetailsMenuCell.swift in Sources */,
+				8DCBD001240960C000F3AB9A /* SignUpEditController.swift in Sources */,
 				C4ADA25E23F68F0900F4B5E9 /* Extension+ViewController.swift in Sources */,
 				C4BD14A623F5753C00B5DBA5 /* HotViewController.swift in Sources */,
 				C4ED048923F6DD130072CEE7 /* CollectionViewCell.swift in Sources */,

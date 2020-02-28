@@ -40,6 +40,7 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
     var isAddress = true
     var indicator:NVActivityIndicatorView!
     let userdefault = UserDefaults.standard
+    var datePicker = UIDatePicker()
     var urlLink = "https://feeka.co.za/json-api/route/add_address.php"
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +59,7 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
         cityLbl.text = city
         postcodeLbl.text = postalCode
         companyLbl.text = company
+        
     }
     
     @IBAction func backBtn(_ sender: Any) {

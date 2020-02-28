@@ -59,10 +59,11 @@ class MoreViewController: UIViewController {
     
     @IBAction func settingAction(_ sender: Any) {
         
-        let navVc = storyboard?.instantiateViewController(withIdentifier: "loginnav")
-        navVc!.modalPresentationStyle = .overFullScreen
+        let navVc = storyboard?.instantiateViewController(withIdentifier: "SignUpEditController") as? SignUpEditController
+       // navVc!.modalPresentationStyle = .overFullScreen
         navVc!.transitioningDelegate = self
       //  present(navVc!, animated: true, completion: nil)
+        self.navigationController?.pushViewController(navVc!, animated: true)
         
     }
     
