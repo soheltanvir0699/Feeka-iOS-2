@@ -111,9 +111,9 @@ class QuizFilterController: UIViewController {
        func pushDiscoverController(index: Int) {
            let discoverVC = storyboard?.instantiateViewController(withIdentifier: "DiscoverDetailsViewController") as? DiscoverDetailsViewController
            discoverVC!.productId = "\(productID[index])"
-        discoverVC?.modalPresentationStyle = .fullScreen
+       // discoverVC?.modalPresentationStyle = .fullScreen
            navigationController?.pushViewController(discoverVC!, animated: true)
-        present(discoverVC!, animated: true, completion: nil)
+       // present(discoverVC!, animated: true, completion: nil)
        }
 
     @IBAction func retake(_ sender: Any) {
