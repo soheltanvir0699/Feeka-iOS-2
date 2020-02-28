@@ -27,6 +27,7 @@ class QuizzesController: UIViewController, UITableViewDataSource, UITableViewDel
         Nuke.loadImage(with: request, into: cell!.imgView)
         cell?.imgView.layer.cornerRadius = cell!.imgView.frame.width / 2
         cell?.btn.setTitle("\(self.dataList[indexPath.row].name)", for: .normal)
+        cell?.selectedBackgroundView = UIView()
         return cell!
     }
     

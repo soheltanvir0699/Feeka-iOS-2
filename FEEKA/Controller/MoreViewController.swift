@@ -62,7 +62,7 @@ class MoreViewController: UIViewController {
         let navVc = storyboard?.instantiateViewController(withIdentifier: "loginnav")
         navVc!.modalPresentationStyle = .overFullScreen
         navVc!.transitioningDelegate = self
-        present(navVc!, animated: true, completion: nil)
+      //  present(navVc!, animated: true, completion: nil)
         
     }
     

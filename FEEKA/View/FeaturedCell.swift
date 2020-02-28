@@ -14,6 +14,7 @@ class FeaturedCell: UICollectionViewCell {
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var brandName: UILabel!
     @IBOutlet weak var regularPrice: UILabel!    
+    @IBOutlet weak var reviewCount: UILabel!
     @IBOutlet weak var salePrice: UILabel!
     @IBOutlet weak var cosomView: CosmosView!
 }

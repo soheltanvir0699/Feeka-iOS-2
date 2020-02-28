@@ -225,8 +225,9 @@ class HomeProductDetailsViewController: UIViewController , UIViewControllerTrans
 
                         self.productListCollView.reloadData()
                         self.productListTblView.reloadData()
+                        self.indicator.stopAnimating()
                       }
-                      self.indicator.stopAnimating()
+                      
 
                                       
                   }else {
@@ -238,6 +239,7 @@ class HomeProductDetailsViewController: UIViewController , UIViewControllerTrans
                     let alertView = ShowAlertView().alertView(title: "No Product Found", action: "OK", message: "")
                     self.present(alertView, animated: true, completion: nil)
                 }
+                self.indicator.stopAnimating()
                   
               }
     }

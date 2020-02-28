@@ -35,8 +35,14 @@ class LogInViewController: UIViewController {
              
                NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
              hideKeyBoard()
+        self.navigationController?.navigationBar.isHidden = false
+        navigationItem.backBarButtonItem = UIBarButtonItem(
+            title: "Something Else", style: .plain, target: self, action: #selector(back))
          }
-         
+
+         @objc func back () {
+             navigationController?.popViewController(animated: true)
+         }
         @objc func keyboardWillShow(notification: Notification) {
              if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
 //                 if self.view.frame.origin.y == 0{

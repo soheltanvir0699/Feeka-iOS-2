@@ -105,11 +105,13 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
     }
     
     func logInVC() {
-        let navVc = storyboard?.instantiateViewController(withIdentifier: "loginnav")
-        navVc!.modalPresentationStyle = .overFullScreen
-        navVc!.transitioningDelegate = self
-        present(navVc!, animated: true, completion: nil)
-    }
+            let navVc = storyboard?.instantiateViewController(withIdentifier: "loginnav")
+            navVc!.modalPresentationStyle = .overFullScreen
+            navVc!.transitioningDelegate = self
+            userdefault.setValue("", forKey: "customer_id")
+            present(navVc!, animated: true, completion: nil)
+            //navigationController?.pushViewController(navVc!, animated: true)
+        }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let pageNumber = scrollView.contentOffset.x / scrollView.frame.size.width
@@ -232,8 +234,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
                         print(parameter)
                         let alert = UIAlertController(title: "", message: "Please sign in", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
-                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "LogInViewController")
-                            self.navigationController?.pushViewController(vc!, animated: true)
+                            self.logInVC()
                             
                             
                         }))
@@ -420,6 +421,7 @@ extension DiscoverDetailsViewController: UICollectionViewDataSource, UICollectio
         cell.brandName.text = dataList[indexPath.row].brand
         cell.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
         cell.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
+        cell.reviewCount.text = "(\(dataList[indexPath.row].count))"
         return cell
     }
     

@@ -81,8 +81,8 @@ class ExangeRefundController: UIViewController {
             self.refundRequest(reason: text!, reqType: "4")
            // self.dismiss(animated: true, completion: nil)
         }))
-        alert.view.backgroundColor = .black
-        alert.view.tintColor = .black
+        //alert.view.backgroundColor = .black
+        //alert.view.tintColor = .black
         self.present(alert, animated: true, completion: nil)
         
     }
@@ -114,8 +114,8 @@ class ExangeRefundController: UIViewController {
                   let text = alert.textFields![0].text
                   self.refundRequest(reason: text!, reqType: "6")
               }))
-              alert.view.backgroundColor = .black
-              alert.view.tintColor = .white
+             // alert.view.backgroundColor = .black
+             // alert.view.tintColor = .white
               self.present(alert, animated: true, completion: nil)
         
     }
