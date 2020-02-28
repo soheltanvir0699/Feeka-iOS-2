@@ -12,36 +12,64 @@ import SwiftyJSON
 import NVActivityIndicatorView
 import Nuke
 
-class QuizzesController: UIViewController {
-
-    @IBOutlet weak var firstBtn: UIButton!
+class QuizzesController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var tblView: UITableView!
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? QuizessTableViewCell
+             let request = ImageRequest(
+                url: URL(string: self.dataList[indexPath.row].image)!
+                                                                                )
+        Nuke.loadImage(with: request, into: cell!.imgView)
+        cell?.imgView.layer.cornerRadius = cell!.imgView.frame.width / 2
+        cell?.btn.setTitle("\(self.dataList[indexPath.row].name)", for: .normal)
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if dataList[indexPath.row].id == "11" {
+            StoredProperty.filterTopImage = UIImage(named: "skin_care_52878679")!
+            let finderVc = storyboard?.instantiateViewController(withIdentifier: "FinderController") as? FinderController
+            finderVc?.dataList = self.dataList
+            finderVc?.index = indexPath.row
+            self.navigationController?.pushViewController(finderVc!, animated: true)
+        }
+        if dataList[indexPath.row].id == "12" {
+           StoredProperty.filterTopImage = UIImage(named: "hair_care_52878684")!
+            let finderVc = storyboard?.instantiateViewController(withIdentifier: "FinderController") as? FinderController
+            finderVc?.dataList = self.dataList
+            finderVc?.index = indexPath.row
+            self.navigationController?.pushViewController(finderVc!, animated: true)
+        }
+        if dataList[indexPath.row].id == "13"  {
+            let QuizzesMenDetailsController = storyboard?.instantiateViewController(withIdentifier: "QuizzesMenDetailsController") as? QuizzesMenDetailsController
+            //        QuizzesMenDetailsController?.modalPresentationStyle = .fullScreen
+            //        present(QuizzesMenDetailsController!, animated: true, completion: nil)
+            //
+                    self.navigationController?.pushViewController(QuizzesMenDetailsController!, animated: true)
+            StoredProperty.filterTopImage = UIImage(named: "skin_care_52878679")!
+        }
+    }
+    
     @IBOutlet weak var navView: UIView!
     
-    @IBOutlet weak var thirdBtn: UIButton!
-    @IBOutlet weak var secondBtn: UIButton!
-    @IBOutlet weak var firstImg: UIImageView!
     var indicator:NVActivityIndicatorView!
     
-    @IBOutlet weak var thirdImg: UIImageView!
-    @IBOutlet weak var secondImg: UIImageView!
     var dataList = [quizzezModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        firstImg.layer.cornerRadius = firstImg.frame.width / 2
-        secondImg.layer.cornerRadius = firstImg.frame.width / 2
-        thirdImg.layer.cornerRadius = firstImg.frame.width / 2
+       // firstImg.layer.cornerRadius = firstImg.frame.width / 2
         navView.setShadow()
         
         self.quizzesApi()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-      // if StoredProperty.retake == true {
-       // indicator.startAnimating()
-//           dismiss(animated: true, completion: nil)
-//        }
     }
     
     
@@ -101,45 +129,24 @@ class QuizzesController: UIViewController {
                                                     let jsonRespose = JSON(result)
                                                    print(jsonRespose)
                                                     if jsonRespose["status"].stringValue == "2" {
-                                                      
+                                                        
                                                        let data = jsonRespose["data"].arrayValue
                                                         for dataItem in data {
                                                             let jsonData = JSON(dataItem)
+                                                            
                                                             let id = jsonData["id"].stringValue
                                                             let name = jsonData["name"].stringValue
                                                             let image = jsonData["image"].stringValue
                                                             let cartId = jsonData["cat_id"].stringValue
                                                             self.dataList.append(quizzezModel(id: id, name: name, image: image, catId: cartId))
+                                                            print(self.dataList)
+                                                            
+                                                                
                                                         }
+                                                        self.tblView.reloadData()
                                                         DispatchQueue.main.async {
                                                              if self.dataList.count >= 1 {
-                                                                if (self.dataList[0].image).isEmpty == false {
-                                                    self.firstBtn.setTitle("\(self.dataList[0].name)", for: .normal)
-                                                                    self.firstImg.downloaded(from: self.dataList[0].image)
-                                                                    let request = ImageRequest(
-                                                                        url: URL(string: self.dataList[0].image)!
-                                                                        )
-                                                                    Nuke.loadImage(with: request, into: self.firstImg)
-                                                                }
-                                                   if (self.dataList[1].image).isEmpty == false { self.secondBtn.setTitle("\(self.dataList[1].name)", for: .normal)
-                                                    let request1 = ImageRequest(
-                                                        url: URL(string: self.dataList[1].image)!
-                                                        )
-                                                    Nuke.loadImage(with: request1, into: self.secondImg)
 
-                                                                }
-                                                                if (self.dataList[2].image).isEmpty == false {
-                                                    self.thirdBtn.setTitle("\(self.dataList[2].name)", for: .normal)
-                                                                    let request2 = ImageRequest(
-                                                                                                                                     url: URL(string: self.dataList[2].image)!
-                                                                                                                                     )
-                                                                                                                                 Nuke.loadImage(with: request2, into: self.thirdImg)
-                                                                }
-                                                    
-                                                   // self.secondImg.downloaded(from: self.dataList[1].image)
-                                                                                                                    //self.thirdImg.downloaded(from: self.dataList[2].image)
-                                                                
-                                                             
                                                                                                                    }
                                                         }
                                                        
