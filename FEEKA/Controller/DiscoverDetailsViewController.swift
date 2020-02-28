@@ -31,7 +31,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
     var isLike = false
     var indicator1:NVActivityIndicatorView!
     var imageList = [String]()
-    var isWhish = 0
+    var isWhish = 1
     var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
     var productTitle:String!
     var brand:String!
@@ -48,9 +48,12 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
         if isWhish == 1 {
             addToFav.setImage(UIImage(named: "like"), for: .normal)
            isWhish = 2
+        } else if isWhish == 0 {
+            addToFav.setImage(UIImage(named: "like"), for: .normal)
+            isWhish = 2
         } else {
             addToFav.setImage(UIImage(named: "like-normal"), for: .normal)
-            isWhish = 1
+                       isWhish = 1
         }
     }
     
@@ -79,6 +82,8 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
             } else if isWhish == 2 {
                 addToFav.setImage(UIImage(named: "like-normal"), for: .normal)
                 //isWhish = 1
+            } else {
+                addToFav.setImage(UIImage(named: "like"), for: .normal)
             }
         }
         
@@ -240,7 +245,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
                         
                         if jsonResponse["message"].stringValue == "Item has been added to your bag." {
                          //   self.view.makeToast("Add to Bag")
-                                  self.tickImg.alpha = 1
+                                     self.tickImg.alpha = 1
                             
                                       UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: {
                                           self.tickImg.alpha = 0.0
