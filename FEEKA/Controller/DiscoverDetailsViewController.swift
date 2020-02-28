@@ -45,15 +45,15 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
     var userdefault = UserDefaults.standard
     
     fileprivate func wishAction() {
-        if isWhish == 1 {
+        if isWhish == 2 {
             addToFav.setImage(UIImage(named: "like"), for: .normal)
-           isWhish = 2
-        } else if isWhish == 0 {
-            addToFav.setImage(UIImage(named: "like"), for: .normal)
+           isWhish = 1
+        } else if isWhish == 1 {
+            addToFav.setImage(UIImage(named: "like-normal"), for: .normal)
             isWhish = 2
         } else {
-            addToFav.setImage(UIImage(named: "like-normal"), for: .normal)
-                       isWhish = 1
+            addToFav.setImage(UIImage(named: "like"), for: .normal)
+            isWhish = 2
         }
     }
     
@@ -119,6 +119,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
     }
 
     @IBAction func addToFavorite(_ sender: Any) {
+           // isWhish = 1
         
         wishApi(whishStatus: isWhish)
         

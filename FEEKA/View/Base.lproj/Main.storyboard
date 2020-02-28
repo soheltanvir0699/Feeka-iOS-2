@@ -889,10 +889,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="USP-lH-mRS">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="161" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7Xn-lj-Djo">
-                                        <rect key="frame" x="0.0" y="61" width="414" height="594"/>
+                                        <rect key="frame" x="0.0" y="61" width="414" height="638"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="161" id="SDm-Su-8Ed" customClass="BagFirstCell" customModule="FEEKA" customModuleProvider="target">
@@ -1044,8 +1044,8 @@
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ORDER TOTOAL (VAT INCLUSIVE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dHR-mj-IIX">
-                                                                    <rect key="frame" x="4" y="52" width="227.66666666666666" height="21"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ORDER TOTOAL (VAT INCLUSIVE)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dHR-mj-IIX">
+                                                                    <rect key="frame" x="4" y="52" width="233" height="21"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="21" id="7fH-aR-2zH"/>
                                                                     </constraints>
@@ -1053,8 +1053,8 @@
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(DELIVERY)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLn-iJ-BwI">
-                                                                    <rect key="frame" x="4" y="2" width="89.333333333333329" height="21"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DELIVERY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLn-iJ-BwI">
+                                                                    <rect key="frame" x="4" y="2" width="77.333333333333329" height="21"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="21" id="rg1-wN-cPl"/>
                                                                     </constraints>
@@ -1100,7 +1100,7 @@
                                         </connections>
                                     </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P2V-CI-US1">
-                                        <rect key="frame" x="20" y="665" width="374" height="45"/>
+                                        <rect key="frame" x="20" y="709" width="374" height="45"/>
                                         <color key="backgroundColor" red="0.059143532800000002" green="0.45826062820000002" blue="0.098902188289999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="0Es-Y0-rT3"/>
@@ -10253,11 +10253,10 @@
         <!--Bag-->
         <scene sceneID="T72-2m-hS5">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LPw-CC-dFc" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="LPw-CC-dFc" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Bag" image="bag-a-1" id="Uf0-DI-Wer"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="596-bA-5ak">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
