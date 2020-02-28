@@ -225,7 +225,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
                     
                     if jsonResponse["message"].stringValue == "Input values are missing." {
                         print(parameter)
-                        let alert = UIAlertController(title: "", message: "Please Login ....", preferredStyle: .alert)
+                        let alert = UIAlertController(title: "", message: "Please sign in", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
                             let vc = self.storyboard?.instantiateViewController(withIdentifier: "LogInViewController")
                             self.navigationController?.pushViewController(vc!, animated: true)

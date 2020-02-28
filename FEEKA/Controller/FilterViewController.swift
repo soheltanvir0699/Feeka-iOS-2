@@ -177,7 +177,7 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
             if indexPath.row == 0 {
                 fDetailsVC.dataList = filterData[0].product_categorie
                 fDetailsVC.dataListTerms = filterData[1].product_categorie
-                fDetailsVC.filterCategorie = "product categorie"
+                fDetailsVC.filterCategorie = "product category"
             } else if indexPath.row == 1 {
                 fDetailsVC.dataList = filterData[0].product_type
                 fDetailsVC.dataListTerms = filterData[1].product_type
