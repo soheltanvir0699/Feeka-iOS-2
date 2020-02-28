@@ -17,7 +17,7 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var listTbl: UITableView!
     var indicator: NVActivityIndicatorView!
     var filterList = ["product_categorie", "product_type", "brand", "price", "color"]
-    var filterList1 = ["product categorie", "product type", "brand", "price", "color"]
+    var filterList1 = ["product category", "product type", "brand", "price", "color"]
     let userDefault = UserDefaults.standard
     var filterData = [filterListData]()
     var categorie = ""
