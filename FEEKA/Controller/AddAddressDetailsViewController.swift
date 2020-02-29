@@ -12,8 +12,12 @@ import MapKit
 import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
+import GoogleMaps
 
 class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelegate ,MKMapViewDelegate{
+    
+    
+    @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var defaultCheckBox: UIButton!
     @IBOutlet weak var navView: UIView!
@@ -45,6 +49,9 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        mapView.settings.compassButton = true
+        mapView.isMyLocationEnabled = true
+        mapView.settings.myLocationButton = true
         navView.setShadow()
         setUPView()
         hideKeyBoard()
@@ -150,10 +157,16 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+       
+        guard let locValue :CLLocationCoordinate2D = manager.location?.coordinate else {
+            return
+        }
+        
+        print(locValue)
         if let location = locations.last{
             let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: -28.4792625, longitudeDelta:  24.6727135))
-            self.map.setRegion(region, animated: true)
+            
         }
     }
 }

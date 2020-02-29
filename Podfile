@@ -16,6 +16,9 @@ pod 'SVProgressHUD'
 pod 'IQKeyboardManagerSwift'
 pod 'SDWebImage', '~> 5.0'
 pod “TTRangeSlider”
+pod 'GoogleMaps'
+pod 'GooglePlaces'
+
   # Pods for FEEKA
 
 end

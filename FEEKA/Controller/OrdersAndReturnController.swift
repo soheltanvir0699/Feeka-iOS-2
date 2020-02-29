@@ -61,6 +61,7 @@ class OrdersAndReturnController: UIViewController , UITableViewDataSource, UITab
     
     @IBAction func backAction(_ sender: Any) {
         navigationController?.popToRootViewController(animated: true)
+        dismiss(animated: true, completion: nil)
         //NotificationCenter.default.post(name: Notification.Name("backWeb"), object: nil, userInfo: nil)
     }
    @objc func trackAction(sender: UIButton) {

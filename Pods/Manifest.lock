@@ -17,6 +17,13 @@ PODS:
     - FBSDKLoginKit/Login (= 5.15.1)
   - FBSDKLoginKit/Login (5.15.1):
     - FBSDKCoreKit (~> 5.0)
+  - GoogleMaps (3.7.0):
+    - GoogleMaps/Maps (= 3.7.0)
+  - GoogleMaps/Base (3.7.0)
+  - GoogleMaps/Maps (3.7.0):
+    - GoogleMaps/Base
+  - GooglePlaces (3.7.0):
+    - GoogleMaps/Base (= 3.7.0)
   - IQKeyboardManagerSwift (6.5.5)
   - Nuke (8.4.0)
   - NVActivityIndicatorView (4.8.0):
@@ -35,6 +42,8 @@ DEPENDENCIES:
   - Cosmos (~> 21.0)
   - FacebookCore
   - FacebookLogin
+  - GoogleMaps
+  - GooglePlaces
   - IQKeyboardManagerSwift
   - Nuke
   - NVActivityIndicatorView
@@ -45,22 +54,23 @@ DEPENDENCIES:
   - TTRangeSlider
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Alamofire
     - Cosmos
     - FacebookCore
     - FacebookLogin
     - FBSDKCoreKit
     - FBSDKLoginKit
+    - GoogleMaps
+    - GooglePlaces
     - IQKeyboardManagerSwift
     - Nuke
     - NVActivityIndicatorView
+    - OneSignal
     - SDWebImage
     - SVProgressHUD
     - SwiftyJSON
     - TTRangeSlider
-  trunk:
-    - OneSignal
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
@@ -69,6 +79,8 @@ SPEC CHECKSUMS:
   FacebookLogin: 6cee9fd6e1fe976fe8f7eec199e27b28b14f5d63
   FBSDKCoreKit: 1d5acf7c9d7a2f92bb1a242dc60cae5b7adb91df
   FBSDKLoginKit: f1ea8026a58b52d30c9f2e6a58ca7d813619fb83
+  GoogleMaps: 55da829c68aa931f3ae982b9e341cc2f3d89c587
+  GooglePlaces: a62077320f9d64239245af63aa1aa136393ebeb6
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
   Nuke: fa6f784c4f7e1c0f9313668510186c68b7af2509
   NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
@@ -78,6 +90,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   TTRangeSlider: 78188bea83f6471a06f75adbc88da5e990baeafe
 
-PODFILE CHECKSUM: 9bbf7560224d3c6a47cb2d775a48cda4fa6f4def
+PODFILE CHECKSUM: 061fc73149a42a4c3794dfcf3671edb8a5704176
 
-COCOAPODS: 1.9.0.beta.3
+COCOAPODS: 1.7.5

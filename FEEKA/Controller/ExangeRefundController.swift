@@ -198,7 +198,7 @@ class ExangeRefundController: UIViewController {
                         self.price.append(price)
                         self.sBrand.append(brand)
                         self.tblView.reloadData()
-                        self.orderIdLbl.text = "Order \(self.sBrand.count)(\(self.sBrand.count)Items)"
+                        self.orderItemLbl.text = "Order \(self.sBrand.count)(\(self.sBrand.count)Items)"
                           
                        }
                    } else {

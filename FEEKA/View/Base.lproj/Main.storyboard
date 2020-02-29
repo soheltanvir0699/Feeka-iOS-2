@@ -6559,18 +6559,26 @@
                                                     <action selector="saveBtn:" destination="8Pf-bu-4N1" eventType="touchUpInside" id="VpN-5H-uiF"/>
                                                 </connections>
                                             </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Asf-td-V53" customClass="GMSMapView">
+                                                <rect key="frame" x="20" y="764" width="374" height="239"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="SpW-QG-JiH" secondAttribute="trailing" constant="28" id="1TJ-GW-UyM"/>
                                             <constraint firstItem="SpW-QG-JiH" firstAttribute="leading" secondItem="x5V-7f-FBx" secondAttribute="trailing" constant="20" id="540-4E-QFD"/>
                                             <constraint firstItem="lpm-dZ-Pf4" firstAttribute="centerX" secondItem="VuU-7G-Tmw" secondAttribute="centerX" id="81f-dl-AtC"/>
+                                            <constraint firstItem="lpm-dZ-Pf4" firstAttribute="top" secondItem="Asf-td-V53" secondAttribute="bottom" constant="24" id="Cjr-yn-qZc"/>
                                             <constraint firstAttribute="bottom" secondItem="x5V-7f-FBx" secondAttribute="bottom" constant="345" id="Ega-zu-wCK"/>
                                             <constraint firstItem="x5V-7f-FBx" firstAttribute="leading" secondItem="VuU-7G-Tmw" secondAttribute="leading" constant="20" id="J3M-Dy-roS"/>
                                             <constraint firstAttribute="trailing" secondItem="c3A-Gl-qP4" secondAttribute="trailing" constant="20" id="Mh7-p1-78R"/>
+                                            <constraint firstItem="Asf-td-V53" firstAttribute="leading" secondItem="VuU-7G-Tmw" secondAttribute="leading" constant="20" id="Qgw-M3-MwB"/>
                                             <constraint firstItem="c3A-Gl-qP4" firstAttribute="top" secondItem="x5V-7f-FBx" secondAttribute="bottom" constant="30" id="RI1-W0-W4H"/>
                                             <constraint firstAttribute="bottom" secondItem="lpm-dZ-Pf4" secondAttribute="bottom" constant="8" id="hCJ-fL-G7S"/>
+                                            <constraint firstItem="Asf-td-V53" firstAttribute="top" secondItem="SpW-QG-JiH" secondAttribute="bottom" constant="22" id="jQf-Lz-svo"/>
                                             <constraint firstItem="lpm-dZ-Pf4" firstAttribute="top" secondItem="c3A-Gl-qP4" secondAttribute="bottom" constant="24" id="tnG-4r-i1i"/>
+                                            <constraint firstAttribute="trailing" secondItem="Asf-td-V53" secondAttribute="trailing" constant="20" id="vLe-XY-yUG"/>
                                             <constraint firstItem="SpW-QG-JiH" firstAttribute="top" secondItem="VuU-7G-Tmw" secondAttribute="top" constant="721" id="wyg-bs-D1l"/>
                                             <constraint firstItem="c3A-Gl-qP4" firstAttribute="leading" secondItem="VuU-7G-Tmw" secondAttribute="leading" constant="20" id="xGp-o1-GYs"/>
                                         </constraints>
@@ -6846,6 +6854,7 @@
                         <outlet property="contactNumberLbl" destination="fAK-BS-yxG" id="KUQ-RC-z5b"/>
                         <outlet property="defaultCheckBox" destination="x5V-7f-FBx" id="bKz-Hd-cAa"/>
                         <outlet property="map" destination="c3A-Gl-qP4" id="k4o-8b-U0N"/>
+                        <outlet property="mapView" destination="Asf-td-V53" id="K7D-5b-VHO"/>
                         <outlet property="nameLbl" destination="vLm-qx-16I" id="Jcr-L9-5ry"/>
                         <outlet property="navView" destination="AaM-GW-p9Q" id="jgA-mX-au7"/>
                         <outlet property="postcodeLbl" destination="sdp-9n-cRa" id="mqF-Qe-OKt"/>
@@ -8045,10 +8054,10 @@
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="DNy-Qw-yXp" customClass="ProductDetailsCollectionViewCell" customModule="FEEKA" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="60.666666666666664" width="414" height="555"/>
+                                                        <rect key="frame" x="0.0" y="49.666666666666664" width="414" height="577"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="lKv-P4-RgO">
-                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="555"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="577"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NmE-wa-4jW">
@@ -8064,7 +8073,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9li-jV-aPC">
-                                                                    <rect key="frame" x="8" y="19" width="398" height="536"/>
+                                                                    <rect key="frame" x="8" y="19" width="398" height="558"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rate Product" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KHh-dm-LBm">
                                                                             <rect key="frame" x="43" y="14.999999999999998" width="312" height="31.333333333333329"/>

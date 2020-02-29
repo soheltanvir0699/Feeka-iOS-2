@@ -421,6 +421,7 @@
 				8D3D7B9223F2C7F1005A3479 /* Resources */,
 				93E92C9F3582157ACF677D3F /* [CP] Embed Pods Frameworks */,
 				C83419352408536600BCD7E8 /* Embed App Extensions */,
+				D39898F23F9201425E345111 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -569,6 +570,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FEEKA/Pods-FEEKA-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D39898F23F9201425E345111 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FEEKA/Pods-FEEKA-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FEEKA/Pods-FEEKA-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FEEKA/Pods-FEEKA-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

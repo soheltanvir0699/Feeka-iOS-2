@@ -9,12 +9,14 @@
 import UIKit
 import IQKeyboardManagerSwift
 import OneSignal
+import GoogleMaps
+import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
-
+    let googleApiKey = "AIzaSyDKm7yy-RP9WOZmE4-eGPx8EAZTTfPLyw8"
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         IQKeyboardManager.shared.enable = true
@@ -29,6 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appId: "ec5f0f92-7dd5-4756-b508-63d30ccfd75b",
         handleNotificationAction: nil,
         settings: onesignalInitSettings)
+        GMSServices.provideAPIKey(googleApiKey)
+        //gmsplace
+        
 
         OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
 
