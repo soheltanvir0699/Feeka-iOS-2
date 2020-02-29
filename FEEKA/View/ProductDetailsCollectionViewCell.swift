@@ -8,6 +8,7 @@
 
 import UIKit
 import Cosmos
+import WebKit
 
 class ProductDetailsCollectionViewCell: UICollectionViewCell {
     var dataList = StoredProperty.reviewAllData
@@ -18,6 +19,7 @@ class ProductDetailsCollectionViewCell: UICollectionViewCell {
             tblView.dataSource = self
         }
     }
+    @IBOutlet weak var webview: WKWebView!
     @IBOutlet weak var commentField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var postBtn: UIButton!
@@ -27,6 +29,9 @@ class ProductDetailsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var sizeLabel: UILabel!
     @IBOutlet weak var cosomView: CosmosView!
     @IBOutlet weak var postView: UIView!
+    @IBOutlet weak var DescriptionLbl: UILabel!
+
+    
     
     var count = 2
     

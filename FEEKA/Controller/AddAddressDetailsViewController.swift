@@ -103,7 +103,7 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
             customerId = userdefault.value(forKey: "customer_id") as! String
         }
         
-        if nameLbl.text == "" || suburbLbl.text == "" || sureNameLbl.text == "" || contactNumberLbl.text == "" || streetAddressLbl.text == "" || cityLbl.text == "" || postcodeLbl.text == "" || companyLbl.text == "" {
+        if nameLbl.text == "" || suburbLbl.text == "" || sureNameLbl.text == "" || contactNumberLbl.text == "" || streetAddressLbl.text == "" || cityLbl.text == "" || postcodeLbl.text == "" {
             self.view.makeToast("Empty Field")
             return
         } else if (contactNumberLbl.text)?.count != 10 {
@@ -276,6 +276,8 @@ extension AddAddressDetailsViewController: GMSAutocompleteViewControllerDelegate
                         addressString = addressString + pm.thoroughfare! + ", "
                         self.streetAddressLbl.text = pm.thoroughfare
                         
+                    } else {
+                        self.streetAddressLbl.text = pm.subLocality
                     }
                     if pm.locality != nil {
                         addressString = addressString + pm.locality! + ", "

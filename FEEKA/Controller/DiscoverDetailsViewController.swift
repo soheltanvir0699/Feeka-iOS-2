@@ -322,7 +322,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
                       let jsonResponse = JSON(response)
                     let productDetails = JSON(jsonResponse["product_detail"])
                     print("product_details: \(productDetails)")
-                    print(productDetails)
+                   // print(productDetails)
                     let imageArray = productDetails["image_gallery"].arrayValue
                     for i in imageArray {
                         self.imageList.append(i.stringValue)

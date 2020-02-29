@@ -21,12 +21,14 @@ class ProductDetailsViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var reviewBorder: UILabel!
     @IBOutlet weak var salePrice: UILabel!
     @IBOutlet weak var reviewCount: UILabel!
+    @IBOutlet weak var scrollview: UIScrollView!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var brandName: UILabel!
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var pageTitleView: UIView!
-       var imageList = [String]()
+    @IBOutlet weak var viewscrolll: UIView!
+    var imageList = [String]()
        var productTitle:String!
        var brand:String!
        var sPrice:String!
@@ -50,6 +52,8 @@ class ProductDetailsViewController: UIViewController,UITextFieldDelegate {
         reviewCount.text = "(\(ratingCount!))"
         imgView.downloaded(from: self.imageList[0])
         imgView.contentMode = .scaleAspectFill
+        scrollview.contentSize = CGSize(width: self.view.frame.height, height: 10000)
+        viewscrolll.frame = scrollview.frame
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         
           NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -114,22 +118,28 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
         cell?.colorLabel.text = ""
             cell?.colorLabel.textColor = .red
             cell?.colorLabel.font = UIFont.boldSystemFont(ofSize: 16.0)
+            cell?.sizeLabel.text = "Size: \(StoredProperty.singleProductDetailsList[0].size)"
+            cell?.colorLabel.text = "Color: \(StoredProperty.singleProductDetailsList[0].color)"
             let string1: String = StoredProperty.singleProductDetailsList[0].content
-            cell?.sizeLabel.text = string1.htmlToString
+            cell?.DescriptionLbl.text = ""
             cell?.thirdView.isHidden = true
             discriptonBorder.backgroundColor = .black
+            cell?.webview.loadHTMLString(string1, baseURL: nil)
+            cell?.webview.isHidden = false
             return cell!
             
         }else if indexPath.row == 1{
             cell?.thirdView.isHidden = true
-            cell?.sizeLabel.text = "Size: \(StoredProperty.singleProductDetailsList[0].size)"
-            cell?.colorLabel.text = "Color: \(StoredProperty.singleProductDetailsList[0].color)"
+            cell?.sizeLabel.isHidden = true
+            cell?.colorLabel.text = "Not Available"
+            
             return cell!
         }else {
             cell?.thirdView.isHidden = false
             cell?.postView.layer.cornerRadius = 10
             cell?.postView.layer.borderWidth = 1
             cell?.postView.layer.borderColor = UIColor.black.cgColor
+            cell?.webview.isHidden = true
             cell?.cosomView.tag = indexPath.row + 1000
             cell?.commentField.tag = indexPath.row + 2000
             cell?.postBtn.tag = indexPath.row + 3000
