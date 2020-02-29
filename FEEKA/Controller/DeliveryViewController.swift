@@ -65,22 +65,11 @@ class DeliveryViewController: UIViewController {
         if userdefault.value(forKey: "lat") != nil {
         name = userdefault.value(forKey: "name") as! String
         }
-        let cord2D = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-        
+                
          
         //StoredProperty.lat = place.coordinate.latitude
         
-        let marker = GMSMarker()
-        marker.position = cord2D
-        marker.title = "Location"
-        marker.snippet = name
         
-        let markerImage = UIImage(named: "city")
-        let markerImageView = UIImageView(image: markerImage)
-        
-        marker.iconView = markerImageView
-        marker.map = self.mapView
-        self.mapView.camera = GMSCameraPosition.camera(withTarget: cord2D, zoom: 15)
     }
     
     @IBAction func backAction(_ sender: Any) {
@@ -109,6 +98,48 @@ class DeliveryViewController: UIViewController {
         deli2VC?.modalPresentationStyle = .fullScreen
         //present(deli2VC!, animated: true, completion: nil)
         navigationController?.pushViewController(deli2VC!, animated: true)
+    }
+    
+    func setMapLocation(address: String) {
+        guard let urlToExcute = URL(string: "https://maps.googleapis.com/maps/api/geocode/json?address=\(address)&key=AIzaSyBaTY6bQWJElnvG5c6g4Q9MMu3soiLXXeg") else {
+                   return
+               }
+        
+        Alamofire.request(urlToExcute, method: .post, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+        
+        if let error = response.error {
+            self.indicator.stopAnimating()
+            let alertView = ShowAlertView().alertView(title: "Something went wrong", action: "OK", message: "Please try again.")
+            self.present(alertView, animated: true, completion: nil)
+            print(error)
+            
+        }
+            
+            if let response = response.result.value {
+            let jsonResponse = JSON(response)
+                let result = JSON(jsonResponse["results"].arrayValue[0])
+                let formattedAddress = JSON(result["geometry"])
+                let bounds = JSON(formattedAddress["location"])
+                let lat = bounds["lat"].doubleValue
+                let lon = bounds["lng"].doubleValue
+                print(lat)
+                let cord2D = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+
+                let marker = GMSMarker()
+                marker.position = cord2D
+                marker.title = "Location"
+                marker.snippet = address
+                
+                let markerImage = UIImage(named: "city")
+                let markerImageView = UIImageView(image: markerImage)
+                
+                marker.iconView = markerImageView
+                marker.map = self.mapView
+                self.mapView.camera = GMSCameraPosition.camera(withTarget: cord2D, zoom: 15)
+            }
+            
+            
+        }
     }
     
     func getAddressApi() {
@@ -151,7 +182,7 @@ class DeliveryViewController: UIViewController {
                         let postalCode = data["Postal_Code"].stringValue
                         let contact = data["Contact_Number"].stringValue
                         let unit = data["Unit_Number"].stringValue
-                        
+                        self.setMapLocation(address: city)
                         self.userdefault.setValue(address, forKey: "address_id")
                         self.dataList.append(getCustomerDataModel(addressId: address, customerId: customerid, name: name, surname: surname, apartment: apartment, company: company, street: streetAddress, suburb: suburb, city: city, country: country, postalCode: postalCode, contactNumber: contact))
                         self.postalCode.text = postalCode

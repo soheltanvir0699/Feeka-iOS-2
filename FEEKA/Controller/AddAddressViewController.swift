@@ -71,7 +71,7 @@ class AddAddressViewController: UIViewController {
         addressDetails?.company = company
         addressDetails?.addressId = userdefault.value(forKey: "address_id") as! String
         addressDetails?.urlLink = "https://feeka.co.za/json-api/route/edit_address.php"
-        addressDetails?.isAddress = true
+        //addressDetails?.isAddress = true
         self.navigationController?.pushViewController(addressDetails!, animated: true)
     }
     

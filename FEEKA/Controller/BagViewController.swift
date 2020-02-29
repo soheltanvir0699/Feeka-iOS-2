@@ -36,7 +36,7 @@ class BagViewController: UIViewController, UIViewControllerTransitioningDelegate
     }
     override func viewWillAppear(_ animated: Bool) {
         
-        self.tblView.isHidden = true
+        //self.tblView.isHidden = true
         if userdefault.value(forKey: "customer_id") as? String == "" {
             
             signOutAction()
@@ -82,7 +82,7 @@ class BagViewController: UIViewController, UIViewControllerTransitioningDelegate
     func bagApiCalling() {
         dataList = [bagDataModel]()
         indicator = self.indicator()
-        indicator.startAnimating()
+       // indicator.startAnimating()
         guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/view_to_cart_v4.php") else {
             return
         }
@@ -233,6 +233,7 @@ extension BagViewController: UITableViewDataSource, UITableViewDelegate {
         } else {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? BagFirstCell
             //cell?.productImg.downloaded(from: dataList[indexPath.row].image)
+            
             if (self.dataList[indexPath.row].image).isEmpty != true {
             let request = ImageRequest(
                 url: URL(string: self.dataList[indexPath.row].image)!
