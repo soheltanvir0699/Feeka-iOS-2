@@ -14,12 +14,11 @@ class TabViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(bagApiCalling), name: Notification.Name("bag"), object: nil)
     }
     override func viewWillAppear(_ animated: Bool) {
         bagApiCalling()
     }
-    
+
  @objc func bagApiCalling() {
               guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/view_to_cart_v4.php") else {
                   return

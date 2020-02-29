@@ -200,9 +200,8 @@ class LogInViewController: UIViewController {
                      let authorName = i["Name"].stringValue
                      self.userdefault.setValue(authorName, forKey: "author_name")
                      self.userdefault.setValue(customerId, forKey: "customer_id")
-                   // self.bagApiCalling()
-                    NotificationCenter.default.post(name: Notification.Name("bag"), object: nil)
-                     print(customerId)
+                    //self.bagApiCalling()
+                   
                  }
                     NotificationCenter.default.post(name: Notification.Name("bag"), object: nil)
                    self.navigationController?.popViewController(animated: true)

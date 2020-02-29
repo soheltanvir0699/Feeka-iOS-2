@@ -40,6 +40,8 @@ class MoreViewController: UIViewController {
 //        }
        
         NotificationCenter.default.addObserver(self, selector: #selector(goHome), name: Notification.Name("goHome"), object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(bagApiCalling), name: Notification.Name("bag"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,7 +93,7 @@ class MoreViewController: UIViewController {
         wishListView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(wishlistAction)))
     }
     
-    func bagApiCalling() {
+    @objc func bagApiCalling() {
            guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/view_to_cart_v4.php") else {
                return
            }
