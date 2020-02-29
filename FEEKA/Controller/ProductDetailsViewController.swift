@@ -132,6 +132,7 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
             cell?.thirdView.isHidden = true
             cell?.sizeLabel.isHidden = true
             cell?.colorLabel.text = "Not Available"
+            cell?.DescriptionLbl.isHidden = true
             
             return cell!
         }else {
