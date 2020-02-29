@@ -32,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         handleNotificationAction: nil,
         settings: onesignalInitSettings)
         GMSServices.provideAPIKey(googleApiKey)
+        GMSPlacesClient.provideAPIKey(googleApiKey)
         //gmsplace
         
 
