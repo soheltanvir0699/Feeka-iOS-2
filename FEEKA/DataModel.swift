@@ -22,6 +22,9 @@ class StoredProperty {
     static var addressData = [getCustomerDataModel]()
     static var filterTopImage = UIImage()
     static var retake = false
+    static var lon = 0.0
+    static var lat = 0.0
+    static var name = ""
     
 }
 

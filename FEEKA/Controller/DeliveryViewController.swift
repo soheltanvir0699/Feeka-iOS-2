@@ -11,9 +11,11 @@ import MapKit
 import Alamofire
 import NVActivityIndicatorView
 import SwiftyJSON
+import GoogleMaps
 
 class DeliveryViewController: UIViewController {
 
+    @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var postalCode: UILabel!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var street: UILabel!
@@ -32,12 +34,15 @@ class DeliveryViewController: UIViewController {
     var isAddress = true
     
     var indicator:NVActivityIndicatorView!
+   // let userdefault = UserDefaults.standard
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.addressView.setShadow()
     }
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         if  userdefault.value(forKey: "customer_id") as! String != "" {
@@ -48,6 +53,34 @@ class DeliveryViewController: UIViewController {
             customerId = userdefault.value(forKey: "customer_id") as! String
         }
         getAddressApi()
+        var lon = 0.0
+        var lat = 0.0
+        var name = ""
+        if userdefault.value(forKey: "lon") != nil {
+        lon = userdefault.value(forKey: "lon") as! Double
+        }
+          if userdefault.value(forKey: "lat") != nil {
+        lat = userdefault.value(forKey: "lat") as! Double
+        }
+        if userdefault.value(forKey: "lat") != nil {
+        name = userdefault.value(forKey: "name") as! String
+        }
+        let cord2D = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+        
+         
+        //StoredProperty.lat = place.coordinate.latitude
+        
+        let marker = GMSMarker()
+        marker.position = cord2D
+        marker.title = "Location"
+        marker.snippet = name
+        
+        let markerImage = UIImage(named: "city")
+        let markerImageView = UIImageView(image: markerImage)
+        
+        marker.iconView = markerImageView
+        marker.map = self.mapView
+        self.mapView.camera = GMSCameraPosition.camera(withTarget: cord2D, zoom: 15)
     }
     
     @IBAction func backAction(_ sender: Any) {

@@ -37,6 +37,7 @@
 		8D6868D423FD8D57008638F7 /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6868D323FD8D57008638F7 /* Extension+UIView.swift */; };
 		8D8226F523FBB2F4005B3F39 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8226F423FBB2F4005B3F39 /* AlertView.swift */; };
 		8D88FD332402715E00E5DC97 /* DeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D88FD322402715E00E5DC97 /* DeliveryViewController.swift */; };
+		8D8A0220240A516200B83C47 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8A021F240A516200B83C47 /* TabViewController.swift */; };
 		8D90187F24040B0C00155910 /* BagFirstCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D90187E24040B0C00155910 /* BagFirstCell.swift */; };
 		8D90188124040B2800155910 /* BagSecondCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D90188024040B2800155910 /* BagSecondCell.swift */; };
 		8D901C6E240535C300043E5E /* QuizzesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D901C6D240535C300043E5E /* QuizzesController.swift */; };
@@ -156,6 +157,7 @@
 		8D6868D323FD8D57008638F7 /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
 		8D8226F423FBB2F4005B3F39 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		8D88FD322402715E00E5DC97 /* DeliveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryViewController.swift; sourceTree = "<group>"; };
+		8D8A021F240A516200B83C47 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		8D90187E24040B0C00155910 /* BagFirstCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagFirstCell.swift; sourceTree = "<group>"; };
 		8D90188024040B2800155910 /* BagSecondCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagSecondCell.swift; sourceTree = "<group>"; };
 		8D901C6D240535C300043E5E /* QuizzesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizzesController.swift; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 				8D00D5A924056C8C0061EE8E /* QuizFilterController.swift */,
 				8D88FD322402715E00E5DC97 /* DeliveryViewController.swift */,
 				C4EF3D8823F7C32600BA556F /* ProductDetailsViewController.swift */,
+				8D8A021F240A516200B83C47 /* TabViewController.swift */,
 				C4BD14A523F5753C00B5DBA5 /* HotViewController.swift */,
 				8D3D7BAB23F2F254005A3479 /* ForgotPasswordViewController.swift */,
 			);
@@ -626,6 +629,7 @@
 				8DBDDA41240522F800D81D2C /* ExangeRefundCell.swift in Sources */,
 				8DE87F192404FB9D00253D1A /* ConfirmOrderViewController.swift in Sources */,
 				8DB7507E2400D60000E69A5B /* Extension+UILabel.swift in Sources */,
+				8D8A0220240A516200B83C47 /* TabViewController.swift in Sources */,
 				8DBDDA3F240522D000D81D2C /* ExangeRefundController.swift in Sources */,
 				C464B0CF23F6653600C292EE /* DiscoverViewController.swift in Sources */,
 				8DF3554E2400F0640006FDB1 /* WishListCell.swift in Sources */,

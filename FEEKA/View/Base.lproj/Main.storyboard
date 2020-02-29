@@ -1433,17 +1433,25 @@
                                                     </button>
                                                 </subviews>
                                             </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IKe-L6-fmT" customClass="GMSMapView">
+                                                <rect key="frame" x="20" y="353" width="374" height="247"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
+                                            <constraint firstItem="IKe-L6-fmT" firstAttribute="leading" secondItem="tQc-td-eph" secondAttribute="leading" constant="20" id="09Q-zB-37f"/>
                                             <constraint firstItem="vRt-z2-EU6" firstAttribute="top" secondItem="7cz-Mo-pqZ" secondAttribute="bottom" constant="8" id="5kq-Eh-xPj"/>
                                             <constraint firstItem="vRt-z2-EU6" firstAttribute="leading" secondItem="tQc-td-eph" secondAttribute="leading" constant="20" id="BEZ-bx-VjA"/>
+                                            <constraint firstItem="IKe-L6-fmT" firstAttribute="top" secondItem="Dps-DM-M18" secondAttribute="bottom" constant="16" id="D5g-Km-zeZ"/>
                                             <constraint firstItem="7cz-Mo-pqZ" firstAttribute="leading" secondItem="tQc-td-eph" secondAttribute="leading" constant="20" id="DAP-cv-ure"/>
                                             <constraint firstAttribute="trailing" secondItem="7cz-Mo-pqZ" secondAttribute="trailing" constant="20" id="DiS-DR-VpI"/>
                                             <constraint firstAttribute="trailing" secondItem="Dps-DM-M18" secondAttribute="trailing" constant="20" id="DjP-VX-J3K"/>
                                             <constraint firstItem="Dps-DM-M18" firstAttribute="leading" secondItem="tQc-td-eph" secondAttribute="leading" constant="20" id="LAm-pV-HDQ"/>
+                                            <constraint firstAttribute="trailing" secondItem="IKe-L6-fmT" secondAttribute="trailing" constant="20" id="Pe4-kf-Ffe"/>
                                             <constraint firstAttribute="bottom" secondItem="Dps-DM-M18" secondAttribute="bottom" constant="316" id="SBf-Dm-fJ1"/>
                                             <constraint firstItem="7cz-Mo-pqZ" firstAttribute="top" secondItem="Dps-DM-M18" secondAttribute="bottom" constant="16" id="Wzi-9F-o2v"/>
+                                            <constraint firstItem="vRt-z2-EU6" firstAttribute="top" secondItem="IKe-L6-fmT" secondAttribute="bottom" constant="8" id="XAU-41-tg9"/>
                                             <constraint firstAttribute="bottom" secondItem="vRt-z2-EU6" secondAttribute="bottom" id="aaK-v3-J8D"/>
                                             <constraint firstAttribute="trailing" secondItem="vRt-z2-EU6" secondAttribute="trailing" constant="20" id="ek2-BM-Hbu"/>
                                             <constraint firstItem="Dps-DM-M18" firstAttribute="top" secondItem="tQc-td-eph" secondAttribute="top" constant="20" id="nIo-aX-qoB"/>
@@ -1501,6 +1509,7 @@
                         <outlet property="appartment" destination="ABP-0I-Fg0" id="pTc-UN-da6"/>
                         <outlet property="city" destination="8M0-Gl-d6P" id="8Bo-zr-dyB"/>
                         <outlet property="country" destination="M8a-Vl-oSo" id="1RE-Mp-3n6"/>
+                        <outlet property="mapView" destination="IKe-L6-fmT" id="Odj-Yf-CgH"/>
                         <outlet property="mkmapView" destination="7cz-Mo-pqZ" id="Mza-Vl-53D"/>
                         <outlet property="name" destination="lec-p4-e1Q" id="xfy-LJ-a1m"/>
                         <outlet property="phoneNumber" destination="4Ys-Wu-ESm" id="GEq-Ub-gJa"/>
@@ -5554,10 +5563,10 @@
             </objects>
             <point key="canvasLocation" x="110.14492753623189" y="-1276.3392857142856"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab View Controller-->
         <scene sceneID="YwB-yz-Qhz">
             <objects>
-                <tabBarController storyboardIdentifier="TabBar" id="ZTO-aG-IEu" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBar" id="ZTO-aG-IEu" customClass="TabViewController" customModule="FEEKA" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Yhe-HR-oxU"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iDx-r3-ENv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -6853,6 +6862,7 @@
                         <outlet property="cityLbl" destination="oPR-zx-ePs" id="6oU-EF-4Ji"/>
                         <outlet property="companyLbl" destination="IEm-4C-SeN" id="Kky-CR-nGe"/>
                         <outlet property="contactNumberLbl" destination="fAK-BS-yxG" id="KUQ-RC-z5b"/>
+                        <outlet property="countryname" destination="xDd-PW-6gr" id="WIB-Gf-ceB"/>
                         <outlet property="defaultCheckBox" destination="x5V-7f-FBx" id="bKz-Hd-cAa"/>
                         <outlet property="map" destination="c3A-Gl-qP4" id="k4o-8b-U0N"/>
                         <outlet property="mapView" destination="Asf-td-V53" id="K7D-5b-VHO"/>
@@ -8170,7 +8180,7 @@
                                                                                                 <nil key="textColor"/>
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
-                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QjT-iN-7Wh" customClass="CosmosView" customModule="Cosmos">
+                                                                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QjT-iN-7Wh" customClass="CosmosView" customModule="Cosmos">
                                                                                                 <rect key="frame" x="54" y="28" width="120" height="17"/>
                                                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                                                 <constraints>

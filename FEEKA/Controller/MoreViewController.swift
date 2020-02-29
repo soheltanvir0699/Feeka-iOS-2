@@ -49,6 +49,14 @@ class MoreViewController: UIViewController {
         if userdefault.value(forKey: "customer_id") as? String == nil {
             signOutAction()
         }
+        
+        
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        self.bagApiCalling()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        self.bagApiCalling()
     }
     
     @objc func goHome() {
@@ -83,6 +91,49 @@ class MoreViewController: UIViewController {
         wishListView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(wishlistAction)))
     }
     
+    func bagApiCalling() {
+           guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/view_to_cart_v4.php") else {
+               return
+           }
+           let userdefault = UserDefaults.standard
+           var customerId = ""
+        
+    //    if  userdefault.value(forKey: "customer_id") as! String != "" {
+    //        customerId = userdefault.value(forKey: "customer_id") as! String
+    //    }
+        
+        if userdefault.value(forKey: "customer_id") as? String != nil {
+            customerId = userdefault.value(forKey: "customer_id") as! String
+        } else {
+            
+        }
+           
+           let parameter = ["customer_id":"\(customerId)"]
+           
+           Alamofire.request(urlToExcute, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+           
+           if let error = response.error {
+               print(error)
+               
+           }
+           
+               if let response = response.result.value {
+                   let jsonResponse = JSON(response)
+                                     
+                       let data = jsonResponse["data"].arrayValue
+                   
+                   
+                   if let tabItems = self.tabBarController?.tabBar.items {
+                                  
+                                  let tabItem = tabItems[2]
+                                  tabItem.badgeValue = "\(data.count)"
+                              }
+               
+               }
+               
+           }
+       }
+    
     @objc func orderAction() {
         let ordersAndReturnVC = storyboard?.instantiateViewController(withIdentifier: "OrdersAndReturnController")
         ordersAndReturnVC?.modalPresentationStyle = .fullScreen
@@ -105,7 +156,9 @@ class MoreViewController: UIViewController {
         let navVc = storyboard?.instantiateViewController(withIdentifier: "loginnav")
         navVc!.modalPresentationStyle = .overFullScreen
         navVc!.transitioningDelegate = self
+        
         userdefault.setValue("", forKey: "customer_id")
+        self.bagApiCalling()
         present(navVc!, animated: true, completion: nil)
         //navigationController?.pushViewController(navVc!, animated: true)
     }

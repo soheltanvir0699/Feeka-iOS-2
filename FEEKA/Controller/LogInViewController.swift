@@ -97,45 +97,7 @@ class LogInViewController: UIViewController {
         self.navigationController?.pushViewController(signUpVC, animated: true)
     }
     
-    func bagApiCalling() {
-           guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/view_to_cart_v4.php") else {
-               return
-           }
-           let userdefault = UserDefaults.standard
-           var customerId = ""
-        
-        if userdefault.value(forKey: "customer_id") as? String != nil {
-            customerId = userdefault.value(forKey: "customer_id") as! String
-        } else {
-            
-        }
-           
-           let parameter = ["customer_id":"\(customerId)"]
-           
-           Alamofire.request(urlToExcute, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
-           
-           if let error = response.error {
-               print(error)
-               
-           }
-           
-               if let response = response.result.value {
-                   let jsonResponse = JSON(response)
-                                     
-                       let data = jsonResponse["data"].arrayValue
-                   
-                   
-                   if let tabItems = self.tabBarController?.tabBar.items {
-                                  
-                                  let tabItem = tabItems[2]
-                                  tabItem.badgeValue = "\(data.count)"
-                              }
-               
-               }
-               
-           }
-       }
-        
+   
     
     @IBAction func loginWithFacebook(_ sender: Any) {
         let loginManager = LoginManager()
@@ -156,6 +118,7 @@ class LogInViewController: UIViewController {
                 print("Logged in!")
                 StoredProperty.FacebookAuthsuccess = true
                 print(accessToken)
+                
                 let connection = GraphRequestConnection()
                 let request = GraphRequest.init(graphPath: "me")
                 request.parameters = ["fields": "email, id"]
@@ -195,7 +158,7 @@ class LogInViewController: UIViewController {
     }
     
     func logInApi(email: String, password: String, id: String, signType: Int) {
-        
+        indicator.startAnimating()
         guard let url = URL(string: "https://feeka.co.za/json-api/route/Login_Registration.php") else {
          self.view.makeToast( "Please try again later")
             return
@@ -237,9 +200,11 @@ class LogInViewController: UIViewController {
                      let authorName = i["Name"].stringValue
                      self.userdefault.setValue(authorName, forKey: "author_name")
                      self.userdefault.setValue(customerId, forKey: "customer_id")
+                   // self.bagApiCalling()
+                    NotificationCenter.default.post(name: Notification.Name("bag"), object: nil)
                      print(customerId)
                  }
-                    self.bagApiCalling()
+                    NotificationCenter.default.post(name: Notification.Name("bag"), object: nil)
                    self.navigationController?.popViewController(animated: true)
                    self.dismiss(animated: true, completion: nil)
                 } else {
