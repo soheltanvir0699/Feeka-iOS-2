@@ -37,6 +37,11 @@ class BagViewController: UIViewController, UIViewControllerTransitioningDelegate
     override func viewWillAppear(_ animated: Bool) {
         
         self.tblView.isHidden = true
+        if userdefault.value(forKey: "customer_id") as? String == "" {
+            
+            signOutAction()
+            
+        }
             if userdefault.value(forKey: "customer_id") as? String == nil {
                 
                 signOutAction()
@@ -45,6 +50,7 @@ class BagViewController: UIViewController, UIViewControllerTransitioningDelegate
                 customerId = userdefault.value(forKey: "customer_id") as! String
                 bagApiCalling()
         }
+        
         
     }
     
@@ -57,6 +63,10 @@ class BagViewController: UIViewController, UIViewControllerTransitioningDelegate
         let navVc = storyboard?.instantiateViewController(withIdentifier: "loginnav")
         navVc!.modalPresentationStyle = .overFullScreen
         navVc!.transitioningDelegate = self
+        
+       // userdefault.setValue("", forKey: "customer_id")
+        self.bagApiCalling()
+        //present(navVc!, animated: true, completion: nil)
         present(navVc!, animated: true, completion: nil)
     }
     
@@ -295,6 +305,8 @@ extension BagViewController: UITableViewDataSource, UITableViewDelegate {
                          //self.mainView.isHidden = true
                          self.conBtn.isHidden = true
                         self.tblView.isHidden = true
+                       // let vc = self.storyboard?.instantiateViewController(withIdentifier: "LogInViewController") as? LogInViewController
+                       // self.navigationController?.pushViewController(vc!, animated: true)
                     } else {
                          //self.mainView.isHidden = false
                          self.conBtn.isHidden = false

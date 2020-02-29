@@ -37,6 +37,24 @@ class HotViewController: UIViewController {
         navView.setShadow()
        setUpView()
         apiCalling()
+        
+//        let view1 = CALayer()
+//        view.frame = ConditionerImg.frame
+//        view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+//        ConditionerImg.addSubview(view1)
+//        brandCareImg.addSubview(view1)
+//        allBodyImg.addSubview(view1)
+//        allFaceImg.addSubview(view1)
+        
+        let blurEffect = UIBlurEffect(style: .dark)
+        let blurredEffectView = UIVisualEffectView(effect: blurEffect)
+        blurredEffectView.alpha = 0.3
+        blurredEffectView.frame = allFaceImg.bounds
+        allFaceImg.addSubview(blurredEffectView)
+        allBodyImg.addSubview(blurredEffectView)
+        brandCareImg.addSubview(blurredEffectView)
+        ConditionerImg.addSubview(blurredEffectView)
+        
     }
     
     func setUpView() {

@@ -166,6 +166,11 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
             textField.resignFirstResponder()
             let acController = GMSAutocompleteViewController()
             acController.delegate = self
+            
+            let filter = GMSAutocompleteFilter()
+            filter.type = .establishment
+            filter.country = "ZA"
+            acController.autocompleteFilter = filter
             acController.modalPresentationStyle = .fullScreen
             present(acController, animated: true, completion: nil)
         }
