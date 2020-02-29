@@ -174,6 +174,10 @@ class BagViewController: UIViewController, UIViewControllerTransitioningDelegate
         }
         let action10 = UIAlertAction(title: "10", style: .default) { (alert) in
             self.qtyApi(sender: index, qty: 10)
+            
+        }
+        let action11 = UIAlertAction(title: "Cancle", style: .default) { (alert) in
+        //self.qtyApi(sender: index, qty: 10)
         }
         
         alertController.addAction(action1)
@@ -186,6 +190,7 @@ class BagViewController: UIViewController, UIViewControllerTransitioningDelegate
         alertController.addAction(action8)
         alertController.addAction(action9)
         alertController.addAction(action10)
+        alertController.addAction(action11)
         alertController.view.tintColor = .black
         self.present(alertController, animated: true, completion: nil)
     }

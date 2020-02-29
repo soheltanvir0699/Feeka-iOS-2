@@ -72,7 +72,7 @@ class HomeMenGroomingViewController: UIViewController {
                   if let response = response.result.value {
                       let jsonResponse = JSON(response)
                     if self.isTotalPage {
-                    self.totalPage = jsonResponse["total_page"].intValue + 1
+                    self.totalPage = jsonResponse["total_page"].intValue - 1
                         self.isTotalPage = false
                     }
                      // print(totalPage)
