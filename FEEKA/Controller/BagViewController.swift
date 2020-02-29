@@ -18,6 +18,9 @@ class BagViewController: UIViewController, UIViewControllerTransitioningDelegate
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var conBtn: UIButton!
     
+    @IBOutlet weak var emptyImage: UIImageView!
+    @IBOutlet weak var emptyText1: UILabel!
+    @IBOutlet weak var emptyText2: UILabel!
     var indicator:NVActivityIndicatorView!
     var dataList = [bagDataModel]()
     var shipping = ""
@@ -35,8 +38,11 @@ class BagViewController: UIViewController, UIViewControllerTransitioningDelegate
     NotificationCenter.default.addObserver(self, selector: #selector(goHome), name: Notification.Name("goHome"), object: nil)
     }
     override func viewWillAppear(_ animated: Bool) {
-        
-        //self.tblView.isHidden = true
+         indicator = self.indicator()
+        self.tblView.isHidden = true
+        self.emptyImage.isHidden = true
+        self.emptyText1.isHidden = true
+        self.emptyText2.isHidden = true
         if userdefault.value(forKey: "customer_id") as? String == "" {
             
             signOutAction()
@@ -48,8 +54,10 @@ class BagViewController: UIViewController, UIViewControllerTransitioningDelegate
                 
             }else {
                 customerId = userdefault.value(forKey: "customer_id") as! String
-                bagApiCalling()
+                
         }
+        
+        bagApiCalling()
         
         
     }
@@ -81,8 +89,8 @@ class BagViewController: UIViewController, UIViewControllerTransitioningDelegate
     
     func bagApiCalling() {
         dataList = [bagDataModel]()
-        indicator = self.indicator()
-       // indicator.startAnimating()
+        
+        indicator.startAnimating()
         guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/view_to_cart_v4.php") else {
             return
         }
@@ -123,6 +131,8 @@ class BagViewController: UIViewController, UIViewControllerTransitioningDelegate
                     self.dataList.append(bagDataModel(title: title, shipping: shipping, totalPrice: "\(totalPrice)", quantity: Qty, id: id, brand: brand, price: "\(price)", image: image, outOfStock: outofstock, cardId: cardId))
                     self.tblView.reloadData()
                 }
+                
+                //self.indicator.stopAnimating()
                 if let tabItems = self.tabBarController?.tabBar.items {
                                
                                // In this case we want to modify the badge number of the third tab:
@@ -133,19 +143,35 @@ class BagViewController: UIViewController, UIViewControllerTransitioningDelegate
                    // self.mainView.isHidden = true
                     self.conBtn.isHidden = true
                     self.tblView.isHidden = true
+                    self.emptyImage.isHidden = false
+                    self.emptyText1.isHidden = false
+                    self.emptyText2.isHidden = false
+                    //self.indicator.stopAnimating()
+                    
                } else {
                    // self.mainView.isHidden = false
                     self.conBtn.isHidden = false
                     self.tblView.isHidden = false
+                    
+                    self.emptyImage.isHidden = true
+                    self.emptyText1.isHidden = true
+                    self.emptyText2.isHidden = true
+                    //self.indicator.stopAnimating()
                }
-                self.indicator.stopAnimating()
+                
             
             }else {
               let alertView = ShowAlertView().alertView(title: "No Product Found", action: "OK", message: "")
               self.present(alertView, animated: true, completion: nil)
           }
             
+            self.indicator.stopAnimating()
+            
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        indicator.stopAnimating()
     }
     
     func alertView(index: Int) {
@@ -233,7 +259,7 @@ extension BagViewController: UITableViewDataSource, UITableViewDelegate {
         } else {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? BagFirstCell
             //cell?.productImg.downloaded(from: dataList[indexPath.row].image)
-            
+            if dataList.isEmpty != true {
             if (self.dataList[indexPath.row].image).isEmpty != true {
             let request = ImageRequest(
                 url: URL(string: self.dataList[indexPath.row].image)!
@@ -241,6 +267,7 @@ extension BagViewController: UITableViewDataSource, UITableViewDelegate {
                 
             Nuke.loadImage(with: request, into: cell!.productImg)
             cell?.productPrice.text = "R \(dataList[indexPath.row].price)"
+            }
             }
             cell?.qtyBtn.addTarget(self, action: #selector(showQTY(sender:)), for: .touchUpInside)
             cell?.qtyBtn.tag = indexPath.row + 3000
@@ -254,9 +281,10 @@ extension BagViewController: UITableViewDataSource, UITableViewDelegate {
             cell?.deleteBtn.addTarget(self, action: #selector(deleteApi(sender:)), for: .touchUpInside)
             cell?.isWishBtn.addTarget(self, action: #selector(wishApi(sender:)), for: .touchUpInside)
             cell?.selectedBackgroundView = UIView()
-        
+            
             return cell!
             
+        
         }
     }
     
@@ -293,8 +321,10 @@ extension BagViewController: UITableViewDataSource, UITableViewDelegate {
                 let jsonResponse = JSON(response)
                                   
                 if jsonResponse["status"].stringValue == "1" {
+                    if self.dataList.count != 0 {
                     self.totalPrice = self.totalPrice - Int(self.dataList[index].price)!
                     self.dataList.remove(at: index)
+                    }
                     if let tabItems = self.tabBarController?.tabBar.items {
                         
                         // In this case we want to modify the badge number of the third tab:
@@ -303,15 +333,23 @@ extension BagViewController: UITableViewDataSource, UITableViewDelegate {
                         
                     }
                     if self.dataList.count == 0 {
-                         //self.mainView.isHidden = true
+                        // self.mainView.isHidden = true
                          self.conBtn.isHidden = true
-                        self.tblView.isHidden = true
-                       // let vc = self.storyboard?.instantiateViewController(withIdentifier: "LogInViewController") as? LogInViewController
-                       // self.navigationController?.pushViewController(vc!, animated: true)
+                         self.tblView.isHidden = true
+                         self.emptyImage.isHidden = false
+                         self.emptyText1.isHidden = false
+                         self.emptyText2.isHidden = false
+                         //self.indicator.stopAnimating()
+                         
                     } else {
-                         //self.mainView.isHidden = false
+                        // self.mainView.isHidden = false
                          self.conBtn.isHidden = false
-                        self.tblView.isHidden = false
+                         self.tblView.isHidden = false
+                         
+                         self.emptyImage.isHidden = true
+                         self.emptyText1.isHidden = true
+                         self.emptyText2.isHidden = true
+                         //self.indicator.stopAnimating()
                     }
                 }
                     self.tblView.reloadData()

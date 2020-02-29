@@ -258,15 +258,19 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
                     if jsonResponse["status"].stringValue == "1" {
                         print(jsonResponse["message"].stringValue)
                         
+                    
+                        
                         if jsonResponse["message"].stringValue == "Item has been added to your bag." {
                          //   self.view.makeToast("Add to Bag")
                                      self.tickImg.alpha = 1
                             
-                                      UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: {
+                                      UIView.animate(withDuration: 2.0, delay: 0.1, options: .curveEaseOut, animations: {
                                           self.tickImg.alpha = 0.0
                                       }, completion: {(isCompleted) in
-                                          self.tickImg.removeFromSuperview()
+                                         // self.tickImg.removeFromSuperview()
                                       })
+                            
+                            self.bagApiCalling()
                         } else {
                         
                         self.bagApiCalling()

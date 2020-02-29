@@ -1165,6 +1165,9 @@
                     <navigationItem key="navigationItem" id="6vx-mJ-unO"/>
                     <connections>
                         <outlet property="conBtn" destination="P2V-CI-US1" id="3yj-Wg-c86"/>
+                        <outlet property="emptyImage" destination="h1h-MP-I8p" id="3qt-1W-HJT"/>
+                        <outlet property="emptyText1" destination="VOD-Lb-Mmw" id="NVA-o5-Zvf"/>
+                        <outlet property="emptyText2" destination="fp4-xI-uhe" id="WDq-Uy-Stp"/>
                         <outlet property="mainView" destination="USP-lH-mRS" id="5NN-g1-gCX"/>
                         <outlet property="tblView" destination="7Xn-lj-Djo" id="Yy2-Y5-Jb4"/>
                         <outlet property="topView" destination="bjl-Bi-hmS" id="Ogz-v4-H6A"/>
@@ -1172,7 +1175,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QUh-i2-S29" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4326.086956521739" y="-540.40178571428567"/>
+            <point key="canvasLocation" x="4212" y="-575"/>
         </scene>
         <!--Delivery View Controller-->
         <scene sceneID="DPr-Tr-cbA">
