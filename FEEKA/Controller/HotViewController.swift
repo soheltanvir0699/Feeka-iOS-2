@@ -48,12 +48,26 @@ class HotViewController: UIViewController {
         
         let blurEffect = UIBlurEffect(style: .dark)
         let blurredEffectView = UIVisualEffectView(effect: blurEffect)
-        blurredEffectView.alpha = 0.3
-        blurredEffectView.frame = allFaceImg.bounds
+        blurredEffectView.alpha = 0.4
+        blurredEffectView.frame = allFaceImg.frame
+        
+        let blurredEffectView1 = UIVisualEffectView(effect: blurEffect)
+        blurredEffectView1.alpha = 0.4
+        blurredEffectView1.frame = allBodyImg.frame
+        
+        let blurredEffectView2 = UIVisualEffectView(effect: blurEffect)
+        blurredEffectView2.alpha = 0.4
+        blurredEffectView2.frame = brandCareImg.frame
+        
+        let blurredEffectView3 = UIVisualEffectView(effect: blurEffect)
+        blurredEffectView3.alpha = 0.4
+        blurredEffectView3.frame = ConditionerImg.frame
+        
+        
         allFaceImg.addSubview(blurredEffectView)
-        allBodyImg.addSubview(blurredEffectView)
-        brandCareImg.addSubview(blurredEffectView)
-        ConditionerImg.addSubview(blurredEffectView)
+        allBodyImg.addSubview(blurredEffectView1)
+        brandCareImg.addSubview(blurredEffectView2)
+        ConditionerImg.addSubview(blurredEffectView3)
         
     }
     
