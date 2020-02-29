@@ -52,7 +52,10 @@ extension ProductDetailsCollectionViewCell: UITableViewDataSource, UITableViewDe
          cell.cosomView.rating = Double(dataList[indexPath.row].rating)!
         }
         cell.selectedBackgroundView = UIView()
-        cell.date.text = dataList[indexPath.row].date
+        let date = dataList[indexPath.row].date
+        
+        let fullNameArr = date.split{$0 == " "}.map(String.init)
+        cell.date.text = fullNameArr[0]
         print("is reloaded")
         return cell
     }

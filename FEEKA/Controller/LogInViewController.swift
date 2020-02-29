@@ -152,9 +152,11 @@ class LogInViewController: UIViewController {
     }
     
     @IBAction func backBtn(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        
         tabBarController?.selectedIndex = 0
         NotificationCenter.default.post(name: Notification.Name("goHome"), object: nil)
+        
+        dismiss(animated: true, completion: nil)
     }
     
     func logInApi(email: String, password: String, id: String, signType: Int) {
@@ -201,9 +203,11 @@ class LogInViewController: UIViewController {
                      self.userdefault.setValue(authorName, forKey: "author_name")
                      self.userdefault.setValue(customerId, forKey: "customer_id")
                     //self.bagApiCalling()
+                    
                    
                  }
                     NotificationCenter.default.post(name: Notification.Name("bag"), object: nil)
+                    NotificationCenter.default.post(name: Notification.Name("reloadData"), object: nil)
                    self.navigationController?.popViewController(animated: true)
                    self.dismiss(animated: true, completion: nil)
                 } else {

@@ -36,6 +36,8 @@ class BagViewController: UIViewController, UIViewControllerTransitioningDelegate
         
                
     NotificationCenter.default.addObserver(self, selector: #selector(goHome), name: Notification.Name("goHome"), object: nil)
+         NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: Notification.Name("reloadData"), object: nil)
+        
     }
     override func viewWillAppear(_ animated: Bool) {
          indicator = self.indicator()
@@ -58,10 +60,26 @@ class BagViewController: UIViewController, UIViewControllerTransitioningDelegate
         }
         
         bagApiCalling()
-        
+        print("viewvillaprear")
         
     }
     
+    @objc func reloadData() {
+        if userdefault.value(forKey: "customer_id") as? String == "" {
+                   
+                   signOutAction()
+                   
+               }
+                   if userdefault.value(forKey: "customer_id") as? String == nil {
+                       
+                       signOutAction()
+                       
+                   }else {
+                       customerId = userdefault.value(forKey: "customer_id") as! String
+        }
+        bagApiCalling()
+        print("reload")
+    }
     
     @objc func goHome() {
         tabBarController?.selectedIndex = 0
@@ -268,12 +286,14 @@ extension BagViewController: UITableViewDataSource, UITableViewDelegate {
             Nuke.loadImage(with: request, into: cell!.productImg)
             cell?.productPrice.text = "R \(dataList[indexPath.row].price)"
             }
-            }
+            
             cell?.qtyBtn.addTarget(self, action: #selector(showQTY(sender:)), for: .touchUpInside)
             cell?.qtyBtn.tag = indexPath.row + 3000
+            
             cell?.productName.text = dataList[indexPath.row].title
             cell?.brandLbl.text = dataList[indexPath.row].brand
             cell?.qtyBtn.setTitle(dataList[indexPath.row].quantity, for: .normal)
+            }
             cell?.btnImg.tag = indexPath.row + 500
             cell?.btnImg.addTarget(self, action: #selector(goDetails), for: .touchUpInside)
             cell?.deleteBtn.tag = indexPath.row + 1000
