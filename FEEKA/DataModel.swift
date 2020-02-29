@@ -182,3 +182,16 @@ struct orderandreturn {
     var status: String
     
 }
+
+struct addressDataModel {
+    var name1:String
+    var sureName1:String
+    var phone1:String
+    var country1:String
+    var streetAdd1:String
+    var suburb1:String
+    var city1:String
+    var postalCode1:String
+    var company:String
+    var addressId: String
+}

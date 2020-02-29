@@ -35,6 +35,7 @@ class ConfirmOrderViewController: UIViewController {
             address_id =  userdefault.value(forKey: "address_id") as! String
         }
         confirmOderApi()
+        //tblView.isScrollEnabled = false
         NotificationCenter.default.addObserver(self, selector: #selector(back), name: Notification.Name("backcon"), object: nil)
     }
     @objc func back() {
