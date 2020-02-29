@@ -13,8 +13,9 @@ import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
 import GoogleMaps
+import GooglePlaces
 
-class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelegate ,MKMapViewDelegate{
+class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelegate ,MKMapViewDelegate, UITextFieldDelegate {
     
     
     @IBOutlet weak var mapView: GMSMapView!
@@ -52,6 +53,8 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
         mapView.settings.compassButton = true
         mapView.isMyLocationEnabled = true
         mapView.settings.myLocationButton = true
+        cityLbl.delegate = self
+        streetAddressLbl.delegate = self
         navView.setShadow()
         setUPView()
         hideKeyBoard()
@@ -156,6 +159,15 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
         }
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField.tag == 12 {
+            textField.resignFirstResponder()
+            let acController = GMSAutocompleteViewController()
+            acController.delegate = self
+            present(acController, animated: true, completion: nil)
+        }
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
        
         guard let locValue :CLLocationCoordinate2D = manager.location?.coordinate else {
@@ -169,4 +181,20 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
             
         }
     }
+}
+
+extension AddAddressDetailsViewController: GMSAutocompleteViewControllerDelegate {
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        
+    }
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        
+    }
+    
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        
+    }
+    
+    
 }

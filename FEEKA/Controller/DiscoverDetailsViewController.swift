@@ -15,6 +15,7 @@ import Nuke
 
 class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIViewControllerTransitioningDelegate {
 
+    @IBOutlet weak var crossLbl: UILabel!
     @IBOutlet weak var salePrice: UILabel!
     @IBOutlet weak var tickImg: UIImageView!
     @IBOutlet weak var regularPrice: UILabel!
@@ -61,8 +62,19 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
     
     fileprivate func viewUpdate() {
         for index in 0..<self.imageList.count {
-            salePrice.text = "R\(sPrice!)"
-            regularPrice.text = "R\(rPrice!)"
+            if sPrice != "" {
+                salePrice.text = "R\(sPrice!)"
+                crossLbl.isHidden = false
+            } else {
+                crossLbl.isHidden = true
+            }
+            if rPrice != "" {
+                regularPrice.text = "R\(rPrice!)"
+                //crossLbl.isHidden = false
+            } else {
+                crossLbl.isHidden  = true
+            }
+            
             brandName.text = brand
             productName.text = productTitle
             cosmosView.rating = rating

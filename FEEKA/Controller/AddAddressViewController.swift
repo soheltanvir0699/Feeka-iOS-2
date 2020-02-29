@@ -41,6 +41,7 @@ class AddAddressViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         editAddress.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(editProfile)))
         deleteAddress.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(deleteProfile)))
         navView.setShadow()

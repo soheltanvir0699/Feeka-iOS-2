@@ -36,11 +36,7 @@ class BagViewController: UIViewController, UIViewControllerTransitioningDelegate
     }
     override func viewWillAppear(_ animated: Bool) {
         
-       
-//        if  userdefault.value(forKey: "customer_id") as! String != "" {
-            
-//        }
-      
+        self.tblView.isHidden = true
             if userdefault.value(forKey: "customer_id") as? String == nil {
                 
                 signOutAction()
