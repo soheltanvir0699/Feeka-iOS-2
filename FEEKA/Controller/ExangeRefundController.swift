@@ -37,6 +37,7 @@ class ExangeRefundController: UIViewController {
     @IBOutlet weak var orderItemLbl: UILabel!
     
     var orderId = ""
+    var totalQty = 0
     var indicator:NVActivityIndicatorView!
        var customerId = ""
        let userdefault = UserDefaults.standard
@@ -76,7 +77,7 @@ class ExangeRefundController: UIViewController {
             
         }
         
-        alert.addAction(UIAlertAction(title: "CANCLE", style: .default, handler: { (action) in
+        alert.addAction(UIAlertAction(title: "CANCEL", style: .default, handler: { (action) in
         }))
 
         alert.addAction(UIAlertAction(title: "SEND", style: .default, handler: { (action) in
@@ -188,6 +189,7 @@ class ExangeRefundController: UIViewController {
                         let dataIndex = JSON(dataItem)
                         let name = dataIndex["name"].stringValue
                         let qyt1 = dataIndex["qty"].intValue
+                        self.totalQty = self.totalQty + qyt1
                         let image = dataIndex["image"].stringValue
                         let price = dataIndex["price"].intValue
                         let brand = dataIndex["brand"].stringValue
@@ -198,7 +200,7 @@ class ExangeRefundController: UIViewController {
                         self.price.append(price)
                         self.sBrand.append(brand)
                         self.tblView.reloadData()
-                        self.orderItemLbl.text = "Order \(self.sBrand.count)(\(self.sBrand.count)Items)"
+                        self.orderItemLbl.text = "Order \(self.sBrand.count)(\(self.totalQty)Items)"
                           
                        }
                    } else {
@@ -293,7 +295,7 @@ extension ExangeRefundController: UITableViewDataSource, UITableViewDelegate {
             Nuke.loadImage(with: request2, into: cell!.Producimage)
         }
         cell?.productName.text = sName[indexPath.row]
-        cell?.price.text = "\(price[indexPath.row])"
+        cell?.price.text = "R \(price[indexPath.row])"
         cell?.qty.text = "QTY:     \(sqty[indexPath.row])"
         cell?.productBrand.text = sBrand[indexPath.row]
         return cell!

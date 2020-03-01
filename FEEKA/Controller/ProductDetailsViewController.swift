@@ -240,7 +240,7 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
                                   let jsonRespose = JSON(result)
                                  // print(jsonRespose)
                                   print(jsonRespose["message"].stringValue)
-                                self.view.makeToast( "\(jsonRespose["message"].stringValue)")
+                                self.view.makeToast( "Review posted.")
                                 if jsonRespose["status"].stringValue == "1" {
                                     StoredProperty.reviewAllData.insert(reviewDataModel(rating: "\(currentRating.rating)", author: self.authorName, comment: commentfield.text!, date: self.currentTime), at: 0)
                                     let indexPath = IndexPath(row: tag - 3000, section: 0)

@@ -102,7 +102,11 @@ class DeliverySecondController: UIViewController {
                                                 
                                                 StoredProperty.quote = quote
                                                 self.standarLbl.text = quote
+                                                if deliveryCost == "FREE" {
+                                                   self.priceLbl.text = " \(deliveryCost)"
+                                                } else {
                                                 self.priceLbl.text = "R \(deliveryCost)"
+                                                }
                                                
                                              } else {
                                                

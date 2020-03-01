@@ -18,6 +18,7 @@ pod 'SDWebImage', '~> 5.0'
 pod “TTRangeSlider”
 pod 'GoogleMaps'
 pod 'GooglePlaces'
+pod 'PopupDialog', '~> 1.1'
 
   # Pods for FEEKA
 

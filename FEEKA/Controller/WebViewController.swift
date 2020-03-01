@@ -8,19 +8,23 @@
 
 import UIKit
 import WebKit
+import NVActivityIndicatorView
+
 
 class WebViewController: UIViewController, WKNavigationDelegate{
-
+    var indicator:NVActivityIndicatorView!
     @IBOutlet weak var webView: WKWebView!
     var currentUrl = ""
     var cancleUrl = ""
     var successUrl = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        indicator = indicator()
         webView.navigationDelegate = self
        let url = URL(string: currentUrl)
         let urlReq = URLRequest(url: url!)
         webView.load(urlReq)
+         indicator.startAnimating()
         NotificationCenter.default.addObserver(self, selector: #selector(back), name: Notification.Name("backcon"), object: nil)
     }
     
@@ -36,6 +40,7 @@ class WebViewController: UIViewController, WKNavigationDelegate{
         navigationController?.popToRootViewController(animated: true)
     }
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        
         let cancleUrl1 = URL(string: cancleUrl)
         let successUrl1 = URL(string: successUrl)
         if  webView.url == successUrl1 {
@@ -45,8 +50,10 @@ class WebViewController: UIViewController, WKNavigationDelegate{
            // present(ordersAndReturnVC!, animated: true, completion: nil)
             self.navigationController?.pushViewController(ordersAndReturnVC!, animated: true)
         }else if webView.url == cancleUrl1 {
-              navigationController?.popToRootViewController(animated: true)
+            
+            navigationController?.popToRootViewController(animated: true)
         } else {
+            indicator.stopAnimating()
             print("error")
         }
     }

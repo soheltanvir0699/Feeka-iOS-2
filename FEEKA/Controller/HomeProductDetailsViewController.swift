@@ -284,6 +284,7 @@ extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollecti
             
            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as? CollectionViewCell
             //cell?.imageView.image = nil
+            
             cell?.title.text = dataList[indexPath.row].title
             cell?.brand.text = dataList[indexPath.row].brand
             cell?.review.rating = dataList[indexPath.row].rating
@@ -325,6 +326,9 @@ extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollecti
         }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell", for: indexPath) as! HomeProductDetailsMenuCell
+        let view = UIView()
+        view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1)
+        cell.selectedBackgroundView = view
         if indexPath.row<2 {
             if indexPath.row == 0 {
                 cell.titleBtn.setImage(UIImage(named: "1filter"), for: .normal)
@@ -353,6 +357,7 @@ extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
         if collectionView != productListCollView {
             if indexPath.row == 0 {
                 

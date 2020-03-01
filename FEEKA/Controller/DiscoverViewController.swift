@@ -48,6 +48,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate,UIColle
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SearchTableViewCell
         //let url = URL(string: dataList[indexPath.row].image)
         //cell.productImg.downloadedFrom(url: url!, contentMode: .scaleAspectFill)
+        if dataList.count != 0 {
         let request2 = ImageRequest(
             url: URL(string: dataList[indexPath.row].image)!
             )
@@ -56,6 +57,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate,UIColle
         cell.brand.text = dataList[indexPath.row].brand
         cell.cosomView.rating = dataList[indexPath.row].rating
         cell.review.text = "(\(dataList[indexPath.row].count))"
+        }
         if (dataList[indexPath.row].regularPrice).isEmpty != true {
             cell.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
             cell.cutLbl.isHidden = false
@@ -312,7 +314,7 @@ func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPat
     let hightToLow = UIAlertAction(title: "Price (High to low)", style: .default) { (button) in
         
     }
-        let canAction = UIAlertAction(title: "Cancle", style: .cancel) { (_) in
+        let canAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
             alert.removeFromParent()
         }
         alert.addAction(newest)

@@ -218,8 +218,12 @@ extension ConfirmOrderViewController: UITableViewDelegate, UITableViewDataSource
             cell2?.subTotalPrice.text = "R \(methodArray[0].subTotal)"
             cell2?.total.text = "R \(methodArray[0].total)"
             cell2?.stander.text = StoredProperty.quote
+            if methodArray[0].shipping == "FREE" {
             cell2?.delivery.text = methodArray[0].shipping
-            cell2?.promoCode.text = "R \(promoCode)"
+            }else {
+                cell2?.delivery.text = "R \(methodArray[0].shipping)"
+            }
+            cell2?.promoCode.text = "\(promoCode)"
             return cell2!
             
         } else {

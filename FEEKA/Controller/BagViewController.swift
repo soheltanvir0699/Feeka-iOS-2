@@ -226,7 +226,7 @@ class BagViewController: UIViewController, UIViewControllerTransitioningDelegate
             self.qtyApi(sender: index, qty: 10)
             
         }
-        let action11 = UIAlertAction(title: "Cancle", style: .default) { (alert) in
+        let action11 = UIAlertAction(title: "Cancel", style: .default) { (alert) in
         //self.qtyApi(sender: index, qty: 10)
         }
         
@@ -261,6 +261,21 @@ extension BagViewController: UITableViewDataSource, UITableViewDelegate {
         
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+
+        if editingStyle == .delete {
+
+            // remove the item from the data model
+            deleteRequest(index: indexPath.row)
+
+            // delete the table view row
+            //tableView.deleteRows(at: [indexPath], with: .fade)
+
+        } else if editingStyle == .insert {
+            // Not used in our example, but if you were adding a new row, this is where you would do it.
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == dataList.count  {
             let cell2 = tableView.dequeueReusableCell(withIdentifier: "cell2") as? BagSecondCell
@@ -269,7 +284,12 @@ extension BagViewController: UITableViewDataSource, UITableViewDelegate {
             cell2?.cellView.layer.shadowOpacity = 1
             cell2?.cellView.layer.shadowOffset = .zero
             cell2?.cellView.layer.shadowRadius = 1.3
-            cell2?.deliveryPrice.text = "R \(self.shipping)"
+            
+            if self.shipping == "FREE" {
+                cell2?.deliveryPrice.text = "\(self.shipping)"
+            } else {
+               cell2?.deliveryPrice.text = "R \(self.shipping)"
+            }
             cell2?.totalPrice.text = "R \(self.totalPrice)"
             cell2?.selectedBackgroundView = UIView()
             //cell2?.contentView.setShadow()
@@ -316,74 +336,78 @@ extension BagViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     @objc func deleteApi(sender: UIButton) {
+       let index = sender.tag - 1000
+        deleteRequest(index: index)
+    }
+    
+    func deleteRequest(index: Int) {
         indicator = self.indicator()
-        indicator.startAnimating()
-        let index = sender.tag - 1000
-        guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/delete_cart.php") else {
-            return
-        }
-        let customerId = userdefault.value(forKey: "customer_id") as! String
-        
-        let parameter = ["cart_id":"\(dataList[index].cardId)"]
-        
-        
-        Alamofire.request(urlToExcute, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
-        
-        if let error = response.error {
-            self.indicator.stopAnimating()
-            let alertView = ShowAlertView().alertView(title: "Something went wrong", action: "OK", message: "Please try again.")
-            self.present(alertView, animated: true, completion: nil)
-            print(error)
-            
-        }
-        
-            if let response = response.result.value {
-                let jsonResponse = JSON(response)
-                                  
-                if jsonResponse["status"].stringValue == "1" {
-                    if self.dataList.count != 0 {
-                    self.totalPrice = self.totalPrice - Int(self.dataList[index].price)!
-                    self.dataList.remove(at: index)
-                    }
-                    if let tabItems = self.tabBarController?.tabBar.items {
-                        
-                        // In this case we want to modify the badge number of the third tab:
-                        let tabItem = tabItems[2]
-                        tabItem.badgeValue = "\(self.dataList.count)"
-                        
-                    }
-                    if self.dataList.count == 0 {
-                        // self.mainView.isHidden = true
-                         self.conBtn.isHidden = true
-                         self.tblView.isHidden = true
-                         self.emptyImage.isHidden = false
-                         self.emptyText1.isHidden = false
-                         self.emptyText2.isHidden = false
-                         //self.indicator.stopAnimating()
-                         
-                    } else {
-                        // self.mainView.isHidden = false
-                         self.conBtn.isHidden = false
-                         self.tblView.isHidden = false
-                         
-                         self.emptyImage.isHidden = true
-                         self.emptyText1.isHidden = true
-                         self.emptyText2.isHidden = true
-                         //self.indicator.stopAnimating()
-                    }
-                }
-                    self.tblView.reloadData()
+               indicator.startAnimating()
+               
+               guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/delete_cart.php") else {
+                   return
+               }
+               let customerId = userdefault.value(forKey: "customer_id") as! String
+               
+               let parameter = ["cart_id":"\(dataList[index].cardId)"]
                
                
-                self.indicator.stopAnimating()
-            
-            }else {
-              let alertView = ShowAlertView().alertView(title: "No Product Found", action: "OK", message: "")
-              self.present(alertView, animated: true, completion: nil)
-          }
-            
-        }
-        
+               Alamofire.request(urlToExcute, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+               
+               if let error = response.error {
+                   self.indicator.stopAnimating()
+                   let alertView = ShowAlertView().alertView(title: "Something went wrong", action: "OK", message: "Please try again.")
+                   self.present(alertView, animated: true, completion: nil)
+                   print(error)
+                   
+               }
+               
+                   if let response = response.result.value {
+                       let jsonResponse = JSON(response)
+                                         
+                       if jsonResponse["status"].stringValue == "1" {
+                           if self.dataList.count != 0 {
+                           self.totalPrice = self.totalPrice - Int(self.dataList[index].price)!
+                           self.dataList.remove(at: index)
+                           }
+                           if let tabItems = self.tabBarController?.tabBar.items {
+                               
+                               // In this case we want to modify the badge number of the third tab:
+                               let tabItem = tabItems[2]
+                               tabItem.badgeValue = "\(self.dataList.count)"
+                               
+                           }
+                           if self.dataList.count == 0 {
+                               // self.mainView.isHidden = true
+                                self.conBtn.isHidden = true
+                                self.tblView.isHidden = true
+                                self.emptyImage.isHidden = false
+                                self.emptyText1.isHidden = false
+                                self.emptyText2.isHidden = false
+                                //self.indicator.stopAnimating()
+                                
+                           } else {
+                               // self.mainView.isHidden = false
+                                self.conBtn.isHidden = false
+                                self.tblView.isHidden = false
+                                
+                                self.emptyImage.isHidden = true
+                                self.emptyText1.isHidden = true
+                                self.emptyText2.isHidden = true
+                                //self.indicator.stopAnimating()
+                           }
+                       }
+                           self.tblView.reloadData()
+                      
+                      
+                       self.indicator.stopAnimating()
+                   
+                   }else {
+                     let alertView = ShowAlertView().alertView(title: "No Product Found", action: "OK", message: "")
+                     self.present(alertView, animated: true, completion: nil)
+                 }
+                   
+               }
     }
     
     @objc func wishApi(sender: UIButton) {

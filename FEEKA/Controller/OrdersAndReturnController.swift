@@ -67,10 +67,10 @@ class OrdersAndReturnController: UIViewController , UITableViewDataSource, UITab
    @objc func trackAction(sender: UIButton) {
     let indexpath = sender.tag - 1000
         let vc = storyboard?.instantiateViewController(withIdentifier: "TrackController") as? TrackController
-        vc?.orderIdTxt = dataList[indexpath].orderId
-        vc?.array = self.addList
-    print(addList)
-        vc?.index = indexpath
+//        vc?.orderIdTxt = dataList[indexpath].orderId
+//        vc?.array = self.addList
+//    print(addList)
+//        vc?.index = indexpath
         vc?.modalPresentationStyle = .fullScreen
         present(vc!, animated: true, completion: nil)
         

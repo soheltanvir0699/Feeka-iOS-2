@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (4.9.1)
   - Cosmos (21.0.0)
+  - DynamicBlurView (4.0.0)
   - FacebookCore (0.9.0):
     - FBSDKCoreKit (~> 5.0)
   - FacebookLogin (0.9.0):
@@ -30,6 +31,8 @@ PODS:
     - NVActivityIndicatorView/Presenter (= 4.8.0)
   - NVActivityIndicatorView/Presenter (4.8.0)
   - OneSignal (2.12.6)
+  - PopupDialog (1.1.1):
+    - DynamicBlurView (~> 4.0)
   - SDWebImage (5.5.2):
     - SDWebImage/Core (= 5.5.2)
   - SDWebImage/Core (5.5.2)
@@ -48,6 +51,7 @@ DEPENDENCIES:
   - Nuke
   - NVActivityIndicatorView
   - OneSignal
+  - PopupDialog (~> 1.1)
   - SDWebImage (~> 5.0)
   - SVProgressHUD
   - SwiftyJSON
@@ -57,6 +61,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - Cosmos
+    - DynamicBlurView
     - FacebookCore
     - FacebookLogin
     - FBSDKCoreKit
@@ -67,6 +72,7 @@ SPEC REPOS:
     - Nuke
     - NVActivityIndicatorView
     - OneSignal
+    - PopupDialog
     - SDWebImage
     - SVProgressHUD
     - SwiftyJSON
@@ -75,6 +81,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   Cosmos: 3dfb6e4ba48bd48b8c9aa2a77048ae11ed114f96
+  DynamicBlurView: ccf9acd2b20c883cc2c72e3524a04d8d3ee20533
   FacebookCore: ba86524b66cfa86d0f8e65d08faa8504a9f732dd
   FacebookLogin: 6cee9fd6e1fe976fe8f7eec199e27b28b14f5d63
   FBSDKCoreKit: 1d5acf7c9d7a2f92bb1a242dc60cae5b7adb91df
@@ -85,11 +92,12 @@ SPEC CHECKSUMS:
   Nuke: fa6f784c4f7e1c0f9313668510186c68b7af2509
   NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
   OneSignal: a6df91542d1cf133b9dd19d89f2b533d8f2d3163
+  PopupDialog: 720c92befd8bc23c13442254945213db5612f149
   SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   TTRangeSlider: 78188bea83f6471a06f75adbc88da5e990baeafe
 
-PODFILE CHECKSUM: 061fc73149a42a4c3794dfcf3671edb8a5704176
+PODFILE CHECKSUM: 0b819aaf7bb2e10f7462b341842a9e4cd2cb947a
 
 COCOAPODS: 1.7.5

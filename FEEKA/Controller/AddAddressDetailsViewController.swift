@@ -193,6 +193,9 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
 }
 
 extension AddAddressDetailsViewController: GMSAutocompleteViewControllerDelegate {
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+       dismiss(animated: true, completion: nil)
+     }
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         
         dismiss(animated: true, completion: nil)
@@ -231,10 +234,7 @@ extension AddAddressDetailsViewController: GMSAutocompleteViewControllerDelegate
     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
         
     }
-    
-    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
-        
-    }
+  
     
     
     func getAddressFromLatLon(pdblLatitude: String, withLongitude pdblLongitude: String) {

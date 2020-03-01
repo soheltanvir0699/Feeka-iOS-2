@@ -12,6 +12,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
+import PopupDialog
 
 class SignUpEditController: UIViewController, UITextFieldDelegate {
 
@@ -75,22 +76,90 @@ class SignUpEditController: UIViewController, UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField.tag == 10 {
-        textField.inputView = UIView()
-          let alert = UIAlertController(title: "Select Gender", message: nil, preferredStyle: .actionSheet)
-                  let womenAction = UIAlertAction(title: "Female", style: .default) { (women) in
-                      textField.text =  "Female"
-                    
-                      
-                  
-                  }
-                  let menAction = UIAlertAction(title: "Male", style: .default) { (_) in
-                      textField.text = "Male"
-                     
-                  }
-                 
-                  alert.addAction(womenAction)
-                  alert.addAction(menAction)
-                  self.present(alert, animated: true, completion: nil)
+//        textField.inputView = UIView()
+//          let alert = UIAlertController(title: "Select Gender", message: nil, preferredStyle: .actionSheet)
+//                  let womenAction = UIAlertAction(title: "Female", style: .default) { (women) in
+//                      textField.text =  "Female"
+//
+//
+//
+//                  }
+//                  let menAction = UIAlertAction(title: "Male", style: .default) { (_) in
+//                      textField.text = "Male"
+//
+//                  }
+//
+//                  alert.addAction(womenAction)
+//                  alert.addAction(menAction)
+//                  self.present(alert, animated: true, completion: nil)
+            
+            let title = "THIS IS THE DIALOG TITLE"
+            let message = "This is the message section of the popup dialog default view"
+//let image = UIImage(named: "pexels-photo-103290")
+
+            // Create the dialog
+            let popup = PopupDialog(title: "SELECT GENDER", message: "")
+
+            // Create buttons
+            let buttonOne = CancelButton(title: "CANCEL") {
+                print("You canceled the car dialog.")
+            }
+
+            // This button will not the dismiss the dialog
+            let buttonTwo = DefaultButton(title: "MALE", dismissOnTap: true) {
+                print("What a beauty!")
+                
+                textField.text = "Male"
+            }
+
+            let buttonThree = DefaultButton(title: "FEMALE", dismissOnTap: true) {
+                textField.text =  "Female"
+                self.removeFromParent()
+                print("What a beauty!")
+            }
+            
+            let pv = PopupDialogDefaultView.appearance()
+            pv.titleFont    = UIFont(name: "HelveticaNeue-Light", size: 16)!
+            pv.titleColor   = .white
+            pv.messageFont  = UIFont(name: "HelveticaNeue", size: 14)!
+            pv.messageColor = UIColor(white: 0.8, alpha: 1)
+
+            // Customize the container view appearance
+            let pcv = PopupDialogContainerView.appearance()
+            pcv.backgroundColor = UIColor(red:0.23, green:0.23, blue:0.27, alpha:1.00)
+            pcv.cornerRadius    = 2
+            pcv.shadowEnabled   = true
+            pcv.shadowColor     = .black
+
+            // Customize overlay appearance
+            let ov = PopupDialogOverlayView.appearance()
+            ov.blurEnabled     = true
+            ov.blurRadius      = 30
+            ov.liveBlurEnabled = true
+            ov.opacity         = 0.7
+            ov.color           = .black
+
+            // Customize default button appearance
+            let db = DefaultButton.appearance()
+            buttonTwo.titleFont      = UIFont(name: "HelveticaNeue-Medium", size: 14)!
+            buttonTwo.titleColor     = .white
+            buttonTwo.buttonColor    = UIColor(red:0.25, green:0.25, blue:0.29, alpha:1.00)
+            buttonTwo.separatorColor = UIColor(red:0.20, green:0.20, blue:0.25, alpha:1.00)
+
+            // Customize cancel button appearance
+            let cb = CancelButton.appearance()
+            buttonTwo.titleFont      = UIFont(name: "HelveticaNeue-Medium", size: 14)!
+            buttonTwo.titleColor     = UIColor(white: 0.6, alpha: 1)
+            buttonTwo.buttonColor    = UIColor(red:0.25, green:0.25, blue:0.29, alpha:1.00)
+            buttonTwo.separatorColor = UIColor(red:0.20, green:0.20, blue:0.25, alpha:1.00)
+
+            // Add buttons to dialog
+            // Alternatively, you can use popup.addButton(buttonOne)
+            // to add a single button
+            popup.addButtons([ buttonTwo, buttonThree, buttonOne])
+
+            // Present dialog
+            self.present(popup, animated: true, completion: nil)
         }
     }
  func creatDatePicker() {

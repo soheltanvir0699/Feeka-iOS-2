@@ -31,6 +31,11 @@ class HotViewController: UIViewController {
     var userDefault = UserDefaults.standard
     var hotListId = [String]()
     var productId = [Int]()
+    let blurEffect = UIBlurEffect(style: .dark)
+    var blurredEffectView = UIVisualEffectView()
+    var blurredEffectView1 = UIVisualEffectView()
+    var blurredEffectView2 = UIVisualEffectView()
+    var blurredEffectView3 = UIVisualEffectView()
     override func viewDidLoad() {
         super.viewDidLoad()
         gender = userDefault.value(forKey: "Gender") as! Int
@@ -46,28 +51,24 @@ class HotViewController: UIViewController {
 //        allBodyImg.addSubview(view1)
 //        allFaceImg.addSubview(view1)
         
-        let blurEffect = UIBlurEffect(style: .dark)
-        let blurredEffectView = UIVisualEffectView(effect: blurEffect)
+        
+        blurredEffectView = UIVisualEffectView(effect: blurEffect)
         blurredEffectView.alpha = 0.4
         blurredEffectView.frame = allFaceImg.frame
         
-        let blurredEffectView1 = UIVisualEffectView(effect: blurEffect)
+        blurredEffectView1 = UIVisualEffectView(effect: blurEffect)
         blurredEffectView1.alpha = 0.4
         blurredEffectView1.frame = allBodyImg.frame
         
-        let blurredEffectView2 = UIVisualEffectView(effect: blurEffect)
+        blurredEffectView2 = UIVisualEffectView(effect: blurEffect)
         blurredEffectView2.alpha = 0.4
         blurredEffectView2.frame = brandCareImg.frame
         
-        let blurredEffectView3 = UIVisualEffectView(effect: blurEffect)
+        blurredEffectView3 = UIVisualEffectView(effect: blurEffect)
         blurredEffectView3.alpha = 0.4
         blurredEffectView3.frame = ConditionerImg.frame
         
-        
-        allFaceImg.addSubview(blurredEffectView)
-        allBodyImg.addSubview(blurredEffectView1)
-        brandCareImg.addSubview(blurredEffectView2)
-        ConditionerImg.addSubview(blurredEffectView3)
+       
         
     }
     
@@ -201,6 +202,10 @@ class HotViewController: UIViewController {
                                 self.allConditionerLbl.text = "\(i["name"].stringValue)"
                                 self.hotListId.append(i["id"].stringValue)
                             }
+                            self.allFaceImg.addSubview(self.blurredEffectView)
+                            self.allBodyImg.addSubview(self.blurredEffectView1)
+                            self.brandCareImg.addSubview(self.blurredEffectView2)
+                            self.ConditionerImg.addSubview(self.blurredEffectView3)
                             if self.dataList.count == 0 {
                                 self.tblView.isHidden = true
                             } else {
