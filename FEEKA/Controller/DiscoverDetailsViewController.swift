@@ -105,7 +105,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        apiCalling(customerId: customerId, productId: productId)
+        
         scrollView.delegate = self
         self.tickImg.alpha = 0.0
         guard (userdefault.value(forKey: "customer_id") as? String) != nil else {
@@ -113,7 +113,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
             return
         }
         customerId = userdefault.value(forKey: "customer_id") as! String
-        
+        apiCalling(customerId: customerId, productId: productId)
     }
     
     func logInVC() {
@@ -307,6 +307,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
                 "customer_id":"\(customerId)",
                 "product_id":"\(productId)"
                 ]
+              print(parameter)
               self.indicator1.startAnimating()
               Alamofire.request(urlToExcute, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
                 
@@ -321,7 +322,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
                   if let response = response.result.value {
                       let jsonResponse = JSON(response)
                     let productDetails = JSON(jsonResponse["product_detail"])
-                    print("product_details: \(productDetails)")
+                   // print("product_details: \(productDetails)")
                    // print(productDetails)
                     let imageArray = productDetails["image_gallery"].arrayValue
                     for i in imageArray {
@@ -338,7 +339,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
                     }
                     else {
                     self.isWhish = productDetails["is_whishlist"].intValue
-                    self.addToFav.setImage(UIImage(named: "like-normal"), for: .normal)
+                    //self.addToFav.setImage(UIImage(named: "like-normal"), for: .normal)
                         
                     }
                     self.productTitle = productDetails["title"].stringValue

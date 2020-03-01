@@ -19,6 +19,7 @@ pod “TTRangeSlider”
 pod 'GoogleMaps'
 pod 'GooglePlaces'
 pod 'PopupDialog', '~> 1.1'
+pod 'SwiftSoup'
 
   # Pods for FEEKA
 

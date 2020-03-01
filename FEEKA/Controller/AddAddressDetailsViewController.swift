@@ -168,7 +168,7 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
             acController.delegate = self
             
             let filter = GMSAutocompleteFilter()
-            filter.type = .establishment
+            //filter.type = .establishment
             filter.country = "ZA"
             acController.autocompleteFilter = filter
             acController.modalPresentationStyle = .fullScreen

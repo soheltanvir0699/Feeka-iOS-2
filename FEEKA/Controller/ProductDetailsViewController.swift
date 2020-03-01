@@ -11,6 +11,7 @@ import Cosmos
 import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
+import SwiftSoup
 
 class ProductDetailsViewController: UIViewController,UITextFieldDelegate {
 
@@ -28,7 +29,7 @@ class ProductDetailsViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var pageTitleView: UIView!
     @IBOutlet weak var viewscrolll: UIView!
-    var imageList = [String]()
+       var imageList = [String]()
        var productTitle:String!
        var brand:String!
        var sPrice:String!
@@ -113,26 +114,38 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ProductDetailsCollectionViewCell
-        
+        let string1: String = StoredProperty.singleProductDetailsList[0].content
         if indexPath.row == 0 {
         cell?.colorLabel.text = ""
             cell?.colorLabel.textColor = .red
             cell?.colorLabel.font = UIFont.boldSystemFont(ofSize: 16.0)
             cell?.sizeLabel.text = "Size: \(StoredProperty.singleProductDetailsList[0].size)"
             cell?.colorLabel.text = "Color: \(StoredProperty.singleProductDetailsList[0].color)"
-            let string1: String = StoredProperty.singleProductDetailsList[0].content
+            
             cell?.DescriptionLbl.text = ""
+            print(string1)
+           let fullNameArr = string1.components(separatedBy: "<strong>Star ingredients:</strong><br> <br>")
             cell?.thirdView.isHidden = true
             discriptonBorder.backgroundColor = .black
-            cell?.webview.loadHTMLString(string1, baseURL: nil)
+            cell?.webview.loadHTMLString(fullNameArr[0], baseURL: nil)
             cell?.webview.isHidden = false
             return cell!
             
         }else if indexPath.row == 1{
             cell?.thirdView.isHidden = true
             cell?.sizeLabel.isHidden = true
-            cell?.colorLabel.text = "Not Available"
             cell?.DescriptionLbl.isHidden = true
+            
+              let fullNameArr = string1.components(separatedBy: "<strong>Star ingredients:</strong><br> <br>")
+            
+            if fullNameArr.count == 1 {
+                cell?.webview.loadHTMLString("Not Available", baseURL: nil)
+            } else {
+               
+                cell?.colorLabel.text = "Not Available"
+                //cell?.webview.loadHTMLString(fullNameArr[1], baseURL: nil)
+            }
+            cell?.webview.isHidden = false
             
             return cell!
         }else {

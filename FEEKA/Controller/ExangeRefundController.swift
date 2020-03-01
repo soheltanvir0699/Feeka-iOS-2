@@ -111,7 +111,7 @@ class ExangeRefundController: UIViewController {
                 
               }
         
-        alert.addAction(UIAlertAction(title: "CANCLE", style: .default, handler: { (action) in
+        alert.addAction(UIAlertAction(title: "CANCEL", style: .default, handler: { (action) in
         }))
 
               alert.addAction(UIAlertAction(title: "SEND", style: .default, handler: { (action) in

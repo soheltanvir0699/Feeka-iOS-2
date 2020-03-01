@@ -263,17 +263,26 @@ extension BagViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 
-        if editingStyle == .delete {
+        
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        
+        return true
+    }
+    
 
-            // remove the item from the data model
-            deleteRequest(index: indexPath.row)
-
-            // delete the table view row
-            //tableView.deleteRows(at: [indexPath], with: .fade)
-
-        } else if editingStyle == .insert {
-            // Not used in our example, but if you were adding a new row, this is where you would do it.
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let editbutton = UITableViewRowAction(style: .normal, title: "WISH") { (_, _) in
+            self.wishRequest(index: indexPath.row)
         }
+        let DELETEBTN = UITableViewRowAction(style: .normal, title: "DELETE") { (_, _) in
+            self.deleteRequest(index: indexPath.row)
+        }
+        DELETEBTN.backgroundColor = .red
+        editbutton.backgroundColor = .black
+        return[ DELETEBTN,editbutton]
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -412,39 +421,43 @@ extension BagViewController: UITableViewDataSource, UITableViewDelegate {
     
     @objc func wishApi(sender: UIButton) {
         let index = sender.tag - 2000
+       
+        wishRequest(index: index)
+    }
+    
+    func wishRequest(index: Int) {
         guard let urlToExcute = URL(string: "https://feeka.co.za/json-api/route/move_to_wishlist_v3.php") else {
-            return
-        }
-        
-        
-        let parameter = ["cart_id":"\(dataList[index].cardId)","customer_id":"\(self.customerId)","product_id":"\(dataList[index].id)","variation_id":"0"]
-        
-        
-        Alamofire.request(urlToExcute, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
-        
-        if let error = response.error {
-            self.indicator.stopAnimating()
-            let alertView = ShowAlertView().alertView(title: "Something went wrong", action: "OK", message: "Please try again.")
-            self.present(alertView, animated: true, completion: nil)
-            print(error)
-            
-        }
-        
-            if let response = response.result.value {
-                let jsonResponse = JSON(response)
-                                  
-                if jsonResponse["status"].stringValue == "1" {
-                    self.bagApiCalling()
-                }
-              
-            
-            }else {
-              let alertView = ShowAlertView().alertView(title: "No Product Found", action: "OK", message: "")
-              self.present(alertView, animated: true, completion: nil)
-          }
-            
-        }
-        
+                   return
+               }
+               
+               
+               let parameter = ["cart_id":"\(dataList[index].cardId)","customer_id":"\(self.customerId)","product_id":"\(dataList[index].id)","variation_id":"0"]
+               
+               
+               Alamofire.request(urlToExcute, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+               
+               if let error = response.error {
+                   self.indicator.stopAnimating()
+                   let alertView = ShowAlertView().alertView(title: "Something went wrong", action: "OK", message: "Please try again.")
+                   self.present(alertView, animated: true, completion: nil)
+                   print(error)
+                   
+               }
+               
+                   if let response = response.result.value {
+                       let jsonResponse = JSON(response)
+                                         
+                       if jsonResponse["status"].stringValue == "1" {
+                           self.bagApiCalling()
+                       }
+                     
+                   
+                   }else {
+                     let alertView = ShowAlertView().alertView(title: "No Product Found", action: "OK", message: "")
+                     self.present(alertView, animated: true, completion: nil)
+                 }
+                   
+               }
     }
     
     func qtyApi(sender: Int, qty: Int) {
