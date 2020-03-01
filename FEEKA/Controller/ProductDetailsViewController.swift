@@ -143,7 +143,7 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
             
               let fullNameArr = string1.components(separatedBy: "<strong>Star ingredients:</strong><br> <br>")
             
-            if fullNameArr.count == 1 {
+            if fullNameArr.count == 2 {
                 cell?.colorLabel.isHidden = true
                 cell?.webview.loadHTMLString(fontSetting + fullNameArr[1], baseURL: nil)
             } else {
