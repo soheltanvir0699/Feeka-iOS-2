@@ -7947,7 +7947,7 @@
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <wkWebViewConfiguration key="configuration">
                                                                         <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                                                        <wkPreferences key="preferences"/>
+                                                                        <wkPreferences key="preferences" minimumFontSize="20"/>
                                                                     </wkWebViewConfiguration>
                                                                 </wkWebView>
                                                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9li-jV-aPC">

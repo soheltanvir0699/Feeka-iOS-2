@@ -12,6 +12,7 @@ import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
 import SwiftSoup
+import PopupDialog
 
 class ProductDetailsViewController: UIViewController,UITextFieldDelegate {
 
@@ -115,6 +116,9 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ProductDetailsCollectionViewCell
         let string1: String = StoredProperty.singleProductDetailsList[0].content
+        let fontName =  "PFHandbookPro-Regular"
+        let fontSize = 30
+        let fontSetting = "<span style=\"font-family: \(fontName);font-size: \(fontSize)\"</span>"
         if indexPath.row == 0 {
         cell?.colorLabel.text = ""
             cell?.colorLabel.textColor = .red
@@ -127,7 +131,8 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
            let fullNameArr = string1.components(separatedBy: "<strong>Star ingredients:</strong><br> <br>")
             cell?.thirdView.isHidden = true
             discriptonBorder.backgroundColor = .black
-            cell?.webview.loadHTMLString(fullNameArr[0], baseURL: nil)
+              
+            cell?.webview.loadHTMLString(fontSetting + fullNameArr[0], baseURL: nil)
             cell?.webview.isHidden = false
             return cell!
             
@@ -139,10 +144,12 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
               let fullNameArr = string1.components(separatedBy: "<strong>Star ingredients:</strong><br> <br>")
             
             if fullNameArr.count == 1 {
-                cell?.webview.loadHTMLString("Not Available", baseURL: nil)
+                cell?.colorLabel.isHidden = true
+                cell?.webview.loadHTMLString(fontSetting + fullNameArr[1], baseURL: nil)
             } else {
-               
-                cell?.colorLabel.text = "Not Available"
+               cell?.colorLabel.isHidden = false
+                //cell?.colorLabel.text = "Not Available"
+                cell?.webview.loadHTMLString(fontSetting + "Not Available", baseURL: nil)
                 //cell?.webview.loadHTMLString(fullNameArr[1], baseURL: nil)
             }
             cell?.webview.isHidden = false
@@ -195,83 +202,127 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
         print(gmtDate)
     }
     
+    
+    func signOutAction() {
+           let navVc = storyboard?.instantiateViewController(withIdentifier: "loginnav")
+           navVc!.modalPresentationStyle = .overFullScreen
+           
+           present(navVc!, animated: true, completion: nil)
+       }
+    
+    
     @objc func postReview(sender: UIButton) {
         self.setDate()
-        
-    let tag = sender.tag
-    let currentRating = self.view.viewWithTag(tag - 2000) as! CosmosView
-    let commentfield = self.view.viewWithTag(tag - 1000) as! UITextField
-    print(currentRating.rating)
-    print(commentfield.text)
-    
-        print("post data")
-    indicator = self.indicator()
-    self.indicator.startAnimating()
-    guard let url = URL(string: "https://feeka.co.za/json-api/route/set_review.php") else {
-                       self.view.makeToast( "Please try again later")
-                          return
-                      }
-        
-    if userdefault.value(forKey: "author_name") as? String != nil {
-        self.authorName = userdefault.value(forKey: "author_name") as! String
-        self.customerId = userdefault.value(forKey: "customer_id") as! String
-        
-    }
-                     let email =  userdefault.value(forKey: "email") as! String
-                          let paramater = [
-                              "comment_approved":"1",
-                              "comment_author":"\(authorName)",
-                            "comment_content":"\(commentfield.text!)",
-                            "comment_date":"\(currentTime)",
-                            "comment_date_gmt":"\(gmtTime)",
-                              "comment_karma":"0",
-                              "comment_meta":[
-                                "rating":"\(currentRating.rating)",
-                                "verified":"0",
-                                "_ywar_imported":"1"
-                            ],
-                              "comment_parent":"0",
-                              "comment_post_ID":"\(productId)",
-                              "user_id":"\(customerId)"
-                            ] as [String : Any]
-        
-        let param2 =  ["comment_approved":"1","comment_author":"\(authorName)","comment_author_email":"\(email)","comment_author_IP":"","comment_content":"\(commentfield.text!)","comment_date":"\(currentTime)","comment_date_gmt":"\(gmtTime)","comment_karma":"0","comment_meta":["rating":"\(currentRating.rating)","verified":"0","_ywar_imported":"1"],"comment_parent":"0","comment_post_ID":"\(productId)","user_id":"\(customerId)"] as [String : Any]
+        let tag = sender.tag
+        if userdefault.value(forKey: "author_name") as? String != nil {
+            self.authorName = userdefault.value(forKey: "author_name") as! String
+            
+        }
+                   if userdefault.value(forKey: "customer_id") as? String == "" {
+                       
+                       signOutAction()
+                       
+                   } else {
+                       customerId = userdefault.value(forKey: "customer_id") as! String
                     
-                            print(param2)
-                          Alamofire.request(url, method: .post, parameters: param2, encoding: JSONEncoding.default, headers: nil).response { (response) in
-                            print(response)
-                              
-                              if let error = response.error {
-                                  self.indicator.stopAnimating()
-                                  let alertView = ShowAlertView().alertView(title: "Something went wrong", action: "OK", message: "Please try again.")
-                                  self.present(alertView, animated: true, completion: nil)
-                                  print(error)
+                    let popup = PopupDialog(title: "Please Select an Option", message: "")
+
+                          // Create buttons
+                          let buttonOne = CancelButton(title: "CANCEL") {
+                              print("You canceled the car dialog.")
+                          }
+
+                          // This button will not the dismiss the dialog
+                          let buttonTwo = DefaultButton(title: "Post as Anonymous", dismissOnTap: true) {
+                              self.authorName = "Anonymous"
+                              print("What a beauty!")
+                            self.postReviewRequest(tag: tag)
+                          }
+
+                          let buttonThree = DefaultButton(title: "Post as \(authorName)", dismissOnTap: true) {
+                              if self.userdefault.value(forKey: "author_name") as? String != nil {
+                                  self.authorName = self.userdefault.value(forKey: "author_name") as! String
                                   
                               }
-                              
-                              if let result = response.data {
-                                  let jsonRespose = JSON(result)
-                                 // print(jsonRespose)
-                                  print(jsonRespose["message"].stringValue)
-                                self.view.makeToast( "Review posted.")
-                                if jsonRespose["status"].stringValue == "1" {
-                                    StoredProperty.reviewAllData.insert(reviewDataModel(rating: "\(currentRating.rating)", author: self.authorName, comment: commentfield.text!, date: self.currentTime), at: 0)
-                                    let indexPath = IndexPath(row: tag - 3000, section: 0)
-                                    let pDetailsCell = self.collView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ProductDetailsCollectionViewCell
-                                    DispatchQueue.main.async {
-                                                 
-                                                 pDetailsCell!.tableView.reloadData()
-                                                 self.collView.reloadItems(at: [indexPath])
-                                                 pDetailsCell!.tableView.reloadData()
-                                             }
-                                    
-                                }
-
-                                  self.indicator.stopAnimating()
-                              }
-                          
-              }
+                            self.postReviewRequest(tag: tag)
+                          }
+                          popup.addButtons([ buttonTwo, buttonThree, buttonOne])
+                          self.present(popup, animated: true, completion: nil)
+        }
+        
     
+    
+    }
+    
+    func postReviewRequest(tag: Int) {
+        let currentRating = self.view.viewWithTag(tag - 2000) as! CosmosView
+        let commentfield = self.view.viewWithTag(tag - 1000) as! UITextField
+
+        indicator = self.indicator()
+           self.indicator.startAnimating()
+           guard let url = URL(string: "https://feeka.co.za/json-api/route/set_review.php") else {
+                              self.view.makeToast( "Please try again later")
+                                 return
+                             }
+               
+           
+                            let email =  userdefault.value(forKey: "email") as! String
+                                 let paramater = [
+                                     "comment_approved":"1",
+                                     "comment_author":"\(authorName)",
+                                   "comment_content":"\(commentfield.text!)",
+                                   "comment_date":"\(currentTime)",
+                                   "comment_date_gmt":"\(gmtTime)",
+                                     "comment_karma":"0",
+                                     "comment_meta":[
+                                       "rating":"\(currentRating.rating)",
+                                       "verified":"0",
+                                       "_ywar_imported":"1"
+                                   ],
+                                     "comment_parent":"0",
+                                     "comment_post_ID":"\(productId)",
+                                     "user_id":"\(customerId)"
+                                   ] as [String : Any]
+               
+               let param2 =  ["comment_approved":"1","comment_author":"\(authorName)","comment_author_email":"\(email)","comment_author_IP":"","comment_content":"\(commentfield.text!)","comment_date":"\(currentTime)","comment_date_gmt":"\(gmtTime)","comment_karma":"0","comment_meta":["rating":"\(currentRating.rating)","verified":"0","_ywar_imported":"1"],"comment_parent":"0","comment_post_ID":"\(productId)","user_id":"\(customerId)"] as [String : Any]
+                           
+                                   print(param2)
+                                 Alamofire.request(url, method: .post, parameters: param2, encoding: JSONEncoding.default, headers: nil).response { (response) in
+                                   print(response)
+                                     
+                                     if let error = response.error {
+                                         self.indicator.stopAnimating()
+                                         let alertView = ShowAlertView().alertView(title: "Something went wrong", action: "OK", message: "Please try again.")
+                                         self.present(alertView, animated: true, completion: nil)
+                                         print(error)
+                                         
+                                     }
+                                     
+                                     if let result = response.data {
+                                         let jsonRespose = JSON(result)
+                                        // print(jsonRespose)
+                                         print(jsonRespose["message"].stringValue)
+                                       
+                                       if jsonRespose["status"].stringValue == "1" {
+                                            self.view.makeToast( "Review posted.")
+                                           StoredProperty.reviewAllData.insert(reviewDataModel(rating: "\(currentRating.rating)", author: self.authorName, comment: commentfield.text!, date: self.currentTime), at: 0)
+                                           let indexPath = IndexPath(row: tag - 3000, section: 0)
+                                           let pDetailsCell = self.collView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ProductDetailsCollectionViewCell
+                                           DispatchQueue.main.async {
+                                                        
+                                                        pDetailsCell!.tableView.reloadData()
+                                                        self.collView.reloadItems(at: [indexPath])
+                                                        pDetailsCell!.tableView.reloadData()
+                                                    }
+                                           
+                                       } else {
+                                           self.view.makeToast( jsonRespose["message"].stringValue)
+                                       }
+
+                                         self.indicator.stopAnimating()
+                                     }
+                                 
+                     }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
