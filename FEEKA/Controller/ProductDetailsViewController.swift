@@ -11,7 +11,6 @@ import Cosmos
 import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
-import SwiftSoup
 import PopupDialog
 import IQKeyboardManagerSwift
 

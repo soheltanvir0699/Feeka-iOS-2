@@ -41,7 +41,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
     var rPrice:String = ""
     var rating:Double = 0.0
     var ratingCount:Int = 1
-    var customerId = ""
+    var customerId = "808"
     var fechuredId = [Int]()
     var dataList = [hireCareParameter]()
     var userdefault = UserDefaults.standard
@@ -113,7 +113,11 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
             return
         }
         customerId = userdefault.value(forKey: "customer_id") as! String
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
         apiCalling(customerId: customerId, productId: productId)
+        print("will apear")
     }
     
     func logInVC() {
@@ -196,7 +200,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
         }else {
             print("nil")
         }
-        if productTitle != "" {
+        if productTitle != nil{
         discoverDetailsVC.productTitle = self.productTitle
         }
         

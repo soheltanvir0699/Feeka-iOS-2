@@ -45,6 +45,7 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
     var company = ""
     var addressId = ""
     var isAddress = true
+    var  isDefaultAdd = true
     var indicator:NVActivityIndicatorView!
     let userdefault = UserDefaults.standard
     var datePicker = UIDatePicker()
@@ -65,6 +66,20 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
         hideKeyBoard()
     }
     
+   
+    
+    @IBAction func defaultAction(_ sender: Any) {
+        if isDefaultAdd {
+            defaultCheckBox.setImage(UIImage(named: "3"), for: .normal)
+            urlLink = "https://feeka.co.za/json-api/route/add_address.php"
+            isDefaultAdd = false
+            
+        } else {
+            urlLink = "https://feeka.co.za/json-api/route/edit_address.php"
+            defaultCheckBox.setImage(UIImage(named: "checkbox"), for: .normal)
+            isDefaultAdd = true
+        }
+    }
     func setUPView() {
         nameLbl.text = name
         sureNameLbl.text = sureName

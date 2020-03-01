@@ -37,7 +37,6 @@ PODS:
     - SDWebImage/Core (= 5.5.2)
   - SDWebImage/Core (5.5.2)
   - SVProgressHUD (2.2.5)
-  - SwiftSoup (2.3.0)
   - SwiftyJSON (5.0.0)
   - TTRangeSlider (1.0.6)
 
@@ -55,7 +54,6 @@ DEPENDENCIES:
   - PopupDialog (~> 1.1)
   - SDWebImage (~> 5.0)
   - SVProgressHUD
-  - SwiftSoup
   - SwiftyJSON
   - TTRangeSlider
 
@@ -77,7 +75,6 @@ SPEC REPOS:
     - PopupDialog
     - SDWebImage
     - SVProgressHUD
-    - SwiftSoup
     - SwiftyJSON
     - TTRangeSlider
 
@@ -98,10 +95,9 @@ SPEC CHECKSUMS:
   PopupDialog: 720c92befd8bc23c13442254945213db5612f149
   SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  SwiftSoup: d78683f7ea0ae5733225a9e1d3bee5b256449df4
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   TTRangeSlider: 78188bea83f6471a06f75adbc88da5e990baeafe
 
-PODFILE CHECKSUM: 14f81ef85ae12b399b64979197a8009829c51dd7
+PODFILE CHECKSUM: 0b819aaf7bb2e10f7462b341842a9e4cd2cb947a
 
 COCOAPODS: 1.7.5
