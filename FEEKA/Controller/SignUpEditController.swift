@@ -49,7 +49,7 @@ class SignUpEditController: UIViewController, UITextFieldDelegate {
         creatDatePicker()
         gender.delegate = self
         IQKeyboardManager.shared.enable = true
-        IQKeyboardManager.shared.enableAutoToolbar = true
+        IQKeyboardManager.shared.enableAutoToolbar = false
         
         getAddressApi()
         

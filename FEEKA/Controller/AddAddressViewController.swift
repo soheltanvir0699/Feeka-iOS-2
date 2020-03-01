@@ -59,8 +59,11 @@ class AddAddressViewController: UIViewController {
     
     @objc func deleteProfile(sender: UIButton) {
         let index = sender.tag - 2000
-        indicator = self.indicator()
-        indicator.startAnimating()
+               indicator = self.indicator()
+//        var address_id = ""
+//        if userdefault.value(forKey: "address_id") as? String != nil {
+//            address_id = userdefault.value(forKey: "address_id") as! String
+//        }
         guard let url = URL(string: "https://feeka.co.za/json-api/route/remove_address.php") else {
                            self.view.makeToast( "Please try again later")
                               return
@@ -68,17 +71,16 @@ class AddAddressViewController: UIViewController {
                           
                               let paramater = [
                                  
-                                 "Address_id": "\(dataList[index])",
+                                "Address_id": "\(dataList[index].addressId)",
                                  "customer_id": "\(customerId)",
                                  "is_default":"1"
                                  
                               ]
-                       print(paramater)
                               Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: nil).response { (response) in
                                   self.indicator.startAnimating()
                                   if let error = response.error {
                                       self.indicator.stopAnimating()
-                                      let alertView = ShowAlertView().alertView(title: "Something went wrong", action: "OK",  message: "Please try again.")
+                                      let alertView = ShowAlertView().alertView(title: "Something went wrong", action: "OK", message: "Please try again.")
                                       self.present(alertView, animated: true, completion: nil)
                                       print(error)
                                       
@@ -86,17 +88,16 @@ class AddAddressViewController: UIViewController {
                                   
                                   if let result = response.data {
                                       let jsonRespose = JSON(result)
-                                     print(jsonRespose)
+                                     
                                       if jsonRespose["status"].stringValue == "1" {
-                                        self.dataList.remove(at: index)
-//                                        self.addressView.isHidden = true
-//                                        self.defaultAddress.isHidden = true
+                                        //self.addressView.isHidden = true
+                                        //self.add.isHidden = true
+                                       // self.isAddress = true
                                         self.tblView.reloadData()
-                                        self.isAddress = true
                                       } else {
-                                        self.view.makeToast("Something Worng")
-//                                        self.addressView.isHidden = false
-//                                        self.defaultAddress.isHidden = false
+                                        
+                                       // self.addressView.isHidden = false
+                                        //self.defaultAddress.isHidden = false
                                         
                                       }
 

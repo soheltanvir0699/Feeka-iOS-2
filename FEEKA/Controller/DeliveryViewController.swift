@@ -101,8 +101,9 @@ class DeliveryViewController: UIViewController {
         navigationController?.pushViewController(deli2VC!, animated: true)
     }
     
-    func setMapLocation(address: String,country: String) {
-        guard let urlToExcute = URL(string: "https://maps.googleapis.com/maps/api/geocode/json?address=\(address)&key=AIzaSyBaTY6bQWJElnvG5c6g4Q9MMu3soiLXXeg") else {
+    func setMapLocation(suburb:String,address: String,country: String) {
+        let address2 = address.replacingOccurrences(of: " ", with: "%20")
+        guard let urlToExcute = URL(string: "https://maps.googleapis.com/maps/api/geocode/json?address=\(address2)&key=AIzaSyBaTY6bQWJElnvG5c6g4Q9MMu3soiLXXeg") else {
                    return
                }
         
@@ -118,6 +119,7 @@ class DeliveryViewController: UIViewController {
             
             if let response = response.result.value {
             let jsonResponse = JSON(response)
+                print(jsonResponse)
                 let result = JSON(jsonResponse["results"].arrayValue[0])
                 let formattedAddress = JSON(result["geometry"])
                 let bounds = JSON(formattedAddress["location"])
@@ -185,7 +187,7 @@ class DeliveryViewController: UIViewController {
                         let contact = data["Contact_Number"].stringValue
                         let unit = data["Unit_Number"].stringValue
                         print(city)
-                        self.setMapLocation(address: city, country : country)
+                        self.setMapLocation(suburb: suburb,address: city, country : country)
                         self.userdefault.setValue(address, forKey: "address_id")
                         self.dataList.append(getCustomerDataModel(addressId: address, customerId: customerid, name: name, surname: surname, apartment: apartment, company: company, street: streetAddress, suburb: suburb, city: city, country: country, postalCode: postalCode, contactNumber: contact))
                         self.postalCode.text = postalCode

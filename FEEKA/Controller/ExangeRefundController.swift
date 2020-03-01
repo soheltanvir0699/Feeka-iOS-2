@@ -294,7 +294,7 @@ extension ExangeRefundController: UITableViewDataSource, UITableViewDelegate {
                 )
             Nuke.loadImage(with: request2, into: cell!.Producimage)
         }
-        i
+        
         cell?.productName.text = sName[indexPath.row]
         cell?.price.text = "R \(price[indexPath.row])"
         cell?.qty.text = "QTY:     \(sqty[indexPath.row])"
