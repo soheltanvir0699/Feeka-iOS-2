@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
+import IQKeyboardManagerSwift
 class AddAddressViewController: UIViewController {
 
     @IBOutlet weak var tblView: UITableView!
@@ -24,6 +25,8 @@ class AddAddressViewController: UIViewController {
 
         
         navView.setShadow()
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = true
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -197,6 +200,7 @@ extension AddAddressViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! AddressOneCell
+        if dataList.count != 0 {
         cell.name.text = "\(dataList[indexPath.row].name1) \(dataList[indexPath.row].sureName1)"
         cell.phoneNumber.text = dataList[indexPath.row].phone1
         cell.country.text = dataList[indexPath.row].country1
@@ -204,6 +208,7 @@ extension AddAddressViewController: UITableViewDelegate, UITableViewDataSource {
         cell.suburb.text = dataList[indexPath.row].suburb1
         cell.city.text = dataList[indexPath.row].city1
         cell.postalCode.text = dataList[indexPath.row].postalCode1
+        }
         cell.editAddress.tag = indexPath.row + 1000
         cell.deleteAddress.tag = indexPath.row + 2000
         cell.deleteAddress.addTarget(self, action: #selector(deleteProfile(sender:)), for: .touchUpInside)

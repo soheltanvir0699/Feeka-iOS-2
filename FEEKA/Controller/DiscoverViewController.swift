@@ -186,13 +186,18 @@ func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        gender = UserDefaults.standard.value(forKey: "Gender") as! Int
-        setUpView()
+        
         navView.setShadow()
-        indicator = self.indicator()
-         apiCalling(brand: "", brandId: "\(brandId)", categorie: "\(category)", color: "", filter: "", gender: "\(gender)", maxPrice: "", minPrice: "", productCategorie: "", productType: "", searchTag: "\(searchTag)", size: "", sortParameter: "", tagId: "", currentPage: currentPage)
+        
+         
         listView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideShowTable)))
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        indicator = self.indicator()
+        gender = UserDefaults.standard.value(forKey: "Gender") as! Int
+        setUpView()
+        apiCalling(brand: "", brandId: "\(brandId)", categorie: "\(category)", color: "", filter: "", gender: "\(gender)", maxPrice: "", minPrice: "", productCategorie: "", productType: "", searchTag: "\(searchTag)", size: "", sortParameter: "", tagId: "", currentPage: currentPage)
     }
 
     @objc func hideShowTable() {

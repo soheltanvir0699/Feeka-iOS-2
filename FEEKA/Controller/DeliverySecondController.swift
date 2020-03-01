@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
+import IQKeyboardManagerSwift
 
 class DeliverySecondController: UIViewController {
     @IBOutlet weak var navView: UIView!
@@ -26,6 +27,8 @@ class DeliverySecondController: UIViewController {
 
         navView.setShadow()
         detailsView.setShadow()
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = true
              
     }
     

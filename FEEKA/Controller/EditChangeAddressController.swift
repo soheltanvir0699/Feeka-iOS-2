@@ -48,6 +48,7 @@ class EditChangeAddressController: UIViewController {
     }
     
     @IBAction func backAction(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
     }
     
@@ -68,7 +69,8 @@ class EditChangeAddressController: UIViewController {
     }
     
     @IBAction func confirmAction(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
+       // dismiss(animated: true, completion: nil)
     }
     
     @objc func editProfile() {
@@ -85,9 +87,8 @@ class EditChangeAddressController: UIViewController {
         addressDetails?.addressId = userdefault.value(forKey: "address_id") as! String
         addressDetails?.urlLink = "https://feeka.co.za/json-api/route/edit_address.php"
         addressDetails?.isAddress = true
-        addressDetails?.modalPresentationStyle = .fullScreen
-        self.present(addressDetails!, animated: true, completion: nil)
-    }
+        //addressDetails?.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(addressDetails!, animated: true)    }
     
     
     

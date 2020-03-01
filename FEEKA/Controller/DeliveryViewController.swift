@@ -53,18 +53,18 @@ class DeliveryViewController: UIViewController {
             customerId = userdefault.value(forKey: "customer_id") as! String
         }
         getAddressApi()
-        var lon = 0.0
-        var lat = 0.0
-        var name = ""
-        if userdefault.value(forKey: "lon") != nil {
-        lon = userdefault.value(forKey: "lon") as! Double
-        }
-          if userdefault.value(forKey: "lat") != nil {
-        lat = userdefault.value(forKey: "lat") as! Double
-        }
-        if userdefault.value(forKey: "lat") != nil {
-        name = userdefault.value(forKey: "name") as! String
-        }
+//        var lon = 0.0
+//        var lat = 0.0
+//        var name = ""
+//        if userdefault.value(forKey: "lon") != nil {
+//        lon = userdefault.value(forKey: "lon") as! Double
+//        }
+//          if userdefault.value(forKey: "lat") != nil {
+//        lat = userdefault.value(forKey: "lat") as! Double
+//        }
+//        if userdefault.value(forKey: "lat") != nil {
+//        name = userdefault.value(forKey: "name") as! String
+//        }
                 
          
         //StoredProperty.lat = place.coordinate.latitude
@@ -87,20 +87,21 @@ class DeliveryViewController: UIViewController {
     @IBAction func editAndChangeAction(_ sender: Any) {
         
         let addressVc = storyboard?.instantiateViewController(withIdentifier: "EditChangeAddressController") as! EditChangeAddressController
-        addressVc.modalPresentationStyle = .fullScreen
-        present(addressVc, animated: true, completion: nil)
+        //addressVc.modalPresentationStyle = .fullScreen
+       // present(addressVc, animated: true, completion: nil)
+        self.navigationController?.pushViewController(addressVc, animated: true)
         
     }
     
     
     @IBAction func continueToDeliSchedule(_ sender: Any) {
         let deli2VC = storyboard?.instantiateViewController(withIdentifier: "DeliverySecondController") as? DeliverySecondController
-        deli2VC?.modalPresentationStyle = .fullScreen
+       // deli2VC?.modalPresentationStyle = .fullScreen
         //present(deli2VC!, animated: true, completion: nil)
         navigationController?.pushViewController(deli2VC!, animated: true)
     }
     
-    func setMapLocation(address: String) {
+    func setMapLocation(address: String,country: String) {
         guard let urlToExcute = URL(string: "https://maps.googleapis.com/maps/api/geocode/json?address=\(address)&key=AIzaSyBaTY6bQWJElnvG5c6g4Q9MMu3soiLXXeg") else {
                    return
                }
@@ -122,6 +123,7 @@ class DeliveryViewController: UIViewController {
                 let bounds = JSON(formattedAddress["location"])
                 let lat = bounds["lat"].doubleValue
                 let lon = bounds["lng"].doubleValue
+                print(lat , lon)
                 print(lat)
                 let cord2D = CLLocationCoordinate2D(latitude: lat, longitude: lon)
 
@@ -182,7 +184,8 @@ class DeliveryViewController: UIViewController {
                         let postalCode = data["Postal_Code"].stringValue
                         let contact = data["Contact_Number"].stringValue
                         let unit = data["Unit_Number"].stringValue
-                        self.setMapLocation(address: city)
+                        print(city)
+                        self.setMapLocation(address: city, country : country)
                         self.userdefault.setValue(address, forKey: "address_id")
                         self.dataList.append(getCustomerDataModel(addressId: address, customerId: customerid, name: name, surname: surname, apartment: apartment, company: company, street: streetAddress, suburb: suburb, city: city, country: country, postalCode: postalCode, contactNumber: contact))
                         self.postalCode.text = postalCode

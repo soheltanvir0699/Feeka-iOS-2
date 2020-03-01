@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
+import IQKeyboardManagerSwift
 
 class ForgotPasswordViewController: UIViewController {
 
@@ -21,6 +22,8 @@ class ForgotPasswordViewController: UIViewController {
         resetBtn.layer.cornerRadius = 5
         self.navigationItem.title = "FORGOT PASSWORD"
         indicator = self.indicator()
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = true
         
     }
     

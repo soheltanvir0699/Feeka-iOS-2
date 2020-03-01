@@ -13,8 +13,9 @@ import SwiftyJSON
 import NVActivityIndicatorView
 import SwiftSoup
 import PopupDialog
+import IQKeyboardManagerSwift
 
-class ProductDetailsViewController: UIViewController,UITextFieldDelegate {
+class ProductDetailsViewController: UIViewController {
 
     @IBOutlet weak var discriptonBorder: UILabel!
     @IBOutlet weak var infoBorder: UILabel!
@@ -60,12 +61,15 @@ class ProductDetailsViewController: UIViewController,UITextFieldDelegate {
         
           NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         hideKeyBoard()
+        IQKeyboardManager.shared.enable = false
+        IQKeyboardManager.shared.enableAutoToolbar = false
     }
     
    @objc func keyboardWillShow(notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            //scrollview.isScrollEnabled = false
             if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= keyboardSize.height - 40
+                self.view.frame.origin.y -=  40
             }
         }
 
@@ -74,7 +78,7 @@ class ProductDetailsViewController: UIViewController,UITextFieldDelegate {
     @objc func keyboardWillHide(notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y != 0 {
-                self.view.frame.origin.y += keyboardSize.height-40
+                self.view.frame.origin.y += 40
             }
         }
     }
@@ -119,12 +123,15 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
         let fontName =  "PFHandbookPro-Regular"
         let fontSize = 30
         let fontSetting = "<span style=\"font-family: \(fontName);font-size: \(fontSize)\"</span>"
+        let fontSetting1 = "<span style=\"font-family: \(fontName);font-size: 52\"</span>"
+        
         if indexPath.row == 0 {
         cell?.colorLabel.text = ""
             cell?.colorLabel.textColor = .red
             cell?.colorLabel.font = UIFont.boldSystemFont(ofSize: 16.0)
             cell?.sizeLabel.text = "Size: \(StoredProperty.singleProductDetailsList[0].size)"
-            cell?.colorLabel.text = "Color: \(StoredProperty.singleProductDetailsList[0].color)"
+            cell?.colorLabel.text = "Colour: \(StoredProperty.singleProductDetailsList[0].color)"
+            cell?.colorLabel.textColor = .black
             
             cell?.DescriptionLbl.text = ""
             print(string1)
@@ -149,7 +156,7 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
             } else {
                cell?.colorLabel.isHidden = false
                 //cell?.colorLabel.text = "Not Available"
-                cell?.webview.loadHTMLString(fontSetting + "Not Available", baseURL: nil)
+                cell?.webview.loadHTMLString(fontSetting1 + "Not Available", baseURL: nil)
                 //cell?.webview.loadHTMLString(fullNameArr[1], baseURL: nil)
             }
             cell?.webview.isHidden = false

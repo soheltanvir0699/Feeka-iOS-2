@@ -14,6 +14,7 @@ import SwiftyJSON
 import NVActivityIndicatorView
 import GoogleMaps
 import GooglePlaces
+import IQKeyboardManagerSwift
 
 class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelegate ,MKMapViewDelegate, UITextFieldDelegate {
     
@@ -57,6 +58,8 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
         mapView.settings.myLocationButton = true
         cityLbl.delegate = self
         streetAddressLbl.delegate = self
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = true
         navView.setShadow()
         setUPView()
         hideKeyBoard()
@@ -110,6 +113,7 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
             self.view.makeToast("Phone Number Is Invalid")
             return
         } else {
+            isAddress = true
             if isAddress {
                           
                               let paramater = [

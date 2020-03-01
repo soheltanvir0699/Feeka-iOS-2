@@ -13,6 +13,7 @@ import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
 import PopupDialog
+import IQKeyboardManagerSwift
 
 class SignUpEditController: UIViewController, UITextFieldDelegate {
 
@@ -47,6 +48,8 @@ class SignUpEditController: UIViewController, UITextFieldDelegate {
         birthDate.delegate = self
         creatDatePicker()
         gender.delegate = self
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = true
         
         getAddressApi()
         

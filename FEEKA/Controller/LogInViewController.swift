@@ -12,6 +12,7 @@ import SwiftyJSON
 import NVActivityIndicatorView
 import FacebookCore
 import FacebookLogin
+import IQKeyboardManagerSwift
 
 class LogInViewController: UIViewController {
 
@@ -31,6 +32,8 @@ class LogInViewController: UIViewController {
         super.viewDidLoad()
         setUpView()
         indicator = self.indicator()
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = true
        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
              
                NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
