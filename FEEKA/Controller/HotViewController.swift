@@ -240,12 +240,15 @@ extension HotViewController: UICollectionViewDelegate, UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "list", for: indexPath) as? HotCollectionViewCell
         //cell?.productImg.downloaded(from: dataList[indexPath.row].image)
+        if dataList.isEmpty != true {
         let request = ImageRequest(
             url: URL(string: dataList[indexPath.row].image)!
         )
+        
         Nuke.loadImage(with: request, into: cell!.productImg)
         cell?.productBrand.text = dataList[indexPath.row].brand
         cell?.productTitle.text = dataList[indexPath.row].title
+        }
         if (dataList[indexPath.row].regularPrice).isEmpty != true {
             cell?.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
             cell!.cutLbl.isHidden = false
@@ -262,8 +265,10 @@ extension HotViewController: UICollectionViewDelegate, UICollectionViewDataSourc
         }
         //cell?.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
         //cell?.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
+        if dataList.isEmpty != true {
         cell?.review.rating = dataList[indexPath.row].rating
         cell?.reviewText.text = "(\(dataList[indexPath.row].count))"
+        }
         cell?.productImg.layer.cornerRadius = 5
         return cell!
     }

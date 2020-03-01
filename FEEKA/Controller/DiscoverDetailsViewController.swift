@@ -36,11 +36,11 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
     var isWhish = 1
     var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
     var productTitle:String!
-    var brand:String!
-    var sPrice:String!
-    var rPrice:String!
-    var rating:Double!
-    var ratingCount:Int!
+    var brand:String = ""
+    var sPrice:String = ""
+    var rPrice:String = ""
+    var rating:Double = 0.0
+    var ratingCount:Int = 1
     var customerId = ""
     var fechuredId = [Int]()
     var dataList = [hireCareParameter]()
@@ -63,13 +63,13 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
     fileprivate func viewUpdate() {
         for index in 0..<self.imageList.count {
             if sPrice != "" {
-                salePrice.text = "R\(sPrice!)"
+                salePrice.text = "R\(sPrice)"
                 crossLbl.isHidden = false
             } else {
                 crossLbl.isHidden = true
             }
             if rPrice != "" {
-                regularPrice.text = "R\(rPrice!)"
+                regularPrice.text = "R\(rPrice)"
                 //crossLbl.isHidden = false
             } else {
                 crossLbl.isHidden  = true
@@ -78,7 +78,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
             brandName.text = brand
             productName.text = productTitle
             cosmosView.rating = rating
-            reviewCount.text = "(\(ratingCount!))"
+            reviewCount.text = "(\(ratingCount))"
             self.frame.origin.x = self.scrollView.frame.size.width * CGFloat(index)
             self.frame.size = self.scrollView.frame.size
             let imgView = UIImageView(frame: self.frame)
@@ -190,8 +190,16 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
     
     @IBAction func productDetailsAction(_ sender: Any) {
         let discoverDetailsVC = storyboard?.instantiateViewController(withIdentifier: "ProductDetailsViewController") as! ProductDetailsViewController
+        
+        if imageList.isEmpty != true {
         discoverDetailsVC.imageList = self.imageList
+        }else {
+            print("nil")
+        }
+        if productTitle != "" {
         discoverDetailsVC.productTitle = self.productTitle
+        }
+        
         discoverDetailsVC.brand = self.brand
         discoverDetailsVC.sPrice = self.sPrice
         discoverDetailsVC.rating = self.rating
@@ -223,7 +231,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
               let parameter = [
                 "color":"",
                 "customer_id":"\(customerId)",
-                "price":"\(sPrice!)",
+                "price":"\(sPrice)",
                 "product_id":"\(productId)",
                 "size":"",
                 "variation_id":"0",

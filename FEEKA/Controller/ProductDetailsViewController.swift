@@ -32,7 +32,7 @@ class ProductDetailsViewController: UIViewController {
     @IBOutlet weak var pageTitleView: UIView!
     @IBOutlet weak var viewscrolll: UIView!
        var imageList = [String]()
-       var productTitle:String!
+       var productTitle:String = ""
        var brand:String = ""
        var sPrice:String = ""
        var rPrice:String = ""

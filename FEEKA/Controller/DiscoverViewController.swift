@@ -108,6 +108,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate,UIColle
                    )
                Nuke.loadImage(with: request2, into: cell!.imageView)
        // cell!.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
+        if dataList.isEmpty != true {
         if (dataList[indexPath.row].regularPrice).isEmpty != true {
                    cell?.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
                    cell?.cutLbl.isHidden = false
@@ -131,6 +132,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate,UIColle
             cell?.new.isHidden = false
         } else {
             cell?.new.isHidden = true
+        }
         }
         //cell!.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
         return cell!

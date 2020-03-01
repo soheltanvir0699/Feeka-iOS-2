@@ -86,7 +86,9 @@ class HomeMenGroomingViewController: UIViewController {
                         
                         let image = i["image"].stringValue
                           print(title)
+                      
                         let brand = i["brand"].arrayValue[0].stringValue
+                        
                         let reviewCount1 = JSON(i["review"])
                         let regularPrice = i["regular_price"].stringValue
                         let salePrice = i["sale_price"].stringValue
@@ -122,10 +124,12 @@ extension HomeMenGroomingViewController: UICollectionViewDelegate, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeGroomingCollectionViewCell
+        if dataList.isEmpty != true {
         cell.productTitle.text = dataList[indexPath.row].title
         cell.productBrand.text = dataList[indexPath.row].brand
         cell.reviewView.rating = dataList[indexPath.row].rating
         cell.reviewTitle.text = "(\( dataList[indexPath.row].count))"
+        }
         let url = URL(string: self.dataList[indexPath.row].image)
         cell.productImg.downloadedFrom(url: url!, contentMode: .scaleAspectFill)
         

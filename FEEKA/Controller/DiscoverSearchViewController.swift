@@ -79,8 +79,10 @@ extension DiscoverSearchViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let discoverVC = storyboard?.instantiateViewController(withIdentifier: "DiscoverViewController") as! DiscoverViewController
+        if arrayList.isEmpty != true {
         discoverVC.searchTag = arrayList[indexPath.row]
         discoverVC.navText = arrayList[indexPath.row]
+        }
         navigationController?.pushViewController(discoverVC, animated: true)
     }
     
