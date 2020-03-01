@@ -93,6 +93,7 @@ class AddAddressViewController: UIViewController {
                                         //self.addressView.isHidden = true
                                         //self.add.isHidden = true
                                        // self.isAddress = true
+                                        self.dataList.remove(at: index)
                                         self.tblView.reloadData()
                                       } else {
                                         
