@@ -33,11 +33,11 @@ class ProductDetailsViewController: UIViewController {
     @IBOutlet weak var viewscrolll: UIView!
        var imageList = [String]()
        var productTitle:String!
-       var brand:String!
-       var sPrice:String!
-       var rPrice:String!
-       var rating:Double!
-       var ratingCount:Int!
+       var brand:String = ""
+       var sPrice:String = ""
+       var rPrice:String = ""
+    var rating:Double = 0.0
+       var ratingCount:Int = 0
        var indicator: NVActivityIndicatorView!
        var authorName = ""
        var customerId = ""
@@ -48,11 +48,11 @@ class ProductDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         pageTitleView.setShadow()
-        salePrice.text = "R\(sPrice!)"
+        salePrice.text = "R\(sPrice)"
         brandName.text = brand
         productName.text = productTitle
         cosmosView.rating = rating
-        reviewCount.text = "(\(ratingCount!))"
+        reviewCount.text = "(\(ratingCount))"
         imgView.downloaded(from: self.imageList[0])
         imgView.contentMode = .scaleAspectFill
         scrollview.contentSize = CGSize(width: self.view.frame.height, height: 10000)
