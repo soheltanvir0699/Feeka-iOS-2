@@ -21,6 +21,10 @@ class BrandDetailsController: UIViewController {
          var customerId = ""
          let userdefault = UserDefaults.standard
          var dataList = [brandDataModel]()
+         var carDictionary = [String:[String]]()
+         var carSectionTitles = [String]()
+         var cars: [String] = []
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +43,11 @@ class BrandDetailsController: UIViewController {
 
 extension BrandDetailsController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataList.count
+      let carKey = carSectionTitles[section]
+       if let carValues = carDictionary[carKey] {
+           return carValues.count
+       }
+       return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -56,11 +64,15 @@ extension BrandDetailsController : UITableViewDelegate, UITableViewDataSource {
         cell?.selectedBackgroundView = UIView()
        // let url = URL(string: dataList[indexPath.row].image)
         //cell?.profileImge?.downloadedFrom(url: url!, contentMode: .scaleAspectFill)
-        let request2 = ImageRequest(
-            url: URL(string: dataList[indexPath.row].image)!
-            )
-        Nuke.loadImage(with: request2, into: cell!.profileImge)
-        cell?.title.text = dataList[indexPath.row].name
+        let carKey = carSectionTitles[indexPath.section]
+        if let carValues = carDictionary[carKey] {
+            cell?.title?.text = carValues[indexPath.row]
+            let request2 = ImageRequest(
+                url: URL(string: dataList[indexPath.row].image)!
+                )
+            Nuke.loadImage(with: request2, into: cell!.profileImge)
+        }
+        
         return cell!
     }
     
@@ -70,6 +82,17 @@ extension BrandDetailsController : UITableViewDelegate, UITableViewDataSource {
         DiscoverViewController.navText = "BRANDS"
         //homeProductDetails.searchTag = "Brands"
         self.navigationController?.pushViewController(DiscoverViewController, animated: true)
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return carSectionTitles.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return carSectionTitles[section]
+    }
+    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return carSectionTitles
     }
     
     func brandsRequest() {
@@ -103,8 +126,25 @@ extension BrandDetailsController : UITableViewDelegate, UITableViewDataSource {
                             let name = jsonData["name"].stringValue
                             let image = jsonData["image"].stringValue
                             self.dataList.append(brandDataModel(name: name, image: image, id: id))
-                            self.tblView.reloadData()
-                        }
+                            self.cars.append(name)
+                                
+                            }
+//                        self.brandSelectionTitle = []
+//                        self.brandDictionary = [String:[String]]()
+//                        self.brandNameData = [String]()
+                        for car in self.cars {
+                                let carKey = String(car.prefix(1))
+                                if var carValues = self.carDictionary[carKey] {
+                                    carValues.append(car)
+                                    self.carDictionary[carKey] = carValues
+                                } else {
+                                    self.carDictionary[carKey] = [car]
+                                }
+                            }
+                            
+                        self.carSectionTitles = [String](self.carDictionary.keys)
+                        self.carSectionTitles = self.carSectionTitles.sorted(by: {$0 < $1})
+                        self.tblView.reloadData()
 
                        } else {
                            

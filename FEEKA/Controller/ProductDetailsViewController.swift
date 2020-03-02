@@ -122,7 +122,7 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
         let fontName =  "PFHandbookPro-Regular"
         let fontSize = 30
         let fontSetting = "<span style=\"font-family: \(fontName);font-size: \(fontSize)\"</span>"
-        let fontSetting1 = "<span style=\"font-family: \(fontName);font-size: 52\"</span>"
+        let fontSetting1 = "<span style=\"font-family: \(fontName);font-size: 29\"</span>"
         
         if indexPath.row == 0 {
         cell?.colorLabel.text = ""
@@ -135,10 +135,12 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
             cell?.DescriptionLbl.text = ""
             print(string1)
            let fullNameArr = string1.components(separatedBy: "<strong>Star ingredients:</strong><br> <br>")
+            
+            let fistComponent = fullNameArr[0].components(separatedBy: "</strong></span><br> <br>")
             cell?.thirdView.isHidden = true
             discriptonBorder.backgroundColor = .black
               
-            cell?.webview.loadHTMLString(fontSetting + fullNameArr[0], baseURL: nil)
+            cell?.webview.loadHTMLString(fontSetting1 + fistComponent[0]+"</strong></span><br> <br>" + fontSetting + fistComponent[1], baseURL: nil)
             cell?.webview.isHidden = false
             return cell!
             
@@ -154,8 +156,8 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
                 cell?.webview.loadHTMLString(fontSetting + fullNameArr[1], baseURL: nil)
             } else {
                cell?.colorLabel.isHidden = false
-                //cell?.colorLabel.text = "Not Available"
-                cell?.webview.loadHTMLString(fontSetting1 + "Not Available", baseURL: nil)
+                cell?.colorLabel.text = "Not Available"
+               // cell?.webview.loadHTMLString(fontSetting1 + "Not Available", baseURL: nil)
                 //cell?.webview.loadHTMLString(fullNameArr[1], baseURL: nil)
             }
             cell?.webview.isHidden = false
@@ -224,12 +226,14 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
             self.authorName = userdefault.value(forKey: "author_name") as! String
             
         }
-                   if userdefault.value(forKey: "customer_id") as? String == "" {
+                   if userdefault.value(forKey: "customer_id") as? String == nil {
                        
                        signOutAction()
                        
                    } else {
+                    if userdefault.value(forKey: "customer_id") as? String != nil {
                        customerId = userdefault.value(forKey: "customer_id") as! String
+                    }
                     
                     let popup = PopupDialog(title: "Please Select an Option", message: "")
 

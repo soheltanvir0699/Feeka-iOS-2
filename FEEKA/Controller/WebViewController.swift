@@ -14,6 +14,8 @@ import NVActivityIndicatorView
 class WebViewController: UIViewController, WKNavigationDelegate{
     var indicator:NVActivityIndicatorView!
     @IBOutlet weak var webView: WKWebView!
+    @IBOutlet weak var navView: UIView!
+    
     var currentUrl = ""
     var cancleUrl = ""
     var successUrl = ""
@@ -25,6 +27,7 @@ class WebViewController: UIViewController, WKNavigationDelegate{
         let urlReq = URLRequest(url: url!)
         webView.load(urlReq)
          indicator.startAnimating()
+        navView.setShadow()
         NotificationCenter.default.addObserver(self, selector: #selector(back), name: Notification.Name("backcon"), object: nil)
     }
     

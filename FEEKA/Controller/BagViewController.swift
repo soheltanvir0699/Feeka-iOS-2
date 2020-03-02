@@ -27,6 +27,7 @@ class BagViewController: UIViewController, UIViewControllerTransitioningDelegate
     var totalPrice = 0
     let userdefault = UserDefaults.standard
      var customerId = ""
+    var indexEdit = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         topView.layer.shadowColor = UIColor.gray.cgColor
@@ -37,6 +38,9 @@ class BagViewController: UIViewController, UIViewControllerTransitioningDelegate
                
     NotificationCenter.default.addObserver(self, selector: #selector(goHome), name: Notification.Name("goHome"), object: nil)
          NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: Notification.Name("reloadData"), object: nil)
+        
+        tblView.allowsSelectionDuringEditing = true
+        
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -62,6 +66,11 @@ class BagViewController: UIViewController, UIViewControllerTransitioningDelegate
         bagApiCalling()
         print("viewvillaprear")
         
+    }
+    
+   
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return true
     }
     
     @objc func reloadData() {
@@ -258,7 +267,7 @@ extension BagViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        self.tblView.isEditing = false
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -266,23 +275,38 @@ extension BagViewController: UITableViewDataSource, UITableViewDelegate {
         
     }
     
+
+  
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         
-        return true
+        if indexPath.row == indexEdit  {
+            return true
+        } else {
+       return false
+        }
     }
     
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        return nil
+    }
 
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let editbutton = UITableViewRowAction(style: .normal, title: "WISH") { (_, _) in
+        let editbutton = UITableViewRowAction(style: .normal, title: "WISHLIST") { (_, _) in
             self.wishRequest(index: indexPath.row)
+            self.tblView.isEditing = false
         }
         let DELETEBTN = UITableViewRowAction(style: .normal, title: "DELETE") { (_, _) in
             self.deleteRequest(index: indexPath.row)
+            self.tblView.isEditing = false
         }
+        if indexPath.row == self.dataList.count  {
+            return nil
+        } else {
         DELETEBTN.backgroundColor = .red
         editbutton.backgroundColor = .black
         return[ DELETEBTN,editbutton]
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -297,8 +321,13 @@ extension BagViewController: UITableViewDataSource, UITableViewDelegate {
             if self.shipping == "FREE" {
                 cell2?.deliveryPrice.text = "\(self.shipping)"
             } else {
-               cell2?.deliveryPrice.text = "R \(self.shipping)"
+              if self.shipping == "Free" {
+                   cell2?.deliveryPrice.text = "\(self.shipping)"
+               } else {
+                  cell2?.deliveryPrice.text = "R \(self.shipping)"
+               }
             }
+            
             cell2?.totalPrice.text = "R \(self.totalPrice)"
             cell2?.selectedBackgroundView = UIView()
             //cell2?.contentView.setShadow()
@@ -315,6 +344,10 @@ extension BagViewController: UITableViewDataSource, UITableViewDelegate {
             Nuke.loadImage(with: request, into: cell!.productImg)
             cell?.productPrice.text = "R \(dataList[indexPath.row].price)"
             }
+                
+                if indexPath.row == 0 {
+                
+                }
             
             cell?.qtyBtn.addTarget(self, action: #selector(showQTY(sender:)), for: .touchUpInside)
             cell?.qtyBtn.tag = indexPath.row + 3000
@@ -346,7 +379,9 @@ extension BagViewController: UITableViewDataSource, UITableViewDelegate {
     
     @objc func deleteApi(sender: UIButton) {
        let index = sender.tag - 1000
-        deleteRequest(index: index)
+        indexEdit = index
+        tblView.reloadData()
+        self.tblView.isEditing = true
     }
     
     func deleteRequest(index: Int) {

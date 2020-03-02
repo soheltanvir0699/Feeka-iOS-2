@@ -290,6 +290,9 @@ extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollecti
             cell?.review.rating = dataList[indexPath.row].rating
             cell?.reviewText.text = "(\(dataList[indexPath.row].count))"
                cell?.imageView.image = UIImage()
+            let lineView = UIView(frame: CGRect(x: 0, y: cell!.regularPrice.frame.height/2 - 0.5, width: cell!.regularPrice.frame.width, height: 1.0))
+            lineView.backgroundColor = UIColor.black
+           // cell!.regularPrice.addSubview(lineView)
            // let url = URL(string: self.dataList[indexPath.row].image)
             //cell?.imageView.downloadedFrom(url: url! , contentMode: .scaleAspectFill)
             let request = ImageRequest(
@@ -309,6 +312,7 @@ extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollecti
                 cell?.new.isHidden = true
             }
             if (dataList[indexPath.row].regularPrice).isEmpty != true {
+                
             cell!.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
                 cell!.cutLbl.isHidden = false
             } else {
@@ -460,16 +464,19 @@ extension HomeProductDetailsViewController: UITableViewDataSource, UITableViewDe
             cell.new.isHidden = true
         }
         if (dataList[indexPath.row].regularPrice).isEmpty != true {
+            let lineView = UIView(frame: CGRect(x: 0, y: cell.regularPrice.frame.height/2 - 0.5, width: cell.regularPrice.frame.width, height: 1.0))
+            lineView.backgroundColor = UIColor.black
+           // cell.regularPrice.addSubview(lineView)
                    cell.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
-                       cell.cutLbl.isHidden = false
+                       cell.cutLbl.isHidden = true
                    } else {
-                cell.regularPrice.text = nil
-                cell.cutLbl.isHidden = false
+                       cell.regularPrice.text = nil
+                       cell.cutLbl.isHidden = true
                        cell.cutLbl.isHidden = true
                    }
                    if (dataList[indexPath.row].salePrice).isEmpty != true {
                    cell.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
-                       cell.cutLbl.isHidden = false
+                       cell.cutLbl.isHidden = true
                    }else {
                     cell.salePrice.text = nil
                        cell.cutLbl.isHidden = true

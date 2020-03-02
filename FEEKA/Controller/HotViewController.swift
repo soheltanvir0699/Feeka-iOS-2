@@ -250,6 +250,9 @@ extension HotViewController: UICollectionViewDelegate, UICollectionViewDataSourc
         cell?.productTitle.text = dataList[indexPath.row].title
         }
         if (dataList[indexPath.row].regularPrice).isEmpty != true {
+            let lineView = UIView(frame: CGRect(x: 0, y: cell!.regularPrice.frame.height/2 - 0.5, width: cell!.regularPrice.frame.width, height: 1.0))
+            lineView.backgroundColor = UIColor.black
+            //cell!.regularPrice.addSubview(lineView)
             cell?.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
             cell!.cutLbl.isHidden = false
         } else {

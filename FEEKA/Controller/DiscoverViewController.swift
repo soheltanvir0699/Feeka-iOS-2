@@ -57,17 +57,20 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate,UIColle
         cell.brand.text = dataList[indexPath.row].brand
         cell.cosomView.rating = dataList[indexPath.row].rating
         cell.review.text = "(\(dataList[indexPath.row].count))"
+            let lineView = UIView(frame: CGRect(x: 0, y: cell.regularPrice.frame.height/2 - 0.5, width: cell.regularPrice.frame.width, height: 1.0))
+            lineView.backgroundColor = UIColor.black
+            cell.regularPrice.addSubview(lineView)
         }
         if (dataList[indexPath.row].regularPrice).isEmpty != true {
             cell.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
-            cell.cutLbl.isHidden = false
+            cell.cutLbl.isHidden = true
                       } else {
             cell.regularPrice.text = nil
             cell.cutLbl.isHidden = true
                       }
                if (dataList[indexPath.row].salePrice).isEmpty != true {
                 cell.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
-                cell.cutLbl.isHidden = false
+                cell.cutLbl.isHidden = true
                } else {
                 cell.salePrice.text = nil
                 cell.cutLbl.isHidden = true
@@ -100,6 +103,9 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate,UIColle
         cell?.title.text = dataList[indexPath.row].title
         cell?.brand.text = dataList[indexPath.row].brand
         cell?.review.rating = dataList[indexPath.row].rating
+        let lineView = UIView(frame: CGRect(x: 0, y: cell!.regularPrice.frame.height/2 - 0.5, width: cell!.regularPrice.frame.width, height: 1.0))
+        lineView.backgroundColor = UIColor.black
+        //cell!.regularPrice.addSubview(lineView)
         cell?.reviewText.text = "(\(dataList[indexPath.row].count))"
        // let url = URL(string: dataList[indexPath.row].image)
        // cell?.imageView.downloadedFrom(url: url!, contentMode: .scaleAspectFill)

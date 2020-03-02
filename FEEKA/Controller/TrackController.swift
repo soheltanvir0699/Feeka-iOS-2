@@ -13,6 +13,7 @@ import NVActivityIndicatorView
 import WebKit
 
 class TrackController: UIViewController , WKNavigationDelegate {
+    @IBOutlet weak var navView: UIView!
     
     @IBOutlet weak var webview: WKWebView!
     let currentUrl = "https://track.uafrica.com/"
@@ -39,6 +40,7 @@ class TrackController: UIViewController , WKNavigationDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navView.setShadow()
 //        self.orderId.text = orderIdTxt
 //        if dataList.isEmpty != true {
 //

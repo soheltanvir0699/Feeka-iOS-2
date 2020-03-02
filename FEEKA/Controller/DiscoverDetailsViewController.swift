@@ -453,6 +453,9 @@ extension DiscoverDetailsViewController: UICollectionViewDataSource, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "list", for: indexPath) as! FeaturedCell
+        let lineView = UIView(frame: CGRect(x: 0, y: cell.regularPrice.frame.height/2 - 0.5, width: cell.regularPrice.frame.width, height: 1.0))
+        lineView.backgroundColor = UIColor.black
+        cell.regularPrice.addSubview(lineView)
         //let url = URL(string: dataList[indexPath.row].image)
         //cell.productImg.downloadedFrom(url: url!, contentMode: .scaleAspectFill)
         let request = ImageRequest(
@@ -462,6 +465,7 @@ extension DiscoverDetailsViewController: UICollectionViewDataSource, UICollectio
         cell.productName.text = dataList[indexPath.row].title
         cell.cosomView.rating = dataList[indexPath.row].rating
         cell.brandName.text = dataList[indexPath.row].brand
+        
         cell.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
         cell.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
         cell.reviewCount.text = "(\(dataList[indexPath.row].count))"
@@ -469,7 +473,9 @@ extension DiscoverDetailsViewController: UICollectionViewDataSource, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if fechuredId.count != 0 {
         productId = "\(fechuredId[indexPath.row])"
+        }
         //scrollOne.decelerationRate = UIScrollView.DecelerationRate.fast
         //scrollOne.scrollsToTop = true
         //scrollView.scrollsToTop = true
