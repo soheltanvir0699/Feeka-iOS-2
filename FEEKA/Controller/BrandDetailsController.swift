@@ -68,17 +68,25 @@ extension BrandDetailsController : UITableViewDelegate, UITableViewDataSource {
         //cell?.profileImge?.downloadedFrom(url: url!, contentMode: .scaleAspectFill)
         let carKey = carSectionTitles[indexPath.section]
         if let carValues = carDictionary[carKey] {
-            cell?.title?.text = carValues[indexPath.row]
             
+            cell?.title?.text = carValues[indexPath.row]
+            if indexPath.row <= image.count {
+                if image.count != 0 {
+            let request2 = ImageRequest(
+                url: URL(string: image[indexPath.row])!
+                )
+            Nuke.loadImage(with: request2, into: cell!.profileImge)
+            image.remove(at: 0)
+                }
+            }
         }
        // let carKey2 = imagecarSectionTitles[indexPath.section]
         if let carValues2 = imagecarDictionary[carKey] {
           
         }
-        let request2 = ImageRequest(
-                       url: URL(string: image[indexPath.row])!
-                       )
-                   Nuke.loadImage(with: request2, into: cell!.profileImge)
+        
+        
+       //
         
         return cell!
     }
