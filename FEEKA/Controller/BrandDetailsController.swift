@@ -23,8 +23,10 @@ class BrandDetailsController: UIViewController {
          var dataList = [brandDataModel]()
          var carDictionary = [String:[String]]()
          var carSectionTitles = [String]()
+    var imagecarDictionary = [String:[String]]()
+    var imagecarSectionTitles = [String]()
          var cars: [String] = []
-    
+         var image : [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,11 +69,16 @@ extension BrandDetailsController : UITableViewDelegate, UITableViewDataSource {
         let carKey = carSectionTitles[indexPath.section]
         if let carValues = carDictionary[carKey] {
             cell?.title?.text = carValues[indexPath.row]
-            let request2 = ImageRequest(
-                url: URL(string: dataList[indexPath.row].image)!
-                )
-            Nuke.loadImage(with: request2, into: cell!.profileImge)
+            
         }
+       // let carKey2 = imagecarSectionTitles[indexPath.section]
+        if let carValues2 = imagecarDictionary[carKey] {
+          
+        }
+        let request2 = ImageRequest(
+                       url: URL(string: image[indexPath.row])!
+                       )
+                   Nuke.loadImage(with: request2, into: cell!.profileImge)
         
         return cell!
     }
@@ -127,7 +134,7 @@ extension BrandDetailsController : UITableViewDelegate, UITableViewDataSource {
                             let image = jsonData["image"].stringValue
                             self.dataList.append(brandDataModel(name: name, image: image, id: id))
                             self.cars.append(name)
-                                
+                            self.image.append(image)
                             }
 //                        self.brandSelectionTitle = []
 //                        self.brandDictionary = [String:[String]]()
@@ -141,9 +148,20 @@ extension BrandDetailsController : UITableViewDelegate, UITableViewDataSource {
                                     self.carDictionary[carKey] = [car]
                                 }
                             }
+                        for car in self.image {
+                                                       let carKey = String(car.prefix(1))
+                                                       if var carValues = self.imagecarDictionary[carKey] {
+                                                           carValues.append(car)
+                                                           self.imagecarDictionary[carKey] = carValues
+                                                       } else {
+                                                           self.imagecarDictionary[carKey] = [car]
+                                                       }
+                                                   }
                             
                         self.carSectionTitles = [String](self.carDictionary.keys)
+                        self.imagecarSectionTitles = [String](self.imagecarDictionary.keys)
                         self.carSectionTitles = self.carSectionTitles.sorted(by: {$0 < $1})
+                      //  self.imagecarSectionTitles = self.imagecarSectionTitles.sorted(by: {$0 < $1})
                         self.tblView.reloadData()
 
                        } else {
