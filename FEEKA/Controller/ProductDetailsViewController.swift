@@ -140,7 +140,11 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
             cell?.thirdView.isHidden = true
             discriptonBorder.backgroundColor = .black
             if fistComponent.isEmpty != true {
+                if fistComponent.count > 1 {
             cell?.webview.loadHTMLString(fontSetting1 + fistComponent[0]+"</strong></span><br> <br>" + fontSetting + fistComponent[1], baseURL: nil)
+                }else {
+                  cell?.webview.loadHTMLString(fontSetting1 + fistComponent[0], baseURL: nil)
+                }
             cell?.webview.isHidden = false
             }
             return cell!
@@ -281,41 +285,30 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
                
            
                             let email =  userdefault.value(forKey: "email") as! String
-                                 let paramater = [
-                                     "comment_approved":"1",
-                                     "comment_author":"\(name)",
-                                   "comment_content":"\(commentfield.text!)",
-                                   "comment_date":"\(currentTime)",
-                                   "comment_date_gmt":"\(gmtTime)",
-                                     "comment_karma":"0",
-                                     "comment_meta":[
+        let paramater: [String : Any?] = [
                                        "rating":"\(currentRating.rating)",
                                        "verified":"0",
                                        "_ywar_imported":"1"
-                                   ],
-                                     "comment_parent":"0",
-                                     "comment_post_ID":"\(productId)",
-                                     "user_id":"\(customerId)"
-                                   ] as [String : Any]
+                                   ]
         //print(paramater)
                
-               let param2 =  ["comment_approved":"1","comment_author":"\(authorName)","comment_author_email":"\(email)","comment_author_IP":"","comment_content":"\(commentfield.text!)","comment_date":"\(currentTime)","comment_date_gmt":"\(gmtTime)","comment_karma":"0","comment_meta":["rating":"\(currentRating.rating)","verified":"0","_ywar_imported":"1"],"comment_parent":"0","comment_post_ID":"\(productId)","user_id":"\(customerId)"] as [String : Any]
+        let param2  =  ["comment_approved":"1","comment_author":"\(authorName)","comment_author_email":"\(email)","comment_author_IP":"","comment_content":"\(commentfield.text!)","comment_date":"\(currentTime)","comment_date_gmt":"\(gmtTime)","comment_karma":"0","comment_meta":paramater,"comment_parent":"0","comment_post_ID":"\(productId)","user_id":"\(customerId)"] as [String : Any]
                            
                                    print(param2)
-                                 Alamofire.request(url, method: .post, parameters: param2, encoding: JSONEncoding.default, headers: nil).response { (response) in
+        Alamofire.request(url, method: .post, parameters: param2 , encoding: JSONEncoding.default, headers: nil).response { (response) in
                                    print(response)
                                      
                                      if let error = response.error {
                                          self.indicator.stopAnimating()
                                          let alertView = ShowAlertView().alertView(title: "Something went wrong", action: "OK", message: "Please try again.")
                                          self.present(alertView, animated: true, completion: nil)
-                                         print(error)
+                                         //print(error)
                                          
                                      }
                                      
                                      if let result = response.data {
                                          let jsonRespose = JSON(result)
-                                        // print(jsonRespose)
+                                         print(jsonRespose)
                                          print(jsonRespose["message"].stringValue)
                                        
                                        if jsonRespose["status"].stringValue == "1" {
