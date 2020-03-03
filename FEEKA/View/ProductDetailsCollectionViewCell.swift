@@ -36,7 +36,9 @@ class ProductDetailsCollectionViewCell: UICollectionViewCell {
     var count = 2
     
     func collectionReloadData(){
-             self.tableView.reloadData()
+        dataList = StoredProperty.reviewAllData
+            self.tableView.reloadData()
+        print(dataList)
             print("reload data")
          
     }

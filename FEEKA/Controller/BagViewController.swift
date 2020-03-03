@@ -18,6 +18,7 @@ class BagViewController: UIViewController, UIViewControllerTransitioningDelegate
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var conBtn: UIButton!
     
+    @IBOutlet weak var editLbl: UIButton!
     @IBOutlet weak var emptyImage: UIImageView!
     @IBOutlet weak var emptyText1: UILabel!
     @IBOutlet weak var emptyText2: UILabel!
@@ -34,7 +35,7 @@ class BagViewController: UIViewController, UIViewControllerTransitioningDelegate
         topView.layer.shadowOpacity = 1
         topView.layer.shadowOffset = .zero
         topView.layer.shadowRadius = 1.3
-        
+        tblView.isEditing = false
                
     NotificationCenter.default.addObserver(self, selector: #selector(goHome), name: Notification.Name("goHome"), object: nil)
          NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: Notification.Name("reloadData"), object: nil)
@@ -71,6 +72,15 @@ class BagViewController: UIViewController, UIViewControllerTransitioningDelegate
    
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return true
+    }
+    @IBAction func editAction(_ sender: Any) {
+        if tblView.isEditing == true {
+           tblView.isEditing = false
+            editLbl.setTitle("EDIT", for: .normal)
+        } else {
+          tblView.isEditing = true
+            editLbl.setTitle("SAVE", for: .normal)
+        }
     }
     
     @objc func reloadData() {
@@ -279,7 +289,7 @@ extension BagViewController: UITableViewDataSource, UITableViewDelegate {
   
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         
-        if indexPath.row == indexEdit  {
+        if indexPath.row < dataList.count   {
             return true
         } else {
        return false

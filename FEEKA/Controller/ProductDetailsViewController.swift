@@ -85,23 +85,14 @@ class ProductDetailsViewController: UIViewController {
     @IBAction func discriptionAction(_ sender: Any) {
         let indexPath = IndexPath(row: 0, section: 0)
         collView.scrollToItem(at: indexPath, at: .left, animated: true)
-//        discriptonBorder.backgroundColor = .black
-//        reviewBorder.backgroundColor = .white
-//        infoBorder.backgroundColor = .white
     }
     @IBAction func informationAction(_ sender: Any) {
         let indexPath = IndexPath(row: 1, section: 0)
         collView.scrollToItem(at: indexPath, at: .left, animated: true)
-//        discriptonBorder.backgroundColor = .white
-//        reviewBorder.backgroundColor = .white
-//        infoBorder.backgroundColor = .black
     }
     @IBAction func reviewAction(_ sender: Any) {
         let indexPath = IndexPath(row: 2, section: 0)
                collView.scrollToItem(at: indexPath, at: .left, animated: true)
-//               discriptonBorder.backgroundColor = .white
-//               infoBorder.backgroundColor = .white
-//               reviewBorder.backgroundColor = .black
     }
     
     @IBAction func backBtn(_ sender: Any) {
@@ -120,9 +111,9 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ProductDetailsCollectionViewCell
         let string1: String = StoredProperty.singleProductDetailsList[0].content
         let fontName =  "PFHandbookPro-Regular"
-        let fontSize = 30
+        let fontSize = 58
         let fontSetting = "<span style=\"font-family: \(fontName);font-size: \(fontSize)\"</span>"
-        let fontSetting1 = "<span style=\"font-family: \(fontName);font-size: 29\"</span>"
+        let fontSetting1 = "<span style=\"font-family: \(fontName);font-size: 58\"</span>"
         
         if indexPath.row == 0 {
         cell?.colorLabel.text = ""
@@ -251,6 +242,7 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
                           let buttonTwo = DefaultButton(title: "Post as Anonymous", dismissOnTap: true) {
                               self.authorName = "Anonymous"
                               print("What a beauty!")
+                             print("author name: \(self.authorName)")
                             self.postReviewRequest(tag: tag, name: "Anonymous")
                           }
 
@@ -261,6 +253,7 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
                                   
                               }
                              self.authorName = self.userdefault.value(forKey: "author_name") as! String
+                            print("author name: \(self.authorName)")
                             self.postReviewRequest(tag: tag, name: self.authorName )
                           }
                           popup.addButtons([ buttonTwo, buttonThree, buttonOne])
@@ -285,14 +278,13 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
                
            
                             let email =  userdefault.value(forKey: "email") as! String
-        let paramater: [String : Any?] = [
-                                       "rating":"\(currentRating.rating)",
-                                       "verified":"0",
-                                       "_ywar_imported":"1"
-                                   ]
         //print(paramater)
                
-        let param2  =  ["comment_approved":"1","comment_author":"\(authorName)","comment_author_email":"\(email)","comment_author_IP":"","comment_content":"\(commentfield.text!)","comment_date":"\(currentTime)","comment_date_gmt":"\(gmtTime)","comment_karma":"0","comment_meta":paramater,"comment_parent":"0","comment_post_ID":"\(productId)","user_id":"\(customerId)"] as [String : Any]
+        let param2  =  ["comment_approved":"1","comment_author":"\(authorName)","comment_author_email":"\(email)","comment_author_IP":"","comment_content":"\(commentfield.text!)","comment_date":"\(currentTime)","comment_date_gmt":"\(gmtTime)","comment_karma":"0","comment_meta":[
+            "rating":"\(currentRating.rating)",
+            "verified":"0",
+            "_ywar_imported":"1"
+        ],"comment_parent":"0","comment_post_ID":"\(productId)","user_id":"\(customerId)"] as [String : Any]
                            
                                    print(param2)
         Alamofire.request(url, method: .post, parameters: param2 , encoding: JSONEncoding.default, headers: nil).response { (response) in
@@ -316,10 +308,12 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
                                            let indexPath = IndexPath(row: tag - 3000, section: 0)
                                            let pDetailsCell = self.collView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ProductDetailsCollectionViewCell
                                         
-                                        StoredProperty.reviewAllData.insert(reviewDataModel(rating: "\(currentRating.rating)", author: self.authorName, comment: commentfield.text!, date: self.currentTime), at: 0)
+                                        StoredProperty.reviewAllData.insert(reviewDataModel(rating: "\(currentRating.rating)", author: name, comment: commentfield.text!, date: self.currentTime), at: 0)
                                                         
                                                         pDetailsCell!.tableView.reloadData()
-                                                        self.collView.reloadItems(at: [indexPath])
+                                            pDetailsCell!.collectionReloadData()
+                                        self.collView.reloadItems(at: [indexPath])
+                                        
                                                         pDetailsCell!.tableView.reloadData()
                                         self.ratingCount += 1
                                         self.reviewCount.text = "(\(self.ratingCount))"
@@ -337,7 +331,8 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
                                         
                                                 pDetailsCell!.tableView.reloadData()
                                                 self.collView.reloadItems(at: [indexPath])
-                                                pDetailsCell!.tableView.reloadData()
+                                               pDetailsCell!.collectionReloadData()
+                                        pDetailsCell!.tableView.reloadData()
                                            self.view.makeToast( jsonRespose["message"].stringValue)
                                        }
 
