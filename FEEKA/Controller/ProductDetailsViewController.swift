@@ -139,9 +139,10 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
             let fistComponent = fullNameArr[0].components(separatedBy: "</strong></span><br> <br>")
             cell?.thirdView.isHidden = true
             discriptonBorder.backgroundColor = .black
-              
+            if fistComponent.isEmpty != true {
             cell?.webview.loadHTMLString(fontSetting1 + fistComponent[0]+"</strong></span><br> <br>" + fontSetting + fistComponent[1], baseURL: nil)
             cell?.webview.isHidden = false
+            }
             return cell!
             
         }else if indexPath.row == 1{

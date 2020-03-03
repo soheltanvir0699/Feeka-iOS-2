@@ -99,7 +99,7 @@ class BagViewController: UIViewController, UIViewControllerTransitioningDelegate
         navVc!.modalPresentationStyle = .overFullScreen
         navVc!.transitioningDelegate = self
         
-       // userdefault.setValue("", forKey: "customer_id")
+//        userdefault.setValue("", forKey: "customer_id")
         self.bagApiCalling()
         //present(navVc!, animated: true, completion: nil)
         present(navVc!, animated: true, completion: nil)

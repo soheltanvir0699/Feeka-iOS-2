@@ -24,8 +24,8 @@ class BrandDetailsController: UIViewController {
          var dataList = [brandDataModel]()
          var carDictionary = [String:[String]]()
          var carSectionTitles = [String]()
-    var imagecarDictionary = [String:[String]]()
-    var imagecarSectionTitles = [String]()
+         var imagecarDictionary = [String:[String]]()
+         var imagecarSectionTitles = [String]()
          var cars: [String] = []
          var imagecars : [String] = []
 var imageCount = 0
@@ -71,36 +71,15 @@ extension BrandDetailsController : UITableViewDelegate, UITableViewDataSource {
         if let carValues = carDictionary[carKey] {
             
             cell?.title?.text = carValues[indexPath.row]
-//            if let imagecarValues = imagecarDictionary[carKey] {
-//             // let request2 = ImageRequest(
-//              //  url: URL(string: imagecars[imageCount]) ?? URL(string: "nil")!
-//              //    )
-//
-//              //Nuke.loadImage(with: request2, into: cell!.profileImge)
-////                cell?.profileImge.sd_setImage(with: URL(string: [imageCount]), completed: { (_, _, _, _) in
-////
-////                })
-//             // imageCount += 1
-//            }
+
         }
             if let imagecarValues = imagecarDictionary[carKey] {
-                        // let request2 = ImageRequest(
-                         //  url: URL(string: imagecars[imageCount]) ?? URL(string: "nil")!
-                         //    )
                        
-                         //Nuke.loadImage(with: request2, into: cell!.profileImge)
-                cell?.profileImge.sd_setImage(with: URL(string: imagecarValues[indexPath.row]), completed: { (_, _, _, _) in
+                 cell?.profileImge.sd_setImage(with: URL(string: imagecarValues[indexPath.row]), completed: { (_, _, _, _) in
                                
                            })
-                        // imageCount += 1
+                       
                        }
-            
-        
-        let imagecarKey = imagecarSectionTitles[indexPath.section]
-        
-        
-        
-       //
         
         return cell!
     }
@@ -160,10 +139,7 @@ extension BrandDetailsController : UITableViewDelegate, UITableViewDataSource {
                             self.cars.append(name)
                             self.imagecars.append(image)
                             }
-//                        self.brandSelectionTitle = []
-//                        self.brandDictionary = [String:[String]]()
-//                        self.brandNameData = [String]()
-                       // var count = 0
+                        
                         for (index,car) in self.cars.enumerated() {
                                 let carKey = String(car.prefix(1))
                                 if var carValues = self.carDictionary[carKey] {
@@ -179,10 +155,6 @@ extension BrandDetailsController : UITableViewDelegate, UITableViewDataSource {
                                 self.imagecarDictionary[carKey] = [self.imagecars[index]]
                             }
                             }
-//                        for car in self.image {
-//                                                       let carKey = String(car.prefix(1))
-//
-//                                                   }
                             
                         self.carSectionTitles = [String](self.carDictionary.keys)
                         self.imagecarSectionTitles = [String](self.imagecarDictionary.keys)

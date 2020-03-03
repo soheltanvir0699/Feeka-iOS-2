@@ -156,10 +156,11 @@ class MoreViewController: UIViewController {
     }
     @objc func signOutAction() {
         let navVc = storyboard?.instantiateViewController(withIdentifier: "loginnav")
+        self.userdefault.setValue(nil, forKey: "author_name")
         navVc!.modalPresentationStyle = .overFullScreen
         navVc!.transitioningDelegate = self
-        
         userdefault.setValue("", forKey: "customer_id")
+        userdefault.setValue(nil, forKey: "customer_id")
         self.bagApiCalling()
         present(navVc!, animated: true, completion: nil)
         //navigationController?.pushViewController(navVc!, animated: true)
