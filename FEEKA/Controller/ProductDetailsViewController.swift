@@ -38,7 +38,7 @@ class ProductDetailsViewController: UIViewController {
     var rating:Double = 0.0
        var ratingCount:Int = 0
        var indicator: NVActivityIndicatorView!
-       var authorName = ""
+       var authorName = "Anonymous"
        var customerId = ""
        var userdefault = UserDefaults.standard
        var currentTime = ""
@@ -247,15 +247,17 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
                           let buttonTwo = DefaultButton(title: "Post as Anonymous", dismissOnTap: true) {
                               self.authorName = "Anonymous"
                               print("What a beauty!")
-                            self.postReviewRequest(tag: tag)
+                            self.postReviewRequest(tag: tag, name: "Anonymous")
                           }
 
                           let buttonThree = DefaultButton(title: "Post as \(authorName)", dismissOnTap: true) {
+                           // self.authorName = authorName
                               if self.userdefault.value(forKey: "author_name") as? String != nil {
                                   self.authorName = self.userdefault.value(forKey: "author_name") as! String
                                   
                               }
-                            self.postReviewRequest(tag: tag)
+                             self.authorName = self.userdefault.value(forKey: "author_name") as! String
+                            self.postReviewRequest(tag: tag, name: self.authorName )
                           }
                           popup.addButtons([ buttonTwo, buttonThree, buttonOne])
                           self.present(popup, animated: true, completion: nil)
@@ -265,10 +267,11 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
     
     }
     
-    func postReviewRequest(tag: Int) {
+    func postReviewRequest(tag: Int, name: String) {
         let currentRating = self.view.viewWithTag(tag - 2000) as! CosmosView
         let commentfield = self.view.viewWithTag(tag - 1000) as! UITextField
-
+        print(currentRating.rating)
+        print(commentfield.text!)
         indicator = self.indicator()
            self.indicator.startAnimating()
            guard let url = URL(string: "https://feeka.co.za/json-api/route/set_review.php") else {
@@ -280,7 +283,7 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
                             let email =  userdefault.value(forKey: "email") as! String
                                  let paramater = [
                                      "comment_approved":"1",
-                                     "comment_author":"\(authorName)",
+                                     "comment_author":"\(name)",
                                    "comment_content":"\(commentfield.text!)",
                                    "comment_date":"\(currentTime)",
                                    "comment_date_gmt":"\(gmtTime)",
@@ -294,6 +297,7 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
                                      "comment_post_ID":"\(productId)",
                                      "user_id":"\(customerId)"
                                    ] as [String : Any]
+        //print(paramater)
                
                let param2 =  ["comment_approved":"1","comment_author":"\(authorName)","comment_author_email":"\(email)","comment_author_IP":"","comment_content":"\(commentfield.text!)","comment_date":"\(currentTime)","comment_date_gmt":"\(gmtTime)","comment_karma":"0","comment_meta":["rating":"\(currentRating.rating)","verified":"0","_ywar_imported":"1"],"comment_parent":"0","comment_post_ID":"\(productId)","user_id":"\(customerId)"] as [String : Any]
                            
@@ -315,18 +319,32 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
                                          print(jsonRespose["message"].stringValue)
                                        
                                        if jsonRespose["status"].stringValue == "1" {
-                                            self.view.makeToast( "Review posted.")
-                                           StoredProperty.reviewAllData.insert(reviewDataModel(rating: "\(currentRating.rating)", author: self.authorName, comment: commentfield.text!, date: self.currentTime), at: 0)
+                                            
                                            let indexPath = IndexPath(row: tag - 3000, section: 0)
                                            let pDetailsCell = self.collView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ProductDetailsCollectionViewCell
-                                           DispatchQueue.main.async {
+                                        
+                                        StoredProperty.reviewAllData.insert(reviewDataModel(rating: "\(currentRating.rating)", author: self.authorName, comment: commentfield.text!, date: self.currentTime), at: 0)
                                                         
                                                         pDetailsCell!.tableView.reloadData()
                                                         self.collView.reloadItems(at: [indexPath])
                                                         pDetailsCell!.tableView.reloadData()
-                                                    }
+                                        self.ratingCount += 1
+                                        self.reviewCount.text = "(\(self.ratingCount))"
+                                        
+                                                self.view.makeToast( "Review posted.")
+                                                       //self.collView.reloadData()
+                                                    
                                            
                                        } else {
+                                         
+                                        let indexPath = IndexPath(row: tag - 3000, section: 0)
+                                        
+                                        let pDetailsCell = self.collView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ProductDetailsCollectionViewCell
+                                        //StoredProperty.reviewAllData.insert(reviewDataModel(rating: "\(currentRating.rating)", author: self.authorName, comment: commentfield.text!, date: self.currentTime), at: 0)
+                                        
+                                                pDetailsCell!.tableView.reloadData()
+                                                self.collView.reloadItems(at: [indexPath])
+                                                pDetailsCell!.tableView.reloadData()
                                            self.view.makeToast( jsonRespose["message"].stringValue)
                                        }
 
