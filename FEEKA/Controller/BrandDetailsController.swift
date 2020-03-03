@@ -11,6 +11,7 @@ import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
 import Nuke
+import SDWebImage
 
 class BrandDetailsController: UIViewController {
     @IBOutlet weak var tblView: UITableView!
@@ -26,8 +27,8 @@ class BrandDetailsController: UIViewController {
     var imagecarDictionary = [String:[String]]()
     var imagecarSectionTitles = [String]()
          var cars: [String] = []
-         var image : [String] = []
-
+         var imagecars : [String] = []
+var imageCount = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         navView.setShadow()
@@ -70,26 +71,41 @@ extension BrandDetailsController : UITableViewDelegate, UITableViewDataSource {
         if let carValues = carDictionary[carKey] {
             
             cell?.title?.text = carValues[indexPath.row]
-            if indexPath.row <= image.count {
-                if image.count != 0 {
-            let request2 = ImageRequest(
-                url: URL(string: image[indexPath.row])!
-                )
-            Nuke.loadImage(with: request2, into: cell!.profileImge)
-            image.remove(at: 0)
-                }
-            }
+//            if let imagecarValues = imagecarDictionary[carKey] {
+//             // let request2 = ImageRequest(
+//              //  url: URL(string: imagecars[imageCount]) ?? URL(string: "nil")!
+//              //    )
+//
+//              //Nuke.loadImage(with: request2, into: cell!.profileImge)
+////                cell?.profileImge.sd_setImage(with: URL(string: [imageCount]), completed: { (_, _, _, _) in
+////
+////                })
+//             // imageCount += 1
+//            }
         }
-       // let carKey2 = imagecarSectionTitles[indexPath.section]
-        if let carValues2 = imagecarDictionary[carKey] {
-          
-        }
+            if let imagecarValues = imagecarDictionary[carKey] {
+                        // let request2 = ImageRequest(
+                         //  url: URL(string: imagecars[imageCount]) ?? URL(string: "nil")!
+                         //    )
+                       
+                         //Nuke.loadImage(with: request2, into: cell!.profileImge)
+                cell?.profileImge.sd_setImage(with: URL(string: imagecarValues[indexPath.row]), completed: { (_, _, _, _) in
+                               
+                           })
+                        // imageCount += 1
+                       }
+            
+        
+        let imagecarKey = imagecarSectionTitles[indexPath.section]
+        
         
         
        //
         
         return cell!
     }
+    
+     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let DiscoverViewController = storyboard?.instantiateViewController(withIdentifier: "DiscoverViewController") as! DiscoverViewController
@@ -142,12 +158,13 @@ extension BrandDetailsController : UITableViewDelegate, UITableViewDataSource {
                             let image = jsonData["image"].stringValue
                             self.dataList.append(brandDataModel(name: name, image: image, id: id))
                             self.cars.append(name)
-                            self.image.append(image)
+                            self.imagecars.append(image)
                             }
 //                        self.brandSelectionTitle = []
 //                        self.brandDictionary = [String:[String]]()
 //                        self.brandNameData = [String]()
-                        for car in self.cars {
+                       // var count = 0
+                        for (index,car) in self.cars.enumerated() {
                                 let carKey = String(car.prefix(1))
                                 if var carValues = self.carDictionary[carKey] {
                                     carValues.append(car)
@@ -155,16 +172,17 @@ extension BrandDetailsController : UITableViewDelegate, UITableViewDataSource {
                                 } else {
                                     self.carDictionary[carKey] = [car]
                                 }
+                            if var carValues = self.imagecarDictionary[carKey] {
+                                carValues.append(self.imagecars[index])
+                                self.imagecarDictionary[carKey] = carValues
+                            } else {
+                                self.imagecarDictionary[carKey] = [self.imagecars[index]]
                             }
-                        for car in self.image {
-                                                       let carKey = String(car.prefix(1))
-                                                       if var carValues = self.imagecarDictionary[carKey] {
-                                                           carValues.append(car)
-                                                           self.imagecarDictionary[carKey] = carValues
-                                                       } else {
-                                                           self.imagecarDictionary[carKey] = [car]
-                                                       }
-                                                   }
+                            }
+//                        for car in self.image {
+//                                                       let carKey = String(car.prefix(1))
+//
+//                                                   }
                             
                         self.carSectionTitles = [String](self.carDictionary.keys)
                         self.imagecarSectionTitles = [String](self.imagecarDictionary.keys)
