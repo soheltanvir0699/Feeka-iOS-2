@@ -14,7 +14,7 @@ import NVActivityIndicatorView
 import PopupDialog
 import IQKeyboardManagerSwift
 
-class ProductDetailsViewController: UIViewController {
+class ProductDetailsViewController: UIViewController,UITextFieldDelegate {
 
     @IBOutlet weak var discriptonBorder: UILabel!
     @IBOutlet weak var infoBorder: UILabel!
@@ -64,9 +64,18 @@ class ProductDetailsViewController: UIViewController {
         IQKeyboardManager.shared.enableAutoToolbar = false
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        IQKeyboardManager.shared.enable = false
+        IQKeyboardManager.shared.enableAutoToolbar = false
+        //scrollview.enableMode = false
+    }
+    
    @objc func keyboardWillShow(notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            //scrollview.isScrollEnabled = false
+            
+            scrollview.isScrollEnabled = false
+            IQKeyboardManager.shared.enable = false
+            IQKeyboardManager.shared.enableAutoToolbar = false
             if self.view.frame.origin.y == 0{
                 self.view.frame.origin.y -=  40
             }
@@ -76,6 +85,9 @@ class ProductDetailsViewController: UIViewController {
 
     @objc func keyboardWillHide(notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            scrollview.isScrollEnabled = true
+            IQKeyboardManager.shared.enable = false
+            IQKeyboardManager.shared.enableAutoToolbar = false
             if self.view.frame.origin.y != 0 {
                 self.view.frame.origin.y += 40
             }
@@ -97,6 +109,10 @@ class ProductDetailsViewController: UIViewController {
     
     @IBAction func backBtn(_ sender: Any) {
         navigationController?.popViewController(animated: true)
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        IQKeyboardManager.shared.enable = false
+        IQKeyboardManager.shared.enableAutoToolbar = false
     }
     
 }

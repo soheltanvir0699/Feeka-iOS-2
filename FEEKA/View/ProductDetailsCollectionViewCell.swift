@@ -66,5 +66,12 @@ extension ProductDetailsCollectionViewCell: UITableViewDataSource, UITableViewDe
         print("is reloaded")
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let label = UILabel(frame: .zero)
+        label.text = StoredProperty.reviewAllData[indexPath.row].comment
+        label.sizeToFit()
+        return UITableView.automaticDimension
+    }
 }
 
