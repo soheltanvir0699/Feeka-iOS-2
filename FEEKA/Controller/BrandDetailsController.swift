@@ -25,10 +25,12 @@ class BrandDetailsController: UIViewController {
          var carDictionary = [String:[String]]()
          var carSectionTitles = [String]()
          var imagecarDictionary = [String:[String]]()
+         var pricecarDictionary = [String:[String]]()
          var imagecarSectionTitles = [String]()
          var cars: [String] = []
          var imagecars : [String] = []
-var imageCount = 0
+         var pricecars : [String] = []
+         var imageCount = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         navView.setShadow()
@@ -88,7 +90,13 @@ extension BrandDetailsController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let DiscoverViewController = storyboard?.instantiateViewController(withIdentifier: "DiscoverViewController") as! DiscoverViewController
-        DiscoverViewController.brandId = self.dataList[indexPath.row].id
+              let carKey = carSectionTitles[indexPath.section]
+               if let carValues = pricecarDictionary[carKey] {
+                   
+                   DiscoverViewController.brandId = carValues[indexPath.row]
+
+               }
+        
         DiscoverViewController.navText = "BRANDS"
         //homeProductDetails.searchTag = "Brands"
         self.navigationController?.pushViewController(DiscoverViewController, animated: true)
@@ -138,6 +146,7 @@ extension BrandDetailsController : UITableViewDelegate, UITableViewDataSource {
                             self.dataList.append(brandDataModel(name: name, image: image, id: id))
                             self.cars.append(name)
                             self.imagecars.append(image)
+                            self.pricecars.append(id)
                             }
                         
                         for (index,car) in self.cars.enumerated() {
@@ -154,6 +163,13 @@ extension BrandDetailsController : UITableViewDelegate, UITableViewDataSource {
                             } else {
                                 self.imagecarDictionary[carKey] = [self.imagecars[index]]
                             }
+                            if var carValues = self.pricecarDictionary[carKey] {
+                                carValues.append(self.pricecars[index])
+                                self.pricecarDictionary[carKey] = carValues
+                            } else {
+                                self.pricecarDictionary[carKey] = [self.pricecars[index]]
+                            }
+                            
                             }
                             
                         self.carSectionTitles = [String](self.carDictionary.keys)
