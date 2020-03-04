@@ -56,6 +56,7 @@ class ProductDetailsViewController: UIViewController,UITextFieldDelegate {
         imgView.contentMode = .scaleAspectFill
         scrollview.contentSize = CGSize(width: self.view.frame.height, height: 10000)
         viewscrolll.frame = scrollview.frame
+        scrollview.isScrollEnabled = true
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         
           NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)

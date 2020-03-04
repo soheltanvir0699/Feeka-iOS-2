@@ -68,6 +68,7 @@ class HomeProductDetailsViewController: UIViewController , UIViewControllerTrans
         productName.text = productNam
         showCollBtn.tintColor = .black
         showTblBtn.tintColor = .darkGray
+        
         showHideView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideShowTable)))
         NotificationCenter.default.addObserver(self, selector: #selector(filterApi), name: Notification.Name("filterData"), object: nil)
     }
