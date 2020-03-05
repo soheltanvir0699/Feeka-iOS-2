@@ -248,7 +248,8 @@ class HomeViewController: UIViewController {
     }
     
     @objc func cooming(tapGestureRecognizer: UITapGestureRecognizer) {
-        showToast(message: "Cooming Soon")
+      //  showToast(message: "Cooming Soon")
+        self.view.makeToast("Cooming Soon")
     }
     
        @objc func quizzez() {
