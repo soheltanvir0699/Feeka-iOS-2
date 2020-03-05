@@ -45,6 +45,13 @@ class MoreViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if let push =  userdefault.value(forKey: "isPush") as? String  {
+            if push == "On" {
+                swithBtn.isOn = true
+            }else {
+                swithBtn.isOn = false
+            }
+        }
         if userdefault.value(forKey: "customer_id") as? String == "" {
                    signOutAction()
                }
@@ -86,7 +93,7 @@ class MoreViewController: UIViewController {
         contactView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(contactAction)))
         aboutView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(aboutAction)))
         signOutView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(signOutAction)))
-        changePassView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(signOutAction)))
+        changePassView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(changePass)))
         newsletterView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(newslettersAction)))
         orderView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(orderAction)))
         deliveryView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(deliveryAction)))
@@ -165,6 +172,19 @@ class MoreViewController: UIViewController {
         present(navVc!, animated: true, completion: nil)
         //navigationController?.pushViewController(navVc!, animated: true)
     }
+    @objc func changePass() {
+        let navVc = storyboard?.instantiateViewController(withIdentifier: "ChangePasswordController")
+        //self.userdefault.setValue(nil, forKey: "author_name")
+        navVc!.modalPresentationStyle = .overFullScreen
+        navVc!.transitioningDelegate = self
+       // userdefault.setValue("", forKey: "customer_id")
+       // userdefault.setValue(nil, forKey: "customer_id")
+        //self.bagApiCalling()
+        present(navVc!, animated: true, completion: nil)
+        //navigationController?.pushViewController(navVc!, animated: true)
+    }
+    
+    
     @objc func termsAction() {
         if let url = URL(string: "https://feeka.co.za/t-and-c/") {
             if UIApplication.shared.canOpenURL(url) {
@@ -251,8 +271,10 @@ class MoreViewController: UIViewController {
                                 if jsonRespose["message"].stringValue == "Notification prefrence updated." {
                                     if status == "1" {
                                         self.view.makeToast("Notification Turned On")
+                                        self.userdefault.setValue("On", forKey: "isPush")
                                     } else if status == "2" {
                                         self.view.makeToast("Notification Turned Off")
+                                        self.userdefault.setValue("Off", forKey: "isPush")
 
                                     }
                                     

@@ -29,6 +29,7 @@
 		8D43414E240461C300CF9C03 /* EditChangeAddressController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D43414D240461C300CF9C03 /* EditChangeAddressController.swift */; };
 		8D4938AB24047586008FDD7F /* DeliverySecondController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4938AA24047586008FDD7F /* DeliverySecondController.swift */; };
 		8D67083323F51DCF001DC494 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D67083223F51DCF001DC494 /* MoreViewController.swift */; };
+		8D68671C2410E81400B73E57 /* ChangePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D68671B2410E81400B73E57 /* ChangePasswordController.swift */; };
 		8D6868CA23FD6627008638F7 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6868C923FD6627008638F7 /* FilterViewController.swift */; };
 		8D6868CC23FD6D74008638F7 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6868CB23FD6D74008638F7 /* FilterCell.swift */; };
 		8D6868CE23FD730C008638F7 /* FilterDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6868CD23FD730C008638F7 /* FilterDetailsController.swift */; };
@@ -150,6 +151,7 @@
 		8D43414D240461C300CF9C03 /* EditChangeAddressController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditChangeAddressController.swift; sourceTree = "<group>"; };
 		8D4938AA24047586008FDD7F /* DeliverySecondController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliverySecondController.swift; sourceTree = "<group>"; };
 		8D67083223F51DCF001DC494 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
+		8D68671B2410E81400B73E57 /* ChangePasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordController.swift; sourceTree = "<group>"; };
 		8D6868C923FD6627008638F7 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		8D6868CB23FD6D74008638F7 /* FilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
 		8D6868CD23FD730C008638F7 /* FilterDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDetailsController.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				C4BD14AB23F5996400B5DBA5 /* VideoScreenViewController.swift */,
 				8D3D7B9B23F2C7F1005A3479 /* LogInViewController.swift */,
 				8D6868CD23FD730C008638F7 /* FilterDetailsController.swift */,
+				8D68671B2410E81400B73E57 /* ChangePasswordController.swift */,
 				C4BC808A23F9814F00FA5873 /* AddAddressViewController.swift */,
 				8DCBD000240960C000F3AB9A /* SignUpEditController.swift */,
 				C461214923F98335003611A1 /* AddAddressDetailsViewController.swift */,
@@ -672,6 +675,7 @@
 				8DBFB884240643F600AEB9FA /* TrackController.swift in Sources */,
 				8D3D7B9823F2C7F1005A3479 /* AppDelegate.swift in Sources */,
 				8D6868CA23FD6627008638F7 /* FilterViewController.swift in Sources */,
+				8D68671C2410E81400B73E57 /* ChangePasswordController.swift in Sources */,
 				C4BD14AC23F5996400B5DBA5 /* VideoScreenViewController.swift in Sources */,
 				8D3D7B9A23F2C7F1005A3479 /* SceneDelegate.swift in Sources */,
 				C4BD14A823F57E2000B5DBA5 /* HotCollectionViewCell.swift in Sources */,

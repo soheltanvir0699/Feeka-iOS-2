@@ -24,6 +24,9 @@ class ForgotPasswordViewController: UIViewController {
         indicator = self.indicator()
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = true
+        let backButton = UIBarButtonItem()
+        backButton.title = ""
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         
     }
     
@@ -63,7 +66,10 @@ class ForgotPasswordViewController: UIViewController {
                             print(jsonRespose["message"].stringValue)
                             
                             if jsonRespose["message"].stringValue == "Please check your email." {
-                               let alert = ShowAlertView().alertView(title: "Please check your email.", action: "OK", message: "")
+                                let alert = UIAlertController(title: "Please check your email", message: "", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
+                                    self.navigationController?.popViewController(animated: true)
+                                }))
                                self.present(alert, animated: true, completion: nil)
                             } else {
                                 let alert = ShowAlertView().alertView(title: "Invalid email address.", action: "OK", message: "")

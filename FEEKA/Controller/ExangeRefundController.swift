@@ -61,7 +61,7 @@ class ExangeRefundController: UIViewController {
         secondBg?.layer.shadowOpacity = 0.3
         secondBg?.layer.shadowOffset = .zero
         secondBg?.layer.shadowRadius = 0.5
-        orderIdLbl.text = orderId
+        currentDate.text = orderId
         if userdefault.value(forKey: "customer_id") as? String != nil {
             customerId = userdefault.value(forKey: "customer_id") as! String
         }
@@ -170,7 +170,7 @@ class ExangeRefundController: UIViewController {
                     let subTotal = dataArray["sub_total"].stringValue
                     let shipping = dataArray["Shipping"].stringValue
                     let total = dataArray["order_total"].stringValue
-                    self.currentDate.text = dataArray["date"].stringValue
+                    self.orderIdLbl.text = dataArray["date"].stringValue
                     self.totalLbl.text = total
                     self.subtotal.text = subTotal
                     self.delivery.text = shipping

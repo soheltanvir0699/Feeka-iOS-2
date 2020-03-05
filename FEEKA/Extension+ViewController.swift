@@ -106,7 +106,7 @@ extension UIViewController {
         activityIndicator = NVActivityIndicatorView(frame: frame)
         activityIndicator.type = .ballSpinFadeLoader
         activityIndicator.color = UIColor.black
-        activityIndicator.backgroundColor = UIColor.white
+        activityIndicator.backgroundColor = UIColor.gray
         activityIndicator.layer.cornerRadius = 5
         
         self.view.addSubview(activityIndicator) // or use  webView.addSubview(activityIndicator)

@@ -69,6 +69,10 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
 //                          self.scrollView.frame.origin.y += keyboardSize.height - 150
 //                      }
                   }
+                
+                let backButton = UIBarButtonItem()
+                      backButton.title = ""
+                      self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
               }
          
     
@@ -196,17 +200,17 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
                 menText = "Men"
             }
             
-            let alert = UIAlertController(title: "Gender", message: nil, preferredStyle: .actionSheet)
+            let alert = UIAlertController(title: "GENDER", message: nil, preferredStyle: .actionSheet)
             let womenAction = UIAlertAction(title: womenText, style: .default) { (women) in
-                textField.text =  "Women"
+                textField.text =  "WOMEN"
                 self.hideKeyboard()
             
             }
             let menAction = UIAlertAction(title: menText, style: .default) { (_) in
-                textField.text = "Men"
+                textField.text = "MEN"
                 self.hideKeyboard()
             }
-            let canAction = UIAlertAction(title: "Cancle", style: .cancel) { (_) in
+            let canAction = UIAlertAction(title: "CANCEL", style: .cancel) { (_) in
                 alert.removeFromParent()
                 self.hideKeyboard()
             }

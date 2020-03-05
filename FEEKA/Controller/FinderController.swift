@@ -14,9 +14,10 @@ class FinderController: UIViewController {
     @IBOutlet weak var navView: UIView!
     @IBOutlet weak var quizBtn: UIButton!
     @IBOutlet weak var finderText: UILabel!
-    
+    @IBOutlet weak var finderDetailsTxt: UILabel!
     var dataList = [quizzezModel]()
     var index:Int!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,6 +27,8 @@ class FinderController: UIViewController {
         quizBtn.layer.borderWidth = 0.7
         navTitle.text = "\(dataList[index].name) FINDER"
         finderText.text = "\(dataList[index].name) FINDER"
+        let fDetails = (dataList[index].name).components(separatedBy: " ")
+        finderDetailsTxt.text = "Let's Find Just What Your \(fDetails[0]) Needs To Look And Feel It's Best"
     }
     override func viewWillAppear(_ animated: Bool) {
        // if StoredProperty.retake == true {

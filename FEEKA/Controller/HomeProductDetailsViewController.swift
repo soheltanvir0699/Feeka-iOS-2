@@ -268,7 +268,7 @@ extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollecti
         
         if collectionView != productListCollView {
             if indexPath.row < 2 {
-            return CGSize(width: 30, height: 30)
+            return CGSize(width: 35, height: 30)
             } else {
                 let label = UILabel(frame: .zero)
                 label.text = productCategoryList[indexPath.row - 2]
@@ -469,7 +469,7 @@ extension HomeProductDetailsViewController: UITableViewDataSource, UITableViewDe
             lineView.backgroundColor = UIColor.black
            // cell.regularPrice.addSubview(lineView)
                    cell.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
-                       cell.cutLbl.isHidden = true
+                       cell.cutLbl.isHidden = false
                    } else {
                        cell.regularPrice.text = nil
                        cell.cutLbl.isHidden = true
@@ -477,7 +477,7 @@ extension HomeProductDetailsViewController: UITableViewDataSource, UITableViewDe
                    }
                    if (dataList[indexPath.row].salePrice).isEmpty != true {
                    cell.salePrice.text = "R \(dataList[indexPath.row].salePrice)"
-                       cell.cutLbl.isHidden = true
+                       cell.cutLbl.isHidden = false
                    }else {
                     cell.salePrice.text = nil
                        cell.cutLbl.isHidden = true
