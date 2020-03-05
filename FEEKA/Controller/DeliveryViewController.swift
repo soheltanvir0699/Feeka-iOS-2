@@ -40,6 +40,7 @@ class DeliveryViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.addressView.setShadow()
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadPage), name: Notification.Name("reloadAddress"), object: nil)
     }
     
     
@@ -53,23 +54,11 @@ class DeliveryViewController: UIViewController {
             customerId = userdefault.value(forKey: "customer_id") as! String
         }
         getAddressApi()
-//        var lon = 0.0
-//        var lat = 0.0
-//        var name = ""
-//        if userdefault.value(forKey: "lon") != nil {
-//        lon = userdefault.value(forKey: "lon") as! Double
-//        }
-//          if userdefault.value(forKey: "lat") != nil {
-//        lat = userdefault.value(forKey: "lat") as! Double
-//        }
-//        if userdefault.value(forKey: "lat") != nil {
-//        name = userdefault.value(forKey: "name") as! String
-//        }
-                
-         
-        //StoredProperty.lat = place.coordinate.latitude
-        
-        
+
+    }
+    
+    @objc func reloadPage() {
+        getAddressApi()
     }
     
     @IBAction func backAction(_ sender: Any) {

@@ -216,8 +216,10 @@ extension AddAddressViewController: UITableViewDelegate, UITableViewDataSource {
         cell.deleteAddress.addTarget(self, action: #selector(deleteProfile(sender:)), for: .touchUpInside)
         cell.editAddress.addTarget(self, action: #selector(editProfile(sender:)), for: .touchUpInside)
         if indexPath.row == 0 {
-            
+            cell.defaultAddress.isHidden = false
+           cell.defaultAddress.text = "DEFAULT ADDRESS"
         } else if indexPath.row == 1 {
+            cell.defaultAddress.isHidden = false
             cell.defaultAddress.text = "OTHER ADDRESS"
         } else {
             cell.defaultAddress.isHidden = true

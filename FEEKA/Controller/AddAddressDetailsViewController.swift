@@ -46,6 +46,7 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
     var addressId = ""
     var isAddress = true
     var  isDefaultAdd = true
+    var  defaultCount = 0
     var indicator:NVActivityIndicatorView!
     let userdefault = UserDefaults.standard
     var datePicker = UIDatePicker()
@@ -71,11 +72,11 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
     @IBAction func defaultAction(_ sender: Any) {
         if isDefaultAdd {
             defaultCheckBox.setImage(UIImage(named: "3"), for: .normal)
-            urlLink = "https://feeka.co.za/json-api/route/add_address.php"
+            self.defaultCount = 1
             isDefaultAdd = false
             
         } else {
-            urlLink = "https://feeka.co.za/json-api/route/edit_address.php"
+            self.defaultCount = 0
             defaultCheckBox.setImage(UIImage(named: "checkbox"), for: .normal)
             isDefaultAdd = true
         }
@@ -94,6 +95,7 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
     
     @IBAction func backBtn(_ sender: Any) {
         navigationController?.popViewController(animated: true)
+        
         dismiss(animated: true, completion: nil)
     }
     
@@ -128,8 +130,7 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
             self.view.makeToast("Phone Number Is Invalid")
             return
         } else {
-            isAddress = true
-            if isAddress {
+            
                           
                               let paramater = [
                                  "address_id": "\(addressId)",
@@ -145,9 +146,10 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
                                  "Postal_Code": "\(postcodeLbl.text!)",
                                 "City": "\(cityLbl.text!)",
                                 "Contact_Number": "\(contactNumberLbl.text!)",
-                                 "is_default":"0"
+                                 "is_default":"\(defaultCount)"
                                  ]
         
+            print(paramater)
                               Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: nil).response { (response) in
                                   self.indicator.startAnimating()
                                   if let error = response.error {
@@ -160,8 +162,9 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
                                   
                                   if let result = response.data {
                                       let jsonRespose = JSON(result)
-                                     
+                                     print(jsonRespose)
                                       if jsonRespose["status"].stringValue == "1" {
+                                        NotificationCenter.default.post(name: Notification.Name("reloadAddress"), object: nil)
                                         self.navigationController?.popViewController(animated: true)
                                         self.dismiss(animated: true, completion: nil)
                                       } else {
@@ -174,10 +177,7 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
                                   }
                               
                   }
-            } else {
-                self.view.makeToast("Please Delete Previous Address")
             }
-        }
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
