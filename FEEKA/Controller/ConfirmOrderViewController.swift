@@ -209,7 +209,7 @@ extension ConfirmOrderViewController: UITableViewDelegate, UITableViewDataSource
             cell2?.postalCode.text = addressArray[0].postalCode
             cell2?.number.text = addressArray[0].contact
             cell2?.country.text = addressArray[0].country
-            cell2?.name.text = "\(addressArray[0].name) \(addressArray[0].sureName))"
+            cell2?.name.text = "\(addressArray[0].name) \(addressArray[0].sureName)"
             cell2?.surub.text = addressArray[0].suburb
             
             return cell2!
