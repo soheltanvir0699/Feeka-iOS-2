@@ -46,11 +46,7 @@ class MoreViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         if let push =  userdefault.value(forKey: "isPush") as? String  {
-            if push == "On" {
-                swithBtn.isOn = true
-            }else {
-                swithBtn.isOn = false
-            }
+           
         }
         if userdefault.value(forKey: "customer_id") as? String == "" {
                    signOutAction()
@@ -59,7 +55,7 @@ class MoreViewController: UIViewController {
             signOutAction()
         }
         
-        
+        getNotificationRequest()
     }
     override func viewDidDisappear(_ animated: Bool) {
         self.bagApiCalling()
@@ -241,6 +237,43 @@ class MoreViewController: UIViewController {
             notificationApi(customerId: userdefault.value(forKey: "customer_id") as! String, status: "2")
             print("switch is off")
         }
+    }
+    
+    func getNotificationRequest() {
+        guard let url = URL(string: "https://feeka.co.za/json-api/route/get_notification.php") else {
+                   self.view.makeToast("Please try again later")
+                               return
+                           }
+                           
+                               let paramater = [
+                                   "customer_id":"\(userdefault.value(forKey: "customer_id") as! String)"
+                               ]
+                               Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: nil).response { (response) in
+                                   
+                                   if let error = response.error {
+                                       self.view.makeToast("Something wrong")
+                                       print(error)
+                                       
+                                   }
+                                   
+                                   if let result = response.data {
+                                       print(result)
+                                       let jsonRespose = JSON(result)
+                                       
+                                       if jsonRespose.isEmpty == true {
+                                           self.view.makeToast("Something Wrong")
+                                       }
+                                       if jsonRespose["status"].stringValue == "1" {
+                                        self.swithBtn.isOn = true
+                                           
+                                       } else {
+                                        self.swithBtn.isOn = false
+                                    }
+
+                                   }
+                               
+                   }
+        
     }
     
     func notificationApi(customerId: String, status: String) {

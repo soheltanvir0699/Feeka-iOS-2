@@ -268,7 +268,7 @@ extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollecti
         
         if collectionView != productListCollView {
             if indexPath.row < 2 {
-            return CGSize(width: 35, height: 30)
+            return CGSize(width: 30, height: 30)
             } else {
                 let label = UILabel(frame: .zero)
                 label.text = productCategoryList[indexPath.row - 2]
@@ -337,6 +337,8 @@ extension HomeProductDetailsViewController: UICollectionViewDelegate, UICollecti
         if indexPath.row<2 {
             if indexPath.row == 0 {
                 cell.titleBtn.setImage(UIImage(named: "1filter"), for: .normal)
+            } else if indexPath.row == 1 {
+                cell.titleBtn.setImage(UIImage(named: "sort"), for: .normal)
             }
         }else {
             cell.titleBtn.setTitle(productCategoryList[indexPath.row - 2], for: .normal)
