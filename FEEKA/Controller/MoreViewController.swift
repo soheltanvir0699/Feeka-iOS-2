@@ -29,6 +29,7 @@ class MoreViewController: UIViewController {
     @IBOutlet weak var swithBtn: UISwitch!
     
     var userdefault = UserDefaults.standard
+    var customerId = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +46,9 @@ class MoreViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if userdefault.value(forKey: "customer_id") as? String != nil {
+            self.customerId = userdefault.value(forKey: "customer_id") as! String
+        }
         if let push =  userdefault.value(forKey: "isPush") as? String  {
            
         }
@@ -61,6 +65,7 @@ class MoreViewController: UIViewController {
         self.bagApiCalling()
     }
     override func viewWillDisappear(_ animated: Bool) {
+        
         self.bagApiCalling()
     }
     
@@ -231,10 +236,11 @@ class MoreViewController: UIViewController {
             return
         }
         if swithBtn.isOn {
-            notificationApi(customerId: (userdefault.value(forKey: "customer_id") as! String), status: "1")
+            
+            notificationApi(customerId: customerId, status: "1")
             print("switch is on")
         } else {
-            notificationApi(customerId: userdefault.value(forKey: "customer_id") as! String, status: "2")
+            notificationApi(customerId: customerId, status: "2")
             print("switch is off")
         }
     }
@@ -244,9 +250,13 @@ class MoreViewController: UIViewController {
                    self.view.makeToast("Please try again later")
                                return
                            }
+        
+        if userdefault.value(forKey: "customer_id") as? String != nil {
+            self.customerId = userdefault.value(forKey: "customer_id") as! String
+        }
                            
                                let paramater = [
-                                   "customer_id":"\(userdefault.value(forKey: "customer_id") as! String)"
+                                   "customer_id":"\(customerId)"
                                ]
                                Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: nil).response { (response) in
                                    
