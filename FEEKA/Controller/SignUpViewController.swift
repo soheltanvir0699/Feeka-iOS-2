@@ -186,18 +186,18 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField.tag == 10 {
             textField.inputView = UIView()
-            var womenText = "👩🏿‍⚖️Women"
-            var menText = "🤵🏿Men"
-            if textField.text == "Women" {
-                womenText = "👩🏿‍⚖️ Women"
+            var womenText = "👩🏿‍⚖️WOMEN"
+            var menText = "🤵🏿MEN"
+            if textField.text == "WOMEN" {
+                womenText = "👩🏿‍⚖️ WOMEN"
             } else {
-                womenText = "Women"
+                womenText = "WOMEN"
             }
             
-            if textField.text == "Men" {
-                menText = "🤵🏿 Men"
+            if textField.text == "MEN" {
+                menText = "🤵🏿 MEN"
             } else {
-                menText = "Men"
+                menText = "MEN"
             }
             
             let alert = UIAlertController(title: "GENDER", message: nil, preferredStyle: .actionSheet)

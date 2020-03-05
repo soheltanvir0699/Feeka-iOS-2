@@ -13,6 +13,7 @@ import NVActivityIndicatorView
 
 class ChangePasswordController: UIViewController {
 
+    @IBOutlet weak var navView: UIView!
     @IBOutlet weak var confirmPass: UITextField!
     @IBOutlet weak var currentPass: UITextField!
     @IBOutlet weak var newPass: UITextField!
@@ -27,6 +28,8 @@ class ChangePasswordController: UIViewController {
         if userdefault.value(forKey: "customer_id") != nil {
                    customerId = userdefault.value(forKey: "customer_id") as! String
                }
+        
+        navView.setShadow()
         
     }
     

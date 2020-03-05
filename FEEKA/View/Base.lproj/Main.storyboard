@@ -4337,6 +4337,7 @@
                         <outlet property="confirmPass" destination="PaJ-Wv-sLf" id="fDA-yb-plP"/>
                         <outlet property="currentImg" destination="k4Z-RM-2GZ" id="YTP-Vb-zcB"/>
                         <outlet property="currentPass" destination="YMc-q5-UUB" id="bBg-76-80A"/>
+                        <outlet property="navView" destination="HVz-iU-4gD" id="dSd-nD-cHk"/>
                         <outlet property="newImg" destination="JJY-sD-V1p" id="lka-U1-zLm"/>
                         <outlet property="newPass" destination="HTC-rP-J3I" id="rKd-uY-YuR"/>
                     </connections>
