@@ -105,15 +105,12 @@ class ChangePasswordController: UIViewController {
                                    print(jsonRespose)
                                    print(jsonRespose["message"].stringValue)
                                 self.view.makeToast(jsonRespose["message"].stringValue)
-                                   if jsonRespose["message"].stringValue == "Please check your email." {
-                                       let alert = UIAlertController(title: "Please check your email", message: "", preferredStyle: .alert)
-                                       alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
-                                           self.navigationController?.popViewController(animated: true)
-                                       }))
+                                   if jsonRespose["message"].stringValue == "Password updated." {
+                                       dismiss(animated: true, completion: nil)
                                       //self.present(alert, animated: true, completion: nil)
                                    } else {
                                        let alert = ShowAlertView().alertView(title: "Invalid email address.", action: "OK", message: "")
-                                       self.present(alert, animated: true, completion: nil)
+                                       //self.present(alert, animated: true, completion: nil)
                                    }
 
                                    self.indicator.stopAnimating()
