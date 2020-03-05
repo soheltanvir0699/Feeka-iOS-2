@@ -70,10 +70,14 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
 //                      }
                   }
                 
-                let backButton = UIBarButtonItem()
-                      backButton.title = ""
-                      self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+               
               }
+    
+    override func viewWillAppear(_ animated: Bool) {
+                            let backButton = UIBarButtonItem()
+                             backButton.title = "  "
+                             self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+    }
          
     
     func setUpView() {
