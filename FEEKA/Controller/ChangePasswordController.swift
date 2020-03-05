@@ -106,7 +106,7 @@ class ChangePasswordController: UIViewController {
                                    print(jsonRespose["message"].stringValue)
                                 self.view.makeToast(jsonRespose["message"].stringValue)
                                    if jsonRespose["message"].stringValue == "Password updated." {
-                                       dismiss(animated: true, completion: nil)
+                                    self.dismiss(animated: true, completion: nil)
                                       //self.present(alert, animated: true, completion: nil)
                                    } else {
                                        let alert = ShowAlertView().alertView(title: "Invalid email address.", action: "OK", message: "")
