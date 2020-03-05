@@ -40,12 +40,6 @@ class DeliveryViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.addressView.setShadow()
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadPage), name: Notification.Name("reloadAddress"), object: nil)
-    }
-    
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
         if  userdefault.value(forKey: "customer_id") as! String != "" {
             customerId = userdefault.value(forKey: "customer_id") as! String
         }
@@ -54,10 +48,37 @@ class DeliveryViewController: UIViewController {
             customerId = userdefault.value(forKey: "customer_id") as! String
         }
         getAddressApi()
-
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadPage), name: Notification.Name("reloadAddress"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(confirmreloadPage), name: Notification.Name("confirmReload"), object: nil)
     }
     
-    @objc func reloadPage() {
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+//confirmReload
+    }
+    
+    @objc func confirmreloadPage() {
+        let data = StoredProperty.indexSelectedAddressList
+        let index = StoredProperty.indexSelectedAddress
+        self.postalCode.text = data[index].postalCode
+                               self.phoneNumber.text = data[index].contactNumber
+                               self.appartment.text = data[index].apartment
+                               self.appCompact.text = data[index].company
+                               self.street.text = data[index].street
+                               self.suburb.text = data[index].suburb
+                               self.city.text = data[index].city
+                               self.country.text = data[index].country
+        
+        DispatchQueue.main.async {
+            self.userdefault.setValue(data[index].addressId, forKey: "address_id")
+        }
+        setMapLocation(suburb: "", address: data[index].city, country: "")
+        
+        // getAddressApi()
+    }
+     @objc func reloadPage() {
         getAddressApi()
     }
     
@@ -90,7 +111,7 @@ class DeliveryViewController: UIViewController {
         navigationController?.pushViewController(deli2VC!, animated: true)
     }
     
-    func setMapLocation(suburb:String,address: String,country: String) {
+    func setMapLocation(suburb:String, address: String,country: String) {
         let address2 = address.replacingOccurrences(of: " ", with: "%20")
         guard let urlToExcute = URL(string: "https://maps.googleapis.com/maps/api/geocode/json?address=\(address2)&key=AIzaSyBaTY6bQWJElnvG5c6g4Q9MMu3soiLXXeg") else {
                    return
