@@ -21,12 +21,17 @@ class EditChangeAddressCell: UITableViewCell {
        @IBOutlet weak var deleteBtn: UIButton!
        @IBOutlet weak var editActionBtn: UIButton!
        @IBOutlet weak var addressView: UIView!
-    @IBOutlet weak var selectionBtn: UIButton!
+       @IBOutlet weak var selectionBtn: UIButton!
+       @IBOutlet weak var imgSelect: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
+    override func prepareForReuse() {
+        
+        //selectionBtn.setImage(UIImage(named: "radio-active"), for: .normal)
+        
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

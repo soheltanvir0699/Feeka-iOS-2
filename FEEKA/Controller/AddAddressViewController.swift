@@ -20,6 +20,7 @@ class AddAddressViewController: UIViewController {
     let userdefault = UserDefaults.standard
     var customerId = ""
     var isAddress = true
+    var apartment = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -172,7 +173,10 @@ class AddAddressViewController: UIViewController {
                                         let postalCode1 = data["Postal_Code"].stringValue
                                         let company = data["Company"].stringValue
                                         let addressId = data["address_id"].stringValue
-                                        //self.userdefault.setValue(addressId, forKey: "address_id")
+                                       
+                                          let apartment = data["Apartment"].stringValue
+                                            
+                                            self.apartment.append("\(apartment)")
                                        // self.updateView(self.name1, self.sureName1, self.phone1, self.country1, self.streetAdd1, self.suburb1, self.city1, self.postalCode1)
                                             
                                         self.dataList.append(addressDataModel(name1: name1, sureName1: sureName1, phone1: phone1, country1: country1, streetAdd1: streetAdd1, suburb1: suburb1, city1: city1, postalCode1: postalCode1, company: company, addressId: addressId))
@@ -210,6 +214,7 @@ extension AddAddressViewController: UITableViewDelegate, UITableViewDataSource {
         cell.suburb.text = dataList[indexPath.row].suburb1
         cell.city.text = dataList[indexPath.row].city1
         cell.postalCode.text = dataList[indexPath.row].postalCode1
+            cell.apartMent.text = dataList[indexPath.row].company
         }
         cell.editAddress.tag = indexPath.row + 1000
         cell.deleteAddress.tag = indexPath.row + 2000

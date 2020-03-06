@@ -10,6 +10,8 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
+import SDWebImage
+import Nuke
 
 class EditChangeAddressController: UIViewController {
 
@@ -22,6 +24,8 @@ class EditChangeAddressController: UIViewController {
     var isAddress = true
     var customerId = ""
     var isSelected = 0
+    var isSelected2 = 0
+    var isWorking = false
     var indicator:NVActivityIndicatorView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,16 +115,10 @@ class EditChangeAddressController: UIViewController {
                                           let jsonRespose = JSON(result)
                                          
                                           if jsonRespose["status"].stringValue == "1" {
-                                            //self.addressView.isHidden = true
-                                            //self.add.isHidden = true
-                                           // self.isAddress = true
                                             self.dataList.remove(at: index)
                                             self.tblView.reloadData()
                                           } else {
-                                            
-                                           // self.addressView.isHidden = false
-                                            //self.defaultAddress.isHidden = false
-                                            
+                                        
                                           }
 
                                           self.indicator.stopAnimating()
@@ -195,17 +193,23 @@ class EditChangeAddressController: UIViewController {
     
     @objc func selectedAction(sender:UIButton) {
         
-        
+        DispatchQueue.main.async {
+            
         if sender.tag - 3000 != self.isSelected {
-            let indexpath = IndexPath(row: self.isSelected, section: 0)
-              tblView.reloadRows(at: [indexpath], with: .automatic)
+            if let btn =  self.view.viewWithTag(self.isSelected + 3000) as? UIButton {
+            btn.setImage(UIImage(named: "radio-inactive"), for: .normal)
+            }
               sender.setImage(UIImage(named: "radio-active"), for: .normal)
             self.isSelected = sender.tag - 3000
+            self.isSelected2 = sender.tag - 3000
+            self.isWorking = true
               
-        }
-        
+        } else {
+        sender.setImage(UIImage(named: "radio-active"), for: .normal)
     }
+        }
 
+}
 }
 
 extension EditChangeAddressController: UITableViewDelegate, UITableViewDataSource {
@@ -222,14 +226,20 @@ extension EditChangeAddressController: UITableViewDelegate, UITableViewDataSourc
         cell.suburb.text = dataList[indexPath.row].suburb
         cell.city.text = dataList[indexPath.row].city
         cell.postalCode.text = dataList[indexPath.row].postalCode
+        cell.company.text = dataList[indexPath.row].company
+        cell.addressView.layer.borderColor = UIColor.gray.cgColor
+        cell.addressView.layer.borderWidth = 1
         cell.editActionBtn.tag = indexPath.row + 1000
         cell.deleteBtn.tag = indexPath.row + 2000
         cell.selectionBtn.tag = indexPath.row + 3000
+        if isSelected2 == indexPath.row {
+            cell.selectionBtn.setImage(UIImage(named: "radio-active"), for: .normal)
+            
+        }else {
+            cell.selectionBtn.setImage(UIImage(named: "radio-inactive"), for: .normal)
+        }
         cell.deleteBtn.addTarget(self, action: #selector(deleteProfile(sender:)), for: .touchUpInside)
         cell.selectionBtn.addTarget(self, action: #selector(selectedAction(sender:)), for: .touchUpInside)
-        
-        cell.selectionBtn.setImage(UIImage(named: "radio-inactive"), for: .normal)
-        
         cell.editActionBtn.addTarget(self, action: #selector(editProfile(sender:)), for: .touchUpInside)
        
         return cell

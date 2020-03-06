@@ -27,6 +27,7 @@ class StoredProperty {
     static var lon = 0.0
     static var lat = 0.0
     static var name = ""
+    static var isSelectIndex = 0
     
 }
 

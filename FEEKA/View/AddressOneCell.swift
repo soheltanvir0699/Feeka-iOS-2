@@ -19,7 +19,8 @@ class AddressOneCell: UITableViewCell {
        @IBOutlet weak var city: UILabel!
        @IBOutlet weak var postalCode: UILabel!
        @IBOutlet weak var phoneNumber: UILabel!
-       @IBOutlet weak var editAddress: UIButton!
+    @IBOutlet weak var apartMent: UILabel!
+    @IBOutlet weak var editAddress: UIButton!
       @IBOutlet weak var deleteAddress: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()

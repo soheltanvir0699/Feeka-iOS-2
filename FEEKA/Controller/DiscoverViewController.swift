@@ -50,7 +50,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate,UIColle
         //cell.productImg.downloadedFrom(url: url!, contentMode: .scaleAspectFill)
         if dataList.count != 0 {
         let request2 = ImageRequest(
-            url: URL(string: dataList[indexPath.row].image)!
+            url: URL(string: dataList[indexPath.row].image) ?? URL(string: "nil")!
             )
         Nuke.loadImage(with: request2, into: cell.productImg)
         cell.productLbl.text = dataList[indexPath.row].title
@@ -109,10 +109,12 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate,UIColle
         cell?.reviewText.text = "(\(dataList[indexPath.row].count))"
        // let url = URL(string: dataList[indexPath.row].image)
        // cell?.imageView.downloadedFrom(url: url!, contentMode: .scaleAspectFill)
+        if dataList.isEmpty != true {
         let request2 = ImageRequest(
-                   url: URL(string: dataList[indexPath.row].image)!
+            url: URL(string: dataList[indexPath.row].image) ?? URL(string: "nil")!
                    )
                Nuke.loadImage(with: request2, into: cell!.imageView)
+        }
        // cell!.regularPrice.text = "R \(dataList[indexPath.row].regularPrice)"
         if dataList.isEmpty != true {
         if (dataList[indexPath.row].regularPrice).isEmpty != true {

@@ -200,15 +200,58 @@ class DeliveryViewController: UIViewController {
                         self.setMapLocation(suburb: suburb,address: city, country : country)
                         self.userdefault.setValue(address, forKey: "address_id")
                         self.dataList.append(getCustomerDataModel(addressId: address, customerId: customerid, name: name, surname: surname, apartment: apartment, company: company, street: streetAddress, suburb: suburb, city: city, country: country, postalCode: postalCode, contactNumber: contact))
+                        if postalCode != "" {
                         self.postalCode.text = postalCode
+                        } else {
+                          self.postalCode.text = nil
+                        }
+                        if postalCode != "" {
+                        self.postalCode.text = postalCode
+                        } else {
+                          self.postalCode.text = nil
+                            self.postalCode.isHidden = true
+                        }
+                        if name != "" {
                         self.name.text = "\(name) \(surname)"
+                        } else {
+                            self.name.text = nil
+                        }
+                        
+                        if contact != "" {
                         self.phoneNumber.text = contact
+                        } else {
+                            self.phoneNumber.text = nil
+                        }
+                        if apartment != "" {
                         self.appartment.text = "\(unit) \(apartment)"
+                        } else {
+                            self.appartment.text = nil
+                        }
+                        if company != "" {
                         self.appCompact.text = company
+                        } else {
+                            self.appCompact.text = nil
+                        }
+                        if streetAddress != "" {
                         self.street.text = streetAddress
+                        } else {
+                            self.street.text = nil
+                        }
+                        if suburb != "" {
                         self.suburb.text = suburb
+                        } else {
+                            self.suburb.text = nil
+                        }
+                        if city != "" {
                         self.city.text = city
+                        } else {
+                            self.city.text = nil
+                        }
+                        if country != "" {
                         self.country.text = country
+                        } else {
+                            self.country.text = nil
+                        }
                         self.isAddress = false
                         self.indicator.stopAnimating()
                         StoredProperty.addressData = self.dataList
