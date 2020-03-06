@@ -38,6 +38,22 @@ class DeliveryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        let cord2D = CLLocationCoordinate2D(latitude: 20.5936832, longitude: 78.962883)
+
+                       let marker = GMSMarker()
+                       marker.position = cord2D
+                       marker.title = "Location"
+                       marker.snippet = "address"
+                       
+                       let markerImage = UIImage(named: "city")
+                       let markerImageView = UIImageView(image: markerImage)
+                       
+                       marker.iconView = markerImageView
+                       marker.map = self.mapView
+                       self.mapView.camera = GMSCameraPosition.camera(withTarget: cord2D, zoom: 15)
+        
+        
         // Do any additional setup after loading the view.
         self.addressView.setShadow()
         if  userdefault.value(forKey: "customer_id") as! String != "" {

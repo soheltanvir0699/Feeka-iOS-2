@@ -304,6 +304,7 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
         ],"comment_parent":"0","comment_post_ID":"\(productId)","user_id":"\(customerId)"] as [String : Any]
                            
                                    print(param2)
+        
         Alamofire.request(url, method: .post, parameters: param2 , encoding: JSONEncoding.default, headers: nil).response { (response) in
                                    print(response)
                                      

@@ -7,12 +7,13 @@ target 'FEEKA' do
   pod 'OneSignal'
 pod 'FacebookCore'
 pod 'FacebookLogin'
-pod 'Alamofire'
+
 pod 'SwiftyJSON'
 pod 'Nuke'
 pod 'NVActivityIndicatorView'
 pod 'Cosmos', '~> 21.0'
 pod 'SVProgressHUD'
+pod 'Alamofire', '~> 4.0'
 pod 'IQKeyboardManagerSwift'
 pod 'SDWebImage', '~> 5.0'
 pod “TTRangeSlider”

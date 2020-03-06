@@ -149,7 +149,7 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
                                  "is_default":"\(defaultCount)"
                                  ]
         
-            print(paramater)
+                               print(paramater)
                               Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: nil).response { (response) in
                                   self.indicator.startAnimating()
                                   if let error = response.error {
@@ -279,12 +279,12 @@ extension AddAddressDetailsViewController: GMSAutocompleteViewControllerDelegate
 
                 if pm.count > 0 {
                     let pm = placemarks![0]
-                    print(pm.country!)
-                    print(pm.locality)
-                    print(pm.subLocality)
-                    print(pm.thoroughfare)
-                    print(pm.postalCode)
-                    print(pm.subThoroughfare)
+//                    print(pm.country!)
+//                    print(pm.locality!)
+//                    print(pm.subLocality!)
+//                    print(pm.thoroughfare!)
+//                    print(pm.postalCode!)
+                   // print(pm.subThoroughfare!)
                     var addressString : String = ""
                     if pm.subLocality != nil {
                         addressString = addressString + pm.subLocality! + ", "

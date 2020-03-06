@@ -169,6 +169,7 @@
 		8D901C712405380D00043E5E /* QuizListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizListController.swift; sourceTree = "<group>"; };
 		8D901C73240538E900043E5E /* QuizListCellCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizListCellCell.swift; sourceTree = "<group>"; };
 		8D901C7524054B6700043E5E /* QuizzesMenDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizzesMenDetailsController.swift; sourceTree = "<group>"; };
+		8D954D3D24127552005FC5E8 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D9E1EBE2400062D00B463C1 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		8D9E1EC024000EF900B463C1 /* FeaturedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedCell.swift; sourceTree = "<group>"; };
 		8DAA973424113884001996E6 /* EditChangeAddressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditChangeAddressCell.swift; sourceTree = "<group>"; };
@@ -403,6 +404,7 @@
 		A83108E15E7C41B35F1AADCD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8D954D3D24127552005FC5E8 /* Alamofire.framework */,
 				8DF17688240698D200EBFF9C /* Nuke.framework */,
 				C4E6456D23F801F300DC0B07 /* MapKit.framework */,
 				D7D61FDBA86636701D727275 /* Pods_FEEKA.framework */,

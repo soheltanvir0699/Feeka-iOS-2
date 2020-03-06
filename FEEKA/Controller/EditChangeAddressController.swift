@@ -101,6 +101,7 @@ class EditChangeAddressController: UIViewController {
                                      "is_default":"1"
                                      
                                   ]
+           
                                   Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: nil).response { (response) in
                                       self.indicator.startAnimating()
                                       if let error = response.error {
