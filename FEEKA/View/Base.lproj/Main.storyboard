@@ -8116,7 +8116,7 @@
             <objects>
                 <viewController storyboardIdentifier="ProductDetailsViewController" id="wOU-Ee-vio" customClass="ProductDetailsViewController" customModule="FEEKA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h8E-6b-bvC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1350"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="950"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eHh-xP-gee">
@@ -8154,29 +8154,29 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f6H-Hc-LG8">
-                                <rect key="frame" x="0.0" y="302" width="414" height="1048"/>
+                                <rect key="frame" x="0.0" y="302" width="414" height="648"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ohF-d7-qGa">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1048"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="596"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="w5w-tO-R8D">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="1048"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="620"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="1048" id="tq7-Ym-g8G"/>
+                                                    <constraint firstAttribute="height" constant="620" id="tq7-Ym-g8G"/>
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="D9c-sD-0qc">
-                                                    <size key="itemSize" width="414" height="1039"/>
+                                                    <size key="itemSize" width="414" height="557"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="DNy-Qw-yXp" customClass="ProductDetailsCollectionViewCell" customModule="FEEKA" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="4.666666666666667" width="414" height="1039"/>
+                                                        <rect key="frame" x="0.0" y="31.666666666666668" width="414" height="557"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="lKv-P4-RgO">
-                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="1039"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="557"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NmE-wa-4jW">
@@ -8197,8 +8197,8 @@
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <wkWebView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ON-mA-gmd">
-                                                                    <rect key="frame" x="20" y="70" width="374" height="969"/>
+                                                                <wkWebView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ON-mA-gmd">
+                                                                    <rect key="frame" x="20" y="70" width="374" height="487"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <wkWebViewConfiguration key="configuration">
                                                                         <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -8206,7 +8206,7 @@
                                                                     </wkWebViewConfiguration>
                                                                 </wkWebView>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9li-jV-aPC">
-                                                                    <rect key="frame" x="8" y="0.0" width="398" height="1039"/>
+                                                                    <rect key="frame" x="8" y="0.0" width="398" height="557"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rate Product" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KHh-dm-LBm">
                                                                             <rect key="frame" x="43" y="14.999999999999998" width="312" height="31.333333333333329"/>
@@ -8272,7 +8272,7 @@
                                                                             </state>
                                                                         </button>
                                                                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="83" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0Yh-Hv-pH0">
-                                                                            <rect key="frame" x="-9" y="203" width="415" height="787"/>
+                                                                            <rect key="frame" x="-9" y="203" width="415" height="305"/>
                                                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                             <prototypes>
                                                                                 <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reviewCell" rowHeight="83" id="sJ3-1B-SWL" customClass="ProductDetailsSecondCell" customModule="FEEKA" customModuleProvider="target">
@@ -8399,7 +8399,7 @@
                                                                 <constraint firstItem="9li-jV-aPC" firstAttribute="leading" secondItem="lKv-P4-RgO" secondAttribute="leading" constant="8" id="owp-K5-JlG"/>
                                                             </constraints>
                                                         </collectionViewCellContentView>
-                                                        <size key="customSize" width="414" height="1039"/>
+                                                        <size key="customSize" width="414" height="557"/>
                                                         <connections>
                                                             <outlet property="DescriptionLbl" destination="ki0-Oa-pY6" id="WWe-0N-1vz"/>
                                                             <outlet property="colorLabel" destination="NmE-wa-4jW" id="Mx7-he-pv3"/>
@@ -8424,7 +8424,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="w5w-tO-R8D" secondAttribute="trailing" id="D0q-CU-s5a"/>
-                                            <constraint firstAttribute="bottom" secondItem="w5w-tO-R8D" secondAttribute="bottom" id="dnS-tP-jEP"/>
+                                            <constraint firstAttribute="bottom" secondItem="w5w-tO-R8D" secondAttribute="bottom" constant="-24" id="dnS-tP-jEP"/>
                                             <constraint firstItem="w5w-tO-R8D" firstAttribute="leading" secondItem="ohF-d7-qGa" secondAttribute="leading" id="jX1-cD-D8k"/>
                                             <constraint firstItem="w5w-tO-R8D" firstAttribute="top" secondItem="ohF-d7-qGa" secondAttribute="top" id="p3Y-mj-nrK"/>
                                         </constraints>
@@ -8435,7 +8435,7 @@
                                     <constraint firstAttribute="trailing" secondItem="ohF-d7-qGa" secondAttribute="trailing" id="BTy-87-pcU"/>
                                     <constraint firstItem="ohF-d7-qGa" firstAttribute="width" secondItem="f6H-Hc-LG8" secondAttribute="width" id="V7x-Ef-RHS"/>
                                     <constraint firstItem="ohF-d7-qGa" firstAttribute="top" secondItem="f6H-Hc-LG8" secondAttribute="top" id="hK0-Np-aCo"/>
-                                    <constraint firstAttribute="bottom" secondItem="ohF-d7-qGa" secondAttribute="bottom" id="msT-hI-NV4"/>
+                                    <constraint firstAttribute="bottom" secondItem="ohF-d7-qGa" secondAttribute="bottom" constant="52" id="msT-hI-NV4"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="z9H-8T-bba"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="Jnc-6U-CEz"/>
@@ -8628,7 +8628,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HqL-UL-Htc"/>
                     </view>
-                    <size key="freeformSize" width="414" height="1350"/>
+                    <size key="freeformSize" width="414" height="950"/>
                     <connections>
                         <outlet property="brandName" destination="8fm-2I-2NC" id="3Cw-tl-sy9"/>
                         <outlet property="collView" destination="w5w-tO-R8D" id="Ppk-bS-s9o"/>
