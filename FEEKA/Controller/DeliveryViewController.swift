@@ -76,7 +76,7 @@ class DeliveryViewController: UIViewController {
         DispatchQueue.main.async {
             self.userdefault.setValue(data[index].addressId, forKey: "address_id")
         }
-        setMapLocation(suburb: "", address: data[index].city, country: "")
+        setMapLocation(suburb: data[index].suburb, address: data[index].city, country: "")
         
         // getAddressApi()
     }
@@ -123,11 +123,12 @@ class DeliveryViewController: UIViewController {
     }
     
     func setMapLocation(suburb:String, address: String,country: String) {
+        let sub = suburb.replacingOccurrences(of: " ", with: "%20")
         let address2 = address.replacingOccurrences(of: " ", with: "%20")
-        guard let urlToExcute = URL(string: "https://maps.googleapis.com/maps/api/geocode/json?address=\(address2)&key=AIzaSyBaTY6bQWJElnvG5c6g4Q9MMu3soiLXXeg") else {
+        guard let urlToExcute = URL(string: "https://maps.googleapis.com/maps/api/geocode/json?address=\(sub+address2)&key=AIzaSyBaTY6bQWJElnvG5c6g4Q9MMu3soiLXXeg") else {
                    return
                }
-        
+        //cleansing oil - combinati
         Alamofire.request(urlToExcute, method: .post, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
         
         if let error = response.error {
