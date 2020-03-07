@@ -47,7 +47,11 @@ class ProductDetailsViewController: UIViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         pageTitleView.setShadow()
-        salePrice.text = "R\(sPrice)"
+        if sPrice != ""{
+        salePrice.text = "R \(sPrice)"
+        } else {
+            salePrice.text = "R \(rPrice)"
+        }
         brandName.text = brand
         productName.text = productTitle
         cosmosView.rating = rating
