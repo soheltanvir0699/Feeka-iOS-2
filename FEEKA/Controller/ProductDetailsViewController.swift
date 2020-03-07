@@ -128,9 +128,9 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ProductDetailsCollectionViewCell
         let string1: String = StoredProperty.singleProductDetailsList[0].content
         let fontName =  "PFHandbookPro-Regular"
-        let fontSize = 58
+        let fontSize = 55
         let fontSetting = "<span style=\"font-family: \(fontName);font-size: \(fontSize)\"</span>"
-        let fontSetting1 = "<span style=\"font-family: \(fontName);font-size: 58\"</span>"
+        let fontSetting1 = "<span style=\"font-family: \(fontName);font-size: 55\"</span>"
         
         if indexPath.row == 0 {
         cell?.colorLabel.text = ""
