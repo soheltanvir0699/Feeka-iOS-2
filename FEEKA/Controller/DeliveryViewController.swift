@@ -38,22 +38,6 @@ class DeliveryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-//        let cord2D = CLLocationCoordinate2D(latitude: 20.5936832, longitude: 78.962883)
-//
-//                       let marker = GMSMarker()
-//                       marker.position = cord2D
-//                       marker.title = "Location"
-//                       marker.snippet = "address"
-//                       
-//                       let markerImage = UIImage(named: "city")
-//                       let markerImageView = UIImageView(image: markerImage)
-//                       
-//                       marker.iconView = markerImageView
-//                       marker.map = self.mapView
-//                       self.mapView.camera = GMSCameraPosition.camera(withTarget: cord2D, zoom: 15)
-        
-        
         // Do any additional setup after loading the view.
         self.addressView.setShadow()
         if  userdefault.value(forKey: "customer_id") as! String != "" {
@@ -64,6 +48,7 @@ class DeliveryViewController: UIViewController {
             customerId = userdefault.value(forKey: "customer_id") as! String
         }
         getAddressApi()
+        StoredProperty.isSelected = 0
         NotificationCenter.default.addObserver(self, selector: #selector(reloadPage), name: Notification.Name("reloadAddress"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(confirmreloadPage), name: Notification.Name("confirmReload"), object: nil)
     }
@@ -79,13 +64,14 @@ class DeliveryViewController: UIViewController {
         let data = StoredProperty.indexSelectedAddressList
         let index = StoredProperty.indexSelectedAddress
         self.postalCode.text = data[index].postalCode
-                               self.phoneNumber.text = data[index].contactNumber
-                               self.appartment.text = data[index].apartment
-                               self.appCompact.text = data[index].company
-                               self.street.text = data[index].street
-                               self.suburb.text = data[index].suburb
-                               self.city.text = data[index].city
-                               self.country.text = data[index].country
+        self.name.text = "\(data[index].name) \(data[index].surname)"
+        self.phoneNumber.text = data[index].contactNumber
+        self.appartment.text = data[index].apartment
+        self.appCompact.text = data[index].company
+        self.street.text = data[index].street
+        self.suburb.text = data[index].suburb
+        self.city.text = data[index].city
+        self.country.text = data[index].country
         
         DispatchQueue.main.async {
             self.userdefault.setValue(data[index].addressId, forKey: "address_id")
@@ -115,6 +101,14 @@ class DeliveryViewController: UIViewController {
         let addressVc = storyboard?.instantiateViewController(withIdentifier: "EditChangeAddressController") as! EditChangeAddressController
         //addressVc.modalPresentationStyle = .fullScreen
        // present(addressVc, animated: true, completion: nil)
+        let data = StoredProperty.indexSelectedAddressList
+        if data.isEmpty != true {
+        addressVc.orderId = data[StoredProperty.indexSelectedAddress].addressId
+        addressVc.sendName = data[StoredProperty.indexSelectedAddress].street
+            //print("djfldfldjljflsjflsjflsjflksjflsjlfsjflsjflsjflsjflsjflsjflsjflsjflsjflsjflsjflsjflsjfl\(data[StoredProperty.isSelected].addressId)")
+        } else {
+            
+        }
         self.navigationController?.pushViewController(addressVc, animated: true)
         
     }
@@ -124,6 +118,7 @@ class DeliveryViewController: UIViewController {
         let deli2VC = storyboard?.instantiateViewController(withIdentifier: "DeliverySecondController") as? DeliverySecondController
        // deli2VC?.modalPresentationStyle = .fullScreen
         //present(deli2VC!, animated: true, completion: nil)
+        
         navigationController?.pushViewController(deli2VC!, animated: true)
     }
     

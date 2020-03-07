@@ -164,7 +164,13 @@ class AddAddressDetailsViewController: UIViewController, CLLocationManagerDelega
                                       let jsonRespose = JSON(result)
                                      print(jsonRespose)
                                       if jsonRespose["status"].stringValue == "1" {
-                                        NotificationCenter.default.post(name: Notification.Name("reloadAddress"), object: nil)
+                                        StoredProperty.indexSelectedAddressList = [getCustomerDataModel]()
+                                        StoredProperty.indexSelectedAddressList.append(getCustomerDataModel(addressId: self.addressId, customerId: customerId, name: self.nameLbl.text!, surname: self.sureNameLbl.text!, apartment: "", company: self.companyLbl.text!, street: self.streetAddressLbl.text!, suburb: self.suburbLbl.text!, city: self.cityLbl.text!, country: "South Africa", postalCode: self.postcodeLbl.text!, contactNumber: self.contactNumberLbl.text!))
+                                            StoredProperty.indexSelectedAddress = 0
+                                          StoredProperty.isSelected = -1
+                                           NotificationCenter.default.post(name: Notification.Name("confirmReload"), object: nil)
+
+                                       // NotificationCenter.default.post(name: Notification.Name("reloadAddress"), object: nil)
                                         self.navigationController?.popViewController(animated: true)
                                         self.dismiss(animated: true, completion: nil)
                                       } else {

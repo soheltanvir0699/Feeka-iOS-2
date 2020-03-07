@@ -23,14 +23,16 @@ class EditChangeAddressController: UIViewController {
     var dataList = [getCustomerDataModel]()
     var isAddress = true
     var customerId = ""
-    var isSelected = 0
-    var isSelected2 = 0
+    var orderId = ""
+    var sendName = ""
+//    var isSelected = 0
+//    var isSelected2 = 0
     var isWorking = false
     var indicator:NVActivityIndicatorView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        print(orderId)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,7 +55,7 @@ class EditChangeAddressController: UIViewController {
     
     
     @IBAction func confirmAction(_ sender: Any) {
-        StoredProperty.indexSelectedAddress = isSelected
+        StoredProperty.indexSelectedAddress = StoredProperty.isSelected
         StoredProperty.indexSelectedAddressList = self.dataList
         NotificationCenter.default.post(name: Notification.Name("confirmReload"), object: nil)
         
@@ -196,13 +198,15 @@ class EditChangeAddressController: UIViewController {
         
         DispatchQueue.main.async {
             
-        if sender.tag - 3000 != self.isSelected {
-            if let btn =  self.view.viewWithTag(self.isSelected + 3000) as? UIButton {
+        if sender.tag - 3000 != StoredProperty.isSelected {
+            if let btn =  self.view.viewWithTag(StoredProperty.isSelected + 3000) as? UIButton {
             btn.setImage(UIImage(named: "radio-inactive"), for: .normal)
             }
               sender.setImage(UIImage(named: "radio-active"), for: .normal)
-            self.isSelected = sender.tag - 3000
-            self.isSelected2 = sender.tag - 3000
+            StoredProperty.isSelected = sender.tag - 3000
+            StoredProperty.indexSelectedAddressList = self.dataList
+            self.orderId = self.dataList[sender.tag - 3000].addressId
+            
             self.isWorking = true
               
         } else {
@@ -233,12 +237,32 @@ extension EditChangeAddressController: UITableViewDelegate, UITableViewDataSourc
         cell.editActionBtn.tag = indexPath.row + 1000
         cell.deleteBtn.tag = indexPath.row + 2000
         cell.selectionBtn.tag = indexPath.row + 3000
-        if isSelected2 == indexPath.row {
+        
+        if dataList[indexPath.row].addressId == orderId {
+            StoredProperty.isSelected = indexPath.row
             cell.selectionBtn.setImage(UIImage(named: "radio-active"), for: .normal)
             
         }else {
             cell.selectionBtn.setImage(UIImage(named: "radio-inactive"), for: .normal)
         }
+       
+        if orderId == "" {
+                   if indexPath.row == 0 {
+                   cell.selectionBtn.setImage(UIImage(named: "radio-active"), for: .normal)
+                   }
+            if sendName == dataList[indexPath.row].street {
+                cell.selectionBtn.setImage(UIImage(named: "radio-active"), for: .normal)
+            } else {
+                cell.selectionBtn.setImage(UIImage(named: "radio-inactive"), for: .normal)
+            }
+            if StoredProperty.isSelected == 0 {
+              if indexPath.row == 0 {
+              cell.selectionBtn.setImage(UIImage(named: "radio-active"), for: .normal)
+              }
+            }
+        }
+        
+        
         cell.deleteBtn.addTarget(self, action: #selector(deleteProfile(sender:)), for: .touchUpInside)
         cell.selectionBtn.addTarget(self, action: #selector(selectedAction(sender:)), for: .touchUpInside)
         cell.editActionBtn.addTarget(self, action: #selector(editProfile(sender:)), for: .touchUpInside)
