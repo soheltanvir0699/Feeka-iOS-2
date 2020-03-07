@@ -2605,7 +2605,7 @@
                                                             <rect key="frame" x="11" y="57.000000000000014" width="362" height="240.33333333333337"/>
                                                         </stackView>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.85918841290000003" green="0.86601760790000004" blue="0.86512807179999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="0.94117647058823528" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="IAg-se-kTH" secondAttribute="trailing" constant="11" id="1Gf-eI-9aJ"/>
                                                         <constraint firstAttribute="trailing" secondItem="pe3-4e-T3S" secondAttribute="trailing" constant="11" id="1ZA-cT-krb"/>
@@ -2704,7 +2704,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.93975560960417548" green="0.94906012059035538" blue="0.94906012059035538" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="0.94117647058823528" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="NNd-MJ-c2F" firstAttribute="top" secondItem="uzS-o9-sfg" secondAttribute="bottom" constant="10.666666666666657" id="AZb-e2-pfj"/>
                                                         <constraint firstAttribute="trailing" secondItem="2vB-ZB-9mF" secondAttribute="trailing" constant="7" id="Baa-0k-5YD"/>
