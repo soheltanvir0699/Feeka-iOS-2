@@ -206,6 +206,7 @@ class DiscoverDetailsViewController: UIViewController, UIScrollViewDelegate, UIV
         
         discoverDetailsVC.brand = self.brand
         discoverDetailsVC.sPrice = self.sPrice
+        discoverDetailsVC.rPrice = self.rPrice
         discoverDetailsVC.rating = self.rating
         discoverDetailsVC.ratingCount = self.ratingCount
         discoverDetailsVC.productId = self.productId
