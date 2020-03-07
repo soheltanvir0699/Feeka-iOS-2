@@ -23,7 +23,7 @@ class ProductDetailsViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var reviewBorder: UILabel!
     @IBOutlet weak var salePrice: UILabel!
     @IBOutlet weak var reviewCount: UILabel!
-    @IBOutlet weak var scrollview: UIScrollView!
+ //   @IBOutlet weak var scrollview: UIScrollView!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var brandName: UILabel!
     @IBOutlet weak var productName: UILabel!
@@ -68,13 +68,25 @@ class ProductDetailsViewController: UIViewController,UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         IQKeyboardManager.shared.enable = false
         IQKeyboardManager.shared.enableAutoToolbar = false
+//        let indexPath = IndexPath(row: 3, section: 0)
+//                   let cell = collView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ProductDetailsCollectionViewCell
+//                   cell?.scrollView.isScrollEnabled = false
+//        let indexPath2 = IndexPath(row: 2, section: 0)
+//                   let cell2 = collView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ProductDetailsCollectionViewCell
+//                   cell?.scrollView.isScrollEnabled = false
         //scrollview.enableMode = false
+        let scrollView = self.view.viewWithTag(4000+2) as! UIScrollView
+        scrollView.isScrollEnabled = false
     }
     
    @objc func keyboardWillShow(notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            
-            scrollview.isScrollEnabled = false
+//          let indexPath = IndexPath(row: 3, section: 0)
+//            let cell = collView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ProductDetailsCollectionViewCell
+//            cell?.scrollView.isScrollEnabled = false
+            let scrollView = self.view.viewWithTag(4000+2) as! UIScrollView
+            scrollView.isScrollEnabled = false
+           // scrollview.isScrollEnabled = false
             IQKeyboardManager.shared.enable = false
             IQKeyboardManager.shared.enableAutoToolbar = false
             if self.view.frame.origin.y == 0{
@@ -86,7 +98,12 @@ class ProductDetailsViewController: UIViewController,UITextFieldDelegate {
 
     @objc func keyboardWillHide(notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            scrollview.isScrollEnabled = true
+           // scrollview.isScrollEnabled = true
+            let scrollView = self.view.viewWithTag(4000+2) as! UIScrollView
+            scrollView.isScrollEnabled = true
+//            let indexPath = IndexPath(row: 2, section: 0)
+//            let cell = collView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ProductDetailsCollectionViewCell
+//            cell?.scrollView.isScrollEnabled = true
             IQKeyboardManager.shared.enable = false
             IQKeyboardManager.shared.enableAutoToolbar = false
             if self.view.frame.origin.y != 0 {
@@ -142,6 +159,7 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
             
             cell?.DescriptionLbl.text = ""
             print(string1)
+            cell?.scrollView.isHidden = true
            let fullNameArr = string1.components(separatedBy: "<strong>Star ingredients:</strong><br> <br>")
             
             let fistComponent = fullNameArr[0].components(separatedBy: "</strong></span><br> <br>")
@@ -161,7 +179,7 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
             cell?.thirdView.isHidden = true
             cell?.sizeLabel.isHidden = true
             cell?.DescriptionLbl.isHidden = true
-            
+            cell?.scrollView.isHidden = true
               let fullNameArr = string1.components(separatedBy: "<strong>Star ingredients:</strong><br> <br>")
             
             if fullNameArr.count == 2 {
@@ -177,6 +195,8 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
             
             return cell!
         }else {
+            cell?.scrollView.isHidden = false
+            cell?.scrollView.tag = indexPath.row + 4000
             cell?.thirdView.isHidden = false
             cell?.postView.layer.cornerRadius = 10
             cell?.postView.layer.borderWidth = 1
@@ -292,9 +312,10 @@ extension ProductDetailsViewController: UICollectionViewDelegate, UICollectionVi
                               self.view.makeToast( "Please try again later")
                                  return
                              }
-               
-           
-                            let email =  userdefault.value(forKey: "email") as! String
+        var email = ""
+        if userdefault.value(forKey: "email") as? String != nil {
+                            email =  userdefault.value(forKey: "email") as! String
+        }
         //print(paramater)
                
         let param2  =  ["comment_approved":"1","comment_author":"\(authorName)","comment_author_email":"\(email)","comment_author_IP":"","comment_content":"\(commentfield.text!)","comment_date":"\(currentTime)","comment_date_gmt":"\(gmtTime)","comment_karma":"0","comment_meta":[

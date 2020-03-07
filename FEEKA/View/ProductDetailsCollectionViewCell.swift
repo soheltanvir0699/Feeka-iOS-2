@@ -31,6 +31,7 @@ class ProductDetailsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var postView: UIView!
     @IBOutlet weak var DescriptionLbl: UILabel!
 
+    @IBOutlet weak var scrollView: UIScrollView!
     
     
     var count = 2
