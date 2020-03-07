@@ -54,9 +54,9 @@ class ProductDetailsViewController: UIViewController,UITextFieldDelegate {
         reviewCount.text = "(\(ratingCount))"
         imgView.downloaded(from: self.imageList[0])
         imgView.contentMode = .scaleAspectFill
-        scrollview.contentSize = CGSize(width: self.view.frame.height, height: 10000)
-        viewscrolll.frame = scrollview.frame
-        scrollview.isScrollEnabled = true
+       // scrollview.contentSize = CGSize(width: self.view.frame.height, height: 10000)
+       // viewscrolll.frame = scrollview.frame
+      //  scrollview.isScrollEnabled = true
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         
           NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
