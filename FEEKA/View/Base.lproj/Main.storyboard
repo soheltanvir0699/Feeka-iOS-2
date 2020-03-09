@@ -4771,14 +4771,14 @@
                                                 <rect key="frame" x="10" y="314" width="394" height="170"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gsw-ya-R4y">
-                                                        <rect key="frame" x="0.0" y="0.0" width="192" height="170"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="394" height="170"/>
                                                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="192" id="gsZ-9S-ANO"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <imageView clipsSubviews="YES" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GIe-iS-g7k">
-                                                        <rect key="frame" x="202" y="0.0" width="192" height="170"/>
+                                                    <imageView hidden="YES" clipsSubviews="YES" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GIe-iS-g7k">
+                                                        <rect key="frame" x="0.0" y="0.0" width="192" height="170"/>
                                                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="192" id="hPB-ex-lv7"/>
@@ -8214,7 +8214,7 @@
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="scu-im-uEh" customClass="CosmosView" customModule="Cosmos">
+                                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="scu-im-uEh" customClass="CosmosView" customModule="Cosmos">
                                                                             <rect key="frame" x="147" y="49" width="120" height="30"/>
                                                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                             <constraints>
@@ -8305,7 +8305,7 @@
                                                                                                 <nil key="textColor"/>
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
-                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QjT-iN-7Wh" customClass="CosmosView" customModule="Cosmos">
+                                                                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QjT-iN-7Wh" customClass="CosmosView" customModule="Cosmos">
                                                                                                 <rect key="frame" x="54" y="28" width="120" height="17"/>
                                                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                                                 <constraints>
