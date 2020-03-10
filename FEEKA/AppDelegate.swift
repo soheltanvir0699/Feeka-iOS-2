@@ -44,6 +44,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         OneSignal.promptForPushNotifications(userResponse: { accepted in
         print("User accepted notifications: \(accepted)")
         })
+        if  let url = launchOptions?[UIApplication.LaunchOptionsKey.url] as? URL{
+            print("mammmdmdmdmdmdmme38yfeb yfbqffqfh\(url)")
+        }
+        
+        if let url = launchOptions?[UIApplication.LaunchOptionsKey.url] as? URL {
+           /// some
+            print("mammmdmdmdmdmdmme38yfeb yfbqffqfh\(url)")
+        }
         //END OneSignal initializataion code
         return true
     }
@@ -61,7 +69,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        //print(url)
+       // print("url: \(context.url.absoluteURL)")
+        // let param = getQueryStringParameter(url: "\(context.url.absoluteURL)", param: "product_id")
+//          if param != nil {
+//        //  id = "\(param!)"
+//          }
+         // print(param!)
+        print("scheme: \(url.scheme!)")
+        print("host: \(url.host!)")
+        print("path: \(url.path)")
+        print("components: \(url.pathComponents)")
+//          switch url.host! {
+//          case "deeplink":
+//             /// productDetails()
+//          default:
+//              break
+//          }
+        return true
+    }
 
 }
 

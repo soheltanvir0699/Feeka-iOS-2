@@ -11,12 +11,15 @@ import Alamofire
 import SwiftyJSON
 
 class TabViewController: UITabBarController {
-
+     var selecteindex = 0
     override func viewDidLoad() {
         super.viewDidLoad()
+    
     }
     override func viewWillAppear(_ animated: Bool) {
         bagApiCalling()
+        self.selectedIndex = selecteindex
+        
     }
 
  @objc func bagApiCalling() {

@@ -37,6 +37,7 @@
 		8D6868D223FD8A72008638F7 /* PriceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6868D123FD8A72008638F7 /* PriceController.swift */; };
 		8D6868D423FD8D57008638F7 /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6868D323FD8D57008638F7 /* Extension+UIView.swift */; };
 		8D8226F523FBB2F4005B3F39 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8226F423FBB2F4005B3F39 /* AlertView.swift */; };
+		8D8298ED2417E537000970A2 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8298EC2417E537000970A2 /* SafariServices.framework */; };
 		8D88FD332402715E00E5DC97 /* DeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D88FD322402715E00E5DC97 /* DeliveryViewController.swift */; };
 		8D8A0220240A516200B83C47 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8A021F240A516200B83C47 /* TabViewController.swift */; };
 		8D90187F24040B0C00155910 /* BagFirstCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D90187E24040B0C00155910 /* BagFirstCell.swift */; };
@@ -160,6 +161,7 @@
 		8D6868D123FD8A72008638F7 /* PriceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceController.swift; sourceTree = "<group>"; };
 		8D6868D323FD8D57008638F7 /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
 		8D8226F423FBB2F4005B3F39 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		8D8298EC2417E537000970A2 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		8D88FD322402715E00E5DC97 /* DeliveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryViewController.swift; sourceTree = "<group>"; };
 		8D8A021F240A516200B83C47 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		8D90187E24040B0C00155910 /* BagFirstCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagFirstCell.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 			files = (
 				8DF17689240698D200EBFF9C /* Nuke.framework in Frameworks */,
 				C4E6456E23F801F300DC0B07 /* MapKit.framework in Frameworks */,
+				8D8298ED2417E537000970A2 /* SafariServices.framework in Frameworks */,
 				C8A907975EAF72A91AF30E1A /* Pods_FEEKA.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -404,6 +407,7 @@
 		A83108E15E7C41B35F1AADCD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8D8298EC2417E537000970A2 /* SafariServices.framework */,
 				8D954D3D24127552005FC5E8 /* Alamofire.framework */,
 				8DF17688240698D200EBFF9C /* Nuke.framework */,
 				C4E6456D23F801F300DC0B07 /* MapKit.framework */,
