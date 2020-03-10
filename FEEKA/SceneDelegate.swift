@@ -85,6 +85,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     hairCare()
                 }
                 
+            case "chocsqueeze":
+                home()
+                
+                
             default:
                 break
             }
@@ -124,6 +128,16 @@ print("jsdjksjfkdsj\(urlToOpen)")
         let vc = rootVC.storyboard?.instantiateViewController(withIdentifier: "DiscoverDetailsViewController") as? DiscoverDetailsViewController
         vc?.productId = id
         rootVC.navigationController?.pushViewController(vc!, animated: true)
+           UIApplication.shared.windows.first?.makeKeyAndVisible()
+    }
+    
+    func home() {
+           guard let rootVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar") as? TabViewController else {
+               return
+           }
+           let navigationController = UINavigationController(rootViewController: rootVC)
+        navigationController.navigationBar.isHidden = true
+           UIApplication.shared.windows.first?.rootViewController = navigationController
            UIApplication.shared.windows.first?.makeKeyAndVisible()
     }
     
