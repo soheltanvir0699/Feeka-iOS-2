@@ -273,12 +273,6 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
         }
         }
         
-        
-
-    
-    
-    
-    
     @IBAction func singUP(_ sender: Any) {
         
         guard let firstName = firstName.text, let lastName = lastName.text, let email = email.text, let createPass = createPassField.text, let confirmPass = confirmPassField.text, let date = DateField.text, let gender = genderField.text else {
@@ -326,8 +320,7 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
                     if let result = response.data {
                         let responseString = NSString(data: result, encoding: String.Encoding.utf8.rawValue)
                         let jsonRespose = JSON(result)
-                        print(jsonRespose)
-                        print(jsonRespose["message"].stringValue)
+                       
                         self.view.makeToast( "\(jsonRespose["message"].stringValue)")
                         
                         if jsonRespose["message"].stringValue == "Email address is already registered." {

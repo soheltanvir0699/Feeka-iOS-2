@@ -24,6 +24,9 @@ class HotViewController: UIViewController {
     @IBOutlet weak var allFaceLbl: UILabel!
     @IBOutlet weak var allConditionerLbl: UILabel!
     @IBOutlet weak var allBodyLbl: UILabel!
+    @IBOutlet weak var featureColl: UICollectionView!
+    @IBOutlet weak var lastCollList: UICollectionView!
+    
     
     var dataList = [hireCareParameter]()
     var indicator: NVActivityIndicatorView!
@@ -31,6 +34,7 @@ class HotViewController: UIViewController {
     var userDefault = UserDefaults.standard
     var hotListId = [String]()
     var productId = [Int]()
+    var hotList = [hotData]()
     let blurEffect = UIBlurEffect(style: .dark)
     var blurredEffectView = UIVisualEffectView()
     var blurredEffectView1 = UIVisualEffectView()
@@ -110,7 +114,7 @@ class HotViewController: UIViewController {
         DiscoverViewController.category = hotListId[2]
         DiscoverViewController.searchTag = "CONDITIONERS"
         DiscoverViewController.navText = "CONDITIONERS"
-               self.navigationController?.pushViewController(DiscoverViewController, animated: true)
+        self.navigationController?.pushViewController(DiscoverViewController, animated: true)
     }
     
     @objc func allCondition(tapGestureRecognizer: UITapGestureRecognizer) {
@@ -168,6 +172,10 @@ class HotViewController: UIViewController {
                         for i in jsonResponse["brand_box"].arrayValue {
                         
                           let image = i["image"].stringValue
+                            let name = i["name"].stringValue
+                            let hotListId = i["id"].stringValue
+                            self.lastCollList.reloadData()
+                            self.hotList.append(hotData(title: name, image: image, hostId: hotListId))
                             if brandCount == 0 {
                                // self.allFaceImg.downloaded(from: image)
                                 let request = ImageRequest(
@@ -234,10 +242,15 @@ class HotViewController: UIViewController {
 
 extension HotViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == featureColl {
         return dataList.count
+        } else {
+            return hotList.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView == featureColl {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "list", for: indexPath) as? HotCollectionViewCell
         //cell?.productImg.downloaded(from: dataList[indexPath.row].image)
         if dataList.isEmpty != true {
@@ -274,13 +287,25 @@ extension HotViewController: UICollectionViewDelegate, UICollectionViewDataSourc
         }
         cell?.productImg.layer.cornerRadius = 5
         return cell!
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collCell", for: indexPath)
+            return cell
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == featureColl {
         let DiscoverDetailsVC = storyboard?.instantiateViewController(withIdentifier: "DiscoverDetailsViewController") as! DiscoverDetailsViewController
         DiscoverDetailsVC.productId = "\(productId[indexPath.row])"
         self.navigationController?.pushViewController(DiscoverDetailsVC, animated: true)
         print("sdsdsd")
+        } else {
+            let DiscoverViewController = storyboard?.instantiateViewController(withIdentifier: "DiscoverViewController") as! DiscoverViewController
+            DiscoverViewController.category = hotList[indexPath.row].hostId
+            DiscoverViewController.searchTag = hotList[indexPath.row].title
+                   DiscoverViewController.navText = hotList[indexPath.row].title
+                          self.navigationController?.pushViewController(DiscoverViewController, animated: true)
+        }
     }
     
 }

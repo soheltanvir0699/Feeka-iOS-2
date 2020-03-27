@@ -198,3 +198,9 @@ struct addressDataModel {
     var company:String
     var addressId: String
 }
+
+struct hotData {
+    var title:String
+    var image:String
+    var hostId:String
+}
